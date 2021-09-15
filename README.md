@@ -23,6 +23,10 @@
 - **Frontend:** ReactJS with vanilla HTML + CSS
 - **Backend:** NestJS (JavaScript framework for building scalable, server-side rendered Node.js application, offering built-in Express support as an HTTP server framework)
 - **Database:** mySQL Database
+  - Development Environment:
+    - ip: 3.89.110.189
+    - name: admin
+    - passwd: aki-dev
 
 ## Team Members
 
