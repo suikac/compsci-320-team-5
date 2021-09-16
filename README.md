@@ -1,12 +1,12 @@
 # Backend starter
 ## set up
 ### prerequisite
-`git clone `
+`git clone https://github.com/suikac/compsci-320-team-5.git`
 
-install and run [mysql](https://dev.mysql.com/downloads/) locally
-* `mysql -u root -p`
+install and run [MySQL](https://dev.mysql.com/downloads/) locally
+* `mysql -u root` to login to MySQL
 * if MySQL 8.0.0+ is installed: `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password-you-want'`
-* create schema aki;
+* `create schema aki`;
 
 ### run the app
 `cd backend`
