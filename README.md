@@ -17,7 +17,7 @@ place your `db_username` and `db_password` in `src/AppModule.ts`
 
 `yarn run start`
 
-send out post request to `localhost:3000\Employee\create` to create a employee
+send out post request to `localhost:3000/Employee/create` to create a employee
 
 
 
