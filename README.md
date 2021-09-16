@@ -1,7 +1,7 @@
 # Backend starter
 ## set up
 ### prerequisite
-`git clone https://github.com/suikac/compsci-320-team-5.git` and switch to branch 'backend-setup'
+`git clone https://github.com/suikac/compsci-320-team-5.git` and switch to branch 'backend_setup'
 
 install and run [MySQL](https://dev.mysql.com/downloads/) locally
 * `mysql -u root` to login to MySQL
