@@ -7,6 +7,7 @@ import { EmployeeController } from './employee/employee.controller';
 import { EmployeeService } from './employee/employee.service';
 import { CatsController } from './cat.controller';
 import { EmployeeModule } from './employee/employee.module';
+import { LoginModule } from './login/login.module';
 
 @Module({
   imports: [
@@ -14,12 +15,12 @@ import { EmployeeModule } from './employee/employee.module';
       type: 'mysql',
       host: 'localhost',
       port: 3306,
-      username: 'DB_UserName',
-      password: 'DB_password',
+      username: 'root',
+      password: 'password',
       database: 'aki',
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: true,
-    }), EmployeeModule
+    }), EmployeeModule, LoginModule
   ],
   controllers: [AppController],
   providers: [AppService],
