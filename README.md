@@ -26,6 +26,7 @@
   - host: database-1.cjayoejqlkac.us-east-1.rds.amazonaws.com
   - username: admin
   - password: aki-dev123
+- **CI/CD:** PM2 + AWS EC2 + GitHub Actions (for better development and deployment experience)
 
 ## Team Members
 
