@@ -39,7 +39,7 @@
 - Adira Cohen (GitHub: ) (Email: adiracohen@umass.edu)
 - Aditya Vikram Singh (GitHub: @AVS1508) (Email: avsingh@umass.edu)
 - Chinh Vu (GitHub: @ChinhVu320) (Email: chinhvu@umass.edu)
-- James Topa (GitHub: ) (Email: jtopa@umass.edu)
+- James Topa (GitHub: @JTopa7) (Email: jtopa@umass.edu)
 - Kai Ye (GitHub: @yk930608) (Email: kye@umass.edu)
 - Lily Rosenbaum (GitHub: ) (Email: lrosenbaum@umass.edu)
 - Matthew Cappucci (GitHub: @mcappucci1) (Email: mcappucci@umass.edu)
