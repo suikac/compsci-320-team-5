@@ -10,16 +10,7 @@ import { EmployeeModule } from './employee/employee.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: '134351350Nozomi',
-      database: 'aki',
-      entities: [join(__dirname, '**', '*.entity.{ts,js}')],
-      synchronize: true,
-    }), EmployeeModule
+    TypeOrmModule.forRoot(), EmployeeModule
   ],
   controllers: [AppController],
   providers: [AppService],
