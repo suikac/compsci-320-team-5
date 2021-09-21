@@ -1,0 +1,12 @@
+FROM node:14
+WORKDIR /.
+
+# Install app Dependencies
+COPY package*.json ./
+RUN npm install
+
+COPY . .
+EXPOSE 3000
+
+# run the nest.js application
+CMD [ "npm", "run", "start"]

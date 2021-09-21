@@ -5,7 +5,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { EmployeeController } from './employee/employee.controller';
 import { EmployeeService } from './employee/employee.service';
-import { CatsController } from './cat.controller';
 import { EmployeeModule } from './employee/employee.module';
 
 @Module({
