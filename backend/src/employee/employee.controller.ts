@@ -19,19 +19,14 @@ export class EmployeeController {
     }
 
     @Get('/:EmployeeId')
-    /**
-     * getEmployee
-     */
     public getEmployee(@Param('EmployeeId') employeeId: number) :Promise<Employee> {
         return this.employeeService.getEmployee(employeeId);
     }
 
     @Post('/edit/:EmployeeId')
-    /**
-     * updateEmployee
-     */
     public async updateEmployee(@Param('EmployeeId') employeeId: number,
      @Body() createEmployeeDto: CreateEmployeeDto) {
-        await this.employeeService.editEmployee(createEmployeeDto, employeeId)
+        const employee = await this.employeeService.editEmployee(createEmployeeDto, employeeId)
+        return employee
     }
 }

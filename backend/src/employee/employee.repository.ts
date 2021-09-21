@@ -9,7 +9,8 @@ export class EmployeeRepository extends Repository<Employee> {
         createEmployeeDto: CreateEmployeeDto
     ): Promise<Employee> {
         const {name, email, role} = createEmployeeDto
-
+        console.log(role)
+        console.log(email)
         const employee = new Employee();
         employee.email = email;
         employee.name = name;

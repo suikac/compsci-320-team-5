@@ -11,6 +11,6 @@ export class Employee extends BaseEntity {
     @Column()
     email: string
 
-    @Column()
+    @Column({nullable: true})
     role: string
 }
