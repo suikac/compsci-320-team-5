@@ -13,7 +13,7 @@ install and run [MySQL](https://dev.mysql.com/downloads/) locally
 
 `yarn install`
 
-place your `db_username` and `db_password` in `src/AppModule.ts`
+place your `db_username` and `db_password` in `ormconfig.json`
 
 `yarn run start`
 
