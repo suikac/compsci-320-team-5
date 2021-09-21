@@ -640,6 +640,15 @@
     "tslib" "2.3.0"
     "uuid" "8.3.2"
 
+"@nestjs/microservices@^8.0.0", "@nestjs/microservices@^8.0.6":
+  "integrity" "sha512-mRnYi0tk/vUre4qdXCsOVVaVk2OLO0iQVpvSpfcSrMFeROw3Qg2z8JizZTldTzjerp98PqVU6DA7LO/Eu8E91g=="
+  "resolved" "https://registry.npmjs.org/@nestjs/microservices/-/microservices-8.0.6.tgz"
+  "version" "8.0.6"
+  dependencies:
+    "iterare" "1.2.1"
+    "json-socket" "0.3.0"
+    "tslib" "2.3.0"
+
 "@nestjs/passport@^8.0.1":
   "integrity" "sha512-vn/ZJLXQKvSf9D0BvEoNFJLfzl9AVqfGtDyQMfWDLbaNpoEB2FyeaHGxdiX6H71oLSrQV78c/yuhfantzwdjdg=="
   "resolved" "https://registry.npmjs.org/@nestjs/passport/-/passport-8.0.1.tgz"
@@ -3511,6 +3520,11 @@
   "integrity" "sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug=="
   "resolved" "https://registry.npmjs.org/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz"
   "version" "1.0.0"
+
+"json-socket@0.3.0":
+  "integrity" "sha512-jc8ZbUnYIWdxERFWQKVgwSLkGSe+kyzvmYxwNaRgx/c8NNyuHes4UHnPM3LUrAFXUx1BhNJ94n1h/KCRlbvV0g=="
+  "resolved" "https://registry.npmjs.org/json-socket/-/json-socket-0.3.0.tgz"
+  "version" "0.3.0"
 
 "json-stable-stringify-without-jsonify@^1.0.1":
   "integrity" "sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE="
