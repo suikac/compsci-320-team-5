@@ -2,7 +2,6 @@
   "name": "urefer-root",
   "version": "0.0.1",
   "description": "",
-  "author": "Yiming Huang, ",
   "private": true,
   "license": "UNLICENSED",
   "workspaces": ["login-service", "backend"],

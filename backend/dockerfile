@@ -8,5 +8,5 @@ RUN npm install
 COPY . .
 EXPOSE 3000
 
-# run the nest.js application
+# run the backend service
 CMD [ "npm", "run", "start"]
