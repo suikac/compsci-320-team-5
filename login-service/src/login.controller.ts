@@ -2,9 +2,11 @@ import { Controller } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 
-@Controller('auth')
+@Controller()
 export class LoginController {
-  constructor(private readonly loginService: LoginService) {}
+  constructor(
+    private readonly loginService: LoginService,
+  ) {}
 
   @MessagePattern({ cmd: 'login' })
   login_local(
