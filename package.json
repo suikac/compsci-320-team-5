@@ -1,0 +1,27 @@
+{
+  "name": "urefer-root",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Yiming Huang, ",
+  "private": true,
+  "license": "UNLICENSED",
+  "workspaces": ["login-service", "backend"],
+
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}
