@@ -1,9 +1,13 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Inject, Query } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy
+  ) {}
 
   @Get()
   getHello(): string {
@@ -13,5 +17,15 @@ export class AppController {
   @Get("ni")
   getNihao(): string {
     return "nihao"
+  }
+
+  @Get("login")
+  login(
+    @Query('username') username: string,
+    @Query('password') password: string
+  ) {
+    const cmd = { cmd: "login" }
+    const data = { username: username, password: password }
+    return this.loginClient.send(cmd, data)
   }
 }

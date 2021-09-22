@@ -5,6 +5,7 @@
   "author": "Yiming Huang, ",
   "private": true,
   "license": "UNLICENSED",
+  "workspaces": ["src/login"],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
