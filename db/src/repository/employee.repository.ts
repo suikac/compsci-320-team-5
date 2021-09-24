@@ -1,20 +1,15 @@
 import {Repository, EntityRepository, BaseEntity} from "typeorm"
-import { Employee } from "./employee.entity"
-import { CreateEmployeeDto } from "./dto/create-employee.dto"
-import { UpdateEmployeeDto } from "./dto/update-employee.dto";
+import { Employee } from "../entitie/Employee";
 
 @EntityRepository(Employee)
 export class EmployeeRepository extends Repository<Employee> {
     public async createEmployee(
         createEmployeeDto: CreateEmployeeDto
     ): Promise<Employee> {
-        const {name, email, role} = createEmployeeDto
-        console.log(role)
-        console.log(email)
-        const employee = new Employee();
-        employee.email = email;
-        employee.name = name;
-        employee.role = role;
+        const {first_name, last_name, email,
+        company_name, manager_id, position_title, 
+    } = createEmployeeDto
+        Employee
 
         await employee.save();
         return employee

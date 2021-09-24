@@ -21,6 +21,7 @@ export class EmployeeController {
 
     @Get('/:EmployeeId')
     public getEmployee(@Param('EmployeeId') employeeId: number) :Promise<Employee> {
+        console.log("hello id")
         return this.employeeService.getEmployee(employeeId);
     }
 

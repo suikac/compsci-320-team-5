@@ -1,15 +1,34 @@
-import { IsString } from 'class-validator';
+import { IsInt, isInt, IsString, isString } from 'class-validator';
 
-export class CreateEmployeeDto {
+export class CreateEmployeeDto { // validate the correctness of every field
 
-  @IsString()
-  name: string;
+    @IsString()
+    first_name: String
 
-  @IsString()
-  email: string;
+    @IsString()
+    last_name: string
 
-  @IsString()
-  role: string;
+    @IsString()
+    email: string
+    
+    @IsString()
+    company_name: string
 
-  
+    @IsString()
+    manager_id: string
+
+    @IsString()
+    position_title: string
+
+    @IsString()
+    start_date: Date
+
+    @IsString()
+    is_manager: boolean
+
+    @IsString()
+    password: string
+
+    @IsString()
+    resume_id: string  
 }
