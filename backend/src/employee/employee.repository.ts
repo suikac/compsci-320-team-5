@@ -33,5 +33,4 @@ export class EmployeeRepository extends Repository<Employee> {
         await editEmployee.save()
         return editEmployee
     }
-
 }

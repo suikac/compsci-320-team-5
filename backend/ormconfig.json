@@ -5,7 +5,7 @@
     "port": 3306,
     "username": "root",
     "password": "134351350Nozomi",
-    "database": "aki",
+    "database": "aki-test",
     "entities": ["dist/**/*.entity{.ts,.js}"],
     "synchronize": true
   }

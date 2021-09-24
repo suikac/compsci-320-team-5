@@ -1,6 +1,7 @@
 import { Controller, Get, Inject, Query } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { AppService } from './app.service';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 @Controller()
 export class AppController {
@@ -14,11 +15,6 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get("ni")
-  getNihao(): string {
-    return "nihao"
-  }
-
   @Get("login")
   login(
     @Query('username') username: string,
@@ -28,4 +24,11 @@ export class AppController {
     const data = { username: username, password: password }
     return this.loginClient.send(cmd, data)
   }
+
+  @MessagePattern({ cmd: 'password' })
+    getPassword(
+      @Payload('email') email: string) {
+        console.log("enter backend service")
+        return "the email is: " + email + "the password"
+      }
 }

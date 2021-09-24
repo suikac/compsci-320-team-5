@@ -2,6 +2,7 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { CreateEmployeeDto } from './dto/create-employee.dto';
 import { Employee } from './employee.entity';
 import { EmployeeService } from './employee.service';
+import { MessagePattern, Payload } from '@nestjs/microservices';
 
 
 @Controller('employee')
