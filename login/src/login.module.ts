@@ -13,6 +13,13 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         options: {
           port: 3000
         }
+      },
+      {
+        name: 'DB_SERVICE',
+        transport: Transport.TCP,
+        options: {
+          port: 3001
+        }
       }
     ])
   ],

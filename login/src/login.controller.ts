@@ -6,7 +6,8 @@ import { ClientProxy, MessagePattern, Payload } from '@nestjs/microservices';
 export class LoginController {
   constructor(
     private readonly loginService: LoginService,
-    @Inject('BACKEND_SERVICE') private readonly backendService: ClientProxy
+    @Inject('BACKEND_SERVICE') private readonly backendService: ClientProxy,
+    @Inject('DB_SERVICE') private readonly dbService: ClientProxy
   ) {}
 
   @MessagePattern({ cmd: 'login' })
@@ -17,7 +18,7 @@ export class LoginController {
       const cmd = { cmd : 'password'}
       const data = { email : 'test@gamil.com'}
       console.log("enter login service")
-      return this.backendService.send(cmd, data) // send the email to get the password
+      return this.dbService.send(cmd, data) // send the email to get the password
     } else {
       return 'Invalid login'
     }
