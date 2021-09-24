@@ -25,10 +25,10 @@ export class AppController {
     return this.loginClient.send(cmd, data)
   }
 
-  @MessagePattern({ cmd: 'password' })
-    getPassword(
-      @Payload('email') email: string) {
-        console.log("enter backend service")
-        return "the email is: " + email + "the password"
-      }
+  // @MessagePattern({ cmd: 'password' })
+  //   getPassword(
+  //     @Payload('email') email: string) {
+  //       console.log("enter backend service")
+  //       return "the email is: " + email + "the password"
+  //     }
 }

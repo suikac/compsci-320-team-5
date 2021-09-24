@@ -30,4 +30,11 @@ export class EmployeeController {
         const employee = await this.employeeService.editEmployee(createEmployeeDto, employeeId)
         return employee
     }
+
+    @MessagePattern({ cmd: 'password' })
+    getPassword(
+      @Payload('email') email: string) {
+        console.log("enter backend service")
+        return "the email is: " + email + "the password"
+      }
 }
