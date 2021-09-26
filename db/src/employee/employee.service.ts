@@ -10,8 +10,8 @@ export class EmployeeService {
         private employeeRepository: EmployeeRepository
     ){}
 
-    public async getEmployee() : Promise<Employee> {
-        const employee = await this.employeeRepository.findByIds([1]);
-        return employee[0]
+    public async getEmployee() : Promise<Employee[]> {
+        const employee = await this.employeeRepository.findByIds([1, 2]);
+        return employee
     }
 }
