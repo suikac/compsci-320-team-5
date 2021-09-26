@@ -9,15 +9,15 @@ install and run [MySQL](https://dev.mysql.com/downloads/) locally
 * `create schema aki`;
 
 ### run the app
-`cd backend`
+`bash document/shell/start_backend.sh` to start backend service
 
-`yarn install`
+`bash document/shell/start_backend.sh` to start login service
 
-place your `db_username` and `db_password` in `ormconfig.json`
+`bash document/shell/start_backend.sh` to start db service
 
-`yarn run start`
+place mysql username and mysql password in `db/src/db.module.ts`
 
-send out post request to `localhost:3000/Employee/create` to create a employee
+send out post request to `localhost:3000/login?username=user&password=pwd` to get an employee
 
 
 
