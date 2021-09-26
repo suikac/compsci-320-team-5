@@ -11,7 +11,7 @@ import { Position } from "./Position";
 import { Referral } from "./Referral";
 
 @Index("employee_resume_fk", ["resumeId"], {})
-@Entity("employee", { schema: "aki" })
+@Entity()
 export class Employee {
   @Column("bigint", { primary: true, name: "id" })
   id: string;
