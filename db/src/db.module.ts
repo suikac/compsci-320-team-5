@@ -4,6 +4,7 @@ import { LoginService } from './db.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { EmployeeModule } from './employee/employee.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
           port: 3000
         }
       }
-    ])
+    ]),
+    EmployeeModule
   ],
   controllers: [LoginController],
   providers: [LoginService],
