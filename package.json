@@ -4,7 +4,13 @@
   "description": "",
   "private": true,
   "license": "UNLICENSED",
-  "workspaces": ["login-service", "backend"],
+  "workspaces": {
+    "packages": ["login", "backend"],
+    "nohoist": [
+      "**/typeorm",
+      "**/typeorm/**"
+    ]
+  },
 
   "jest": {
     "moduleFileExtensions": [
