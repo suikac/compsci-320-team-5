@@ -14,4 +14,13 @@ export class EmployeeService {
         const employee = await this.employeeRepository.findByIds([1, 2]);
         return employee
     }
+
+    public async getPasswordByEmail(email: String) : Promise<String> {
+        const employee = this.employeeRepository
+        .createQueryBuilder('Employee')
+        .where('email = :email', {email: email})
+        .getOne()
+        
+        return (await employee).password
+    }
 }

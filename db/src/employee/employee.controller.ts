@@ -19,9 +19,8 @@ export class EmployeeController {
     return employee
   }
 
-  @Get("hello")
-  getEmployee() {
-    const employee = this.employeeService.getEmployee()
+  getPasswordByEmail(email: string) {
+    const employee = this.employeeService.getPasswordByEmail('aki@gmail.com')
     return employee
   }
 }

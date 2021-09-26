@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# generate the entities for nest.
+# generate the entities by inputing database.
 npx typeorm-model-generator \
     -h localhost \
     -d aki \

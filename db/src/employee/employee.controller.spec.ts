@@ -15,4 +15,15 @@ describe('EmployeeController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
-});
+
+  describe('return password', () => {
+    it('should return correct password', () => {
+      const password = 'aki-test123'
+
+      const pass = controller.getPasswordByEmail('aki@gmail.com')
+      expect(pass).toBe(password)
+    })
+  }
+);
+})
+
