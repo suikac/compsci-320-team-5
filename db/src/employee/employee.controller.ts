@@ -1,4 +1,4 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpException, HttpStatus, Inject, NotFoundException } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { STATUS_CODES } from 'http';
 import { EmployeeService } from './employee.service';
@@ -26,6 +26,17 @@ export class EmployeeController {
   ) {
     console.log("in db")
     const employee = this.employeeService.getPasswordByEmail(email)
-    return employee != null ? employee : "Not founded"
+    console.log(employee)
+    if (!employee) {
+      console.log("in exception branch")
+      throw new HttpException(
+        {
+          STATUS_CODES: 404,
+          error: "Employee Not Founded"
+        }, HttpStatus.NOT_FOUND
+      )
+    } else {
+      return employee
+    }
   }
 }

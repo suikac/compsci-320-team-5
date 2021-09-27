@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, Query } from '@nestjs/common';
+import { Controller, Get, Inject, NotFoundException, Query } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
 @Controller('employee')
@@ -14,6 +14,8 @@ export class EmployeeController {
         console.log('in backend')
         const cmd = {cmd: 'getByEmail'}
         const data = {email: email}
-        return this.dbService.send(cmd, data)
+        const employee = this.dbService.send(cmd, data)
+        if (!employee) throw new NotFoundException("Employee not found")
+        else return employee
     }
 }
