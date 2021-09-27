@@ -15,12 +15,12 @@ export class EmployeeService {
         return employee
     }
 
-    public async getPasswordByEmail(email: String) : Promise<String> {
+    public async getPasswordByEmail(email: String) : Promise<Employee>{
         const employee = this.employeeRepository
         .createQueryBuilder('Employee')
         .where('email = :email', {email: email})
         .getOne()
         
-        return (await employee).password
+        return employee
     }
 }

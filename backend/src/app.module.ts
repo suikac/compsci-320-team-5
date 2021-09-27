@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { EmployeeController } from './employee/employee.controller';
+import { EmployeeModule } from './employee/employee.module';
+require('dotenv').config()
 
 @Module({
   imports: [
@@ -11,10 +14,17 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         options: {
           port: 1234
         }
+      },
+      { name: 'DB_SERVICE',
+        transport: Transport.TCP,
+        options: {
+          port: 3001
+        }
       }
-    ])
+    ]),
+    EmployeeModule
   ],
-  controllers: [AppController],
+  controllers: [AppController, EmployeeController],
   providers: [AppService],
 })
 export class AppModule {}

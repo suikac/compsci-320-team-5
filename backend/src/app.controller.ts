@@ -7,7 +7,8 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy
+    @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy,
+    @Inject('DB_SERVICE') private readonly dbClient: ClientProxy
   ) {}
 
   @Get()
