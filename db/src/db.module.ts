@@ -31,7 +31,6 @@ require('dotenv').config()
         username: process.env.mysql_user,
         password: process.env.mysql_password,
         database: process.env.mysql_db,
-        //entities: [join(__dirname, '**', '*.entity.{ts,js}')],
         entities: [Employee, Referral, Resume, Position, PositionTag, Tag],
         synchronize: true,
       }
