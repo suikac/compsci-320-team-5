@@ -5,7 +5,7 @@
   "private": true,
   "license": "UNLICENSED",
   "workspaces": {
-    "packages": ["login", "backend"],
+    "packages": ["login", "backend", "db"],
     "nohoist": [
       "**/typeorm",
       "**/typeorm/**"
