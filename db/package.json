@@ -24,6 +24,7 @@
     "@nestjs/platform-express": "^8.0.6",
     "@nestjs/typeorm": "^8.0.2",
     "class-validator": "^0.13.1",
+    "dotenv": "^10.0.0",
     "nestjs": "0.0.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",

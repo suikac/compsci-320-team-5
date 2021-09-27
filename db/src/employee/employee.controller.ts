@@ -14,7 +14,7 @@ export class EmployeeController {
   getPassword(
     @Payload('email') email: string
     ) {
-    console.log("welcome to db")
+    console.log("welcome db service")
     const employee = this.employeeService.getEmployee()
     return employee
   }

@@ -11,6 +11,7 @@ import { Referral } from './entities/Referral';
 import { Position } from './entities/Position';
 import { PositionTag } from './entities/PositionTag';
 import { Tag } from './entities/Tag';
+require('dotenv').config()
 
 @Module({
   imports: [
@@ -25,11 +26,11 @@ import { Tag } from './entities/Tag';
     TypeOrmModule.forRoot(
       {
         type: 'mysql',
-        host: 'localhost',
+        host: process.env.mysql_host,
         port: 3306,
-        username: 'root',
-        password: '134351350Nozomi',
-        database: 'aki',
+        username: process.env.mysql_user,
+        password: process.env.mysql_password,
+        database: process.env.mysql_db,
         //entities: [join(__dirname, '**', '*.entity.{ts,js}')],
         entities: [Employee, Referral, Resume, Position, PositionTag, Tag],
         synchronize: true,
