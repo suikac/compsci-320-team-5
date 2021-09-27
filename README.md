@@ -22,10 +22,7 @@
 
 - **Frontend:** ReactJS with vanilla HTML + CSS
 - **Backend:** NestJS (JavaScript framework for building scalable, server-side rendered Node.js application, offering built-in Express support as an HTTP server framework)
-- **Database:** MySQL Database Hosted by AWS RDB
-  - host: database-1.cjayoejqlkac.us-east-1.rds.amazonaws.com
-  - username: admin
-  - password: aki-dev123
+- **Database:** MySQL Database Hosted by AWS RDB(work on local database for now)
 - **CI/CD:** PM2 + AWS EC2 + GitHub Actions (for better development and deployment experience)
 
 ## Team Members
