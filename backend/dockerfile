@@ -3,10 +3,10 @@ WORKDIR /.
 
 # Install app Dependencies
 COPY package*.json ./
-RUN npm install
+RUN yarn install
 
 COPY . .
 EXPOSE 3000
 
 # run the backend service
-CMD [ "npm", "run", "start"]
+CMD [ "yarn", "run", "start"]
