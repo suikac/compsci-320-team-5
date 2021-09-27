@@ -15,6 +15,7 @@ export class LoginController {
     @Payload('username') username: string,
     @Payload("password") password: string) {
     if (this.loginService.loginWithPassword(username, password)) {
+      console.log("in login")
       const cmd = { cmd : 'password'}
       const data = { email : 'test@gamil.com'}
       console.log("enter login service")
@@ -23,6 +24,4 @@ export class LoginController {
       return 'Invalid login'
     }
   }
-
-  
 }
