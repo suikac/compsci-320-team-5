@@ -21,7 +21,7 @@ export class EmployeeService {
         .createQueryBuilder('Employee')
         .where('email = :email', {email: email})
         .getOne()
-        
+
         return (await employee).password
     }
 
@@ -32,8 +32,8 @@ export class EmployeeService {
         .into('employee')
         .values({
             email: email,
-            password: await bcrypt.hash(password, 
+            password: await bcrypt.hash(password,
                 await bcrypt.genSalt())
-        }).execute()    
+        }).execute()
     }
 }

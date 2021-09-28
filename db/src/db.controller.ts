@@ -13,5 +13,12 @@ export class LoginController {
   hello() {
     return "hello"
   }
-  
+
+  @MessagePattern({ cmd : 'retrieve password hash' })
+  retrievePwdHash() {
+    return {
+      pwdHash: '1234'
+    }
+  }
+
 }

@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { EmployeeController } from './employee/employee.controller';
 import { EmployeeModule } from './employee/employee.module';
+import { JwtGuard } from './jwt-guard';
 require('dotenv').config()
 
 @Module({
@@ -25,6 +26,6 @@ require('dotenv').config()
     EmployeeModule
   ],
   controllers: [AppController, EmployeeController],
-  providers: [AppService],
+  providers: [AppService, JwtGuard],
 })
 export class AppModule {}
