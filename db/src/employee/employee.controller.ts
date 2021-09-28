@@ -2,6 +2,7 @@ import { Controller, Get, HttpCode, HttpException, HttpStatus, Inject, NotFoundE
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { STATUS_CODES } from 'http';
 import { EmployeeService } from './employee.service';
+import * as bcrypt from 'bcrypt';
 
 @Controller('employee')
 export class EmployeeController {
@@ -41,7 +42,7 @@ export class EmployeeController {
   }
 
   @MessagePattern({cmd : 'signUp'})
-  signUpEmployee(
+  async signUpEmployee(
     @Payload('email') email: string,
     @Payload('password') password: string
   ) {
