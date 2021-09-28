@@ -28,7 +28,7 @@ import { Tag } from './entities/Tag';
         host: 'localhost',
         port: 3306,
         username: 'root',
-        password: '134351350Nozomi',
+        password: '123456',
         database: 'aki',
         //entities: [join(__dirname, '**', '*.entity.{ts,js}')],
         entities: [Employee, Referral, Resume, Position, PositionTag, Tag],
