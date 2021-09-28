@@ -28,7 +28,7 @@ require('dotenv').config()
         type: 'mysql',
         host: process.env.mysql_host,
         port: 3306,
-        username: process.env.mysql_user,
+        username: process.env.mysql_username,
         password: process.env.mysql_password,
         database: process.env.mysql_db,
         entities: [Employee, Referral, Resume, Position, PositionTag, Tag],
