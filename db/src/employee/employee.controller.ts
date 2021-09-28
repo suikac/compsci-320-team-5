@@ -39,4 +39,13 @@ export class EmployeeController {
       return employee
     }
   }
+
+  @MessagePattern({cmd : 'signUp'})
+  signUpEmployee(
+    @Payload('email') email: string,
+    @Payload('password') password: string
+  ) {
+    this.employeeService.signUpEmployee(email, password);
+    return "ok"
+  }
 }

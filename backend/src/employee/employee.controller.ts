@@ -1,4 +1,4 @@
-import { Controller, Get, Inject, NotFoundException, Query } from '@nestjs/common';
+import { Body, Controller, Get, Inject, NotFoundException, Post, Query } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
 @Controller('employee')
@@ -17,5 +17,17 @@ export class EmployeeController {
         const employee = this.dbService.send(cmd, data)
         if (!employee) throw new NotFoundException("Employee not found")
         else return employee
+    }
+
+    @Post('signUp')
+    public async signUpEmployee(
+        @Body('email') email: string,
+        @Body('password') password: string
+    ) {
+        console.log('signing up employee..')
+        const cmd = {cmd: 'signUp'}
+        const data = {email: email, password: password}
+        const response = this.dbService.send(cmd, data)
+        return response
     }
 }
