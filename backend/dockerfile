@@ -1,0 +1,12 @@
+FROM node:14
+WORKDIR /.
+
+# Install app Dependencies
+COPY package*.json ./
+RUN yarn install
+
+COPY . .
+EXPOSE 3000
+
+# run the backend service
+CMD [ "yarn", "run", "start"]
