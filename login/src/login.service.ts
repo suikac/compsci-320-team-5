@@ -3,6 +3,7 @@ import { ClientProxy, RpcException } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
 import { DBPasswordResponse, TokenPayload, TokenResponse } from "./interfaces"
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class LoginService {
@@ -14,18 +15,20 @@ export class LoginService {
   async validateLogin(email: string, password: string): Promise<TokenResponse> {
     const cmd = { cmd : 'retrieve password hash' }
     const data = { email : email }
-    let response: DBPasswordResponse = await firstValueFrom(this.dbService.send(cmd, data)) // send the email to get the password
-
-    // TODO: Hash password
-    if ('1234' == response.pwdHash) {
-      let tokenPayload: TokenPayload = {
-        userId: response.userId,
+    try {
+      let response: DBPasswordResponse = await firstValueFrom(this.dbService.send(cmd, data)) // send the email to get the password
+      if (await bcrypt.compare(password, response.pwdHash)) {
+        let tokenPayload: TokenPayload = {
+          userId: response.userId,
+        }
+        let token = this.jwtService.sign(tokenPayload)
+        return {
+          token: token,
+        }
+      } else {
+        throw new RpcException("invalid credentials");
       }
-      let token = this.jwtService.sign(tokenPayload)
-      return {
-        token: token,
-      }
-    } else {
+    } catch (exception) {
       throw new RpcException("invalid credentials");
     }
   }

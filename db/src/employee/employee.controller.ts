@@ -26,7 +26,7 @@ export class EmployeeController {
     @Payload('email') email: string
   ) {
     console.log("in db")
-    const employee = this.employeeService.getPasswordByEmail(email)
+    const employee = this.employeeService.getEmployeeByEmail(email)
     console.log(employee)
     if (!employee) {
       console.log("in exception branch")
@@ -48,5 +48,19 @@ export class EmployeeController {
   ) {
     this.employeeService.signUpEmployee(email, password);
     return "ok"
+  }
+
+  @MessagePattern({cmd: 'retrieve password hash'})
+  async retrievePwdHash(
+    @Payload('email') email: string
+  ) {
+    const employee = this.employeeService.getEmployeeByEmail(email)
+    try {
+      const response = {pwdHash: (await employee).password,
+      userId: (await employee).id}
+      return response
+    } catch (exception) {
+      throw new NotFoundException("employee not found")
+    }
   }
 }
