@@ -4,7 +4,7 @@
 
 | Feature               | Core Functionality?   | Description                           |
 |-----------------------|-----------------------|---------------------------------------|
-| Login                 | **Yes**               |                                       |
+| Login                 | **Yes**               | Finished in 1st Sprint                |
 | User Storage/Roles    | **Yes**               |                                       |
 | Dashboard             | **Yes**               |                                       |
 | Job Database          | **Yes**               |                                       |
