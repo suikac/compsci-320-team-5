@@ -1,0 +1,40 @@
+/*Design for the navigation bar*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  background-color: #f1f1f1;
+}
+/*Design for the things in the navigation bar*/
+li {
+  text-align: center;
+  border-left: 1px solid #555;
+  border-right: 1px solid #555;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+
+li a.active {
+  background-color: darkgreen;
+  color: white;
+}
+
+li:last-child {
+  border-bottom: none;
+}
+
+ li a:hover:not(.active) {
+   background-color: #555;
+   color: white;
+ }
