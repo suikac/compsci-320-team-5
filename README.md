@@ -5,7 +5,7 @@
 | Feature               | Core Functionality?   | Description                           |
 |-----------------------|-----------------------|---------------------------------------|
 | Login                 | **Yes**               | Finished in 1st Sprint                |
-| User Storage/Roles    | **Yes**               |                                       |
+| User Storage/Roles    | **Yes**               | Finished with document/aki.sql        |
 | Dashboard             | **Yes**               |                                       |
 | Job Database          | **Yes**               |                                       |
 | Referral System       | **Yes**               |                                       |
