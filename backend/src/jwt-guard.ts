@@ -20,6 +20,8 @@ export class JwtGuard implements CanActivate {
     if (tokenString == undefined) {
       throw new HttpException('missing credentials', HttpStatus.UNAUTHORIZED)
     }
+        
+    tokenString = tokenString.split([" "])[1];
 
     let cmd = { cmd: 'jwt-auth' }
     try {
