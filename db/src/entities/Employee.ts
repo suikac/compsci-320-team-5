@@ -14,37 +14,37 @@ import { Referral } from "./Referral";
 @Index("employee_resume_fk", ["resumeId"], {})
 @Entity()
 export class Employee {
-  @PrimaryGeneratedColumn('increment')
+  @PrimaryGeneratedColumn("increment")
   id: string;
 
-  @Column("varchar", { name: "first_name", length: 255 , default: null})
+  @Column("varchar", { name: "first_name", length: 255, default: null })
   firstName: string;
 
-  @Column("varchar", { name: "last_name", length: 255 , default: null})
+  @Column("varchar", { name: "last_name", length: 255, default: null })
   lastName: string;
 
-  @Column("varchar", { name: "email", length: 255 , default: null})
+  @Column("varchar", { name: "email", length: 255, default: null })
   email: string;
 
-  @Column("varchar", { name: "company_name", length: 255 , default: null})
+  @Column("varchar", { name: "company_name", length: 255, default: null })
   companyName: string;
 
-  @Column("bigint", { name: "manager_id" , default: null})
+  @Column("bigint", { name: "manager_id", default: null })
   managerId: string;
 
-  @Column("varchar", { name: "position_title", length: 255 , default: null})
+  @Column("varchar", { name: "position_title", length: 255, default: null })
   positionTitle: string;
 
-  @Column("date", { name: "start_date" , default: null})
+  @Column("date", { name: "start_date", default: null })
   startDate: string;
 
-  @Column("tinyint", { name: "is_manager", width: 1 , default: null})
+  @Column("tinyint", { name: "is_manager", width: 1, default: null })
   isManager: boolean;
 
-  @Column("varchar", { name: "password", length: 255 , default: null})
+  @Column("varchar", { name: "password", length: 255, default: null })
   password: string;
 
-  @Column("bigint", { name: "resume_id", nullable: true , default: null})
+  @Column("bigint", { name: "resume_id", nullable: true, default: null })
   resumeId: string | null;
 
   @ManyToOne(() => Resume, (resume) => resume.employees, {

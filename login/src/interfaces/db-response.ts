@@ -1,4 +1,4 @@
 export interface DBPasswordResponse {
-  pwdHash: string,
-  userId: number,
+  pwdHash: string;
+  userId: number;
 }
