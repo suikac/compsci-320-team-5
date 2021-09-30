@@ -5,13 +5,16 @@
   "private": true,
   "license": "UNLICENSED",
   "workspaces": {
-    "packages": ["login", "backend", "db"],
+    "packages": [
+      "login",
+      "backend",
+      "db"
+    ],
     "nohoist": [
       "**/typeorm",
       "**/typeorm/**"
     ]
   },
-
   "jest": {
     "moduleFileExtensions": [
       "js",
@@ -28,5 +31,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "prettier": "2.4.1"
   }
 }
