@@ -12,7 +12,8 @@ values  ('Stefan', 'Gordon', 'Stefan_Gordon@birdseyeentertainment.com', 'Birdsey
         ('Yesenia', 'Harper', 'Yesenia_Harper@birdseyeentertainment.com', 'Birdseye Entertainment', 1, 'Engineering Manager', '1997-11-12', 1, 'harperye', null, 11),
         ('Sally', 'Fitzpatrick', 'Sally_Fitzpatrick@birdseyeentertainment.com', 'Birdseye Entertainment', 7, 'Engineering Manager', '2015-04-10', 1, 'fitzpatricksa', null, 12),
         ('Olin', 'Schultz', 'Olin_Schultz@birdseyeentertainment.com', 'Birdseye Entertainment', 9, 'Engineering Manager', '1995-08-10', 1, 'schultzol', null, 13),
-        ('Josephine', 'Roman', 'Josephine_Roman@birdseyeentertainment.com', 'Birdseye Entertainment', 5, 'Engineering Manager', '1991-11-30', 1, 'romanjo', null, 14),
+        ('Josephine', 'Roman', 'Josephin
+        \e_Roman@birdseyeentertainment.com', 'Birdseye Entertainment', 5, 'Engineering Manager', '1991-11-30', 1, 'romanjo', null, 14),
         ('Lidia', 'Patterson', 'Lidia_Patterson@birdseyeentertainment.com', 'Birdseye Entertainment', 11, 'Engineering Manager', '1991-01-27', 1, 'pattersonli', null, 15),
         ('Lydia', 'Beasley', 'Lydia_Beasley@birdseyeentertainment.com', 'Birdseye Entertainment', 12, 'Engineering Manager', '1992-03-28', 1, 'beasleyly', null, 16),
         ('Myrna', 'Winters', 'Myrna_Winters@birdseyeentertainment.com', 'Birdseye Entertainment', 5, 'Engineering Manager', '2015-11-03', 1, 'wintersmy', null, 17),
