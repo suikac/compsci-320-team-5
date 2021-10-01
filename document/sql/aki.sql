@@ -1,3 +1,6 @@
+drop schema if exists aki;
+create schema aki;
+use aki;
 create table resume
 (
     id   bigint       not null
