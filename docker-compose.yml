@@ -1,12 +1,7 @@
 version: '3.4'
 
 services:
-  login:
-    image: login
-    build:
-      context: login
-      dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
+  backend:
+    build: ./backend
     ports:
-      - 1234:1234
+      - 3000:3000
