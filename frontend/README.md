@@ -1,3 +1,9 @@
+# Installation notes (preventing an over-React-ion)
+- Copy the content of `.env.example` into a `.env` file in the `frontend` folder.
+- Run `yarn install`
+- Now `yarn start` should run correctly and open [http://localhost:3000](http://localhost:3000) in your browser (does take a while to load).
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
