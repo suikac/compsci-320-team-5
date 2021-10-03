@@ -1,38 +1,58 @@
-.App {
+
+* {
+  box-sizing: border-box;
+}
+.container {
+  margin: auto;
+  display: inline-block;
+  transform: translate(165%,30%);
+  width: 350px;
+  height: 400px;
+  background: #EDDDD4;
+  border: 3px solid #C44536;
+  border-radius: 10%;
   text-align: center;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1{
+  color: #893026;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.credentials{
+  text-align: center;
+  font-size: x-small;
+  padding: 10px;
+  
+  transform: translate(-30%);
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.form-control{
+  border: none;
+  text-align: center;
+  margin-top: 5px;
+  border-radius: 20px;
+  padding: 8px 60px;
+  transform: translate(37.5%);
+  
+}
+.login-button{
+  background-color: #C44536;
+  border: none;
+  border-radius: 20px;
   color: white;
+  padding: 8px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  transform: translateY(70px)
 }
 
-.App-link {
-  color: #61dafb;
+.forgot-password{
+  transform: translate(20%,-250%);
+  font-size: small;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.photo{
+  display: block;
+  transform: translate(225%,250%);
 }
