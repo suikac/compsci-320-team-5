@@ -17,6 +17,7 @@ class Login extends Component {
         })
     }
 
+
     render() {
         return (
             <div class = "container">
@@ -65,6 +66,12 @@ class Login extends Component {
             method: "POST",
             body: JSON.stringify(payload)
         })
+        if(response.ok){
+            return <h1> Successfully Logged in </h1>;
+        }
+        else{
+            return <h1> Email does not match with password, please try again </h1>;
+        }
     }
 }
 
