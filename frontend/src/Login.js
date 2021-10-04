@@ -65,7 +65,6 @@ class Login extends Component {
             method: "POST",
             body: JSON.stringify(payload)
         })
-        console.log(response)
     }
 }
 
