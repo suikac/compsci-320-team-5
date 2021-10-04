@@ -1,5 +1,11 @@
 import React, {Component} from "react";
 import logo from "./Logo2.png";
+const [email] = useState("");
+const [password] = useState("");
+
+function handleSubmit(event) {
+  event.preventDefault();
+}
 class Login extends Component {
     render() {
         return (
@@ -9,12 +15,12 @@ class Login extends Component {
 
                     <div class="credentials">
                         <label>Username</label>
-                        <input type="email" class="form-control" placeholder="Enter email" />
+                        <input type="email" value = {email} class="form-control" placeholder="Enter email" />
                     </div>
 
                     <div class="credentials">
                         <label>Password</label>
-                        <input type="password" class="form-control" placeholder="Enter password" />
+                        <input type="password" value = {password} class="form-control" placeholder="Enter password" />
                     </div>
                     
                     <button type="login" class="login-button">Login</button>
