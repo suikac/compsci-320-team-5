@@ -11,7 +11,6 @@
       "**/typeorm/**"
     ]
   },
-
   "jest": {
     "moduleFileExtensions": [
       "js",
@@ -28,5 +27,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "prettier": "2.4.1"
   }
 }
