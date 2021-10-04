@@ -1,11 +1,8 @@
 import React, {Component} from "react";
 import logo from "./Logo2.png";
-const [email] = useState("");
-const [password] = useState("");
+const [email] = "";
+const [password] = "";
 
-function handleSubmit(event) {
-  event.preventDefault();
-}
 class Login extends Component {
     render() {
         return (
