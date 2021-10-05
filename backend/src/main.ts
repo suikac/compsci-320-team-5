@@ -8,6 +8,8 @@ async function bootstrap() {
   //   transport: Transport.TCP,
   // });
   // await app.startAllMicroservices();
+  app.enableCors();
+  app.setGlobalPrefix('api');
   await app.listen(3000);
 }
 bootstrap();

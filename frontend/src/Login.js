@@ -16,7 +16,7 @@ class Login extends Component {
     handleCredentialsChange(event) {
         const type = event.target.type
         this.setState({
-            [type]: event.value
+            [type]: event.target.value
         })
     }
 
@@ -71,6 +71,10 @@ class Login extends Component {
             password: this.state.password
         }
         const response = await fetch("http://localhost:3000/login", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             method: "POST",
             body: JSON.stringify(payload)
         })

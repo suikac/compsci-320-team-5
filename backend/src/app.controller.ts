@@ -37,6 +37,7 @@ export class AppController {
     const cmd = { cmd: 'login' };
     const data = { email: email, password: password };
     const result = this.loginClient.send(cmd, data);
+    console.log(email)
     try {
       let response: any = await firstValueFrom(result);
       return response;
