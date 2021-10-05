@@ -5,3 +5,7 @@ services:
     build: ./backend
     ports:
       - 3000:3000
+  login:
+    build: ./login
+    ports:
+      - 1234:1234

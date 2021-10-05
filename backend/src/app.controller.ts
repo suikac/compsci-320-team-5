@@ -9,9 +9,7 @@ import {
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { AppService } from './app.service';
-import { MessagePattern, Payload } from '@nestjs/microservices';
 import { JwtGuard } from './jwt-guard';
-import { response } from 'express';
 import { firstValueFrom } from 'rxjs';
 
 @Controller()
@@ -37,8 +35,7 @@ export class AppController {
     const data = { email: email, password: password };
     const result = this.loginClient.send(cmd, data);
     try {
-      let response: any = await firstValueFrom(result);
-      return response;
+      return await firstValueFrom(result);
     } catch (exception) {
       if (exception.message == 'invalid credentials') {
         throw new HttpException('invalid credentials', HttpStatus.UNAUTHORIZED);
