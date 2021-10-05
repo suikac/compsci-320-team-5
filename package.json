@@ -5,7 +5,12 @@
   "private": true,
   "license": "UNLICENSED",
   "workspaces": {
-    "packages": ["login", "backend", "db", "frontend"],
+    "packages": [
+      "login",
+      "backend",
+      "db",
+      "frontend"
+    ],
     "nohoist": [
       "**/typeorm",
       "**/typeorm/**"
@@ -30,5 +35,8 @@
   },
   "devDependencies": {
     "prettier": "2.4.1"
+  },
+  "dependencies": {
+    "react-popup-alert": "^2.0.0"
   }
 }
