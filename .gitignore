@@ -44,6 +44,9 @@ jspm_packages/
 # Visual Studio Code configurations
 .vscode/
 
+# DataGrip configurations
+.idea/
+
 # TypeScript v1 declaration files
 typings/
 

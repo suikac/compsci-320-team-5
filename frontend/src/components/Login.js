@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import logo from "./Logo2.png";
-import LoginSuccessedPopUp from "./LoginSuccessedPopUp";
-import LoginFailedPopUp from "./LoginFailedPopUp";
+import LoginSuccessedPopUp from "./components/sub-components/LoginSuccessedPopUp";
+import LoginFailedPopUp from "./components/sub-components/LoginFailedPopUp";
 import LoginPopUp from "./LoginFailedPopUp";
 import { useState } from "react";
 import App from "./App";
 
 class Login extends Component {
-
+    
     constructor(props) {
         super(props)
         this.state = {email: "", password: "",failed: false, successes: false}
@@ -16,7 +16,7 @@ class Login extends Component {
     handleCredentialsChange(event) {
         const type = event.target.type
         this.setState({
-            [type]: event.target.value
+            [type]: event.value
         })
     }
 
@@ -61,17 +61,16 @@ class Login extends Component {
 
         );
     }
+    
+
     async submit_credentials(event) {
         event.preventDefault()
+        
         const payload = {
             email: this.state.email,
             password: this.state.password
         }
         const response = await fetch("http://localhost:3000/api/login", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
             method: "POST",
             body: JSON.stringify(payload)
         })

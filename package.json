@@ -8,7 +8,8 @@
     "packages": [
       "login",
       "backend",
-      "db"
+      "db",
+      "frontend"
     ],
     "nohoist": [
       "**/typeorm",
@@ -34,5 +35,8 @@
   },
   "devDependencies": {
     "prettier": "2.4.1"
+  },
+  "dependencies": {
+    "react-popup-alert": "^2.0.0"
   }
 }
