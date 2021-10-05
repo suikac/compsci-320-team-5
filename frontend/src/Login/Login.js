@@ -1,10 +1,7 @@
 import React, {Component} from "react";
-import logo from "./Logo2.png";
-import LoginSuccessedPopUp from "./components/sub-components/LoginSuccessedPopUp";
-import LoginFailedPopUp from "./components/sub-components/LoginFailedPopUp";
-import LoginPopUp from "./LoginFailedPopUp";
-import { useState } from "react";
-import App from "./App";
+import logo from "../Logo2.png";
+import LoginSuccessedPopUp from "./LoginSuccessedPopUp";
+import LoginFailedPopUp from "./LoginFailedPopUp";
 
 class Login extends Component {
     
