@@ -36,7 +36,7 @@ export class AppController {
   ) {
     console.log("Received login request")
     const cmd = { cmd: "login" }
-    const data = { username: username, password: password }
+    const data = { email: email, password: password }
     const result = this.loginClient.send(cmd, data);
     console.log(email)
     try {
