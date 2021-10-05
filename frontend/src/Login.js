@@ -70,7 +70,7 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        const response = await fetch("http://localhost:3000/login", {
+        const response = await fetch("http://localhost:3000/api/login", {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
