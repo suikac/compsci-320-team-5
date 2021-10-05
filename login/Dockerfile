@@ -2,5 +2,6 @@ FROM node:14-alpine
 WORKDIR /app
 ADD . /app
 RUN yarn install
-EXPOSE 3000
+RUN yarn build
+EXPOSE 1234
 CMD ["yarn", "run", "start"]

@@ -1,4 +1,14 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Inject, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Inject, Post,
+  Query,
+  UseGuards
+} from "@nestjs/common";
+
 import { ClientProxy } from '@nestjs/microservices';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
@@ -19,15 +29,16 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post("api/login")
+  @Post('login')
   async login(
-    @Body('username') username: string,
-    @Body('password') password: string
+    @Body('email') email: string,
+    @Body('password') password: string,
   ) {
     console.log("Received login request")
     const cmd = { cmd: "login" }
     const data = { username: username, password: password }
     const result = this.loginClient.send(cmd, data);
+    console.log(email)
     try {
       let response: any = await firstValueFrom(result);
       return response;

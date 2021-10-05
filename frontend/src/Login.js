@@ -7,7 +7,7 @@ import { useState } from "react";
 import App from "./App";
 
 class Login extends Component {
-    
+
     constructor(props) {
         super(props)
         this.state = {email: "", password: "",failed: false, successes: false}
@@ -16,7 +16,7 @@ class Login extends Component {
     handleCredentialsChange(event) {
         const type = event.target.type
         this.setState({
-            [type]: event.value
+            [type]: event.target.value
         })
     }
 
@@ -61,16 +61,17 @@ class Login extends Component {
 
         );
     }
-    
-
     async submit_credentials(event) {
         event.preventDefault()
-        
         const payload = {
             email: this.state.email,
             password: this.state.password
         }
         const response = await fetch("http://localhost:3000/api/login", {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             method: "POST",
             body: JSON.stringify(payload)
         })
