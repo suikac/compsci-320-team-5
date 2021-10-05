@@ -1,15 +1,18 @@
 import React, {Component} from "react";
 import logo from "./Logo2.png";
+import LoginSuccessedPopUp from "./LoginSuccessedPopUp";
+import LoginFailedPopUp from "./LoginFailedPopUp";
+import LoginPopUp from "./LoginFailedPopUp";
+import { useState } from "react";
+import App from "./App";
 
 class Login extends Component {
+    
     constructor(props) {
         super(props)
-        this.state = {email: "", password: ""}
-
-        this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
+        this.state = {email: "", password: "",failed: false, successes: false}
         this.submit_credentials = this.submit_credentials.bind(this)
     }
-
     handleCredentialsChange(event) {
         const type = event.target.type
         this.setState({
@@ -19,9 +22,10 @@ class Login extends Component {
 
 
     render() {
+        this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
         return (
             <div class = "container">
-                <form onSubmit={this.submit_credentials}>
+                <form onSubmit= {this.submit_credentials}>
                     <h1>Login</h1>
 
                     <div class="credentials">
@@ -33,7 +37,6 @@ class Login extends Component {
                         onChange={this.handleCredentialsChange}
                         placeholder="Enter email" />
                     </div>
-
                     <div class="credentials">
                         <label>Password</label>
                         <input
@@ -43,7 +46,11 @@ class Login extends Component {
                         onChange={this.handleCredentialsChange}
                         placeholder="Enter password" />
                     </div>
-
+                    <LoginFailedPopUp trigger = {this.state.fail} exist = {() => this.setState({
+                    fail: false})}>
+                    </LoginFailedPopUp>
+                    <LoginSuccessedPopUp trigger = {this.state.successes}>
+                    </LoginSuccessedPopUp>
                     <input type="submit" value="Login" class="login-button" />
                     <p class="forgot-password text-right">
                         <a href="#"> Forgot password?</a>
@@ -54,10 +61,11 @@ class Login extends Component {
 
         );
     }
+    
 
     async submit_credentials(event) {
         event.preventDefault()
-
+        
         const payload = {
             email: this.state.email,
             password: this.state.password
@@ -66,11 +74,17 @@ class Login extends Component {
             method: "POST",
             body: JSON.stringify(payload)
         })
-        if(response.ok){
-            return <h1> Successfully Logged in </h1>;
+        if(response.status == 401){
+            console.log('worked')
+            this.setState({
+                fail: true
+            })
+            console.log(this.state.fail)
         }
         else{
-            return <h1> Email does not match with password, please try again </h1>;
+            this.setState({
+                successes: true
+            })
         }
     }
 }
