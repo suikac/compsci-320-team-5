@@ -1,12 +1,13 @@
 import {
+  Body,
   Controller,
   Get,
   HttpException,
   HttpStatus,
-  Inject,
+  Inject, Post,
   Query,
-  UseGuards,
-} from '@nestjs/common';
+  UseGuards
+} from "@nestjs/common";
 import { ClientProxy } from '@nestjs/microservices';
 import { AppService } from './app.service';
 import { MessagePattern, Payload } from '@nestjs/microservices';
@@ -27,10 +28,10 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('login')
+  @Post('login')
   async login(
-    @Query('email') email: string,
-    @Query('password') password: string,
+    @Body('email') email: string,
+    @Body('password') password: string,
   ) {
     console.log('Received login request');
     const cmd = { cmd: 'login' };
