@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import logo from "../Logo2.png";
+import logo from "./Logo2.png";
 import LoginSuccessedPopUp from "./LoginSuccessedPopUp";
 import LoginFailedPopUp from "./LoginFailedPopUp";
 

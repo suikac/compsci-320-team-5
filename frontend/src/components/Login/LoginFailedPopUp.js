@@ -1,5 +1,5 @@
 import React from 'react'
-import './components-style/LoginPopUp.css'
+import './LoginPopUp.css'
 
 function LoginFailedPopUp(props) {
     return (props.trigger)?(

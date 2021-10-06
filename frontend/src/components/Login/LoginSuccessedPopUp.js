@@ -1,5 +1,5 @@
 import React from 'react'
-import '.../LoginPopUp.css'
+import './LoginPopUp.css'
 
 function LoginSuccessedPopUp(props) {
     return (props.trigger)?(
