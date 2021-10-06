@@ -1,0 +1,61 @@
+[ {
+  "title" : "Principal Software Architect",
+  "description" : "Lead the vision of future software architecture for the company",
+  "minYearsExperience" : 10,
+  "salary" : 160384,
+  "tags" : [ "Java" ]
+}, {
+  "title" : "Principal Software Architect",
+  "description" : "Lead the vision of future software architecture for the company",
+  "minYearsExperience" : 10,
+  "salary" : 197863,
+  "tags" : [ "SQL", "Kafka" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 137379,
+  "tags" : [ "Spark", "JavaScript", "Git", "React" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 180596,
+  "tags" : [ "Git", "Jenkins" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 147665,
+  "tags" : [ "Spark", "Java", "NodeJS" ]
+}, {
+  "title" : "Site Reliability Engineer",
+  "description" : "Responsible for application ownership and operation in production",
+  "minYearsExperience" : 5,
+  "salary" : 93801,
+  "tags" : [ "Python", "SQL" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 64863,
+  "tags" : [ "Angular", "Python", "JavaScript" ]
+}, {
+  "title" : "Site Reliability Engineer",
+  "description" : "Responsible for application ownership and operation in production",
+  "minYearsExperience" : 5,
+  "salary" : 86016,
+  "tags" : [ "JavaScript", "Java", "Kafka" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 78357,
+  "tags" : [ "Jenkins", "React", "Python", "Spark" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 73484,
+  "tags" : [ "Angular", "Jenkins" ]
+} ]

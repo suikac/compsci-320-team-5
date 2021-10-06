@@ -1,0 +1,301 @@
+[ {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 67848,
+  "tags" : [ "Kotlin", "React", "MySQL", "Git" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 151366,
+  "tags" : [ "Kafka", "Kotlin", "MongoDB" ]
+}, {
+  "title" : "Software Engineer II",
+  "description" : "Software Engineering role on an Agile team.",
+  "minYearsExperience" : 3,
+  "salary" : 77927,
+  "tags" : [ "JavaScript", "Angular", "Java", "Spark" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 152811,
+  "tags" : [ "NodeJS", "Kafka", "Kotlin", "React" ]
+}, {
+  "title" : "Software Engineer II",
+  "description" : "Software Engineering role on an Agile team.",
+  "minYearsExperience" : 3,
+  "salary" : 80235,
+  "tags" : [ "Kafka", "Spark", "Kotlin", "SQL" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 133558,
+  "tags" : [ "Kafka", "React", "MongoDB", "NodeJS" ]
+}, {
+  "title" : "Software Engineer II",
+  "description" : "Software Engineering role on an Agile team.",
+  "minYearsExperience" : 3,
+  "salary" : 114430,
+  "tags" : [ "Python" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 78917,
+  "tags" : [ "Java", "Git" ]
+}, {
+  "title" : "Senior Software Engineer",
+  "description" : "Senior Engineer for an agile development team.  Must have in depth knowledge of software systems and be able to learn quickly",
+  "minYearsExperience" : 7,
+  "salary" : 137780,
+  "tags" : [ "MongoDB", "Flink", "Spark" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 161215,
+  "tags" : [ "Git" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 154986,
+  "tags" : [ "Spark" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 112382,
+  "tags" : [ "Flink", "Git", "SQL", "JavaScript" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 183646,
+  "tags" : [ "Jenkins", "Spark", "NodeJS" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 180483,
+  "tags" : [ "Jenkins", "Angular", "Java" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 139096,
+  "tags" : [ "Kotlin", "Git", "Kafka", "MongoDB" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 160536,
+  "tags" : [ "Python", "Git", "Flink" ]
+}, {
+  "title" : "Site Reliability Engineer",
+  "description" : "Responsible for application ownership and operation in production",
+  "minYearsExperience" : 5,
+  "salary" : 95447,
+  "tags" : [ "Java", "MySQL", "JavaScript" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 123056,
+  "tags" : [ "NodeJS", "Spark" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 123168,
+  "tags" : [ "Jenkins" ]
+}, {
+  "title" : "Site Reliability Engineer",
+  "description" : "Responsible for application ownership and operation in production",
+  "minYearsExperience" : 5,
+  "salary" : 118219,
+  "tags" : [ "Kafka" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 119857,
+  "tags" : [ "Angular", "Kafka", "Jenkins" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 141517,
+  "tags" : [ "NodeJS", "SQL", "JavaScript" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 166012,
+  "tags" : [ "JavaScript", "Angular", "Spark" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 134557,
+  "tags" : [ "JavaScript", "SQL", "Java" ]
+}, {
+  "title" : "Principal Software Architect",
+  "description" : "Lead the vision of future software architecture for the company",
+  "minYearsExperience" : 10,
+  "salary" : 183711,
+  "tags" : [ "SQL", "NodeJS", "MongoDB" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 78643,
+  "tags" : [ "Flink", "Angular" ]
+}, {
+  "title" : "Site Reliability Engineer",
+  "description" : "Responsible for application ownership and operation in production",
+  "minYearsExperience" : 5,
+  "salary" : 110335,
+  "tags" : [ "Python" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 77875,
+  "tags" : [ "Spark", "Angular", "Python", "Java" ]
+}, {
+  "title" : "Principal Software Architect",
+  "description" : "Lead the vision of future software architecture for the company",
+  "minYearsExperience" : 10,
+  "salary" : 171723,
+  "tags" : [ "Git", "Flink", "Java" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 104061,
+  "tags" : [ "Kotlin", "Flink", "Kafka", "Python" ]
+}, {
+  "title" : "Software Engineer II",
+  "description" : "Software Engineering role on an Agile team.",
+  "minYearsExperience" : 3,
+  "salary" : 113886,
+  "tags" : [ "JavaScript", "Git", "Kotlin", "React" ]
+}, {
+  "title" : "Senior Software Engineer",
+  "description" : "Senior Engineer for an agile development team.  Must have in depth knowledge of software systems and be able to learn quickly",
+  "minYearsExperience" : 7,
+  "salary" : 162406,
+  "tags" : [ "MySQL", "Git", "NodeJS" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 101190,
+  "tags" : [ "Jenkins", "Java", "MySQL" ]
+}, {
+  "title" : "Site Reliability Engineer",
+  "description" : "Responsible for application ownership and operation in production",
+  "minYearsExperience" : 5,
+  "salary" : 114208,
+  "tags" : [ "Kafka", "SQL" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 108714,
+  "tags" : [ "MySQL", "SQL" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 121766,
+  "tags" : [ "MongoDB", "Jenkins", "MySQL" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 74760,
+  "tags" : [ "SQL", "Angular" ]
+}, {
+  "title" : "Principal Software Architect",
+  "description" : "Lead the vision of future software architecture for the company",
+  "minYearsExperience" : 10,
+  "salary" : 181532,
+  "tags" : [ "Angular", "NodeJS", "Java" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 70259,
+  "tags" : [ "Flink" ]
+}, {
+  "title" : "Site Reliability Engineer",
+  "description" : "Responsible for application ownership and operation in production",
+  "minYearsExperience" : 5,
+  "salary" : 93402,
+  "tags" : [ "Jenkins", "Flink" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 133171,
+  "tags" : [ "SQL", "NodeJS", "Kafka", "Jenkins" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 70912,
+  "tags" : [ "Spark" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 180630,
+  "tags" : [ "Kotlin", "Kafka" ]
+}, {
+  "title" : "Software Engineer II",
+  "description" : "Software Engineering role on an Agile team.",
+  "minYearsExperience" : 3,
+  "salary" : 76884,
+  "tags" : [ "React" ]
+}, {
+  "title" : "Software Architect",
+  "description" : "Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.",
+  "minYearsExperience" : 10,
+  "salary" : 162804,
+  "tags" : [ "Java", "JavaScript" ]
+}, {
+  "title" : "Site Reliability Engineer",
+  "description" : "Responsible for application ownership and operation in production",
+  "minYearsExperience" : 5,
+  "salary" : 138601,
+  "tags" : [ "Spark", "MySQL", "Python" ]
+}, {
+  "title" : "Principal Software Architect",
+  "description" : "Lead the vision of future software architecture for the company",
+  "minYearsExperience" : 10,
+  "salary" : 149607,
+  "tags" : [ "MySQL", "NodeJS", "React", "Jenkins" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 76186,
+  "tags" : [ "MySQL", "Angular", "Kotlin", "Git" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 75145,
+  "tags" : [ "Kafka", "MySQL", "NodeJS" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 115363,
+  "tags" : [ "MongoDB" ]
+} ]
