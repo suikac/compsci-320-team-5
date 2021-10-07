@@ -1,15 +1,15 @@
 import React, {Component} from "react"
-import Login from "./Login/Login"
+import Login from "./components/Login/Login"
 import "./App.css"
 
 function App(){
   return(
     <div>
       <Login/>
-      <Header/>
+      {/*<Header/>
       <navBar/>
       <Main/>
-      <Footer/>
+      <Footer/>*/}
     </div>
   )
 }
