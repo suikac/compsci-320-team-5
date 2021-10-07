@@ -1,9 +1,12 @@
 ### sign up a employee
-POST localhost:3000/employee/signUp
+POST localhost:3000/api/employee/signUp
 Content-Type: application/x-www-form-urlencoded
 
 email={{email}}&password={{password}}
 
 ### login
-GET localhost:3000/login?email={{email}}&password={{password}}
+POST localhost:3000/api/login
+Content-Type: application/x-www-form-urlencoded
+
+email={{email}}&password={{password}}
 

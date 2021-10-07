@@ -5,7 +5,6 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { EmployeeController } from './employee/employee.controller';
 import { EmployeeModule } from './employee/employee.module';
 import { JwtGuard } from './jwt-guard';
-require('dotenv').config();
 
 @Module({
   imports: [
@@ -14,6 +13,7 @@ require('dotenv').config();
         name: 'LOGIN_SERVICE',
         transport: Transport.TCP,
         options: {
+          host: 'login',
           port: 1234,
         },
       },

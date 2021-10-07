@@ -4,10 +4,10 @@ import {
   Get,
   HttpException,
   HttpStatus,
-  Inject, Post,
-  Query,
-  UseGuards
-} from "@nestjs/common";
+  Inject,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 
 import { ClientProxy } from '@nestjs/microservices';
 import { AppService } from './app.service';
@@ -32,11 +32,11 @@ export class AppController {
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
-    console.log("Received login request")
-    const cmd = { cmd: "login" }
-    const data = { email: email, password: password }
+    console.log('Received login request');
+    const cmd = { cmd: 'login' };
+    const data = { email: email, password: password };
     const result = this.loginClient.send(cmd, data);
-    console.log(email)
+    console.log(email);
     try {
       return await firstValueFrom(result);
     } catch (exception) {
