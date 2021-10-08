@@ -6,6 +6,8 @@ import { EmployeeController } from './employee/employee.controller';
 import { EmployeeModule } from './employee/employee.module';
 import { JwtGuard } from './jwt-guard';
 
+require("dotenv").config();
+
 @Module({
   imports: [
     ClientsModule.register([
@@ -13,7 +15,7 @@ import { JwtGuard } from './jwt-guard';
         name: 'LOGIN_SERVICE',
         transport: Transport.TCP,
         options: {
-          host: 'login',
+          host: process.env.login_host,
           port: 1234,
         },
       },

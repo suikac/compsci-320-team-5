@@ -1,4 +1,4 @@
-insert into aki.position (id, description, min_year_experience, salary, is_posted, title, employee_id)
+insert into aki.position (id, description, min_year_experience, salary, is_posted, title, manager_id)
 values  (1, 'Entry level Software Engineering role on an Agile team', 0, 67848, 0, 'Software Engineer I', null),
         (2, 'Software Architect for software product.  Must be able to quickly design and demonstrate new architecture patterns and processes.', 10, 151366, 0, 'Software Architect', null),
         (3, 'Software Engineering role on an Agile team.', 3, 77927, 0, 'Software Engineer II', null),
