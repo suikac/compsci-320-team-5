@@ -69,6 +69,7 @@ class Login extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            credentials: "include",  // this field is needed so that browser will send/store cookies
             method: "POST",
             body: JSON.stringify(payload)
         })
