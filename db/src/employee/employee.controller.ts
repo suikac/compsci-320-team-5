@@ -7,7 +7,7 @@ import {
   Inject,
   NotFoundException,
 } from "@nestjs/common";
-import { MessagePattern, Payload } from "@nestjs/microservices";
+import { MessagePattern, Payload, RpcException } from "@nestjs/microservices";
 import { STATUS_CODES } from "http";
 import { EmployeeService } from "./employee.service";
 import * as bcrypt from "bcrypt";
@@ -64,7 +64,7 @@ export class EmployeeController {
       };
       return response;
     } catch (exception) {
-      throw new NotFoundException("employee not found");
+      throw new RpcException("employee not found");
     }
   }
 }
