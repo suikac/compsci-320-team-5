@@ -59,7 +59,7 @@ export class AppController {
     }
   }
 
-  @Post()
+  @Post('logout')
   async logout(@Res() res: Response) {
     res.cookie("AuthToken", "", {
       expires: new Date(0),
