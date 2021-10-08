@@ -23,6 +23,7 @@ create table employee
     resume_id      bigint       null,
     id             int auto_increment
         primary key,
+    company_id     int          not null,
     constraint FK_e7a2cbe5cb8a3776519a4e3a1e7
         foreign key (resume_id) references resume (id)
 );
@@ -39,13 +40,13 @@ create table position
     salary              int                  null,
     is_posted           tinyint(1) default 0 null,
     title               varchar(255)         not null,
-    employee_id         int                  null,
+    manager_id          int                  null,
     constraint FK_847aa3a3601e72396a0fb03ef5c
-        foreign key (employee_id) references employee (id)
+        foreign key (manager_id) references employee (id)
 );
 
 create index position_employee_fk
-    on position (employee_id);
+    on position (manager_id);
 
 create table referral
 (
@@ -100,4 +101,5 @@ create index position_fk
 
 create index tag_fk
     on position_tag (tag_id);
+
 
