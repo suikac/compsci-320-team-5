@@ -18,17 +18,10 @@ require("dotenv").config();
           port: 1234,
         },
       },
-      {
-        name: 'DB_SERVICE',
-        transport: Transport.TCP,
-        options: {
-          port: 3001,
-        },
-      },
     ]),
     DbModule,
   ],
-  controllers: [AppController, EmployeeController],
+  controllers: [AppController],
   providers: [JwtGuard],
 })
 export class AppModule {}

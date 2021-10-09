@@ -22,7 +22,7 @@ export class AppController {
   @UseGuards(JwtGuard)
   @Get()
   getHello(): string {
-    return 'hello';
+    return 'hello1';
   }
 
   @Post('login')
