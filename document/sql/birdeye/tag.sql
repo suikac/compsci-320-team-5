@@ -1,1 +1,15 @@
-INSERT INTO tag (id, name, description) VALUES (0, 'Git', NULL);INSERT INTO tag (id, name, description) VALUES (1, 'MySQL', NULL);INSERT INTO tag (id, name, description) VALUES (2, 'React', NULL);INSERT INTO tag (id, name, description) VALUES (3, 'Kotlin', NULL);INSERT INTO tag (id, name, description) VALUES (4, 'MongoDB', NULL);INSERT INTO tag (id, name, description) VALUES (5, 'Kafka', NULL);INSERT INTO tag (id, name, description) VALUES (6, 'Spark', NULL);INSERT INTO tag (id, name, description) VALUES (7, 'Java', NULL);INSERT INTO tag (id, name, description) VALUES (8, 'Angular', NULL);INSERT INTO tag (id, name, description) VALUES (9, 'JavaScript', NULL);INSERT INTO tag (id, name, description) VALUES (10, 'NodeJS', NULL);INSERT INTO tag (id, name, description) VALUES (11, 'SQL', NULL);INSERT INTO tag (id, name, description) VALUES (12, 'Python', NULL);INSERT INTO tag (id, name, description) VALUES (13, 'Flink', NULL);INSERT INTO tag (id, name, description) VALUES (14, 'Jenkins', NULL);
+insert into aki.tag (id, name, description) values (0, 'Git', null);
+insert into aki.tag (id, name, description) values (1, 'MySQL', null);
+insert into aki.tag (id, name, description) values (2, 'React', null);
+insert into aki.tag (id, name, description) values (3, 'Kotlin', null);
+insert into aki.tag (id, name, description) values (4, 'MongoDB', null);
+insert into aki.tag (id, name, description) values (5, 'Kafka', null);
+insert into aki.tag (id, name, description) values (6, 'Spark', null);
+insert into aki.tag (id, name, description) values (7, 'Java', null);
+insert into aki.tag (id, name, description) values (8, 'Angular', null);
+insert into aki.tag (id, name, description) values (9, 'JavaScript', null);
+insert into aki.tag (id, name, description) values (10, 'NodeJS', null);
+insert into aki.tag (id, name, description) values (11, 'SQL', null);
+insert into aki.tag (id, name, description) values (12, 'Python', null);
+insert into aki.tag (id, name, description) values (13, 'Flink', null);
+insert into aki.tag (id, name, description) values (14, 'Jenkins', null);

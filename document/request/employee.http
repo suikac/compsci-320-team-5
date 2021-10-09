@@ -1,0 +1,1 @@
+GET localhost:3000/api/db/getByEmail?email=Stefan_Gordon@birdseyeentertainment.com

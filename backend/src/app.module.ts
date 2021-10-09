@@ -1,9 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { EmployeeController } from './employee/employee.controller';
-import { EmployeeModule } from './employee/employee.module';
+import { EmployeeController } from './db/employee.controller';
+import { DbModule } from './db/db.module';
 import { JwtGuard } from './jwt-guard';
 
 require("dotenv").config();
@@ -27,9 +26,9 @@ require("dotenv").config();
         },
       },
     ]),
-    EmployeeModule,
+    DbModule,
   ],
   controllers: [AppController, EmployeeController],
-  providers: [AppService, JwtGuard],
+  providers: [JwtGuard],
 })
 export class AppModule {}

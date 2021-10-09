@@ -10,21 +10,19 @@ import {
 } from '@nestjs/common';
 
 import { ClientProxy } from '@nestjs/microservices';
-import { AppService } from './app.service';
 import { JwtGuard } from './jwt-guard';
 import { firstValueFrom } from 'rxjs';
 
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
     @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy,
   ) {}
 
   @UseGuards(JwtGuard)
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return 'hello';
   }
 
   @Post('login')
