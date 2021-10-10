@@ -3,6 +3,7 @@ import { TcpOptions, Transport } from "@nestjs/microservices";
 import { LoginModule } from "./login.module";
 
 async function bootstrap() {
+  // comment
   const app = await NestFactory.createMicroservice<TcpOptions>(LoginModule, {
     transport: Transport.TCP,
     options: {

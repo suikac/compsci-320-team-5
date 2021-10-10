@@ -18,5 +18,7 @@ services:
     build: ./db
     ports:
       - '3001:3001'
+    env_file:
+      - ./db/.env
 
 
