@@ -30,11 +30,9 @@ export class AppController {
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
-    console.log('Received login request');
     const cmd = { cmd: 'login' };
     const data = { email: email, password: password };
     const result = this.loginClient.send(cmd, data);
-    console.log(email); // comment
     try {
       return await firstValueFrom(result);
     } catch (exception) {
