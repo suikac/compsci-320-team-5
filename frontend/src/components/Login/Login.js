@@ -66,15 +66,14 @@ class Login extends Component {
     }
     async logout_credentials(event) {
 
-        // const response = await fetch("http://localhost:3000/api/login", {
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json'
-        //     },
-        //     credentials: "include",  // this field is needed so that browser will send/store cookies
-        //     method: "POST",
-        //     body: JSON.stringify(payload)
-        // })
+        const response = await fetch("http://localhost:3000/api/logout", {
+            // headers: {
+            //     'Accept': 'application/json',
+            //     'Content-Type': 'application/json'
+            // },
+            // credentials: "include",  // this field is needed so that browser will send/store cookies
+            method: "POST"
+        })
         this.setState({LogoutSuccesses: true})
     }
     async submit_credentials(event) {
