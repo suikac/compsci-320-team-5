@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Resume } from "./Resume";
-import { Position } from "./Position";
 import { Referral } from "./Referral";
 
 @Index("employee_resume_fk", ["resumeId"], {})
@@ -17,17 +16,17 @@ export class Employee {
   @Column("varchar", { name: "first_name", nullable: true, length: 255 })
   firstName: string | null;
 
-  @Column("varchar", { name: "last_name", length: 255 })
-  lastName: string;
+  @Column("varchar", { name: "last_name", nullable: true, length: 255 })
+  lastName: string | null;
 
   @Column("varchar", { name: "email", nullable: true, length: 255 })
   email: string | null;
 
-  @Column("varchar", { name: "company_name", length: 255 })
-  companyName: string;
+  @Column("varchar", { name: "company_name", nullable: true, length: 255 })
+  companyName: string | null;
 
-  @Column("bigint", { name: "manager_id" })
-  managerId: string;
+  @Column("bigint", { name: "manager_id", nullable: true })
+  managerId: string | null;
 
   @Column("varchar", { name: "position_title", nullable: true, length: 255 })
   positionTitle: string | null;
@@ -47,9 +46,6 @@ export class Employee {
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 
-  @Column("int", { name: "company_id" })
-  companyId: number;
-
   @ManyToOne(() => Resume, (resume) => resume.employees, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
@@ -57,9 +53,6 @@ export class Employee {
   @JoinColumn([{ name: "resume_id", referencedColumnName: "id" }])
   resume: Resume;
 
-  @OneToMany(() => Position, (position) => position.manager)
-  positions: Position[];
-
-  @OneToMany(() => Referral, (referral) => referral.employee)
+  @OneToMany(() => Referral, (referral) => referral.referrer)
   referrals: Referral[];
 }

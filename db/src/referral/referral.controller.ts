@@ -27,7 +27,7 @@ export class ReferralController {
     await this.referralService.deleteReferral()
   }
 
-  @MessagePattern('getReferral')
+  @MessagePattern({cmd: 'getReferral'} )
   public async getReferral(id: number) : Promise<Referral> {
     return await this.referralService.getReferral(id);
   }

@@ -25,6 +25,9 @@ export class ReferralService {
 
   public async getReferral(id : number) : Promise<Referral> {
     // implement it
-    return null;
+   return this.referralRepository
+      .createQueryBuilder('referral')
+      .where('id = :id', {id : id})
+      .getOne()
   }
 }

@@ -8,7 +8,8 @@ import {
   Delete,
   Get,
   Query,
-} from '@nestjs/common';
+  UseGuards,
+} from "@nestjs/common";
 import { ClientProxy } from '@nestjs/microservices';
 
 @Controller('referral')

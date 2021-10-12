@@ -3,7 +3,7 @@ import { Resume } from "./Resume";
 import { Employee } from "./Employee";
 import { Position } from "./Position";
 
-@Index("referral_employee_fk", ["employeeId"], {})
+@Index("referral_employee_fk", ["referrerId"], {})
 @Index("referral_position_fk", ["positionId"], {})
 @Index("referral_resume_fk", ["resumeId"], {})
 @Entity("referral", { schema: "aki" })
@@ -23,19 +23,19 @@ export class Referral {
   @Column("varchar", { name: "referee_name", nullable: true, length: 255 })
   refereeName: string | null;
 
-  @Column("tinyint", {
-    name: "is_internal",
+  @Column("int", {
+    name: "referee_id",
     nullable: true,
-    width: 1,
+    comment: "to the internal employee",
     default: () => "'0'",
   })
-  isInternal: boolean | null;
+  refereeId: number | null;
 
   @Column("bigint", { name: "position_id" })
   positionId: string;
 
-  @Column("int", { name: "employee_id" })
-  employeeId: number;
+  @Column("int", { name: "referrer_id" })
+  referrerId: number;
 
   @ManyToOne(() => Resume, (resume) => resume.referrals, {
     onDelete: "NO ACTION",
@@ -48,8 +48,8 @@ export class Referral {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
   })
-  @JoinColumn([{ name: "employee_id", referencedColumnName: "id" }])
-  employee: Employee;
+  @JoinColumn([{ name: "referrer_id", referencedColumnName: "id" }])
+  referrer: Employee;
 
   @ManyToOne(() => Position, (position) => position.referrals, {
     onDelete: "NO ACTION",

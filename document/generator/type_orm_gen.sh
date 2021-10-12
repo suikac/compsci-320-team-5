@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# generate the entities by inputing database.
+# generate the sa by inputing database.
 npx typeorm-model-generator \
     -h localhost \
     -d aki \
