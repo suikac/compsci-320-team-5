@@ -6,7 +6,7 @@ function LoginSuccessedPopUp(props) {
         <div className="LogInPopUp">
             <div className = "LogInPopUp-inner"> 
                 <h1> Login successed</h1>
-                <button className="close-button" >close</button>
+                <button className="close-button" onClick = {()=>props.exist()}>close</button>
             </div>
         </div>
     ):''
