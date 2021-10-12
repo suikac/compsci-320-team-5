@@ -18,6 +18,7 @@ import { JwtModule } from "@nestjs/jwt";
         name: "DB_SERVICE",
         transport: Transport.TCP,
         options: {
+          host: process.env.db_host,
           port: 3001,
         },
       },

@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - '3000:3000'
+    environment:
+      login_host: 'login'
+      db_host: 'db'
+  login:
+    build: ./login
+    ports:
+      - '1234:1234'
+    environment:
+      db_host: 'db'
+  db:
+    build: ./db
+    ports:
+      - '3001:3001'
+    env_file:
+      - ./db/.env
+
+

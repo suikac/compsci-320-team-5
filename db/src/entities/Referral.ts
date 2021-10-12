@@ -1,7 +1,7 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import { Resume } from "./Resume";
 import { Employee } from "./Employee";
 import { Position } from "./Position";
-import { Resume } from "./Resume";
 
 @Index("referral_employee_fk", ["employeeId"], {})
 @Index("referral_position_fk", ["positionId"], {})
@@ -10,9 +10,6 @@ import { Resume } from "./Resume";
 export class Referral {
   @Column("bigint", { primary: true, name: "id" })
   id: string;
-
-  @Column("bigint", { name: "employee_id" })
-  employeeId: string;
 
   @Column("bigint", { name: "resume_id", nullable: true })
   resumeId: string | null;
@@ -37,6 +34,16 @@ export class Referral {
   @Column("bigint", { name: "position_id" })
   positionId: string;
 
+  @Column("int", { name: "employee_id" })
+  employeeId: number;
+
+  @ManyToOne(() => Resume, (resume) => resume.referrals, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "resume_id", referencedColumnName: "id" }])
+  resume: Resume;
+
   @ManyToOne(() => Employee, (employee) => employee.referrals, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
@@ -50,11 +57,4 @@ export class Referral {
   })
   @JoinColumn([{ name: "position_id", referencedColumnName: "id" }])
   position: Position;
-
-  @ManyToOne(() => Resume, (resume) => resume.referrals, {
-    onDelete: "NO ACTION",
-    onUpdate: "NO ACTION",
-  })
-  @JoinColumn([{ name: "resume_id", referencedColumnName: "id" }])
-  resume: Resume;
 }

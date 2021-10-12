@@ -23,8 +23,8 @@ export class JwtGuard implements CanActivate {
   constructor(@Inject('LOGIN_SERVICE') private loginService: ClientProxy) {}
 
   async canActivate(context: ExecutionContext) {
-    let http = context.switchToHttp();
-    let request: AuthorizedRequest = http.getRequest();
+    const http = context.switchToHttp();
+    const request: AuthorizedRequest = http.getRequest();
     let tokenString = request.headers['authorization'];
     console.log('Token received: ' + tokenString);
     if (tokenString == undefined) {
@@ -33,9 +33,9 @@ export class JwtGuard implements CanActivate {
 
     tokenString = tokenString.split([' '])[1];
 
-    let cmd = { cmd: 'jwt-auth' };
+    const cmd = { cmd: 'jwt-auth' };
     try {
-      let response: any = await firstValueFrom(
+      const response: any = await firstValueFrom(
         this.loginService.send(cmd, { token: tokenString }),
       );
       request.user = response.userId;

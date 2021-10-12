@@ -5,5 +5,5 @@ npx typeorm-model-generator \
     -d aki \
     -e mysql \
     -p 3306 \
-    -u ${DB_USER} \
-    -x ${DB_PASSWORD}
+    -u db_username \
+    -x db_password

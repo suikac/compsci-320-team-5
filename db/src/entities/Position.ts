@@ -10,7 +10,7 @@ import { Employee } from "./Employee";
 import { PositionTag } from "./PositionTag";
 import { Referral } from "./Referral";
 
-@Index("position_employee_fk", ["employeeId"], {})
+@Index("position_employee_fk", ["managerId"], {})
 @Entity("position", { schema: "aki" })
 export class Position {
   @Column("bigint", { primary: true, name: "id" })
@@ -25,9 +25,6 @@ export class Position {
   @Column("int", { name: "salary", nullable: true })
   salary: number | null;
 
-  @Column("bigint", { name: "employee_id", nullable: true })
-  employeeId: string | null;
-
   @Column("tinyint", {
     name: "is_posted",
     nullable: true,
@@ -36,15 +33,18 @@ export class Position {
   })
   isPosted: boolean | null;
 
-  @Column("int", { name: "column_7", nullable: true })
-  column_7: number | null;
+  @Column("varchar", { name: "title", length: 255 })
+  title: string;
+
+  @Column("int", { name: "manager_id", nullable: true })
+  managerId: number | null;
 
   @ManyToOne(() => Employee, (employee) => employee.positions, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
   })
-  @JoinColumn([{ name: "employee_id", referencedColumnName: "id" }])
-  employee: Employee;
+  @JoinColumn([{ name: "manager_id", referencedColumnName: "id" }])
+  manager: Employee;
 
   @OneToMany(() => PositionTag, (positionTag) => positionTag.position)
   positionTags: PositionTag[];

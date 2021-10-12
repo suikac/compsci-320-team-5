@@ -11,6 +11,6 @@ export class LoginController {
 
   @Get("nihao")
   hello() {
-    return "hello";
+    return "helloaa";
   }
 }

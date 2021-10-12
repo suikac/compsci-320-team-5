@@ -1,4 +1,8 @@
 #!/bin/sh
-docker build backend/ -t aki-team/backend # build the images
-docker run -p 3000:3000 -d aki-team/backend # machines port : container port
+parent_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+cd "$parent_path"/../..
+
+docker build -t aki/backend backend/;
+docker run -dp 3000:3000 aki/backend;
 
