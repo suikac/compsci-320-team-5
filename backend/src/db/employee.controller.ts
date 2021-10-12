@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 
-@Controller('db')
+@Controller('employee')
 export class EmployeeController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 

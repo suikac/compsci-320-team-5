@@ -1,5 +1,4 @@
 import { Module } from "@nestjs/common";
-import { LoginService } from "./db.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { join } from "path";
 import { ClientsModule, Transport } from "@nestjs/microservices";
@@ -30,6 +29,5 @@ require("dotenv").config();
     ReferralModule,
     PositionModule,
   ],
-  providers: [LoginService],
 })
 export class DbModule {}

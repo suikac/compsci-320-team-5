@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from "@nestjs/typeorm";
 import { ReferralRepository } from "./referral.repository";
 import { Referral } from "../entities/Referral";
+import { CreateReferralDto } from "./referral.dto";
 
 @Injectable()
 export class ReferralService {
@@ -10,8 +11,13 @@ export class ReferralService {
     private readonly referralRepository: ReferralRepository
   ) {}
 
-  public async createReferral() {
+  public async createReferral(createReferralDto : CreateReferralDto){
     // implement it
+    return await this.referralRepository
+      .createQueryBuilder('referral')
+      .insert()
+      .into('referral')
+      .values(createReferralDto).execute()
   }
 
   public async updateReferral() {

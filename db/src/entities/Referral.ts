@@ -1,4 +1,4 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Resume } from "./Resume";
 import { Employee } from "./Employee";
 import { Position } from "./Position";
@@ -8,7 +8,7 @@ import { Position } from "./Position";
 @Index("referral_resume_fk", ["resumeId"], {})
 @Entity("referral", { schema: "aki" })
 export class Referral {
-  @Column("bigint", { primary: true, name: "id" })
+  @PrimaryGeneratedColumn()
   id: string;
 
   @Column("bigint", { name: "resume_id", nullable: true })

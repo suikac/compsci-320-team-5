@@ -2,6 +2,7 @@ import { Controller, Inject } from "@nestjs/common";
 import { MessagePattern } from "@nestjs/microservices";
 import { ReferralService } from "./referral.service";
 import { Referral } from "../entities/Referral";
+import { CreateReferralDto } from "./referral.dto";
 
 @Controller('referral')
 export class ReferralController {
@@ -12,9 +13,10 @@ export class ReferralController {
   ) {
   }
 
-  @MessagePattern('createReferral')
-  public async createReferral() {
-    await this.referralService.createReferral()
+  @MessagePattern({cmd: 'createReferral'})
+  public async createReferral(createReferralDto: CreateReferralDto) {
+    console.log(createReferralDto)
+    return await this.referralService.createReferral(createReferralDto)
   }
 
   @MessagePattern('updateReferral')

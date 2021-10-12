@@ -18,27 +18,28 @@ export class ReferralController {
 
   @Post('createReferral')
   public async createReferral(
-    @Body('id') id: number,
-    @Body('resume_id') resume_id: number,
-    @Body('to_email') to_email: string,
-    @Body('description') description: string,
-    @Body('referee_name') referee_name: string,
-    @Body('is_internal') is_internal: boolean,
-    @Body('position_id') position_id: number,
-    @Body('employee_id') employee_id: number,
+    // @Body('id') id: number,
+    // @Body('resume_id') resume_id: number,
+    // @Body('to_email') to_email: string,
+    // @Body('description') description: string,
+    // @Body('referee_name') referee_name: string,
+    // @Body('is_internal') is_internal: boolean,
+    // @Body('position_id') position_id: number,
+    // @Body('employee_id') employee_id: number,
+    @Body() data,
   ) {
     console.log('Creating a new referral');
     const cmd = { cmd: 'createReferral' };
-    const data = {
-      id,
-      resume_id,
-      to_email,
-      description,
-      referee_name,
-      is_internal,
-      position_id,
-      employee_id,
-    };
+    // const data = {
+    //   id,
+    //   resume_id,
+    //   to_email,
+    //   description,
+    //   referee_name,
+    //   is_internal,
+    //   position_id,
+    //   employee_id,
+    // };
     const response = this.dbService.send(cmd, data);
     return response;
   }
