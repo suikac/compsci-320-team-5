@@ -5,8 +5,8 @@ function LoginSuccessedPopUp(props) {
     return (props.trigger)?(
         <div className="LogInPopUp">
             <div className = "LogInPopUp-inner"> 
-                <h1> Login successed</h1>
-                <button className="close-button" >close</button>
+                <h2> Login success</h2>
+                <button className="close-button" >CLOSE</button>
             </div>
         </div>
     ):''

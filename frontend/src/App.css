@@ -4,14 +4,14 @@
 }
 .container {
   margin: auto;
-  display: inline-block;
-  transform: translate(165%,30%);
+  justify-content: center;
   width: 350px;
   height: 400px;
   background: #EDDDD4;
   border: 3px solid #C44536;
   border-radius: 10%;
   text-align: center;
+  margin-top: 150px;
   font-weight: 400;
   font-family: 'Roboto', sans-serif;
 }
