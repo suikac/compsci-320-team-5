@@ -1,0 +1,42 @@
+.HeaderContainer{
+    background-color:rgb(202, 190, 190);
+    overflow: hidden;
+}
+
+.logocontainer{
+    float: left;
+}
+
+.logoimg{
+    width: 15%;
+    height: 10%;
+    margin: 1em;
+}
+
+.sbar{
+    float: left;
+    width: 20%;
+    height: 30px;
+    margin: 1em;
+}
+
+.notifpic{
+    float: right;
+    width: 35px;
+    height: 35px;
+    margin: 4px;
+}
+
+.profpic{
+    float: right;
+    width: 35px;
+    height: 35px;
+    margin: 4px;
+}
+
+.searchicon{
+    width: 30px;
+    height: 30px;
+    margin: 12px;
+    border: 1px solid black;
+}

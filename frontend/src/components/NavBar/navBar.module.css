@@ -1,0 +1,50 @@
+.NavBarContainer{
+    list-style-type: none;
+    margin: 1em;
+    padding: 1em;
+    width: 20%;
+    background-color: #f1f1f1;
+    overflow: auto;
+    height: 65%;
+    border: 1.5px solid rgb(82, 81, 81);
+    border-radius: 20px;
+    top: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 100;
+}
+
+.NavBarContainer li{
+    margin: 2em;
+}
+
+.NavBarContainer a{
+    padding: 1em;
+}
+
+.NavBarContainer li a {
+    padding: 8px 16px 8px 16px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    color:black;
+    display: block;
+    border: 1.5px solid rgb(146, 146, 146);
+    border-radius: 20px;
+}
+
+.NavBarContainer li:last-child{
+    border-bottom: none;
+}
+
+.NavBarContainer li a:hover{
+    background-color:cadetblue;
+    color: white;
+}
+
+.NavBarContainer li a img{
+    text-align: center;
+    margin: 1em;
+    width: 10px;
+    height: 20px;
+}
