@@ -10,7 +10,10 @@ class Login extends Component {
         super(props)
         this.state = {email: "", password: "",LogInFails: false, LogInSuccesseses: false, LogoutSuccesses:false}
         this.submit_credentials = this.submit_credentials.bind(this)
+        this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
+        this.logout_credentials = this.logout_credentials.bind(this)
     }
+
     handleCredentialsChange(event) {
         const type = event.target.type
         this.setState({
@@ -18,14 +21,12 @@ class Login extends Component {
         })
     }
 
-
     render() {
-        this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
         return (
             <div class = "container">
-                <form onSubmit= {this.submit_credentials}>
+                <form>
                     <h1>Login</h1>
-                    <button onClick = {()=>this.logout_credentials()}>Log Out</button>
+                    <button type="button" onClick = {this.logout_credentials}>Log Out</button>
                     <div class="credentials">
                         <label>Username</label>
                         <input
@@ -53,7 +54,7 @@ class Login extends Component {
                     <LogoutSuccessedPopUp trigger = {this.state.LogoutSuccesses} exist = {() => this.setState({
                     LogoutSuccesses: false})}>
                     </LogoutSuccessedPopUp>
-                    <input type="submit" value="Login" class="login-button" />
+                    <button type="button" onClick={this.submit_credentials} class="login-button">Log In</button>
                     <p class="forgot-password text-right">
                         <a href="#"> Forgot password?</a>
                     </p>
@@ -64,16 +65,16 @@ class Login extends Component {
 
         );
     }
-    async logout_credentials(event) {
 
+    async logout_credentials() {
         const response = await fetch("http://localhost:3000/api/logout", {
             credentials: "include",  // this field is needed so that browser will send/store cookies
-            method: "POST"
+            method: "POST",
         })
         this.setState({LogoutSuccesses: true})
     }
-    async submit_credentials(event) {
-        event.preventDefault()
+
+    async submit_credentials() {
         const payload = {
             email: this.state.email,
             password: this.state.password
