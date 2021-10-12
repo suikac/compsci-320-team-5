@@ -68,7 +68,7 @@ create table referral
 );
 
 create index referral_employee_fk
-    on referral (employee_id);
+    on referral (referrer_id);
 
 create index referral_position_fk
     on referral (position_id);
