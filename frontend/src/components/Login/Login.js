@@ -67,7 +67,7 @@ class Login extends Component {
     async logout_credentials(event) {
 
         const response = await fetch("http://localhost:3000/api/logout", {
-            // credentials: "include",  // this field is needed so that browser will send/store cookies
+            credentials: "include",  // this field is needed so that browser will send/store cookies
             method: "POST"
         })
         this.setState({LogoutSuccesses: true})
