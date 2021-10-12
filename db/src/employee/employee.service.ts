@@ -16,7 +16,7 @@ export class EmployeeService {
     return employee;
   }
 
-  public async getEmployeeByEmail(email: String): Promise<Employee> {
+  public async getEmployeeByEmail(email: string): Promise<Employee> {
     const employee = this.employeeRepository
       .createQueryBuilder("Employee")
       .where("email = :email", { email: email })

@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "96fd0039-0d75-454c-bf35-c2821aa33f61",
+		"name": "aki-login",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "home page",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQ2OSwiaWF0IjoxNjMzMDIyMDgzLCJleHAiOjE2MzMxOTQ4ODN9.DoLX3nmU8-86fJ6q3RD_Y6Hlr_GHyFkYdXx0Fvx_J0A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "fail by guard",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "50"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"32-8MqjCPIPdYX4hIJQo26+ILNcc7o\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Sep 2021 00:31:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"statusCode\": 401,\n    \"message\": \"missing credentials\"\n}"
+				},
+				{
+					"name": "successful",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTYzMjg3NTIzNiwiZXhwIjoxNjMzMDQ4MDM2fQ.KK4b3SVXyifCgs5NS4ItjQCaSojyJQu4e0MMTRV0ols",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "12"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"c-Lve95gjOVATpfV8EL5X4nxwjKHE\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Sep 2021 00:32:28 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "Hello World!"
+				}
+			]
+		},
+		{
+			"name": "login request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/login?email=test@gmail.com&password=aki_test123",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "aki_test123"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successful",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/login?email=test@gmail.com&password=aki_test123",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "test@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "aki_test123"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9b-jO6HS+Nw6EIEJm1uObrkw097Kkw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Sep 2021 00:27:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTYzMjg3NTIzNiwiZXhwIjoxNjMzMDQ4MDM2fQ.KK4b3SVXyifCgs5NS4ItjQCaSojyJQu4e0MMTRV0ols\"\n}"
+				},
+				{
+					"name": "fail on email",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/login?email=test@gmailcom&password=aki_test123",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "test@gmailcom"
+								},
+								{
+									"key": "password",
+									"value": "aki_test123"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9b-jO6HS+Nw6EIEJm1uObrkw097Kkw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Sep 2021 00:27:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTYzMjg3NTIzNiwiZXhwIjoxNjMzMDQ4MDM2fQ.KK4b3SVXyifCgs5NS4ItjQCaSojyJQu4e0MMTRV0ols\"\n}"
+				},
+				{
+					"name": "fail on password",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/login?email=test@gmail.com&password=aki_test12",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"login"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "test@gmail.com"
+								},
+								{
+									"key": "password",
+									"value": "aki_test12"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "155"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"9b-jO6HS+Nw6EIEJm1uObrkw097Kkw\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 29 Sep 2021 00:27:16 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImlhdCI6MTYzMjg3NTIzNiwiZXhwIjoxNjMzMDQ4MDM2fQ.KK4b3SVXyifCgs5NS4ItjQCaSojyJQu4e0MMTRV0ols\"\n}"
+				}
+			]
+		},
+		{
+			"name": "getByEmail request",
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/employee/getByEmail?email=aki@gmail.com",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"employee",
+						"getByEmail"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "aki@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sanity-check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		}
+	]
+}
