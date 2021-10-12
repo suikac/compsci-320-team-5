@@ -18,20 +18,32 @@
 h1{
   color: #893026;
 }
+button{
+  margin-left: 400px;
+  width: 70px;
+  background-color: #C44536;
+  border: none;
+  border-radius: 20px;
+  color: white;
+
+}
+
 .credentials{
-  text-align: center;
+  display: inline-block;
   font-size: x-small;
+  margin-bottom: 10px;
+  text-align: left;
+  transform: translate(-25px);
   padding: 10px;
-  
-  transform: translate(-30%);
 }
 .form-control{
   border: none;
+  justify-content: center;
+  display: inline-block;
   text-align: center;
-  margin-top: 5px;
   border-radius: 20px;
-  padding: 8px 60px;
-  transform: translate(37.5%);
+  width: 125%;
+  height: 30px;  
   
 }
 .login-button{
@@ -45,6 +57,7 @@ h1{
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  justify-content: center;
   transform: translateY(70px)
 }
 
@@ -54,5 +67,6 @@ h1{
 }
 .photo{
   display: block;
+  margin-top: 30px;
   transform: translate(225%,250%);
 }
