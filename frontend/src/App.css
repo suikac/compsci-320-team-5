@@ -19,16 +19,21 @@ h1{
   color: #893026;
 }
 .credentials{
-  text-align: center;
+  display: inline-block;
   font-size: x-small;
-  padding: 10px;  
+  margin-bottom: 10px;
+  text-align: left;
+  transform: translate(-25px);
+  padding: 10px;
 }
 .form-control{
   border: none;
+  justify-content: center;
+  display: inline-block;
   text-align: center;
-  margin-top: 5px;
   border-radius: 20px;
-  padding: 8px 60px;
+  width: 125%;
+  height: 30px;  
   
 }
 .login-button{
@@ -42,6 +47,7 @@ h1{
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  justify-content: center;
   transform: translateY(70px)
 }
 
@@ -51,5 +57,6 @@ h1{
 }
 .photo{
   display: block;
+  margin-top: 30px;
   transform: translate(225%,250%);
 }
