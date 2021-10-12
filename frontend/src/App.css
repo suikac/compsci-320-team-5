@@ -21,9 +21,7 @@ h1{
 .credentials{
   text-align: center;
   font-size: x-small;
-  padding: 10px;
-  
-  transform: translate(-30%);
+  padding: 10px;  
 }
 .form-control{
   border: none;
@@ -31,7 +29,6 @@ h1{
   margin-top: 5px;
   border-radius: 20px;
   padding: 8px 60px;
-  transform: translate(37.5%);
   
 }
 .login-button{
