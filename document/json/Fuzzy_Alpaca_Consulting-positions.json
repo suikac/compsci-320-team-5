@@ -1,0 +1,71 @@
+[ {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 62105,
+  "managerId" : 5,
+  "tags" : [ "Kotlin", "SQL", "Kafka", "Python" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 154665,
+  "managerId" : 6,
+  "tags" : [ "Spark", "Java", "Git" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 116438,
+  "managerId" : 7,
+  "tags" : [ "SQL", "Kafka", "Jenkins", "JavaScript" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 158114,
+  "managerId" : 14,
+  "tags" : [ "Spark", "Python" ]
+}, {
+  "title" : "Principal Software Architect",
+  "description" : "Lead the vision of future software architecture for the company",
+  "minYearsExperience" : 10,
+  "salary" : 189814,
+  "managerId" : 11,
+  "tags" : [ "Kotlin" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 112731,
+  "managerId" : 1,
+  "tags" : [ "Kotlin", "Java", "React", "Git" ]
+}, {
+  "title" : "DevOps Engineer",
+  "description" : "Support and automate development processes, deployments and more as a member of an Agile team.",
+  "minYearsExperience" : 2,
+  "salary" : 73232,
+  "managerId" : 7,
+  "tags" : [ "Python", "Spark" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 72911,
+  "managerId" : 7,
+  "tags" : [ "MySQL", "React", "SQL" ]
+}, {
+  "title" : "Tech Lead",
+  "description" : "Technical leader for an agile team.  Must show strong leadership skills, innovative problem solving, and deep knowledge of software systems.",
+  "minYearsExperience" : 7,
+  "salary" : 144836,
+  "managerId" : 12,
+  "tags" : [ "React" ]
+}, {
+  "title" : "Software Engineer I",
+  "description" : "Entry level Software Engineering role on an Agile team",
+  "minYearsExperience" : 0,
+  "salary" : 72389,
+  "managerId" : 15,
+  "tags" : [ "JavaScript", "Python", "MySQL" ]
+} ]

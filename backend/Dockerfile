@@ -5,5 +5,5 @@ COPY yarn.lock /app
 RUN yarn install --network-timeout 1000000
 COPY . /app
 RUN yarn build
-EXPOSE 1234
+EXPOSE 3000
 CMD ["yarn", "run", "start"]

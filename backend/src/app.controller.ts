@@ -4,15 +4,14 @@ import {
   Get,
   HttpException,
   HttpStatus,
-  Inject, Post,
+  Inject, 
+  Post,
   Query,
   Res,
   UseGuards
 } from "@nestjs/common";
 
 import { ClientProxy } from '@nestjs/microservices';
-import { AppService } from './app.service';
-import { MessagePattern, Payload } from '@nestjs/microservices';
 import { JwtGuard } from './jwt-guard';
 import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
@@ -21,14 +20,13 @@ import { TokenResponse } from "./interfaces/token-response";
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
     @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy,
   ) {}
 
   @UseGuards(JwtGuard)
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return 'hello1';
   }
 
   @Post('login')
@@ -37,9 +35,8 @@ export class AppController {
     @Body('password') password: string,
     @Res() res: Response,
   ) {
-    console.log("Received login request")
-    const cmd = { cmd: "login" }
-    const data = { email: email, password: password }
+    const cmd = { cmd: 'login' };
+    const data = { email: email, password: password };
     const result = this.loginClient.send(cmd, data);
     try {
       let response: TokenResponse = await firstValueFrom(result);

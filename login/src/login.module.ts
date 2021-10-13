@@ -19,6 +19,7 @@ import { TOKEN_DURATION_SEC } from "./constants";
         name: "DB_SERVICE",
         transport: Transport.TCP,
         options: {
+          host: process.env.db_host,
           port: 3001,
         },
       },

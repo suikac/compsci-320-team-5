@@ -10,7 +10,6 @@ import {
 import { MessagePattern, Payload, RpcException } from "@nestjs/microservices";
 import { STATUS_CODES } from "http";
 import { EmployeeService } from "./employee.service";
-import * as bcrypt from "bcrypt";
 
 @Controller("employee")
 export class EmployeeController {
@@ -56,13 +55,13 @@ export class EmployeeController {
 
   @MessagePattern({ cmd: "retrieve password hash" })
   async retrievePwdHash(@Payload("email") email: string) {
+    console.log("welcome to db");
     const employee = this.employeeService.getEmployeeByEmail(email);
     try {
-      const response = {
+      return {
         pwdHash: (await employee).password,
         userId: (await employee).id,
       };
-      return response;
     } catch (exception) {
       throw new RpcException("employee not found");
     }
