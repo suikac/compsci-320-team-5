@@ -21,6 +21,7 @@ export class LoginService {
       let response: DBPasswordResponse = await firstValueFrom(
         this.dbService.send(cmd, data)
       ); // send the email to get the password
+      console.log(response)
       if (await bcrypt.compare(password, response.pwdHash)) {
         let tokenPayload: TokenPayload = {
           userId: response.userId,
