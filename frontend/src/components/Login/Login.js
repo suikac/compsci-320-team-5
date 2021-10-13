@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 import logo from "./Logo2.png";
-import LoginSuccessedPopUp from "./LoginSuccessedPopUp";
-import LoginFailedPopUp from "./LoginFailedPopUp";
-import LogoutSuccessedPopUp from "./LogoutSuccessedPopUp";
+import { LoginFailedPopUp, LoginSuccessedPopUp, LogoutSuccessedPopUp } from "./LoginPopups";
 import styles from "./Login.module.css"
 
 class Login extends Component {
@@ -48,15 +46,6 @@ class Login extends Component {
                         onChange={this.handleCredentialsChange}
                         placeholder="Enter password" />
                     </div>
-                    <LoginFailedPopUp trigger = {this.state.LogInFails} exist = {() => this.setState({
-                    LogInFails: false})}>
-                    </LoginFailedPopUp>
-                    <LoginSuccessedPopUp trigger = {this.state.LogInSuccesses} exist = {() => this.setState({
-                    LogInSuccesses: false})}>
-                    </LoginSuccessedPopUp>
-                    <LogoutSuccessedPopUp trigger = {this.state.LogoutSuccesses} exist = {() => this.setState({
-                    LogoutSuccesses: false})}>
-                    </LogoutSuccessedPopUp>
                     <button type="button"
                     onClick={this.submit_credentials}
                     className={styles.loginButton}>
@@ -65,8 +54,16 @@ class Login extends Component {
                     <p className={styles.forgotPassword}>
                         <a href="#"> Forgot password?</a>
                     </p>
-
                 </form>
+                <LoginFailedPopUp trigger = {this.state.LogInFails} exist = {() => this.setState({
+                LogInFails: false})}>
+                </LoginFailedPopUp>
+                <LoginSuccessedPopUp trigger = {this.state.LogInSuccesses} exist = {() => this.setState({
+                LogInSuccesses: false})}>
+                </LoginSuccessedPopUp>
+                <LogoutSuccessedPopUp trigger = {this.state.LogoutSuccesses} exist = {() => this.setState({
+                LogoutSuccesses: false})}>
+                </LogoutSuccessedPopUp>
                 <img className={styles.photo} src = {logo} width = "100" height = "50"/>
             </div>
 

@@ -3,14 +3,14 @@
 }
 .container {
   margin: auto;
-  display: inline-block;
-  transform: translate(165%,30%);
+  justify-content: center;
   width: 350px;
   height: 400px;
   background: #EDDDD4;
   border: 3px solid #C44536;
   border-radius: 10%;
   text-align: center;
+  margin-top: 150px;
   font-weight: 400;
   font-family: 'Roboto', sans-serif;
 }
@@ -26,6 +26,7 @@ h1{
   border: none;
   border-radius: 20px;
   color: white;
+  cursor: pointer;
 }
 
 .credentials{
@@ -69,4 +70,43 @@ h1{
   display: block;
   margin-top: 30px;
   transform: translate(225%,250%);
+}
+
+.popUp {
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 250px;
+  display: flex;
+  align-items: center;
+}
+
+.popUpInner{
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  height: 150px;
+  background-color:#EDDDD4;
+  border: #C44536 solid 3px;
+  border-radius: 10px;
+}
+
+.closeButton{
+  position: center;
+  text-align: center;
+  background-color: #C44536;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: small;
+  padding: 5px 30px;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
+h2{
+  color: #893026;
 }
