@@ -3,6 +3,7 @@ import { LoginController } from "./login.controller";
 import { LoginService } from "./login.service";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { JwtModule } from "@nestjs/jwt";
+import { TOKEN_DURATION_SEC } from "./constants";
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { JwtModule } from "@nestjs/jwt";
     JwtModule.register({
       secret: "123456789",
       signOptions: {
-        expiresIn: "2 days",
+        expiresIn: TOKEN_DURATION_SEC,
       },
     }),
   ],

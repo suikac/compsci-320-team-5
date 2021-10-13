@@ -1,5 +1,14 @@
-import { Controller, HttpException, HttpStatus, Inject, NotFoundException } from "@nestjs/common";
-import { MessagePattern, Payload } from "@nestjs/microservices";
+import {
+  Controller,
+  Get,
+  HttpCode,
+  HttpException,
+  HttpStatus,
+  Inject,
+  NotFoundException,
+} from "@nestjs/common";
+import { MessagePattern, Payload, RpcException } from "@nestjs/microservices";
+import { STATUS_CODES } from "http";
 import { EmployeeService } from "./employee.service";
 
 @Controller("employee")
@@ -54,7 +63,7 @@ export class EmployeeController {
         userId: (await employee).id,
       };
     } catch (exception) {
-      throw new NotFoundException("db not found");
+      throw new RpcException("employee not found");
     }
   }
 }

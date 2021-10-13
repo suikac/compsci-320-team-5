@@ -5,7 +5,7 @@ import { EmployeeController } from './db/employee.controller';
 import { DbModule } from './db/db.module';
 import { JwtGuard } from './jwt-guard';
 
-require("dotenv").config();
+require('dotenv').config();
 
 @Module({
   imports: [
