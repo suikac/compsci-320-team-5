@@ -19,19 +19,27 @@ export class EmployeeController {
   @MessagePattern({ cmd: "getByEmail" })
   getEmployeeByEmail(@Payload("email") email: string) {
     console.log("in db");
-    const employee = this.employeeService.getEmployeeByEmail(email);
-    console.log(employee);
-    if (!employee) {
-      console.log("in exception branch");
-      throw new HttpException(
-        {
-          STATUS_CODES: 404,
-          error: "Employee Not Founded",
-        },
-        HttpStatus.NOT_FOUND
-      );
-    } else {
+    try {
+      const employee = this.employeeService.getEmployeeByEmail(email)
+      if (!employee) {
+        return new HttpException(
+          {
+            STATUS_CODES: 400,
+            error: "Employee Not Founded"
+          },
+          HttpStatus.BAD_REQUEST
+        )
+      }
       return employee;
+    } catch (e) {
+      // throw new HttpException(
+      //   {
+      //     STATUS_CODES: 404,
+      //     error: "Employee Not Founded",
+      //   },
+      //   HttpStatus.NOT_FOUND
+      // );
+      throw e;
     }
   }
 

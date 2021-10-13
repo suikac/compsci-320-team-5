@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # generate the sa by inputing database.
 npx typeorm-model-generator \
-    -h localhost \
+    -h database-1.cjayoejqlkac.us-east-1.rds.amazonaws.com \
     -d aki \
     -e mysql \
     -p 3306 \
-    -u db_username \
-    -x db_password
+    -u admin \
+    -x aki-dev123

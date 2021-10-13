@@ -1,10 +1,10 @@
-import { Column, Entity, OneToMany } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { PositionTag } from "./PositionTag";
 
 @Entity("tag", { schema: "aki" })
 export class Tag {
-  @Column("bigint", { primary: true, name: "id" })
-  id: string;
+  @PrimaryGeneratedColumn({ type: "int", name: "id" })
+  id: number;
 
   @Column("varchar", { name: "name", length: 255 })
   name: string;

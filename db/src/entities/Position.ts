@@ -1,11 +1,21 @@
-import { Column, Entity, OneToMany } from "typeorm";
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { Employee } from "./Employee";
 import { PositionTag } from "./PositionTag";
 import { Referral } from "./Referral";
 
+@Index("position_employee_fk", ["managerId"], {})
 @Entity("position", { schema: "aki" })
 export class Position {
-  @Column("bigint", { primary: true, name: "id" })
-  id: string;
+  @PrimaryGeneratedColumn({ type: "int", name: "id" })
+  id: number;
 
   @Column("longtext", { name: "description", nullable: true })
   description: string | null;
@@ -24,11 +34,18 @@ export class Position {
   })
   isPosted: boolean | null;
 
-  @Column("int", { name: "employee_id", nullable: true })
-  employeeId: number | null;
+  @Column("varchar", { name: "title", length: 255 })
+  title: string;
 
-  @Column("int", { name: "column_7", nullable: true })
-  column_7: number | null;
+  @Column("int", { name: "manager_id", nullable: true })
+  managerId: number | null;
+
+  @ManyToOne(() => Employee, (employee) => employee.positions, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "manager_id", referencedColumnName: "id" }])
+  manager: Employee;
 
   @OneToMany(() => PositionTag, (positionTag) => positionTag.position)
   positionTags: PositionTag[];

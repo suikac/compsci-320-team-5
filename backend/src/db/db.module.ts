@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { EmployeeController } from './employee.controller';
-import { ReferralController } from "./referral.controller";
+import { ReferralController } from './referral.controller';
 
 @Module({
   imports: [

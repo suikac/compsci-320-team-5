@@ -1,4 +1,4 @@
-GET localhost:3000/api/db/getByEmail?email=Stefan_Gordon@birdseyeentertainment.com
+GET localhost:3000/api/employee/getByEmail?email=Stefan_Gordon@birdseyeentertainment.co
 
 ### get
 
@@ -9,9 +9,7 @@ GET localhost:3000/api/referral/getReferral?id=1
 
 POST localhost:3000/api/referral/createReferral
 
-Content-Type: application/x-www-form-urlencoded
 
-resumeId=1&toEmail=aki@gmail&
 
 
 
