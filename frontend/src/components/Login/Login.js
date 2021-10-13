@@ -96,11 +96,9 @@ class Login extends Component {
             body: JSON.stringify(payload)
         })
         if(response.status == 401 || response.status == 404){
-            console.log('worked')
             this.setState({
                 LogInFails: true
             })
-            console.log(this.state.fail)
         }
         else{
             this.setState({
