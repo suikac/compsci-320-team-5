@@ -1,4 +1,4 @@
 export interface TokenResponse {
   token: string;
-  expires: string
+  expires: string;
 }

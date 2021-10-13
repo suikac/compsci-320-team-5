@@ -4,18 +4,18 @@ import {
   Get,
   HttpException,
   HttpStatus,
-  Inject, 
+  Inject,
   Post,
   Query,
   Res,
-  UseGuards
-} from "@nestjs/common";
+  UseGuards,
+} from '@nestjs/common';
 
 import { ClientProxy } from '@nestjs/microservices';
 import { JwtGuard } from './jwt-guard';
 import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
-import { TokenResponse } from "./interfaces/token-response";
+import { TokenResponse } from './interfaces/token-response';
 
 @Controller()
 export class AppController {
@@ -40,14 +40,14 @@ export class AppController {
     const result = this.loginClient.send(cmd, data);
     try {
       let response: TokenResponse = await firstValueFrom(result);
-      res.cookie("AuthToken", response.token, {
+      res.cookie('AuthToken', response.token, {
         expires: new Date(response.expires),
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: 'strict',
         // secure: true
-      })
-      res.status(HttpStatus.OK)
-      res.send("")
+      });
+      res.status(HttpStatus.OK);
+      res.send('');
     } catch (exception) {
       if (exception.message == 'invalid credentials') {
         throw new HttpException('invalid credentials', HttpStatus.UNAUTHORIZED);
@@ -58,12 +58,12 @@ export class AppController {
 
   @Post('logout')
   async logout(@Res() res: Response) {
-    res.cookie("AuthToken", "", {
+    res.cookie('AuthToken', '', {
       expires: new Date(0),
       httpOnly: true,
-      sameSite: "strict",
-    })
-    res.status(HttpStatus.OK)
-    res.send("")
+      sameSite: 'strict',
+    });
+    res.status(HttpStatus.OK);
+    res.send('');
   }
 }

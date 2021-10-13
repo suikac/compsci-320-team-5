@@ -27,10 +27,10 @@ export class LoginService {
           userId: response.userId,
         };
         let token = this.jwtService.sign(tokenPayload);
-        let expiry = new Date(Date.now() + TOKEN_DURATION_SEC * 1000)
+        let expiry = new Date(Date.now() + TOKEN_DURATION_SEC * 1000);
         return {
           token: token,
-          expires: expiry
+          expires: expiry,
         };
       } else {
         throw new RpcException("invalid credentials");
