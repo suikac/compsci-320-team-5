@@ -6,7 +6,6 @@ import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
 import { TOKEN_DURATION_SEC } from "./constants";
 
-
 @Injectable()
 export class LoginService {
   constructor(
@@ -21,7 +20,6 @@ export class LoginService {
       let response: DBPasswordResponse = await firstValueFrom(
         this.dbService.send(cmd, data)
       ); // send the email to get the password
-      console.log(response)
       if (await bcrypt.compare(password, response.pwdHash)) {
         let tokenPayload: TokenPayload = {
           userId: response.userId,
