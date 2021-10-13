@@ -3,6 +3,7 @@ import logo from "./Logo2.png";
 import LoginSuccessedPopUp from "./LoginSuccessedPopUp";
 import LoginFailedPopUp from "./LoginFailedPopUp";
 import LogoutSuccessedPopUp from "./LogoutSuccessedPopUp";
+import styles from "./Login.module.css"
 
 class Login extends Component {
 
@@ -23,25 +24,27 @@ class Login extends Component {
 
     render() {
         return (
-            <div class = "container">
+            <div className={styles.container}>
                 <form>
                     <h1>Login</h1>
-                    <button type="button" onClick = {this.logout_credentials}>Log Out</button>
-                    <div class="credentials">
+                    <button type="button"
+                    onClick = {this.logout_credentials}
+                    className={styles.logoutButton}>Log Out</button>
+                    <div className={styles.credentials}>
                         <label>Username</label>
                         <input
                         type="email"
                         value={this.state.email}
-                        class="form-control"
+                        class={styles.formControl}
                         onChange={this.handleCredentialsChange}
                         placeholder="Enter email" />
                     </div>
-                    <div class="credentials">
+                    <div className={styles.credentials}>
                         <label>Password</label>
                         <input
                         type="password"
                         value={this.state.password}
-                        class="form-control"
+                        class={styles.formControl}
                         onChange={this.handleCredentialsChange}
                         placeholder="Enter password" />
                     </div>
@@ -54,13 +57,17 @@ class Login extends Component {
                     <LogoutSuccessedPopUp trigger = {this.state.LogoutSuccesses} exist = {() => this.setState({
                     LogoutSuccesses: false})}>
                     </LogoutSuccessedPopUp>
-                    <button type="button" onClick={this.submit_credentials} class="login-button">Log In</button>
-                    <p class="forgot-password text-right">
+                    <button type="button"
+                    onClick={this.submit_credentials}
+                    className={styles.loginButton}>
+                        Log In
+                    </button>
+                    <p className={styles.forgotPassword}>
                         <a href="#"> Forgot password?</a>
                     </p>
 
                 </form>
-                <img class = "photo" src = {logo} width = "100" height = "50"/>
+                <img className={styles.photo} src = {logo} width = "100" height = "50"/>
             </div>
 
         );
