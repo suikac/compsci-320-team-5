@@ -1,4 +1,4 @@
-GET localhost:3000/api/employee/getByEmail?email=Stefan_Gordon@birdseyeentertainment.co
+GET localhost:3000/api/employee/getByEmail?email=Stefan_Gordon@birdseyeentertainment.com
 
 ### get
 
