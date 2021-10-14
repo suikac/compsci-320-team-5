@@ -1,0 +1,151 @@
+* {
+  box-sizing: border-box;
+}
+.container {
+  margin: auto;
+  justify-content: center;
+  width: 350px;
+  height: 400px;
+  background: #EDDDD4;
+  border: 3px solid #C44536;
+  border-radius: 10%;
+  text-align: center;
+  margin-top: 150px;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+
+h1{
+  color: #893026;
+}
+
+.logoutButton{
+  margin-left: 400px;
+  width: 70px;
+  background-color: #C44536;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.credentials{
+  display: inline-block;
+  font-size: x-small;
+  margin-bottom: 10px;
+  text-align: left;
+  transform: translate(-25px);
+  padding: 10px;
+}
+.formControl{
+  border: none;
+  justify-content: center;
+  display: inline-block;
+  text-align: center;
+  border-radius: 20px;
+  width: 125%;
+  height: 30px;
+
+}
+.loginButton{
+  background-color: #C44536;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 8px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  justify-content: center;
+  transform: translateY(70px)
+}
+
+.forgotPassword{
+  transform: translate(20%,-50px);
+  font-size: small;
+}
+.photo{
+  display: block;
+  margin-top: 30px;
+  transform: translate(225%,250%);
+}
+
+.popUp {
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 250px;
+  display: flex;
+  align-items: center;
+}
+
+.popUpInner{
+  position: relative;
+  width: 100%;
+  max-width: 250px;
+  height: 150px;
+  background-color:#EDDDD4;
+  border: #C44536 solid 3px;
+  border-radius: 10px;
+}
+
+.closeButton{
+  position: center;
+  text-align: center;
+  background-color: #C44536;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: small;
+  padding: 5px 30px;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
+h2{
+  color: #893026;
+}
+
+.popUp {
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  
+  margin-top: 250px;
+  display: flex;
+  align-items: center;
+}
+.popUpInner{
+  position: relative;
+
+  width: 100%;
+  max-width: 250px;
+  height: 150px;
+  background-color:#EDDDD4;
+  border: #C44536 solid 3px;
+  border-radius: 10px;
+}
+h1{
+  color: #893026;
+}
+
+.closeButton{
+    position: center;
+    text-align: center;
+    background-color: #C44536;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: small;
+    padding: 5px 30px;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+}

@@ -1,4 +1,4 @@
-insert into aki.employee (first_name, last_name, email, company_name, manager_id, position_title, start_date, is_manager, password, resume_id, id)
+insert into aki_stable.employee (first_name, last_name, email, company_name, manager_id, position_title, start_date, is_manager, password, resume_id, id)
 values  ('Stefan', 'Gordon', 'Stefan_Gordon@birdseyeentertainment.com', 'Birdseye Entertainment', null, 'CEO', '2005-02-20', 1, '$2b$10$hhUtwhiIWJsHntpXelOQR.yVM9Y5IM8YFK7e4zuNPl2saZ590e0/a', null, 1),
         ('Elisha', 'Stanley', 'Elisha_Stanley@birdseyeentertainment.com', 'Birdseye Entertainment', 1, 'Engineering Manager', '2015-04-06', 1, '$2b$10$Ec5M.sQamkw5Qdt.k1kQOejYwqHAwvLuxYsy84ir.PIIgblVcR5Y6', null, 2),
         ('Edna', 'Robinson', 'Edna_Robinson@birdseyeentertainment.com', 'Birdseye Entertainment', 2, 'Engineering Manager', '1997-12-31', 1, '$2b$10$5ZiP6WBxQkiIbxIwt5ra.uqliKNZzKdQ5i5FVDJtR6mj8L2s5FDJm', null, 3),
