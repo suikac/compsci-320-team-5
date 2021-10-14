@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ReferralRepository } from "./referral.repository";
 import { Referral } from "../entities/Referral";
@@ -11,13 +11,14 @@ export class ReferralService {
     private readonly referralRepository: ReferralRepository
   ) {}
 
-  public async createReferral(createReferralDto : CreateReferralDto){
+  public async createReferral(createReferralDto: CreateReferralDto) {
     // implement it
     return await this.referralRepository
-      .createQueryBuilder('referral')
+      .createQueryBuilder("referral")
       .insert()
-      .into('referral')
-      .values(createReferralDto).execute()
+      .into("referral")
+      .values(createReferralDto)
+      .execute();
   }
 
   public async updateReferral() {
@@ -26,14 +27,13 @@ export class ReferralService {
 
   public async deleteReferral() {
     // implement it
-
   }
 
-  public async getReferral(id : number) : Promise<Referral> {
+  public async getReferral(id: number): Promise<Referral> {
     // implement it
-   return this.referralRepository
-      .createQueryBuilder('referral')
-      .where('id = :id', {id : id})
-      .getOne()
+    return this.referralRepository
+      .createQueryBuilder("referral")
+      .where("id = :id", { id: id })
+      .getOne();
   }
 }

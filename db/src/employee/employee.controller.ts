@@ -1,4 +1,10 @@
-import { Controller, HttpException, HttpStatus, Inject, NotFoundException } from "@nestjs/common";
+import {
+  Controller,
+  HttpException,
+  HttpStatus,
+  Inject,
+  NotFoundException,
+} from "@nestjs/common";
 import { MessagePattern, Payload } from "@nestjs/microservices";
 import { EmployeeService } from "./employee.service";
 
@@ -20,15 +26,15 @@ export class EmployeeController {
   getEmployeeByEmail(@Payload("email") email: string) {
     console.log("in db");
     try {
-      const employee = this.employeeService.getEmployeeByEmail(email)
+      const employee = this.employeeService.getEmployeeByEmail(email);
       if (!employee) {
         return new HttpException(
           {
             STATUS_CODES: 400,
-            error: "Employee Not Founded"
+            error: "Employee Not Founded",
           },
           HttpStatus.BAD_REQUEST
-        )
+        );
       }
       return employee;
     } catch (e) {

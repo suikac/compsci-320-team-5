@@ -9,8 +9,8 @@ import { Referral } from "./entities/Referral";
 import { Position } from "./entities/Position";
 import { PositionTag } from "./entities/PositionTag";
 import { Tag } from "./entities/Tag";
-import { ReferralModule } from './referral/referral.module';
-import { PositionModule } from './position/position.module';
+import { ReferralModule } from "./referral/referral.module";
+import { PositionModule } from "./position/position.module";
 require("dotenv").config();
 
 @Module({

@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { PositionController } from './position.controller';
-import { PositionService } from './position.service';
+import { Module } from "@nestjs/common";
+import { PositionController } from "./position.controller";
+import { PositionService } from "./position.service";
 
 @Module({
   controllers: [PositionController],
-  providers: [PositionService]
+  providers: [PositionService],
 })
 export class PositionModule {}

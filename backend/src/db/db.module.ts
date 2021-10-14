@@ -1,7 +1,10 @@
-import { Module } from '@nestjs/common';
+import { Inject, Module } from "@nestjs/common";
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { EmployeeController } from './employee.controller';
 import { ReferralController } from './referral.controller';
+import { JwtGuard } from "../guards/jwt-guard";
+import { AppModule } from "../app.module";
+import { GuardsModule } from "../guards/guards.module";
 
 @Module({
   imports: [
@@ -15,7 +18,9 @@ import { ReferralController } from './referral.controller';
         },
       },
     ]),
+    GuardsModule.forRoot(),
   ],
   controllers: [EmployeeController, ReferralController],
+
 })
 export class DbModule {}

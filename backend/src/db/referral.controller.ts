@@ -8,10 +8,12 @@ import {
   Delete,
   Get,
   Query,
-  UseGuards,
+  UseGuards, Request
 } from "@nestjs/common";
 import { ClientProxy } from '@nestjs/microservices';
+import { JwtGuard } from '../guards/jwt-guard';
 
+@UseGuards(JwtGuard)
 @Controller('referral')
 export class ReferralController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
@@ -26,9 +28,10 @@ export class ReferralController {
     // @Body('is_internal') is_internal: boolean,
     // @Body('position_id') position_id: number,
     // @Body('employee_id') employee_id: number,
-    @Body() data,
+    @Request() data,
   ) {
     console.log('Creating a new referral');
+    console.log(data);
     const cmd = { cmd: 'createReferral' };
     // const data = {
     //   id,

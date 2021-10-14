@@ -2,22 +2,21 @@
 import { isNumberObject } from "util/types";
 import { IsEmail, IsNotEmpty } from "class-validator";
 
-export class CreateReferralDto{
-
-  resumeId : number
+export class CreateReferralDto {
+  resumeId: number;
 
   @IsEmail()
-  toEmail: string
+  toEmail: string;
 
-  description: string
+  description: string;
 
-  refereeName: string
+  refereeName: string;
 
-  refereeId: number
-
-  @IsNotEmpty()
-  positionId: number
+  refereeId: number;
 
   @IsNotEmpty()
-  refererId: number
+  positionId: number;
+
+  @IsNotEmpty()
+  refererId: number;
 }

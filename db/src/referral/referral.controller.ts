@@ -4,33 +4,31 @@ import { ReferralService } from "./referral.service";
 import { Referral } from "../entities/Referral";
 import { CreateReferralDto } from "./referral.dto";
 
-@Controller('referral')
+@Controller("referral")
 export class ReferralController {
-
   constructor(
     @Inject(ReferralService)
     private readonly referralService: ReferralService
-  ) {
-  }
+  ) {}
 
-  @MessagePattern({cmd: 'createReferral'})
+  @MessagePattern({ cmd: "createReferral" })
   public async createReferral(createReferralDto: CreateReferralDto) {
-    console.log(createReferralDto)
-    return await this.referralService.createReferral(createReferralDto)
+    console.log(createReferralDto);
+    return await this.referralService.createReferral(createReferralDto);
   }
 
-  @MessagePattern('updateReferral')
+  @MessagePattern("updateReferral")
   public async updateReferral() {
-    await this.referralService.updateReferral()
+    await this.referralService.updateReferral();
   }
 
-  @MessagePattern('deleteReferral')
+  @MessagePattern("deleteReferral")
   public async deleteReferral() {
-    await this.referralService.deleteReferral()
+    await this.referralService.deleteReferral();
   }
 
-  @MessagePattern({cmd: 'getReferral'} )
-  public async getReferral(id: number) : Promise<Referral> {
+  @MessagePattern({ cmd: "getReferral" })
+  public async getReferral(id: number): Promise<Referral> {
     return await this.referralService.getReferral(id);
   }
 }

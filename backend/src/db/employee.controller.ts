@@ -1,6 +1,8 @@
-import { Body, Controller, Get, Inject, Post, Query } from "@nestjs/common";
-import { ClientProxy } from "@nestjs/microservices";
+import { Body, Controller, Get, Inject, Post, Query, UseGuards } from "@nestjs/common";
+import { ClientProxy } from '@nestjs/microservices';
+import { JwtGuard } from "../guards/jwt-guard";
 
+@UseGuards(JwtGuard)
 @Controller('employee')
 export class EmployeeController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
