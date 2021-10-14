@@ -21,8 +21,10 @@ export class LoginService {
         this.dbService.send(cmd, data)
       ); // send the email to get the password
       if (await bcrypt.compare(password, response.pwdHash)) {
+        console.log(response.role)
         let tokenPayload: TokenPayload = {
           userId: response.userId,
+          role: response.role
         };
         let token = this.jwtService.sign(tokenPayload);
         let expiry = new Date(Date.now() + TOKEN_DURATION_SEC * 1000);

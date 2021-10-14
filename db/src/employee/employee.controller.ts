@@ -56,11 +56,13 @@ export class EmployeeController {
   @MessagePattern({ cmd: "retrieve password hash" })
   async retrievePwdHash(@Payload("email") email: string) {
     console.log("welcome to db");
-    const employee = this.employeeService.getEmployeeByEmail(email);
     try {
+      const employee = await this.employeeService.getEmployeeByEmail(email);
+
       return {
-        pwdHash: (await employee).password,
-        userId: (await employee).id,
+        pwdHash: employee.password,
+        userId: employee.id,
+        role: employee.isManager ? "manager" : "employee"
       };
     } catch (exception) {
       throw new RpcException("employee not found");
