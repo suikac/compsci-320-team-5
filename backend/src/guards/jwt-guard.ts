@@ -13,10 +13,7 @@ import {
 } from '@nestjs/common';
 import { ClientProxy, RpcException } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
-
-export interface AuthorizedRequest extends Request {
-  user: string;
-}
+import { UserData, AuthorizedRequest } from './interfaces';
 
 @Injectable()
 export class JwtGuard implements CanActivate {
@@ -35,10 +32,10 @@ export class JwtGuard implements CanActivate {
 
     const cmd = { cmd: 'jwt-auth' };
     try {
-      const response: any = await firstValueFrom(
+      const response: UserData = await firstValueFrom(
         this.loginService.send(cmd, { token: tokenString }),
       );
-      request.user = response.userId;
+      request.user = response;
       return true;
     } catch (exception) {
       if (exception.message == 'invalid token') {
