@@ -10,7 +10,9 @@ GET localhost:3000/api/referral/getReferral?id=1
 POST localhost:3000/api/referral/createReferral
 Content-Type: application/x-www-form-urlencoded
 
+###
 
+GET localhost:3000/api/position/
 
 
 

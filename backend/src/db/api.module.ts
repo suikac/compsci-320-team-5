@@ -3,6 +3,7 @@ import { EmployeeController } from './employee.controller';
 import { ReferralController } from './referral.controller';
 import { GuardsModule } from '../guards/guards.module';
 import { Module } from '@nestjs/common';
+import { PositionController } from './position.controller';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { Module } from '@nestjs/common';
     ]),
     GuardsModule.forRoot(),
   ],
-  controllers: [EmployeeController, ReferralController],
+  controllers: [EmployeeController, ReferralController, PositionController],
 })
 export class ApiModule {}
