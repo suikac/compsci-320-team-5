@@ -43,7 +43,7 @@ export class LoginController {
       res.cookie('AuthToken', response.token, {
         expires: new Date(response.expires),
         httpOnly: true,
-        sameSite: 'strict',
+        sameSite: 'lax',
         // secure: true
       });
       res.status(HttpStatus.OK);
