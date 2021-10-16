@@ -15,10 +15,10 @@ import { ClientProxy } from '@nestjs/microservices';
 import { JwtGuard } from './jwt-guard';
 import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
-import { TokenResponse } from './interfaces/token-response';
+import { TokenResponse } from '../interfaces';
 
 @Controller()
-export class AppController {
+export class LoginController {
   constructor(
     @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy,
   ) {}
@@ -39,7 +39,7 @@ export class AppController {
     const data = { email: email, password: password };
     const result = this.loginClient.send(cmd, data);
     try {
-      let response: TokenResponse = await firstValueFrom(result);
+      const response: TokenResponse = await firstValueFrom(result);
       res.cookie('AuthToken', response.token, {
         expires: new Date(response.expires),
         httpOnly: true,

@@ -8,8 +8,10 @@ import {
   Delete,
   Get,
   Query,
-  UseGuards, Request
-} from "@nestjs/common";
+  UseGuards,
+  Request,
+  Req,
+} from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { JwtGuard } from '../guards/jwt-guard';
 
@@ -19,20 +21,12 @@ export class ReferralController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
   @Post('createReferral')
-  public async createReferral(
-    // @Body('id') id: number,
-    // @Body('resume_id') resume_id: number,
-    // @Body('to_email') to_email: string,
-    // @Body('description') description: string,
-    // @Body('referee_name') referee_name: string,
-    // @Body('is_internal') is_internal: boolean,
-    // @Body('position_id') position_id: number,
-    // @Body('employee_id') employee_id: number,
-    @Request() data,
-  ) {
+  public async createReferral(@Req() req, @Body('') data) {
     console.log('Creating a new referral');
     console.log(data);
+    data.referrer_id = req.user.userId;
     const cmd = { cmd: 'createReferral' };
+    console.log(data);
     // const data = {
     //   id,
     //   resume_id,

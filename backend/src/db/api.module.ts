@@ -1,10 +1,8 @@
-import { Inject, Module } from "@nestjs/common";
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { EmployeeController } from './employee.controller';
 import { ReferralController } from './referral.controller';
-import { JwtGuard } from "../guards/jwt-guard";
-import { AppModule } from "../app.module";
-import { GuardsModule } from "../guards/guards.module";
+import { GuardsModule } from '../guards/guards.module';
+import { Module } from '@nestjs/common';
 
 @Module({
   imports: [
@@ -21,6 +19,5 @@ import { GuardsModule } from "../guards/guards.module";
     GuardsModule.forRoot(),
   ],
   controllers: [EmployeeController, ReferralController],
-
 })
-export class DbModule {}
+export class ApiModule {}

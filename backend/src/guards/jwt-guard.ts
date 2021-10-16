@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { ClientProxy, RpcException } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
-import { UserData, AuthorizedRequest } from './interfaces';
+import { UserData, AuthorizedRequest } from '../interfaces';
 
 @Injectable()
 export class JwtGuard implements CanActivate {

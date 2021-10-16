@@ -67,7 +67,7 @@ export class EmployeeController {
       return {
         pwdHash: employee.password,
         userId: employee.id,
-        role: employee.isManager ? "manager" : "employee"
+        role: employee.isManager ? "manager" : "employee",
       };
     } catch (exception) {
       throw new NotFoundException("db not found");
