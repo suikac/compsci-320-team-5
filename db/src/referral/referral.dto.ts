@@ -18,5 +18,5 @@ export class CreateReferralDto {
   positionId: number;
 
   @IsNotEmpty()
-  refererId: number;
+  referrerId: number;
 }

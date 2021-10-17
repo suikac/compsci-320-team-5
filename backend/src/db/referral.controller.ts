@@ -24,7 +24,7 @@ export class ReferralController {
   public async createReferral(@Req() req, @Body('') data) {
     console.log('Creating a new referral');
     console.log(data);
-    data.referrer_id = req.user.userId;
+    data.referrerId = req.user.userId;
     const cmd = { cmd: 'createReferral' };
     console.log(data);
     // const data = {
