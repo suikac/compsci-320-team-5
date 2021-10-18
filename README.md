@@ -64,6 +64,6 @@ install and run [MySQL](https://dev.mysql.com/downloads/) locally
 
 `bash document/shell/start_backend.sh` to start db service
 
-place mysql username and mysql password in `db/src/db.module.ts`
+place mysql username and mysql password in `db/src/api.module.ts`
 
 send out post request to `localhost:3000/login?username=user&password=pwd` to get an employee

@@ -1,4 +1,4 @@
-import { Inject, Injectable } from "@nestjs/common";
+import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Employee } from "src/entities/Employee";
 import { EmployeeRepository } from "./employee.repository";
@@ -17,12 +17,10 @@ export class EmployeeService {
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {
-    const employee = this.employeeRepository
+    return this.employeeRepository
       .createQueryBuilder("Employee")
       .where("email = :email", { email: email })
       .getOne();
-
-    return employee;
   }
 
   public async signUpEmployee(email: string, password: string) {

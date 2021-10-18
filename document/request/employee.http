@@ -1,1 +1,26 @@
-GET localhost:3000/api/db/getByEmail?email=Stefan_Gordon@birdseyeentertainment.com
+GET localhost:3000/api/employee/getByEmail?email=Stefan_Gordon@birdseyeentertainment.com
+
+### get
+
+GET localhost:3000/api/referral/getReferral?id=1
+
+
+### Post
+
+POST localhost:3000/api/referral/createReferral
+Content-Type: application/json
+
+{
+  "toEmail":"{{email}}",
+  "description":"{{description}}",
+  "refereeName":"{{referee_name}}",
+  "positionId":"{{position_id}}"
+}
+###
+
+GET localhost:3000/api/position/
+
+
+
+
+

@@ -3,13 +3,16 @@ import {
   Controller,
   Get,
   Inject,
-  NotFoundException,
   Post,
   Query,
+  Res,
+  UseGuards,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
+import { JwtGuard } from '../guards/jwt-guard';
 
-@Controller('db')
+@UseGuards(JwtGuard)
+@Controller('employee')
 export class EmployeeController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
@@ -18,9 +21,11 @@ export class EmployeeController {
     console.log('in backend');
     const cmd = { cmd: 'getByEmail' };
     const data = { email: email };
-    const employee = this.dbService.send(cmd, data);
-    if (!employee) throw new NotFoundException('Employee not found');
-    else return employee;
+    try {
+      return this.dbService.send(cmd, data);
+    } catch (exception) {
+      throw exception;
+    }
   }
 
   @Post('signUp')

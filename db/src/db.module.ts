@@ -1,6 +1,4 @@
 import { Module } from "@nestjs/common";
-import { LoginController } from "./db.controller";
-import { LoginService } from "./db.service";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { join } from "path";
 import { ClientsModule, Transport } from "@nestjs/microservices";
@@ -11,19 +9,12 @@ import { Referral } from "./entities/Referral";
 import { Position } from "./entities/Position";
 import { PositionTag } from "./entities/PositionTag";
 import { Tag } from "./entities/Tag";
+import { ReferralModule } from "./referral/referral.module";
+import { PositionModule } from "./position/position.module";
 require("dotenv").config();
 
 @Module({
   imports: [
-    ClientsModule.register([
-      {
-        name: "BACKEND_SERVICE",
-        transport: Transport.TCP,
-        options: {
-          port: 3000,
-        },
-      },
-    ]),
     TypeOrmModule.forRoot({
       type: "mysql",
       host: process.env.mysql_host,
@@ -35,8 +26,8 @@ require("dotenv").config();
       synchronize: true,
     }),
     EmployeeModule,
+    ReferralModule,
+    PositionModule,
   ],
-  controllers: [LoginController],
-  providers: [LoginService],
 })
 export class DbModule {}
