@@ -16,6 +16,7 @@ import { JwtGuard } from './jwt-guard';
 import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
 import { TokenResponse } from '../interfaces';
+import { ManagerOnly, RolesGuard } from "./role.guards";
 
 @Controller()
 export class LoginController {
@@ -23,8 +24,9 @@ export class LoginController {
     @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy,
   ) {}
 
-  @UseGuards(JwtGuard)
-  @Get()
+  @UseGuards(JwtGuard, RolesGuard)
+  @ManagerOnly()
+  @Get('managerOnly')
   getHello(): string {
     return 'hello1';
   }
@@ -47,7 +49,9 @@ export class LoginController {
         // secure: true
       });
       res.status(HttpStatus.OK);
-      res.send('');
+      res.json({
+        role: response.role
+      });
     } catch (exception) {
       if (exception.message == 'invalid credentials') {
         throw new HttpException('invalid credentials', HttpStatus.UNAUTHORIZED);

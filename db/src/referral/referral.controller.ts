@@ -13,7 +13,6 @@ export class ReferralController {
 
   @MessagePattern({ cmd: "createReferral" })
   public async createReferral(createReferralDto: CreateReferralDto) {
-    console.log(createReferralDto);
     return await this.referralService.createReferral(createReferralDto);
   }
 
