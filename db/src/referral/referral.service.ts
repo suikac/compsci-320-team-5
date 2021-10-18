@@ -13,12 +13,13 @@ export class ReferralService {
 
   public async createReferral(createReferralDto: CreateReferralDto) {
     // implement it
-    return await this.referralRepository
+    await this.referralRepository
       .createQueryBuilder("referral")
       .insert()
       .into("referral")
       .values(createReferralDto)
       .execute();
+    return createReferralDto;
   }
 
   public async updateReferral() {
