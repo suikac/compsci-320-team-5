@@ -14,10 +14,6 @@ export class RolesGuard implements CanActivate {
     if(tokenString == undefined){
       throw new HttpException('missing credentials', HttpStatus.UNAUTHORIZED)
     }
-    const cmd = {cmd: 'jwt-guards'};
-    const response: UserData = await firstValueFrom(
-      this.loginService.send(cmd, { token: tokenString }),
-    );
-    return response.role == 'manager'
+    return request.user.role == 'manager'
   }
 }
