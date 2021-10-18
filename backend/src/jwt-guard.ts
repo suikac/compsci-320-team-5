@@ -21,12 +21,14 @@ export class JwtGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext) {
     const http = context.switchToHttp();
-    const request: any = http.getRequest();
-    let tokenString = request.cookies['AuthToken'];
+    const request: AuthorizedRequest = http.getRequest();
+    let tokenString = request.headers['authorization'];
     console.log('Token received: ' + tokenString);
     if (tokenString == undefined) {
       throw new HttpException('missing credentials', HttpStatus.UNAUTHORIZED);
     }
+
+    tokenString = tokenString.split([' '])[1];
 
     const cmd = { cmd: 'jwt-auth' };
     try {
