@@ -1,19 +1,6 @@
-import {
-  Body,
-  Controller,
-  Inject,
-  NotFoundException,
-  Post,
-  Patch,
-  Delete,
-  Get,
-  Query,
-  UseGuards,
-  Request,
-  Req,
-} from '@nestjs/common';
-import { ClientProxy } from '@nestjs/microservices';
-import { JwtGuard } from '../guards/jwt-guard';
+import { Body, Controller, Delete, Get, Inject, Patch, Post, Query, Req, UseGuards } from "@nestjs/common";
+import { ClientProxy } from "@nestjs/microservices";
+import { JwtGuard } from "../guards/jwt-guard";
 
 @UseGuards(JwtGuard)
 @Controller('referral')
@@ -37,8 +24,11 @@ export class ReferralController {
     //   position_id,
     //   employee_id,
     // };
-    const response = this.dbService.send(cmd, data);
-    return response;
+    try {
+      return this.dbService.send(cmd, data);
+    } catch (e) {
+      throw e;
+    }
   }
 
   @Patch('updateReferral')
