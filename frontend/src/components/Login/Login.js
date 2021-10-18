@@ -2,15 +2,17 @@ import React, {Component} from "react";
 import logo from "./Logo2.png";
 import { LoginFailedPopUp, LoginSuccessedPopUp, LogoutSuccessedPopUp } from "./LoginPopups";
 import styles from "./Login.module.css"
+import { apiPost } from "../../utils/api-fetch"
+import { Redirect } from "react-router";
 
 class Login extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {email: "", password: "",LogInFails: false, LogInSuccesseses: false, LogoutSuccesses:false}
+        console.log("constructor")
+        this.state = {email: "", password: "", loginFails: false, loginSuccessful: false, logoutSuccessful:false}
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
-        this.logout_credentials = this.logout_credentials.bind(this)
     }
 
     handleCredentialsChange(event) {
@@ -21,6 +23,9 @@ class Login extends Component {
     }
 
     render() {
+        if (this.state.loginSuccessful) {
+            return <Redirect to='/' />
+        }
         return (
             <div className={styles.container}>
                 <form>
@@ -55,27 +60,13 @@ class Login extends Component {
                         <a href="#"> Forgot password?</a>
                     </p>
                 </form>
-                <LoginFailedPopUp trigger = {this.state.LogInFails} exist = {() => this.setState({
-                LogInFails: false})}>
+                <LoginFailedPopUp trigger = {this.state.loginSuccessful} exist = {() => this.setState({
+                loginFails: false})}>
                 </LoginFailedPopUp>
-                <LoginSuccessedPopUp trigger = {this.state.LogInSuccesses} exist = {() => this.setState({
-                LogInSuccesses: false})}>
-                </LoginSuccessedPopUp>
-                <LogoutSuccessedPopUp trigger = {this.state.LogoutSuccesses} exist = {() => this.setState({
-                LogoutSuccesses: false})}>
-                </LogoutSuccessedPopUp>
                 <img className={styles.photo} src = {logo} width = "100" height = "50"/>
             </div>
 
         );
-    }
-
-    async logout_credentials() {
-        const response = await fetch("http://localhost:3000/api/logout", {
-            credentials: "include",  // this field is needed so that browser will send/store cookies
-            method: "POST",
-        })
-        this.setState({LogoutSuccesses: true})
     }
 
     async submit_credentials() {
@@ -83,23 +74,16 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        const response = await fetch("http://localhost:3000/api/login", {
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: "include",  // this field is needed so that browser will send/store cookies
-            method: "POST",
-            body: JSON.stringify(payload)
-        })
+        const response = await apiPost('/login', payload)
+
         if(response.status == 401 || response.status == 404){
             this.setState({
-                LogInFails: true
+                loginFails: true
             })
         }
         else{
             this.setState({
-                LogInSuccesses: true
+                loginSuccessful: true
             })
         }
     }
