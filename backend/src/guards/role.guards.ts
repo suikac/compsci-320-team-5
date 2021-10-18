@@ -7,20 +7,17 @@ import { ClientProxy} from '@nestjs/microservices';
 @Injectable()
 export class RolesGuard implements CanActivate {
   constructor(@Inject('LOGIN_SERVICE') private loginService: ClientProxy) {}
-  canActivate(
-    context: ExecutionContext,): boolean{
+  async canActivate(
+    context: ExecutionContext,): Promise<boolean>{
     const request = context.switchToHttp().getRequest();
-    const userRole = request.roles
-    if(userRole == undefined){
+    const tokenString = request.cookies['AuthToken'];
+    if(tokenString == undefined){
       throw new HttpException('missing credentials', HttpStatus.UNAUTHORIZED)
     }
     const cmd = {cmd: 'jwt-guards'};
-    try{
-      const response: UserData = await firstValueFrom(
-        this.loginService.send(cmd,{role: userRole})
-      );
-      request.roles = response;
-      return true;
-    }
+    const response: UserData = await firstValueFrom(
+      this.loginService.send(cmd, { token: tokenString }),
+    );
+    return response.role == 'manager'
   }
 }
