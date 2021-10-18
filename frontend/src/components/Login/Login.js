@@ -9,7 +9,6 @@ class Login extends Component {
 
     constructor(props) {
         super(props)
-        console.log("constructor")
         this.state = {email: "", password: "", loginFails: false, loginSuccessful: false, logoutSuccessful:false}
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
@@ -60,7 +59,7 @@ class Login extends Component {
                         <a href="#"> Forgot password?</a>
                     </p>
                 </form>
-                <LoginFailedPopUp trigger = {this.state.loginSuccessful} exist = {() => this.setState({
+                <LoginFailedPopUp trigger = {this.state.loginFails} exist = {() => this.setState({
                 loginFails: false})}>
                 </LoginFailedPopUp>
                 <img className={styles.photo} src = {logo} width = "100" height = "50"/>
@@ -84,6 +83,11 @@ class Login extends Component {
         else{
             this.setState({
                 loginSuccessful: true
+            })
+            const body = await response.json()
+
+            this.props.onUserInfoChange({
+                role: body.role
             })
         }
     }

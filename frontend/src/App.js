@@ -7,20 +7,28 @@ import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom"
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { isLoggedIn: false }
+    this.state = {
+      userInfo: null
+    }
+
+    this.onUserInfoChange = this.onUserInfoChange.bind(this)
+  }
+
+  onUserInfoChange(userInfo) {
+    console.log(userInfo)
+    this.setState({ userInfo: userInfo })
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn
     return (
       <BrowserRouter>
         <div>
           <Switch>
             <Route exact path='/'>
-              <Main />
+              <Main userInfo={this.state.userInfo}/>
             </Route>
             <Route path='/login'>
-              <Login />
+              <Login onUserInfoChange={this.onUserInfoChange}/>
             </Route>
           </Switch>
         </div>

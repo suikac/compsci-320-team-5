@@ -47,7 +47,9 @@ export class LoginController {
         // secure: true
       });
       res.status(HttpStatus.OK);
-      res.send('');
+      res.json({
+        role: response.role
+      });
     } catch (exception) {
       if (exception.message == 'invalid credentials') {
         throw new HttpException('invalid credentials', HttpStatus.UNAUTHORIZED);

@@ -13,9 +13,11 @@ class Main extends Component {
     if (this.state.didLogout) {
       return <Redirect to='/login' />
     }
+    let userInfo = this.props.userInfo
     return (
       <div>
-        Main page
+        Main page<br />
+        Role: {userInfo.role}
       <button type='button' onClick={this.logout_credentials}>Logout</button>
       </div>
     );
