@@ -53,7 +53,7 @@ class Login extends Component {
                         <a href="#"> Forgot password?</a>
                     </p>
                 </form>
-                <img class = "photo" src = {logo} width = "100" height = "50"/>
+                <img class = "photo" src = {logo} alt = "A logo" width = "100" height = "50"/>
             </div>
 
         );
@@ -72,7 +72,7 @@ class Login extends Component {
             method: "POST",
             body: JSON.stringify(payload)
         })
-        if(response.status == 401){
+        if(response.status === 401){
             console.log('worked')
             this.setState({
                 fail: true

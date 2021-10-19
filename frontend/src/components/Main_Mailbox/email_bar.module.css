@@ -1,0 +1,44 @@
+.Email_Bar {
+  background-color: #C4C4C4;
+  height: 2em;
+  text-decoration: none;
+  text-align: left;
+  font-size: 20px;
+  color:black;
+  border: 1.5px solid rgb(146, 146, 146);
+  border-radius: 0px;
+
+  margin: 0em;
+  padding: 0em;
+  width: 100%;
+  overflow: clip;
+  cursor: pointer;
+}
+
+.Email_Bar img {
+  margin-right: 1em;
+  width: 17px;
+  height: 20px;
+}
+
+.Email_Bar:hover{
+  border-color: #FFF8F4;
+}
+
+.Email_Bar input {
+  margin-right: 1em;
+  height: 1em;
+  width: 1em;
+  cursor: pointer;
+}
+
+.Email_Bar button {
+  text-align: center;
+  background-color: transparent;
+  border: none;           
+  cursor: pointer;
+}
+
+.Email_Bar a {
+  text-align: center;
+}
