@@ -1,6 +1,6 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
-import { Position } from "./Position";
 import { Tag } from "./Tag";
+import { Position } from "./Position";
 
 @Index("position_fk", ["positionId"], {})
 @Index("tag_fk", ["tagId"], {})
@@ -15,17 +15,17 @@ export class PositionTag {
   @Column("bigint", { name: "tag_id" })
   tagId: string;
 
-  @ManyToOne(() => Position, (position) => position.positionTags, {
-    onDelete: "NO ACTION",
-    onUpdate: "NO ACTION",
-  })
-  @JoinColumn([{ name: "position_id", referencedColumnName: "id" }])
-  position: Position;
-
   @ManyToOne(() => Tag, (tag) => tag.positionTags, {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
   })
   @JoinColumn([{ name: "tag_id", referencedColumnName: "id" }])
   tag: Tag;
+
+  @ManyToOne(() => Position, (position) => position.positionTags, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "position_id", referencedColumnName: "id" }])
+  position: Position;
 }

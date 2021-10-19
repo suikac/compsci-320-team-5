@@ -4,6 +4,7 @@ import { firstValueFrom } from "rxjs";
 import { DBPasswordResponse, TokenPayload, TokenResponse } from "./interfaces";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcrypt";
+import { TOKEN_DURATION_SEC } from "./constants";
 
 @Injectable()
 export class LoginService {
@@ -24,8 +25,10 @@ export class LoginService {
           userId: response.userId,
         };
         let token = this.jwtService.sign(tokenPayload);
+        let expiry = new Date(Date.now() + TOKEN_DURATION_SEC * 1000);
         return {
           token: token,
+          expires: expiry,
         };
       } else {
         throw new RpcException("invalid credentials");

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { EmployeeController } from './employee/employee.controller';
-import { EmployeeModule } from './employee/employee.module';
+import { EmployeeController } from './db/employee.controller';
+import { DbModule } from './db/db.module';
 import { JwtGuard } from './jwt-guard';
+
 require('dotenv').config();
 
 @Module({
@@ -14,20 +14,14 @@ require('dotenv').config();
         name: 'LOGIN_SERVICE',
         transport: Transport.TCP,
         options: {
+          host: process.env.login_host,
           port: 1234,
         },
       },
-      {
-        name: 'DB_SERVICE',
-        transport: Transport.TCP,
-        options: {
-          port: 3001,
-        },
-      },
     ]),
-    EmployeeModule,
+    DbModule,
   ],
-  controllers: [AppController, EmployeeController],
-  providers: [AppService, JwtGuard],
+  controllers: [AppController],
+  providers: [JwtGuard],
 })
 export class AppModule {}

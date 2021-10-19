@@ -4,49 +4,66 @@ import {
   Get,
   HttpException,
   HttpStatus,
-  Inject, Post,
+  Inject,
+  Post,
   Query,
-  UseGuards
-} from "@nestjs/common";
+  Res,
+  UseGuards,
+} from '@nestjs/common';
 
 import { ClientProxy } from '@nestjs/microservices';
-import { AppService } from './app.service';
-import { MessagePattern, Payload } from '@nestjs/microservices';
 import { JwtGuard } from './jwt-guard';
-import { response } from 'express';
+import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
+import { TokenResponse } from './interfaces/token-response';
 
 @Controller()
 export class AppController {
   constructor(
-    private readonly appService: AppService,
     @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy,
   ) {}
 
   @UseGuards(JwtGuard)
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return 'hello1';
   }
 
   @Post('login')
   async login(
     @Body('email') email: string,
     @Body('password') password: string,
+    @Res() res: Response,
   ) {
-    console.log("Received login request")
-    const cmd = { cmd: "login" }
-    const data = { email: email, password: password }
+    const cmd = { cmd: 'login' };
+    const data = { email: email, password: password };
     const result = this.loginClient.send(cmd, data);
-    console.log(email)
     try {
-      let response: any = await firstValueFrom(result);
-      return response;
+      let response: TokenResponse = await firstValueFrom(result);
+      res.cookie('AuthToken', response.token, {
+        expires: new Date(response.expires),
+        httpOnly: true,
+        sameSite: 'strict',
+        // secure: true
+      });
+      res.status(HttpStatus.OK);
+      res.send('');
     } catch (exception) {
       if (exception.message == 'invalid credentials') {
         throw new HttpException('invalid credentials', HttpStatus.UNAUTHORIZED);
       }
       console.log('Unhandled exception: ' + exception.message);
     }
+  }
+
+  @Post('logout')
+  async logout(@Res() res: Response) {
+    res.cookie('AuthToken', '', {
+      expires: new Date(0),
+      httpOnly: true,
+      sameSite: 'strict',
+    });
+    res.status(HttpStatus.OK);
+    res.send('');
   }
 }

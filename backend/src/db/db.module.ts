@@ -9,6 +9,7 @@ import { EmployeeController } from './employee.controller';
         name: 'DB_SERVICE',
         transport: Transport.TCP,
         options: {
+          host: process.env.db_host,
           port: 3001,
         },
       },
@@ -16,4 +17,4 @@ import { EmployeeController } from './employee.controller';
   ],
   controllers: [EmployeeController],
 })
-export class EmployeeModule {}
+export class DbModule {}

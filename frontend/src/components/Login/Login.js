@@ -1,15 +1,18 @@
 import React, {Component} from "react";
 import logo from "./Logo2.png";
-import LoginSuccessedPopUp from "./LoginSuccessedPopUp";
-import LoginFailedPopUp from "./LoginFailedPopUp";
+import { LoginFailedPopUp, LoginSuccessedPopUp, LogoutSuccessedPopUp } from "./LoginPopups";
+import styles from "./Login.module.css"
 
 class Login extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {email: "", password: "",failed: false, successes: false}
+        this.state = {email: "", password: "",LogInFails: false, LogInSuccesseses: false, LogoutSuccesses:false}
         this.submit_credentials = this.submit_credentials.bind(this)
+        this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
+        this.logout_credentials = this.logout_credentials.bind(this)
     }
+
     handleCredentialsChange(event) {
         const type = event.target.type
         this.setState({
@@ -17,49 +20,65 @@ class Login extends Component {
         })
     }
 
-
     render() {
-        this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
         return (
-            <div class = "container">
-                <form onSubmit= {this.submit_credentials}>
+            <div className={styles.container}>
+                <form>
                     <h1>Login</h1>
-
-                    <div class="credentials">
+                    <button type="button"
+                    onClick = {this.logout_credentials}
+                    className={styles.logoutButton}>Log Out</button>
+                    <div className={styles.credentials}>
                         <label>Username</label>
                         <input
                         type="email"
                         value={this.state.email}
-                        class="form-control"
+                        class={styles.formControl}
                         onChange={this.handleCredentialsChange}
                         placeholder="Enter email" />
                     </div>
-                    <div class="credentials">
+                    <div className={styles.credentials}>
                         <label>Password</label>
                         <input
                         type="password"
                         value={this.state.password}
-                        class="form-control"
+                        class={styles.formControl}
                         onChange={this.handleCredentialsChange}
                         placeholder="Enter password" />
                     </div>
-                    <LoginFailedPopUp trigger = {this.state.fail} exist = {() => this.setState({
-                    fail: false})}>
-                    </LoginFailedPopUp>
-                    <LoginSuccessedPopUp trigger = {this.state.successes}>
-                    </LoginSuccessedPopUp>
-                    <input type="submit" value="Login" class="login-button" />
-                    <p class="forgot-password text-right">
+                    <button type="button"
+                    onClick={this.submit_credentials}
+                    className={styles.loginButton}>
+                        Log In
+                    </button>
+                    <p className={styles.forgotPassword}>
                         <a href="#"> Forgot password?</a>
                     </p>
                 </form>
-                <img class = "photo" src = {logo} alt = "A logo" width = "100" height = "50"/>
+                <LoginFailedPopUp trigger = {this.state.LogInFails} exist = {() => this.setState({
+                LogInFails: false})}>
+                </LoginFailedPopUp>
+                <LoginSuccessedPopUp trigger = {this.state.LogInSuccesses} exist = {() => this.setState({
+                LogInSuccesses: false})}>
+                </LoginSuccessedPopUp>
+                <LogoutSuccessedPopUp trigger = {this.state.LogoutSuccesses} exist = {() => this.setState({
+                LogoutSuccesses: false})}>
+                </LogoutSuccessedPopUp>
+                <img className={styles.photo} src = {logo} width = "100" height = "50"/>
             </div>
 
         );
     }
-    async submit_credentials(event) {
-        event.preventDefault()
+
+    async logout_credentials() {
+        const response = await fetch("http://localhost:3000/api/logout", {
+            credentials: "include",  // this field is needed so that browser will send/store cookies
+            method: "POST",
+        })
+        this.setState({LogoutSuccesses: true})
+    }
+
+    async submit_credentials() {
         const payload = {
             email: this.state.email,
             password: this.state.password
@@ -69,19 +88,18 @@ class Login extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
+            credentials: "include",  // this field is needed so that browser will send/store cookies
             method: "POST",
             body: JSON.stringify(payload)
         })
-        if(response.status === 401){
-            console.log('worked')
+        if(response.status == 401 || response.status == 404){
             this.setState({
-                fail: true
+                LogInFails: true
             })
-            console.log(this.state.fail)
         }
         else{
             this.setState({
-                successes: true
+                LogInSuccesses: true
             })
         }
     }
