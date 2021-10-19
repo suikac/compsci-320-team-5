@@ -18,6 +18,7 @@ import { firstValueFrom } from 'rxjs';
 import { TokenResponse } from '../interfaces';
 import { ManagerOnly, RolesGuard } from "./role.guards";
 
+
 @Controller()
 export class LoginController {
   constructor(
@@ -31,6 +32,7 @@ export class LoginController {
     return 'hello1';
   }
 
+  @ManagerOnly()
   @Post('login')
   async login(
     @Body('email') email: string,

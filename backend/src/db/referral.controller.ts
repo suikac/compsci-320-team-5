@@ -8,22 +8,11 @@ export class ReferralController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
   @Post('createReferral')
-  public async createReferral(@Req() req, @Body('') data) {
+  public async createReferral(@Req() req, @Body() data) {
     console.log('Creating a new referral');
-    console.log(data);
     data.referrerId = req.user.userId;
     const cmd = { cmd: 'createReferral' };
     console.log(data);
-    // const data = {
-    //   id,
-    //   resume_id,
-    //   to_email,
-    //   description,
-    //   referee_name,
-    //   is_internal,
-    //   position_id,
-    //   employee_id,
-    // };
     try {
       return this.dbService.send(cmd, data);
     } catch (e) {
@@ -32,30 +21,14 @@ export class ReferralController {
   }
 
   @Patch('updateReferral')
-  public async updateReferral(
-    @Query('id') id: number,
-    @Body('resume_id') resume_id?: number,
-    @Body('to_email') to_email?: string,
-    @Body('description') description?: string,
-    @Body('referee_name') referee_name?: string,
-    @Body('is_internal') is_internal?: boolean,
-    @Body('position_id') position_id?: number,
-    @Body('employee_id') employee_id?: number,
-  ) {
+  public async updateReferral(@Req() req, @Body() data) {
     console.log('Updating an existing referral');
     const cmd = { cmd: 'updateReferral' };
-    const data = {
-      id,
-      resume_id,
-      to_email,
-      description,
-      referee_name,
-      is_internal,
-      position_id,
-      employee_id,
-    };
-    const response = this.dbService.send(cmd, data);
-    return response;
+    try {
+      return this.dbService.send(cmd, data);
+    } catch (e) {
+      throw e;
+    }
   }
 
   @Delete('deleteReferral')
@@ -63,8 +36,7 @@ export class ReferralController {
     console.log('Delete an existing referral');
     const cmd = { cmd: 'deleteReferral' };
     const data = { id };
-    const response = this.dbService.send(cmd, data);
-    return response;
+    return this.dbService.send(cmd, data);
   }
 
   @Get('getReferral')
@@ -72,8 +44,7 @@ export class ReferralController {
     console.log('Fetch an existing referral (by id)');
     const cmd = { cmd: 'getReferral' };
     const data = { id };
-    const response = this.dbService.send(cmd, data);
-    return response;
+    return this.dbService.send(cmd, data);
   }
 
   @Get('getReferralsByEmployee')

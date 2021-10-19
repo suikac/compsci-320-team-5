@@ -6,7 +6,7 @@ import { Reflector } from '@nestjs/core';
 export class RolesGuard implements CanActivate {
   constructor(private reflector: Reflector) {}
 
-  async canActivate(context: ExecutionContext): Promise<boolean>{
+  async canActivate(context: ExecutionContext): Promise<boolean> {
     const isManagerRoute = this.reflector.getAllAndOverride<boolean>(
       MANAGER_KEY,
       [context.getHandler(), context.getClass()],
@@ -14,6 +14,7 @@ export class RolesGuard implements CanActivate {
     if (!isManagerRoute) {
       return true;
     }
+
     const request = context.switchToHttp().getRequest();
     return request.user.role == 'manager';
   }
