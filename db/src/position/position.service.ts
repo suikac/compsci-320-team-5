@@ -7,12 +7,11 @@ export class PositionService {
   constructor(
     @InjectRepository(PositionRepository)
     private readonly positionRepository: PositionRepository
-  ) {
-  }
+  ) {}
 
   public async getAllPositions() {
     return await this.positionRepository
-      .createQueryBuilder('Position')
-      .getMany()
+      .createQueryBuilder("Position")
+      .getMany();
   }
 }

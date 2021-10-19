@@ -1,6 +1,17 @@
-import { Body, Controller, Delete, Get, Inject, Patch, Post, Query, Req, UseGuards } from "@nestjs/common";
-import { ClientProxy } from "@nestjs/microservices";
-import { JwtGuard } from "../guards/jwt-guard";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Inject,
+  Patch,
+  Post,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { JwtGuard } from '../guards/jwt-guard';
 
 @UseGuards(JwtGuard)
 @Controller('referral')

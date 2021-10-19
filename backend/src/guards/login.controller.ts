@@ -16,7 +16,7 @@ import { JwtGuard } from './jwt-guard';
 import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
 import { TokenResponse } from '../interfaces';
-import { ManagerOnly, RolesGuard } from "./role.guards";
+import { ManagerOnly, RolesGuard } from './role.guards';
 
 @Controller()
 export class LoginController {
@@ -50,7 +50,7 @@ export class LoginController {
       });
       res.status(HttpStatus.OK);
       res.json({
-        role: response.role
+        role: response.role,
       });
     } catch (exception) {
       if (exception.message == 'invalid credentials') {
