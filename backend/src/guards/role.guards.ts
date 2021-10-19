@@ -1,26 +1,23 @@
-import { CanActivate, ExecutionContext, Injectable,HttpException,HttpStatus,Inject } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable,HttpException,HttpStatus,Inject, SetMetadata } from '@nestjs/common';
 import { first, firstValueFrom, Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
-import { UserData } from '../interfaces';
-import { ClientProxy} from '@nestjs/microservices';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
-  constructor(@Inject('LOGIN_SERVICE') private loginService: ClientProxy) {}
-  async canActivate(
-    context: ExecutionContext,): Promise<boolean>{
-    const request = context.switchToHttp().getRequest();
-    const tokenString = request.cookies['AuthToken'];
-    const cmd = { cmd: 'jwt-auth' };
+  constructor(private reflector: Reflector) {}
 
-    if (tokenString == undefined){
-      throw new HttpException('missing credentials', HttpStatus.UNAUTHORIZED)
+  async canActivate(context: ExecutionContext): Promise<boolean>{
+    const isManagerRoute = this.reflector.getAllAndOverride<boolean>(MANAGER_KEY, [
+      context.getHandler(),
+      context.getClass()
+    ]);
+    if (!isManagerRoute) {
+      return true
     }
-
-    const response: UserData = await firstValueFrom(
-      this.loginService.send(cmd, { token: tokenString }),
-    );
-    console.log(response.role)
-    return response.role == 'manager'
+    const request = context.switchToHttp().getRequest();
+    return request.user.role == 'manager'
   }
 }
+
+const MANAGER_KEY = 'isManager'
+export const ManagerOnly = () => SetMetadata(MANAGER_KEY, true)
