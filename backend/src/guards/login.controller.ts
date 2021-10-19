@@ -16,6 +16,7 @@ import { JwtGuard } from './jwt-guard';
 import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
 import { TokenResponse } from '../interfaces';
+import { RolesGuard } from "./role.guards";
 
 @Controller()
 export class LoginController {
@@ -24,6 +25,7 @@ export class LoginController {
   ) {}
 
   @UseGuards(JwtGuard)
+  @UseGuards(RolesGuard)
   @Get()
   getHello(): string {
     return 'hello1';
