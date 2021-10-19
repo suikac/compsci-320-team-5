@@ -5,6 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
+  PrimaryGeneratedColumn
 } from "typeorm";
 import { Employee } from "./Employee";
 import { PositionTag } from "./PositionTag";
@@ -13,8 +14,12 @@ import { Referral } from "./Referral";
 @Index("position_employee_fk", ["managerId"], {})
 @Entity("position", { schema: "aki" })
 export class Position {
-  @Column("bigint", { primary: true, name: "id" })
-  id: string;
+    // Matt Cappucci - made this auto increment
+  @PrimaryGeneratedColumn({ type: "bigint", name: "id" })
+  id: number;
+
+  /*@Column("bigint", { primary: true, name: "id" })
+  id: string;*/
 
   @Column("longtext", { name: "description", nullable: true })
   description: string | null;

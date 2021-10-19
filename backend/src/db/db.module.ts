@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { EmployeeController } from './employee.controller';
+import { PositionController } from './position.controller';
+import { PositionService } from './position.service';
 
 @Module({
   imports: [
@@ -15,6 +17,9 @@ import { EmployeeController } from './employee.controller';
       },
     ]),
   ],
-  controllers: [EmployeeController],
+  // Matt Cappucci - Added Position controller
+  controllers: [EmployeeController, PositionController],
+  // Matt Cappucci - Added Position service
+  providers: [PositionService]
 })
 export class DbModule {}

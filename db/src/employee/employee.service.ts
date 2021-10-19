@@ -32,7 +32,7 @@ export class EmployeeService {
       .into("employee")
       .values({
         email: email,
-        password: await bcrypt.hash(password, await bcrypt.genSalt()),
+        password: await bcrypt.hash(password, await bcrypt.genSalt())
       })
       .execute();
   }

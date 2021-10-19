@@ -5,6 +5,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { join } from "path";
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { EmployeeModule } from "./employee/employee.module";
+import { PositionModule } from "./position/position.module";
+import { PositionController } from "./position/position.controller";
 import { Employee } from "./entities/Employee";
 import { Resume } from "./entities/Resume";
 import { Referral } from "./entities/Referral";
@@ -35,6 +37,7 @@ require("dotenv").config();
       synchronize: true,
     }),
     EmployeeModule,
+    PositionModule
   ],
   controllers: [LoginController],
   providers: [LoginService],
