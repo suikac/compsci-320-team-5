@@ -32,7 +32,6 @@ export class LoginController {
     return 'hello1';
   }
 
-  @ManagerOnly()
   @Post('login')
   async login(
     @Body('email') email: string,
