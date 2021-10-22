@@ -6,6 +6,6 @@ yarn install
 yarn --cwd backend run start:dev &
 yarn --cwd db run start:dev &
 yarn --cwd login run start:dev &
-yarn --cwd frontend run start &
+PORT=3002 yarn --cwd frontend run start &
 
 wait

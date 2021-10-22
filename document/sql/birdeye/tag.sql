@@ -1,15 +1,16 @@
-insert into aki.tag (id, name, description) values (0, 'Git', null);
-insert into aki.tag (id, name, description) values (1, 'MySQL', null);
-insert into aki.tag (id, name, description) values (2, 'React', null);
-insert into aki.tag (id, name, description) values (3, 'Kotlin', null);
-insert into aki.tag (id, name, description) values (4, 'MongoDB', null);
-insert into aki.tag (id, name, description) values (5, 'Kafka', null);
-insert into aki.tag (id, name, description) values (6, 'Spark', null);
-insert into aki.tag (id, name, description) values (7, 'Java', null);
-insert into aki.tag (id, name, description) values (8, 'Angular', null);
-insert into aki.tag (id, name, description) values (9, 'JavaScript', null);
-insert into aki.tag (id, name, description) values (10, 'NodeJS', null);
-insert into aki.tag (id, name, description) values (11, 'SQL', null);
-insert into aki.tag (id, name, description) values (12, 'Python', null);
-insert into aki.tag (id, name, description) values (13, 'Flink', null);
-insert into aki.tag (id, name, description) values (14, 'Jenkins', null);
+insert into aki.tag (name, description, id)
+values  ('SQL', null, 1),
+        ('Kafka', null, 2),
+        ('Kotlin', null, 3),
+        ('Git', null, 4),
+        ('Java', null, 5),
+        ('Angular', null, 6),
+        ('MongoDB', null, 7),
+        ('MySQL', null, 8),
+        ('Flink', null, 9),
+        ('Jenkins', null, 10),
+        ('Spark', null, 11),
+        ('Python', null, 12),
+        ('React', null, 13),
+        ('JavaScript', null, 14),
+        ('NodeJS', null, 15);

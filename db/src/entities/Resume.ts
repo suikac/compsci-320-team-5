@@ -1,11 +1,11 @@
-import { Column, Entity, OneToMany } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Employee } from "./Employee";
 import { Referral } from "./Referral";
 
 @Entity("resume", { schema: "aki" })
 export class Resume {
-  @Column("bigint", { primary: true, name: "id" })
-  id: string;
+  @PrimaryGeneratedColumn({ type: "int", name: "id" })
+  id: number;
 
   @Column("varchar", { name: "name", length: 255 })
   name: string;

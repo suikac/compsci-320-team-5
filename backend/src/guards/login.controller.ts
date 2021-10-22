@@ -15,16 +15,18 @@ import { ClientProxy } from '@nestjs/microservices';
 import { JwtGuard } from './jwt-guard';
 import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
-import { TokenResponse } from './interfaces/token-response';
+import { TokenResponse } from '../interfaces';
+import { ManagerOnly, RolesGuard } from './role.guards';
 
 @Controller()
-export class AppController {
+export class LoginController {
   constructor(
     @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy,
   ) {}
 
-  @UseGuards(JwtGuard)
-  @Get()
+  @UseGuards(JwtGuard, RolesGuard)
+  @ManagerOnly()
+  @Get('managerOnly')
   getHello(): string {
     return 'hello1';
   }
@@ -39,15 +41,17 @@ export class AppController {
     const data = { email: email, password: password };
     const result = this.loginClient.send(cmd, data);
     try {
-      let response: TokenResponse = await firstValueFrom(result);
+      const response: TokenResponse = await firstValueFrom(result);
       res.cookie('AuthToken', response.token, {
         expires: new Date(response.expires),
         httpOnly: true,
-        sameSite: 'strict',
+        sameSite: 'lax',
         // secure: true
       });
       res.status(HttpStatus.OK);
-      res.send('');
+      res.json({
+        role: response.role,
+      });
     } catch (exception) {
       if (exception.message == 'invalid credentials') {
         throw new HttpException('invalid credentials', HttpStatus.UNAUTHORIZED);

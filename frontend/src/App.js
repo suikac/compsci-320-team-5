@@ -1,20 +1,40 @@
-import React, {Component} from "react";
-import Header from "./components/Header/Header.js";
-import NavBar from "./components/NavBar/navBar.js";
-import Footer from "./components/Footer/Footer.js";
-import Main_Mailbox from "./components/Main_Mailbox/main_mailbox.js";
+import React, {Component} from "react"
+import Login from "./components/Login/Login"
+import Main from "./components/Main/Main"
 import "./App.css"
-{/*import Login from "./components/Login/Login.js"*/}
+import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom"
 
-function App(){
-  return(
-    <div>
-      {/*<Login/>*/}
-      <Header/>
-      <NavBar/>
-      <Main_Mailbox/>
-      <Footer/>
-    </div>
-  )
+class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      userInfo: null
+    }
+
+    this.onUserInfoChange = this.onUserInfoChange.bind(this)
+  }
+
+  onUserInfoChange(userInfo) {
+    console.log(userInfo)
+    this.setState({ userInfo: userInfo })
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <Switch>
+            <Route exact path='/'>
+              <Main userInfo={this.state.userInfo}/>
+            </Route>
+            <Route path='/login'>
+              <Login onUserInfoChange={this.onUserInfoChange}/>
+            </Route>
+          </Switch>
+        </div>
+      </BrowserRouter>
+    )
+  }
 }
+
 export default App

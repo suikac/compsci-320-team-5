@@ -1,14 +1,11 @@
 import {
   Controller,
-  Get,
-  HttpCode,
   HttpException,
   HttpStatus,
   Inject,
   NotFoundException,
 } from "@nestjs/common";
-import { MessagePattern, Payload, RpcException } from "@nestjs/microservices";
-import { STATUS_CODES } from "http";
+import { MessagePattern, Payload } from "@nestjs/microservices";
 import { EmployeeService } from "./employee.service";
 
 @Controller("employee")
@@ -28,19 +25,27 @@ export class EmployeeController {
   @MessagePattern({ cmd: "getByEmail" })
   getEmployeeByEmail(@Payload("email") email: string) {
     console.log("in db");
-    const employee = this.employeeService.getEmployeeByEmail(email);
-    console.log(employee);
-    if (!employee) {
-      console.log("in exception branch");
-      throw new HttpException(
-        {
-          STATUS_CODES: 404,
-          error: "Employee Not Founded",
-        },
-        HttpStatus.NOT_FOUND
-      );
-    } else {
+    try {
+      const employee = this.employeeService.getEmployeeByEmail(email);
+      if (!employee) {
+        return new HttpException(
+          {
+            STATUS_CODES: 400,
+            error: "Employee Not Founded",
+          },
+          HttpStatus.BAD_REQUEST
+        );
+      }
       return employee;
+    } catch (e) {
+      // throw new HttpException(
+      //   {
+      //     STATUS_CODES: 404,
+      //     error: "Employee Not Founded",
+      //   },
+      //   HttpStatus.NOT_FOUND
+      // );
+      throw e;
     }
   }
 
@@ -56,14 +61,16 @@ export class EmployeeController {
   @MessagePattern({ cmd: "retrieve password hash" })
   async retrievePwdHash(@Payload("email") email: string) {
     console.log("welcome to db");
-    const employee = this.employeeService.getEmployeeByEmail(email);
     try {
+      const employee = await this.employeeService.getEmployeeByEmail(email);
+
       return {
-        pwdHash: (await employee).password,
-        userId: (await employee).id,
+        pwdHash: employee.password,
+        userId: employee.id,
+        role: employee.isManager ? "manager" : "employee",
       };
     } catch (exception) {
-      throw new RpcException("employee not found");
+      throw new NotFoundException("db not found");
     }
   }
 }
