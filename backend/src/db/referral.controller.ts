@@ -1,14 +1,25 @@
-import { Body, Controller, Delete, Get, Inject, Patch, Post, Query, Req, UseGuards } from "@nestjs/common";
-import { ClientProxy } from "@nestjs/microservices";
-import { JwtGuard } from "../guards/jwt-guard";
-import { ManagerOnly, RolesGuard } from "../guards/role.guards";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Inject,
+  Patch,
+  Post,
+  Query,
+  Req,
+  UseGuards,
+} from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
+import { JwtGuard } from '../guards/jwt-guard';
+import { ManagerOnly, RolesGuard } from '../guards/role.guards';
 
 @UseGuards(JwtGuard, RolesGuard)
 @Controller('referral')
 export class ReferralController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
-  @Post('createReferral')
+  @Post('create')
   public async createReferral(@Req() req, @Body() data) {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
@@ -72,14 +83,14 @@ export class ReferralController {
   }
 
   @ManagerOnly()
-  @Get('getUnreadReferral')
+  @Get('getUnread')
   public async getUnreadReferral(@Req() req) {
     const cmd = { cmd: 'getUnreadReferral' };
     return this.dbService.send(cmd, req.user.userId);
   }
 
-  @Post('readReferral')
-  public async readReferral(@Req() req, @Body() body) {
+  @Post('read')
+  public async read(@Req() req, @Body() body) {
     const cmd = { cmd: 'readReferral' };
     this.dbService.emit(cmd, body.id);
   }

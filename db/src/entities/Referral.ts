@@ -48,7 +48,7 @@ export class Referral {
   @Column("int", { name: "referrer_id" })
   referrerId: number;
 
-  @Column("boolean", {name: "is_read"})
+  @Column("boolean", { name: "is_read" })
   isRead: boolean | null;
 
   @ManyToOne(() => Resume, (resume) => resume.referrals, {

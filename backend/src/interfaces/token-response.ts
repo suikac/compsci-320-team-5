@@ -1,5 +1,5 @@
 export interface TokenResponse {
   token: string;
   expires: string;
-  role: 'manager' | 'employee'
+  role: 'manager' | 'employee';
 }

@@ -7,10 +7,9 @@ export class PositionController {
   constructor(
     @Inject(PositionService)
     private readonly positionService: PositionService
-  ) {
-  }
-  @MessagePattern({ cmd: 'getAllPositions'})
+  ) {}
+  @MessagePattern({ cmd: "getAllPositions" })
   public async getAllPositions() {
-    return this.positionService.getAllPositions()
+    return this.positionService.getAllPositions();
   }
 }

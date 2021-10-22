@@ -38,21 +38,21 @@ export class ReferralService {
       .getOne();
   }
 
-  public async getUnreadReferral(id : number): Promise<Referral[]> {
+  public async getUnreadReferral(id: number): Promise<Referral[]> {
     return this.referralRepository
-      .createQueryBuilder('referral')
-      .where('referrer_id = :id', {id: id})
-      .andWhere('is_read = 0')
+      .createQueryBuilder("referral")
+      .where("referrer_id = :id", { id: id })
+      .andWhere("is_read = 0")
       .getMany();
   }
 
   public async readReferral(id: number) {
-    console.log(id)
+    console.log(id);
     await this.referralRepository
       .createQueryBuilder()
       .update()
-      .where('id = :id', {id:id})
-      .set({isRead: true})
-      .execute()
+      .where("id = :id", { id: id })
+      .set({ isRead: true })
+      .execute();
   }
 }

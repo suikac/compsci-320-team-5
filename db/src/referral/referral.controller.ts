@@ -31,14 +31,14 @@ export class ReferralController {
     return await this.referralService.getReferral(id);
   }
 
-  @MessagePattern({ cmd: 'getUnreadReferral'})
+  @MessagePattern({ cmd: "getUnreadReferral" })
   public async getUnreadReferral(id: number): Promise<Referral[]> {
-    console.log('in db')
+    console.log("in db");
     return await this.referralService.getUnreadReferral(id);
   }
 
-  @EventPattern({ cmd: 'readReferral' })
+  @EventPattern({ cmd: "readReferral" })
   public async readReferral(id: number) {
-    await this.referralService.readReferral(id)
+    await this.referralService.readReferral(id);
   }
 }
