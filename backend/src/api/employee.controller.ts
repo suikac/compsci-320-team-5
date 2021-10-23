@@ -35,7 +35,7 @@ export class EmployeeController {
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
-    console.log('signing up db..');
+    console.log('signing up api..');
     const cmd = { cmd: 'signUp' };
     const data = { email: email, password: password };
     const response = this.dbService.send(cmd, data);

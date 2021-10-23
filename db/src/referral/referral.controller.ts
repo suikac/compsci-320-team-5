@@ -33,7 +33,7 @@ export class ReferralController {
 
   @MessagePattern({ cmd: "getUnreadReferral" })
   public async getUnreadReferral(id: number): Promise<Referral[]> {
-    console.log("in db");
+    console.log("in api");
     return await this.referralService.getUnreadReferral(id);
   }
 
