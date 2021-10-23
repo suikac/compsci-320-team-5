@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import NavBar from '../NavBar/navBar'
 import Footer from "../Footer/Footer"
 import Main_Mailbox from "../Main_Mailbox/main_mailbox"
+import Main_Home from "../Main_Home/main_home";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class Main extends Component {
@@ -25,6 +26,9 @@ class Main extends Component {
         {/* <Router> */}
           <NavBar/>
           <Switch>
+            <Route exact path='/'>
+              <Main_Home />
+            </Route>
             <Route path='/mailbox'>
               <Main_Mailbox />
             </Route>
