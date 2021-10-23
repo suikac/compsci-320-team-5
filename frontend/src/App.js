@@ -15,7 +15,6 @@ class App extends Component {
   }
 
   onUserInfoChange(userInfo) {
-    console.log(userInfo)
     this.setState({ userInfo: userInfo })
   }
 
@@ -24,11 +23,11 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route exact path='/'>
-              <Main userInfo={this.state.userInfo}/>
-            </Route>
             <Route path='/login'>
               <Login onUserInfoChange={this.onUserInfoChange}/>
+            </Route>
+            <Route path='/'>
+              <Main userInfo={this.state.userInfo}/>
             </Route>
           </Switch>
         </div>

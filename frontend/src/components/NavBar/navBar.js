@@ -1,14 +1,35 @@
 import React from "react"
 import NavBarcss from "./navBar.module.css";
+import { Link } from 'react-router-dom'
 
 function NavBar(){
     return(
             <ul className={NavBarcss.NavBarContainer}>
-                <li><a href ="#">HOME</a></li>
-                <li><a href ="#">REFER</a></li>
-                <li><a href ="#">MAILBOX</a></li>
-                <li><a href ="#">PREVIOUS REF</a></li>
-                <li><a href ="#">EXPLORE</a></li>
+                <li>
+                    <Link to='/'>
+                        HOME
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/refer'>
+                        REFER
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/mailbox'>
+                        MAILBOX
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/prevRef'>
+                        PREVIOUS REF
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/explore'>
+                        EXPLORE
+                    </Link>
+                </li>
             </ul>
     )
 }

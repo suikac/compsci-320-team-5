@@ -1,6 +1,11 @@
 import { Component } from "react";
 import { apiPost } from "../../utils/api-fetch";
 import { Redirect } from "react-router-dom"
+import Header from "../Header/Header";
+import NavBar from '../NavBar/navBar'
+import Footer from "../Footer/Footer"
+import Main_Mailbox from "../Main_Mailbox/main_mailbox"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class Main extends Component {
   constructor(props) {
@@ -16,9 +21,18 @@ class Main extends Component {
     let userInfo = this.props.userInfo
     return (
       <div>
-        Main page<br />
-        Role: {userInfo.role}
-      <button type='button' onClick={this.logout_credentials}>Logout</button>
+        <Header/>
+        {/* <Router> */}
+          <NavBar/>
+          <Switch>
+            <Route path='/mailbox'>
+              <Main_Mailbox />
+            </Route>
+            <Route path='/explore'>
+            </Route>
+          </Switch>
+        {/* </Router> */}
+        <Footer/>
       </div>
     );
   }
