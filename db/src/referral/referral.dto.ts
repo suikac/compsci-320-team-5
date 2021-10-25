@@ -6,7 +6,7 @@ export class CreateReferralDto {
   resumeId: number;
 
   @IsEmail()
-  toEmail: string;
+  refereeEmail: string;
 
   description: string;
 
@@ -19,4 +19,6 @@ export class CreateReferralDto {
 
   @IsNotEmpty()
   referrerId: number;
+
+  id: number;
 }

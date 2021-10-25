@@ -47,8 +47,9 @@ export class ReferralController {
   @Delete('deleteReferral')
   public async deleteReferral(@Query('id') id: number) {
     console.log('Delete an existing referral');
+    console.log('backend' + id);
     const cmd = { cmd: 'deleteReferral' };
-    const data = { id };
+    const data = { id: id };
     this.dbService.send(cmd, data);
   }
 
@@ -56,7 +57,7 @@ export class ReferralController {
   public async getReferral(@Query('id') id: number) {
     console.log('Fetch an existing referral (by id)');
     const cmd = { cmd: 'getReferral' };
-    const data = { id };
+    const data = { id: id };
     return this.dbService.send(cmd, data);
   }
 

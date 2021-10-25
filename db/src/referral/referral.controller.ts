@@ -1,5 +1,5 @@
 import { Controller, Inject } from "@nestjs/common";
-import { EventPattern, MessagePattern } from "@nestjs/microservices";
+import { EventPattern, MessagePattern, Payload } from "@nestjs/microservices";
 import { ReferralService } from "./referral.service";
 import { Referral } from "../entities/Referral";
 import { CreateReferralDto } from "./referral.dto";
@@ -19,18 +19,19 @@ export class ReferralController {
   @MessagePattern({ cmd: "updateReferral" })
   public async updateReferral(
     updateReferralDto: CreateReferralDto,
-    id: number
   ) {
-    return await this.referralService.updateReferral(updateReferralDto, id);
+    return await this.referralService.updateReferral(updateReferralDto,
+      updateReferralDto.id);
   }
 
   @MessagePattern({ cmd: "deleteReferral" })
-  public async deleteReferral(id: number) {
+  public async deleteReferral(@Payload('id') id: number) {
+    console.log(id);
     await this.referralService.deleteReferral(id);
   }
 
   @MessagePattern({ cmd: "getReferral" })
-  public async getReferral(id: number): Promise<Referral> {
+  public async getReferral(@Payload('id') id: number): Promise<Referral> {
     return await this.referralService.getReferral(id);
   }
 
