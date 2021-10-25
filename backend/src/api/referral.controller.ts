@@ -49,7 +49,7 @@ export class ReferralController {
     console.log('Delete an existing referral');
     const cmd = { cmd: 'deleteReferral' };
     const data = { id };
-    return this.dbService.send(cmd, data);
+    this.dbService.send(cmd, data);
   }
 
   @Get('getReferral')
@@ -60,13 +60,13 @@ export class ReferralController {
     return this.dbService.send(cmd, data);
   }
 
-  @Get('getReferralsByEmployee')
-  public async getReferralsByEmployee(
-    @Query('employee_id') employee_id: number,
+  @Get('getReferralsByReferrer')
+  public async getReferralsByReferrer(
+    @Query('referrer_id') referrer_id: number,
   ) {
-    console.log('Fetch existing referrals (by employee)');
-    const cmd = { cmd: 'getReferralsByEmployee' };
-    const data = { employee_id };
+    console.log('Fetch existing referrals (by referrer)');
+    const cmd = { cmd: 'getReferralsByReferrer' };
+    const data = { referrer_id };
     const response = this.dbService.send(cmd, data);
     return response;
   }
