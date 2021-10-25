@@ -16,19 +16,32 @@ export class ReferralController {
     return await this.referralService.createReferral(createReferralDto);
   }
 
-  @MessagePattern("updateReferral")
-  public async updateReferral() {
-    await this.referralService.updateReferral();
+  @MessagePattern({ cmd: "updateReferral" })
+  public async updateReferral(
+    updateReferralDto: CreateReferralDto,
+    id: number
+  ) {
+    return await this.referralService.updateReferral(updateReferralDto, id);
   }
 
-  @MessagePattern("deleteReferral")
-  public async deleteReferral() {
-    await this.referralService.deleteReferral();
+  @MessagePattern({ cmd: "deleteReferral" })
+  public async deleteReferral(id: number) {
+    await this.referralService.deleteReferral(id);
   }
 
   @MessagePattern({ cmd: "getReferral" })
   public async getReferral(id: number): Promise<Referral> {
     return await this.referralService.getReferral(id);
+  }
+
+  @MessagePattern({ cmd: "getReferralsByPosition" })
+  public async getReferralsByPosition(positionId: number): Promise<Referral[]> {
+    return await this.referralService.getReferralsByPosition(positionId);
+  }
+
+  @MessagePattern({ cmd: "getReferralsByReferrer" })
+  public async getReferralsByReferrer(referrerId: number): Promise<Referral[]> {
+    return await this.referralService.getReferralsByReferrer(referrerId);
   }
 
   @MessagePattern({ cmd: "getUnreadReferral" })
