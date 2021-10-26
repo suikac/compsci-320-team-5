@@ -37,6 +37,7 @@
     "prettier": "2.4.1"
   },
   "dependencies": {
+    "react-hook-form": "^7.17.4",
     "react-popup-alert": "^2.0.0"
   }
 }
