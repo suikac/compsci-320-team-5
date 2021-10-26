@@ -30,9 +30,6 @@ class App extends Component {
             <Route path='/'>
               <Main userInfo={this.state.userInfo}/>
             </Route>
-            <Route path='/prevRef'>
-              <MainPreviousRef/>
-            </Route>
           </Switch>
         </div>
       </BrowserRouter>

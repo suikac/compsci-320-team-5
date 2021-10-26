@@ -6,6 +6,7 @@ import NavBar from '../NavBar/navBar'
 import Footer from "../Footer/Footer"
 import Main_Mailbox from "../Main_Mailbox/main_mailbox"
 import Main_Home from "../Main_Home/main_home";
+import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class Main extends Component {
@@ -22,21 +23,23 @@ class Main extends Component {
     let userInfo = this.props.userInfo
     return (
       <div>
-        <Header/>
+        <Header />
         {/* <Router> */}
-          <NavBar/>
-          <Switch>
-            <Route exact path='/'>
-              <Main_Home />
-            </Route>
-            <Route path='/mailbox'>
-              <Main_Mailbox />
-            </Route>
-            <Route path='/explore'>
-            </Route>
-          </Switch>
+        <NavBar />
+        <Switch>
+          <Route exact path="/">
+            <Main_Home />
+          </Route>
+          <Route path="/mailbox">
+            <Main_Mailbox />
+          </Route>
+          <Route path="/prevRef">
+            <MainPreviousRef />
+          </Route>
+          <Route path="/explore"></Route>
+        </Switch>
         {/* </Router> */}
-        <Footer/>
+        <Footer />
       </div>
     );
   }
