@@ -17,14 +17,14 @@ export class EmployeeController {
 
   @MessagePattern({ cmd: "password" })
   getPassword(@Payload("email") email: string) {
-    console.log("welcome db service");
+    console.log("welcome api service");
     const employee = this.employeeService.getEmployee();
     return employee;
   }
 
   @MessagePattern({ cmd: "getByEmail" })
   getEmployeeByEmail(@Payload("email") email: string) {
-    console.log("in db");
+    console.log("in api");
     try {
       const employee = this.employeeService.getEmployeeByEmail(email);
       if (!employee) {
@@ -60,7 +60,7 @@ export class EmployeeController {
 
   @MessagePattern({ cmd: "retrieve password hash" })
   async retrievePwdHash(@Payload("email") email: string) {
-    console.log("welcome to db");
+    console.log("welcome to api");
     try {
       const employee = await this.employeeService.getEmployeeByEmail(email);
 
@@ -70,7 +70,7 @@ export class EmployeeController {
         role: employee.isManager ? "manager" : "employee",
       };
     } catch (exception) {
-      throw new NotFoundException("db not found");
+      throw new NotFoundException("api not found");
     }
   }
 }

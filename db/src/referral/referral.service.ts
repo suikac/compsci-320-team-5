@@ -12,29 +12,73 @@ export class ReferralService {
   ) {}
 
   public async createReferral(createReferralDto: CreateReferralDto) {
-    // implement it
     await this.referralRepository
-      .createQueryBuilder("referral")
+      .createQueryBuilder("createReferral")
       .insert()
-      .into("referral")
+      .into(Referral)
       .values(createReferralDto)
       .execute();
     return createReferralDto;
   }
 
-  public async updateReferral() {
-    // implement it
+  public async updateReferral(
+    updateReferralDto: CreateReferralDto,
+    id: number
+  ) {
+    await this.referralRepository
+      .createQueryBuilder("updateReferral")
+      .update(Referral)
+      .set(updateReferralDto)
+      .where("id = :id", { id })
+      .execute();
+    return updateReferralDto;
   }
 
-  public async deleteReferral() {
-    // implement it
+  public async deleteReferral(id: number) {
+    await this.referralRepository
+      .createQueryBuilder("deleteReferral")
+      .delete()
+      .from(Referral)
+      .where("id = :id", { id })
+      .execute();
   }
 
   public async getReferral(id: number): Promise<Referral> {
-    // implement it
     return this.referralRepository
-      .createQueryBuilder("referral")
-      .where("id = :id", { id: id })
+      .createQueryBuilder("getReferral")
+      .where("id = :id", { id })
       .getOne();
+  }
+
+  public async getReferralsByPosition(positionId: number): Promise<Referral[]> {
+    return this.referralRepository
+      .createQueryBuilder("getReferralsByPosition")
+      .where("position_id = :positionId", { positionId })
+      .getMany();
+  }
+
+  public async getReferralsByReferrer(referrerId: number): Promise<Referral[]> {
+    return this.referralRepository
+      .createQueryBuilder("getReferralsByEmployee")
+      .where("referrer_id = :referrerId", { referrerId })
+      .getMany();
+  }
+
+  public async getUnreadReferral(id: number): Promise<Referral[]> {
+    return this.referralRepository
+      .createQueryBuilder("getUnreadReferral")
+      .where("referrer_id = :id", { id })
+      .andWhere("is_read = 0")
+      .getMany();
+  }
+
+  public async readReferral(id: number) {
+    console.log(id);
+    await this.referralRepository
+      .createQueryBuilder("readReferral")
+      .update()
+      .where("id = :id", { id })
+      .set({ isRead: true })
+      .execute();
   }
 }

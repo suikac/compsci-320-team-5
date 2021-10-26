@@ -1,5 +1,5 @@
 import { Controller, Inject } from "@nestjs/common";
-import { MessagePattern } from "@nestjs/microservices";
+import { EventPattern, MessagePattern, Payload } from "@nestjs/microservices";
 import { ReferralService } from "./referral.service";
 import { Referral } from "../entities/Referral";
 import { CreateReferralDto } from "./referral.dto";
@@ -16,18 +16,43 @@ export class ReferralController {
     return await this.referralService.createReferral(createReferralDto);
   }
 
-  @MessagePattern("updateReferral")
-  public async updateReferral() {
-    await this.referralService.updateReferral();
+  @MessagePattern({ cmd: "updateReferral" })
+  public async updateReferral(
+    updateReferralDto: CreateReferralDto,
+  ) {
+    return await this.referralService.updateReferral(updateReferralDto,
+      updateReferralDto.id);
   }
 
-  @MessagePattern("deleteReferral")
-  public async deleteReferral() {
-    await this.referralService.deleteReferral();
+  @MessagePattern({ cmd: "deleteReferral" })
+  public async deleteReferral(@Payload('id') id: number) {
+    console.log(id);
+    await this.referralService.deleteReferral(id);
   }
 
   @MessagePattern({ cmd: "getReferral" })
-  public async getReferral(id: number): Promise<Referral> {
+  public async getReferral(@Payload('id') id: number): Promise<Referral> {
     return await this.referralService.getReferral(id);
+  }
+
+  @MessagePattern({ cmd: "getReferralsByPosition" })
+  public async getReferralsByPosition(positionId: number): Promise<Referral[]> {
+    return await this.referralService.getReferralsByPosition(positionId);
+  }
+
+  @MessagePattern({ cmd: "getReferralsByReferrer" })
+  public async getReferralsByReferrer(referrerId: number): Promise<Referral[]> {
+    return await this.referralService.getReferralsByReferrer(referrerId);
+  }
+
+  @MessagePattern({ cmd: "getUnreadReferral" })
+  public async getUnreadReferral(id: number): Promise<Referral[]> {
+    console.log("in api");
+    return await this.referralService.getUnreadReferral(id);
+  }
+
+  @EventPattern({ cmd: "readReferral" })
+  public async readReferral(id: number) {
+    await this.referralService.readReferral(id);
   }
 }
