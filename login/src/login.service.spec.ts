@@ -4,32 +4,32 @@ import { ClientProxy } from "@nestjs/microservices";
 import { Injectable } from "@nestjs/common";
 import * as bcrypt from "bcrypt"
 import { DBPasswordResponse, TokenResponse } from "./interfaces";
+import { LoginModule } from "./login.module";
+import { Observable, of } from "rxjs";
 
 @Injectable()
 class MockDB {
-  send(cmd, payload): DBPasswordResponse {
-    return {
+  send(cmd, payload): Observable<DBPasswordResponse> {
+    let data = {
       pwdHash: bcrypt.hashSync("123456", 1),
       userId: 5,
       role: "manager"
     }
+    return of(data)
   }
 }
 
 describe('LoginService', () => {
   let loginService: LoginService
-  let mockDB: ClientProxy
+  let mockDB: MockDB
 
-  beforeEach(async () => {
+  beforeAll(async () => {
     const app = await Test.createTestingModule({
-      providers: [
-        LoginService,
-        {
-          provide: "DB_SERVICE",
-          useClass: MockDB
-        }
-      ]
-    }).compile()
+      imports: [LoginModule]
+    })
+      .overrideProvider("DB_SERVICE")
+      .useValue(new MockDB())
+      .compile()
 
     loginService = app.get<LoginService>(LoginService)
     mockDB = app.get("DB_SERVICE")
@@ -38,7 +38,7 @@ describe('LoginService', () => {
   describe('validateLogin', () => {
     it('should retrieve data from db', async () => {
       const spy = jest.spyOn(mockDB, 'send')
-      loginService.validateLogin('test@gmail.com', '123456')
+      await loginService.validateLogin('test@gmail.com', '123456')
       expect(spy).toBeCalled()
 
       spy.mockRestore()
@@ -49,6 +49,10 @@ describe('LoginService', () => {
       const result = await loginService.validateLogin('test@gmail.com', '123456')
       expect(result.role).toBe('manager')
       expect(result.expires.valueOf()).toBeGreaterThan(now.valueOf())
+    })
+
+    it('should reject invalid credentials', async () => {
+      await expect(loginService.validateLogin('test@gmail.com', '1111')).rejects.toEqual(expect.anything())
     })
   })
 
