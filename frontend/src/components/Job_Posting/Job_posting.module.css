@@ -1,0 +1,127 @@
+background: #E5E5E5;
+{
+position: absolute;
+width: 1950px;
+height: 90px;
+left: 0px;
+top: 0px;
+
+/* Header */
+position: absolute;
+width: 1950px;
+height: 500px;
+left: 0px;
+top: 90px;
+
+/* bell-solid 1 */
+position: absolute;
+width: 65px;
+height: 74.29px;
+left: 1753px;
+top: 134px;
+
+/* Logo2 1 */
+position: absolute;
+width: 350px;
+height: 186.57px;
+left: 114px;
+top: 247px;
+
+background: url(.png);
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
+/* chevron-left-solid 3 */
+
+position: absolute;
+width: 80px;
+height: 80px;
+left: 2000px;
+top: 1081px;
+
+
+
+/* Group 5 */
+
+position: absolute;
+width: 667px;
+height: 82px;
+left: 975px;
+top: 660px;
+
+
+
+/* Rectangle 39 */
+
+position: absolute;
+width: 44px;
+height: 19px;
+left: 126px;
+top: 827px;
+
+border-radius: 102px;
+
+
+/* Rectangle 41 */
+
+position: absolute;
+width: 1413px;
+height: 185px;
+left: 199px;
+top: 1602px;
+
+background: #C4C4C4;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+border-radius: 102px;
+
+
+/* Tag search bar */
+
+position: absolute;
+width: 305px;
+height: 62px;
+left: 289px;
+top: 1664px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 48px;
+line-height: 56px;
+letter-spacing: -0.015em;
+
+color: #000000;
+
+
+
+/* Group 8 */
+.createButton{
+position: absolute;
+width: 454px;
+height: 142px;
+left: 688px;
+top: 1939px;
+}
+/* Group 4 */
+.jobTitle{
+position: absolute;
+width: 667px;
+height: 82px;
+left: 185px;
+top: 660px;
+}
+
+/* Group 6 */
+.minYearofExp{
+position: absolute;
+width: 698px;
+height: 82px;
+left: 170px;
+top: 827px;
+}
+
+.DescriptionBox{
+position: absolute;
+width: 1438px;
+height: 517px;
+left: 187px;
+top: 986px;
+}
