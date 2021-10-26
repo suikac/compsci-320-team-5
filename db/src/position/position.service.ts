@@ -44,6 +44,8 @@ export class PositionService {
     }
 
     public async addTagToPosition(positionAddId: string, tag: Object) {
+        console.log(tag)
+        console.log(positionAddId)
         const positionTag = await this.positionTagRepository.save({
             positionId: parseInt(positionAddId),
             tagId: parseInt(tag['id'])
@@ -54,7 +56,7 @@ export class PositionService {
     public async getTagByName(name: string) {
         let tag = await this.tagRepository
             .createQueryBuilder("Tag")
-            .where("name = :name", { id: parseInt(name) })
+            .where("name = :name", { name: name })
             .getOneOrFail();
         return tag
     }

@@ -48,29 +48,38 @@ export class PositionController {
 
     @MessagePattern({ cmd: "createPosition" })
     public async createPosition(data: Object) {
-        console.log(data)
-        let position = this.positionService.createPosition(data)
+        let tags = data['tags']
+        delete data['tags']
+        console.log(tags)
+        let position = await this.positionService.createPosition(data)
             .catch(() => null)
-        console.log(position)
+        if (position != null && tags != null && tags != undefined && tags.length > 0) {
+            this.addTagsToPosition(position['id'], tags)
+        }
         return position
     }
 
 
 
 
-    @MessagePattern({ cmd: 'addTagToPosition'})
-    public async addTagToPosition(
+    @MessagePattern({ cmd: 'addTagsToPosition'})
+    public async addTagsToPosition(
         @Payload('positionId') positionId: string,
-        @Payload('tag') tag: string
+        @Payload('tags') tags: string[]
     ) {
-        let getTag = await this.positionService.getTagByName(tag)
-            .catch(() => null)
-        if (getTag == null) {
-            getTag = await this.positionService.createTag(tag)
+        console.log('in')
+        for (let i = 0; i < tags.length; ++i) {
+            let getTag = await this.positionService.getTagByName(tags[i])
+                .catch(() => null)
+                console.log(getTag)
+            if (getTag == null) {
+                console.log('creating tag')
+                getTag = await this.positionService.createTag(tags[i])
+            }
+            console.log('about to add position tag')
+            let positionTag = await this.positionService.addTagToPosition(positionId, getTag)
         }
-        let addedTag = this.positionService.addTagToPosition(positionId, getTag)
-            .catch(() => null)
-        return addedTag
+        return 'works'
     }
 
 

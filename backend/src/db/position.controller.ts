@@ -9,14 +9,16 @@ import {
     Query,
     Delete,
     HttpStatus,
-    Req
+    Req,
+    UseGuards
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Request } from 'express'
+import { JwtGuard } from '../guards/jwt-guard';
 
 
 
-
+@UseGuards(JwtGuard)
 @Controller('position')
 export class PositionController {
 
@@ -63,6 +65,11 @@ export class PositionController {
 
 
 
+    // To Do: get by manager
+
+
+
+
     // Matt Cappucci
     // /getPositionById Get route
     // Get a position by ID
@@ -100,27 +107,14 @@ export class PositionController {
     // Creates a new position with tags in the DB
     @Post('createPosition')
     public async createPosition(@Req() req: Request) {
-        let tags = req.body['tags']
         let requiredFields = ['title']
-        let otherFields = ['description', 'minYearExperience', 'salary', 'managerId']
+        let otherFields = ['description', 'minYearExperience', 'salary', 'managerId', 'tags']
         let data = this.parseInput(req.body, requiredFields, otherFields)
         if (data == null) {
             return 'Require a title field in position data'
         }
         const cmd = { cmd: 'createPosition' }
-        const position = this.dbService.send(cmd, data)
-        if (position != null) {
-            if (tags != undefined && tags.length != 0) {
-                for (let i = 0; i < tags.length; ++i) {
-                    let tagsCmd = { cmd: 'addTagToPosition' }
-                    let tagsData = {
-                        positionId: position['id'],
-                        tag: tags[i]
-                    }
-                    const tag = this.dbService.send(tagsCmd, tagsData)
-                }
-            }
-        }
+        return this.dbService.send(cmd, data)
     }
 
 
