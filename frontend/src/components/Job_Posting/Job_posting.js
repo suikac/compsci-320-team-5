@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import logo from "./Logo2.png";
+import styles from "./Job_posting.module.css"
 
 class CreateJobPosting extends Component{
     constructor(props) {

@@ -1,26 +1,31 @@
-background: #E5E5E5;
-{
-position: absolute;
+* {
+    box-sizing: content-box;
+    width: 100%;
+  }
+.container{
+position: relative;
 width: 1950px;
-height: 90px;
-left: 0px;
-top: 0px;
+height: 2200px;
 
+background: #FFF8F4;
+}
 /* Header */
+.pageHeader{
 position: absolute;
 width: 1950px;
 height: 500px;
 left: 0px;
 top: 90px;
-
-/* bell-solid 1 */
+}
+.bell{
 position: absolute;
 width: 65px;
 height: 74.29px;
 left: 1753px;
 top: 134px;
+}
 
-/* Logo2 1 */
+.logo2{
 position: absolute;
 width: 350px;
 height: 186.57px;
@@ -29,27 +34,27 @@ top: 247px;
 
 background: url(.png);
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
-/* chevron-left-solid 3 */
+}
 
+.chevron-left-solid3{
 position: absolute;
 width: 80px;
 height: 80px;
 left: 2000px;
 top: 1081px;
-
-
+}
 
 /* Group 5 */
-
+.salary{
 position: absolute;
 width: 667px;
 height: 82px;
 left: 975px;
 top: 660px;
+}
 
 
-
-/* Rectangle 39 */
+.Rectangle_39{
 
 position: absolute;
 width: 44px;
@@ -58,38 +63,26 @@ left: 126px;
 top: 827px;
 
 border-radius: 102px;
-
-
-/* Rectangle 41 */
-
-position: absolute;
-width: 1413px;
-height: 185px;
-left: 199px;
-top: 1602px;
-
-background: #C4C4C4;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-border-radius: 102px;
+}
 
 
 /* Tag search bar */
-
+.tagSearchBar{
 position: absolute;
 width: 305px;
 height: 62px;
 left: 289px;
 top: 1664px;
-
+    
 font-family: Roboto;
 font-style: normal;
 font-weight: normal;
 font-size: 48px;
 line-height: 56px;
 letter-spacing: -0.015em;
-
+    
 color: #000000;
-
+}
 
 
 /* Group 8 */
