@@ -22,24 +22,28 @@ class Main extends Component {
     }
     let userInfo = this.props.userInfo
     return (
-      <div>
-        <Header />
-        {/* <Router> */}
-        <NavBar />
-        <Switch>
-          <Route exact path="/">
-            <Main_Home />
-          </Route>
-          <Route path="/mailbox">
-            <Main_Mailbox />
-          </Route>
-          <Route path="/prevRef">
-            <MainPreviousRef />
-          </Route>
-          <Route path="/explore"></Route>
-        </Switch>
-        {/* </Router> */}
-        <Footer />
+      <div className = "container-fluid">
+        <div className = "row"><Header/></div>
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
+            <NavBar/>
+          </div>
+          <div style={{display: "flex", flexDirection: "column", overflowY: "auto"}}>
+            <Switch>
+              <Route exact path="/">
+                <Main_Home />
+              </Route>
+              <Route path="/mailbox">
+                <Main_Mailbox />
+              </Route>
+              <Route path="/prevRef">
+                <MainPreviousRef />
+              </Route>
+              <Route path="/explore"></Route>
+            </Switch>
+          </div>
+        </div>
+        <div className = "row"><Footer /></div>
       </div>
     );
   }

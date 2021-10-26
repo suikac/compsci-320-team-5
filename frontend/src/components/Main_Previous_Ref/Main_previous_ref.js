@@ -6,19 +6,17 @@ const prevrefdata = [{refTitle: "Whatever",
                     referred: "Whatever",
                     referredDesc: "Whatever",
                     imgUrl: "Whatever",
-                    refStatus: "Whatever",
-                    refStatusDesc: "Whatever"
+                    refStat: "Whatever",
+                    refStatDesc: "Whatever"
                     }]
 
 function MainPreviousRef(){
     getReferral()
     const prevRefComponents = prevrefdata.map( refData => <RefBox refTitle = {refData?.refTitle} referred = {refData?.referred}
-        referredDesc = {refData?.referredDesc} imgUrl = {refData?.imgUrl} refStatus = {refData?.refStat}  refStatusDesc = {refData?.reftStatDesc}/>)
+        referredDesc = {refData?.referredDesc} imgUrl = {refData?.imgUrl} refStat = {refData?.refStat}  refStatDesc = {refData?.refStatDesc}/>)
         console.log(prevrefdata)
     return(
-        <div>
-            {prevRefComponents}
-        </div>
+            <React.Fragment>{prevRefComponents}</React.Fragment>
     )
 }
 
