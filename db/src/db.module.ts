@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-import { LoginController } from "./db.controller";
-import { LoginService } from "./db.service";
+//import { LoginController } from './db.controller'
+//import { LoginService } from './db.service';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { join } from "path";
 import { ClientsModule, Transport } from "@nestjs/microservices";
@@ -39,7 +39,7 @@ require("dotenv").config();
     EmployeeModule,
     PositionModule
   ],
-  controllers: [LoginController],
-  providers: [LoginService],
+  controllers: [],//[LoginController],
+  providers: []//[LoginService],
 })
 export class DbModule {}

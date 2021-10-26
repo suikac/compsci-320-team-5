@@ -7,52 +7,124 @@ import {
     Post,
     Patch,
     Query,
-    Req,
-    Res,
+    Delete,
     HttpStatus,
-    Delete
+    Req
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Request } from 'express'
-import { PositionService } from './position.service';
-import { Response } from 'express'
-  
+
+
+
+
 @Controller('position')
 export class PositionController {
+
     constructor(
         //private readonly positionService: PositionService,
         @Inject('DB_SERVICE') private readonly dbService: ClientProxy
     ) {}
 
+
+
+
+    // Matt Cappucci
+    // Function used for parsing JSON sent to controller
+    private parseInput(requestBody: Object, requiredFields: string[], otherFields: string[]) {
+        let data = {}
+        let requestBodyFields = Object.keys(requestBody)
+        for (let i = 0; i < requiredFields.length; ++i) {
+            if (!requestBodyFields.includes(requiredFields[i])) {
+                return null
+            } else {
+                data[requiredFields[i]] = requestBody[requiredFields[i]]
+            }
+        }
+        for (let i = 0; i < otherFields.length; ++i) {
+            if (requestBodyFields.includes(otherFields[i])) {
+                data[otherFields[i]] = requestBody[otherFields[i]]
+            }
+        }
+        return data
+    }
+
+
+
+
+    // Matt Cappucci
+    // /test GET route
+    // Just used to make such you can connect to this controller
+    // Can be deleted
     @Get('test')
     public async test() {
         return this.dbService.send({cmd: 'test'}, {})
     }
 
-    @Get('GetPosition')
-    public async getByTitle(@Query('title') title: string) {
-        console.log('in backend');
-        console.log(title)
-        const cmd = { cmd: 'getPositionByTitle' };
-        const data = { title: title };
-        const position = this.dbService.send(cmd, data);
-        if (!position) throw new NotFoundException('Position not found');
-        else return position;
+
+
+
+    // Matt Cappucci
+    // /getPositionById Get route
+    // Get a position by ID
+    @Get('getPositionById')
+    public async getPositionById(@Req() req: Request) {
+        let id = this.parseInput(req.body, ['id'], [])['id']
+        console.log(id)
+        if (id == undefined || !(/^\d+$/.test(id))) {
+            return 'Given id (' + id + ') is undefined or is not an int'
+        }
+        const cmd = { cmd: 'getPositionById' }
+        const data = { id: id }
+        const position = this.dbService.send(cmd, data)
+        return position
     }
 
-    @Post('CreatePosition')
-    public async createPosition(
-        @Body('title') title: string,
-        @Body('description') description: string,
-    ) {
-        console.log('in backend');
-        console.log(title)
-        console.log(description)
-        const cmd = { cmd: 'createPosition' };
-        const data = { title: title, description: description };
-        const response = this.dbService.send(cmd, data);
-        return response;
+
+
+
+    // Matt Cappucci
+    // /getAllPositions GET route
+    // Gets all positions in the DB
+    @Get('getAllPositions')
+    public async getAllPositions() {
+        const cmd = { cmd: 'getAllPositions' }
+        const data = {}
+        return this.dbService.send(cmd, data)
     }
+
+
+
+
+    // Matt Cappucci
+    // /createPosition POST request
+    // Creates a new position with tags in the DB
+    @Post('createPosition')
+    public async createPosition(@Req() req: Request) {
+        let tags = req.body['tags']
+        let requiredFields = ['title']
+        let otherFields = ['description', 'minYearExperience', 'salary', 'managerId']
+        let data = this.parseInput(req.body, requiredFields, otherFields)
+        if (data == null) {
+            return 'Require a title field in position data'
+        }
+        const cmd = { cmd: 'createPosition' }
+        const position = this.dbService.send(cmd, data)
+        if (position != null) {
+            if (tags != undefined && tags.length != 0) {
+                for (let i = 0; i < tags.length; ++i) {
+                    let tagsCmd = { cmd: 'addTagToPosition' }
+                    let tagsData = {
+                        positionId: position['id'],
+                        tag: tags[i]
+                    }
+                    const tag = this.dbService.send(tagsCmd, tagsData)
+                }
+            }
+        }
+    }
+
+
+
 
     @Patch('UpdatePosition')
     public async updatePosition(
@@ -66,6 +138,9 @@ export class PositionController {
         return response
     }
 
+
+
+
     @Delete('DeletePosition')
     public async(@Body('id') id: string) {
         console.log('in backend delete position')
@@ -74,4 +149,5 @@ export class PositionController {
         const response = this.dbService.send(cmd, data)
         return response
     }
+
 }
