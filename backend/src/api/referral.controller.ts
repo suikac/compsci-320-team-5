@@ -86,6 +86,7 @@ export class ReferralController {
   @ManagerOnly()
   @Get('getUnread')
   public async getUnreadReferral(@Req() req) {
+    console.log(req.user.userId);
     const cmd = { cmd: 'getUnreadReferral' };
     return this.dbService.send(cmd, req.user.userId);
   }

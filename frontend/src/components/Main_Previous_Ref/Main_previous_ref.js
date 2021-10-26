@@ -11,6 +11,7 @@ const prevrefdata = [{refTitle: "Whatever",
                     }]
 
 function MainPreviousRef(){
+    getReferral()
     const prevRefComponents = prevrefdata.map( refData => <RefBox refTitle = {refData?.refTitle} referred = {refData?.referred}
         referredDesc = {refData?.referredDesc} imgUrl = {refData?.imgUrl} refStatus = {refData?.refStat}  refStatusDesc = {refData?.reftStatDesc}/>)
         console.log(prevrefdata)
@@ -21,9 +22,9 @@ function MainPreviousRef(){
     )
 }
 
-function getReferral() {
-  apiGet("/referral/get")
-    .then((res) => console.log(res))
+async function getReferral() {
+  const data = await apiGet("/referral/getUnread")
+  console.log(data.json())
 }
 
 export default MainPreviousRef;
