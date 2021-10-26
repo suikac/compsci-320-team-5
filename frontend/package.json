@@ -9,12 +9,12 @@
     "babel-jest": "26.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router": "^5.2.1",
+    "react-router-dom": "^5.3.0",
     "react-scripts": "^4.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "PORT=3002 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -13,10 +13,7 @@ import {
 } from '@nestjs/common';
 import { ClientProxy, RpcException } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
-
-export interface AuthorizedRequest extends Request {
-  user: string;
-}
+import { UserData, AuthorizedRequest } from '../interfaces';
 
 @Injectable()
 export class JwtGuard implements CanActivate {
@@ -24,21 +21,19 @@ export class JwtGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext) {
     const http = context.switchToHttp();
-    const request: AuthorizedRequest = http.getRequest();
-    let tokenString = request.headers['authorization'];
+    const request: any = http.getRequest();
+    const tokenString = request.cookies['AuthToken'];
     console.log('Token received: ' + tokenString);
     if (tokenString == undefined) {
       throw new HttpException('missing credentials', HttpStatus.UNAUTHORIZED);
     }
 
-    tokenString = tokenString.split([' '])[1];
-
     const cmd = { cmd: 'jwt-auth' };
     try {
-      const response: any = await firstValueFrom(
+      const response: UserData = await firstValueFrom(
         this.loginService.send(cmd, { token: tokenString }),
       );
-      request.user = response.userId;
+      request.user = response;
       return true;
     } catch (exception) {
       if (exception.message == 'invalid token') {

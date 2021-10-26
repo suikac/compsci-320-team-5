@@ -1,4 +1,11 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Tag } from "./Tag";
 import { Position } from "./Position";
 
@@ -6,14 +13,14 @@ import { Position } from "./Position";
 @Index("tag_fk", ["tagId"], {})
 @Entity("position_tag", { schema: "aki" })
 export class PositionTag {
-  @Column("bigint", { primary: true, name: "id" })
-  id: string;
+  @PrimaryGeneratedColumn({ type: "int", name: "id" })
+  id: number;
 
-  @Column("bigint", { name: "position_id" })
-  positionId: string;
+  @Column("int", { name: "position_id" })
+  positionId: number;
 
-  @Column("bigint", { name: "tag_id" })
-  tagId: string;
+  @Column("int", { name: "tag_id" })
+  tagId: number;
 
   @ManyToOne(() => Tag, (tag) => tag.positionTags, {
     onDelete: "NO ACTION",

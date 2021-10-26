@@ -1,6 +1,9 @@
-import { Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { EmployeeController } from './employee.controller';
+import { ReferralController } from './referral.controller';
+import { GuardsModule } from '../guards/guards.module';
+import { Module } from '@nestjs/common';
+import { PositionController } from './position.controller';
 
 @Module({
   imports: [
@@ -14,7 +17,8 @@ import { EmployeeController } from './employee.controller';
         },
       },
     ]),
+    GuardsModule.forRoot(),
   ],
-  controllers: [EmployeeController],
+  controllers: [EmployeeController, ReferralController, PositionController],
 })
-export class DbModule {}
+export class ApiModule {}
