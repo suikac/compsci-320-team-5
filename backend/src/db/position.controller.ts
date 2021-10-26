@@ -14,11 +14,12 @@ import {
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Request } from 'express'
-import { JwtGuard } from '../guards/jwt-guard';
+import { JwtGuard } from 'src/guards/jwt-guard';
+import { ManagerOnly, RolesGuard } from 'src/guards/role.guards';
 
 
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, RolesGuard)
 @Controller('position')
 export class PositionController {
 
@@ -105,6 +106,7 @@ export class PositionController {
     // Matt Cappucci
     // /createPosition POST request
     // Creates a new position with tags in the DB
+    @ManagerOnly()
     @Post('createPosition')
     public async createPosition(@Req() req: Request) {
         let requiredFields = ['title']
