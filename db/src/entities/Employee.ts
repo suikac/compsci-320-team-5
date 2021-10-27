@@ -41,8 +41,8 @@ export class Employee {
   @Column("varchar", { name: "password", nullable: true, length: 255 })
   password: string | null;
 
-  @Column("bigint", { name: "resume_id", nullable: true })
-  resumeId: string | null;
+  @Column("int", { name: "resume_id", nullable: true })
+  resumeId: number | null;
 
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
@@ -60,6 +60,9 @@ export class Employee {
   @OneToMany(() => Position, (position) => position.manager)
   positions: Position[];
 
-  @OneToMany(() => Referral, (referral) => referral.employee)
+  @OneToMany(() => Referral, (referral) => referral.referrer)
   referrals: Referral[];
+
+  @OneToMany(() => Referral, (referral) => referral.referee)
+  referrals2: Referral[];
 }

@@ -1,21 +1,29 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import {
+  Column,
+  Entity,
+  Index,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { Resume } from "./Resume";
 import { Employee } from "./Employee";
 import { Position } from "./Position";
 
-@Index("referral_employee_fk", ["employeeId"], {})
+@Index("referee_employee_fk", ["refereeId"], {})
+@Index("referral_employee_fk", ["referrerId"], {})
 @Index("referral_position_fk", ["positionId"], {})
 @Index("referral_resume_fk", ["resumeId"], {})
 @Entity("referral", { schema: "aki" })
 export class Referral {
-  @Column("bigint", { primary: true, name: "id" })
-  id: string;
+  @PrimaryGeneratedColumn({ type: "int", name: "id" })
+  id: number;
 
-  @Column("bigint", { name: "resume_id", nullable: true })
-  resumeId: string | null;
+  @Column("int", { name: "resume_id", nullable: true })
+  resumeId: number | null;
 
-  @Column("varchar", { name: "to_email", length: 255 })
-  toEmail: string;
+  @Column("varchar", { name: "referee_email", length: 255 })
+  refereeEmail: string;
 
   @Column("longtext", { name: "description" })
   description: string;
@@ -31,11 +39,17 @@ export class Referral {
   })
   isInternal: boolean | null;
 
-  @Column("bigint", { name: "position_id" })
-  positionId: string;
+  @Column("int", { name: "position_id" })
+  positionId: number;
 
-  @Column("int", { name: "employee_id" })
-  employeeId: number;
+  @Column("int", { name: "referee_id", nullable: true })
+  refereeId: number | null;
+
+  @Column("int", { name: "referrer_id" })
+  referrerId: number;
+
+  @Column("boolean", { name: "is_read" })
+  isRead: boolean | null;
 
   @ManyToOne(() => Resume, (resume) => resume.referrals, {
     onDelete: "NO ACTION",
@@ -48,8 +62,8 @@ export class Referral {
     onDelete: "NO ACTION",
     onUpdate: "NO ACTION",
   })
-  @JoinColumn([{ name: "employee_id", referencedColumnName: "id" }])
-  employee: Employee;
+  @JoinColumn([{ name: "referrer_id", referencedColumnName: "id" }])
+  referrer: Employee;
 
   @ManyToOne(() => Position, (position) => position.referrals, {
     onDelete: "NO ACTION",
@@ -57,4 +71,11 @@ export class Referral {
   })
   @JoinColumn([{ name: "position_id", referencedColumnName: "id" }])
   position: Position;
+
+  @ManyToOne(() => Employee, (employee) => employee.referrals2, {
+    onDelete: "NO ACTION",
+    onUpdate: "NO ACTION",
+  })
+  @JoinColumn([{ name: "referee_id", referencedColumnName: "id" }])
+  referee: Employee;
 }
