@@ -5,7 +5,7 @@ import styles from "./Job_posting.module.css"
 class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
-        this.state = {titile: "", salary: 0, minYearsExperience: 0, managerId: 00, tags:[]}
+        this.state = {titile: "", salary: 0, minYearsExperience: 0, managerId: 00, tags:[],description:""}
         defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
     }
@@ -19,20 +19,47 @@ class CreateJobPosting extends Component{
 
     render(){
         return(
-            <div classNmae = {styles.container}>
-                <h1> Job Posting</h1>
-                <div className = {styles.pageHeader}>
-                    <div className = {styles.logo2} onClick = {()=>console.log("return to main page")}>
-                    </div>
-                    <div className = {styles.bell} onClick = {()=>console.log("open notification")}>
-                    </div>
-                    <div className = {styles.avatar} onClick ={()=>console.log("open personal profile")}>
-                    </div>
-                </div> 
-                <h2>
-                </h2>
-            </div>
+            <h1>
+                <div className = {styles.jobTitle}>
+                    <input
+                        type="title"
+                        value = {this.state.titile}
+                        onChange={this.handleCredentialsChange}
+                        placeholder = "enter job title"
+                    />
+                </div>
+                <div className = {styles.salary}>
+                    <input
+                        type="salary"
+                        value = {this.state.salary}
+                        onChange={this.handleCredentialsChange}
+                        placeholder = "enter job salary"
+                    />
+                </div>
+                <div className = {styles.minYearofExp}>
+                    <input
+                        type="minYearsExperience"
+                        value = {this.state.minYearsExperience}
+                        onChange={this.handleCredentialsChange}
+                        placeholder = "enter job minimum year of Experience"
+                    />
+                </div>
+                <div className = {styles.DescriptionBox}>
+                    <input
+                        type="description"
+                        value = {this.state.description}
+                        onChange={this.handleCredentialsChange}
+                        placeholder = "enter the job description"
+                    />
+                </div>
+                <button type ="button"
+                onClick = {this.submit_credentials}
+                className = {styles.createButton}>Create Job
+                </button>
+            </h1>
         );
+    }
+    async submit_credentials() {
     }
 }
 

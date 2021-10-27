@@ -45,31 +45,19 @@ bottom: 90.99%;
 background: #197278;
 }
 
-h2{
-  
-}
-
 /* Group 5 */
 .salary{
-position: absolute;
-width: 667px;
-height: 82px;
-left: 975px;
-top: 660px;
+
+  position: absolute;
+  width: 667px;
+  height: 82px;
+  left: 975px;
+  top: 660px;
+  
+  background: #C4C4C4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 102px;
 }
-
-
-.Rectangle_39{
-
-position: absolute;
-width: 44px;
-height: 19px;
-left: 126px;
-top: 827px;
-
-border-radius: 102px;
-}
-
 
 /* Tag search bar */
 .tagSearchBar{
@@ -92,34 +80,50 @@ color: #000000;
 
 /* Group 8 */
 .createButton{
-position: absolute;
-width: 454px;
-height: 142px;
-left: 688px;
-top: 1939px;
+  position: absolute;
+  width: 454px;
+  height: 142px;
+  left: 688px;
+  top: 1939px;
+  
+  background: #197278;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
+  border-radius: 102px;
 }
 /* Group 4 */
 .jobTitle{
-position: absolute;
-width: 667px;
-height: 82px;
-left: 185px;
-top: 660px;
+  position: absolute;
+  width: 667px;
+  height: 82px;
+  left: 185px;
+  top: 660px;
+  
+  background: #C4C4C4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 102px;
 }
 
 /* Group 6 */
 .minYearofExp{
-position: absolute;
-width: 698px;
-height: 82px;
-left: 170px;
-top: 827px;
+  position: absolute;
+  width: 667px;
+  height: 82px;
+  left: 185px;
+  top: 827px;
+  
+  background: #C4C4C4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 102px;
 }
 
 .DescriptionBox{
-position: absolute;
-width: 1438px;
-height: 517px;
-left: 187px;
-top: 986px;
+  position: absolute;
+  width: 1438px;
+  height: 517px;
+  left: 187px;
+  top: 986px;
+  
+  background: #C4C4C4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 102px;
 }
