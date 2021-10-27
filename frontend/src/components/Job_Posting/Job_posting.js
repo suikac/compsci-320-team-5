@@ -1,12 +1,11 @@
 import React, {Component} from "react";
-import logo from "./Logo2.png";
 import styles from "./Job_posting.module.css"
 
 class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
-        this.state = {titile: "", salary: 0, minYearsExperience: 0, managerId: 00, tags:[],description:""}
-        defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
+        this.state = {titile: "", salary: 0, minYearsExperience: 0, managerId: 0, tags:[],description:""}
+        this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
     }
     
