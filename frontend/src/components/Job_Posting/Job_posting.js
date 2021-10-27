@@ -19,44 +19,46 @@ class CreateJobPosting extends Component{
 
     render(){
         return(
-            <h1>
-                <div className = {styles.jobTitle}>
-                    <input
-                        type="title"
-                        value = {this.state.titile}
-                        onChange={this.handleCredentialsChange}
-                        placeholder = "enter job title"
-                    />
-                </div>
-                <div className = {styles.salary}>
-                    <input
-                        type="salary"
-                        value = {this.state.salary}
-                        onChange={this.handleCredentialsChange}
-                        placeholder = "enter job salary"
-                    />
-                </div>
-                <div className = {styles.minYearofExp}>
-                    <input
-                        type="minYearsExperience"
-                        value = {this.state.minYearsExperience}
-                        onChange={this.handleCredentialsChange}
-                        placeholder = "enter job minimum year of Experience"
-                    />
-                </div>
-                <div className = {styles.DescriptionBox}>
-                    <input
-                        type="description"
-                        value = {this.state.description}
-                        onChange={this.handleCredentialsChange}
-                        placeholder = "enter the job description"
-                    />
-                </div>
-                <button type ="button"
-                onClick = {this.submit_credentials}
-                className = {styles.createButton}>Create Job
-                </button>
-            </h1>
+            <div className={styles.container}>
+                <h1>
+                    <div className = {styles.jobTitle}>
+                        <input
+                            type="title"
+                            value = {this.state.titile}
+                            onChange={this.handleCredentialsChange}
+                            placeholder = "enter job title"
+                        />
+                    </div>
+                    <div className = {styles.salary}>
+                        <input
+                            type="salary"
+                            value = {this.state.salary}
+                            onChange={this.handleCredentialsChange}
+                            placeholder = "enter job salary"
+                        />
+                    </div>
+                    <div className = {styles.minYearofExp}>
+                        <input
+                            type="minYearsExperience"
+                            value = {this.state.minYearsExperience}
+                            onChange={this.handleCredentialsChange}
+                            placeholder = "enter job minimum year of Experience"
+                        />
+                    </div>
+                    <div className = {styles.DescriptionBox}>
+                        <input
+                            type="description"
+                            value = {this.state.description}
+                            onChange={this.handleCredentialsChange}
+                            placeholder = "enter the job description"
+                        />
+                    </div>
+                    <button type ="button"
+                    onClick = {this.submit_credentials}
+                    className = {styles.createButton}>Create Job
+                    </button>
+                </h1>
+            </div>
         );
     }
     async submit_credentials() {
