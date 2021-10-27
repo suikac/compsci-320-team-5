@@ -35,13 +35,18 @@ top: 247px;
 background: url(.png);
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
 }
-
-.chevron-left-solid3{
+.avatar{
 position: absolute;
-width: 80px;
-height: 80px;
-left: 2000px;
-top: 1081px;
+left: 94.41%;
+right: 2%;
+top: 6.09%;
+bottom: 90.99%;
+
+background: #197278;
+}
+
+h2{
+  
 }
 
 /* Group 5 */

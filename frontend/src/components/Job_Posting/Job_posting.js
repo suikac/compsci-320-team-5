@@ -18,7 +18,21 @@ class CreateJobPosting extends Component{
     }
 
     render(){
-
+        return(
+            <div classNmae = {styles.container}>
+                <h1> Job Posting</h1>
+                <div className = {styles.pageHeader}>
+                    <div className = {styles.logo2} onClick = {()=>console.log("return to main page")}>
+                    </div>
+                    <div className = {styles.bell} onClick = {()=>console.log("open notification")}>
+                    </div>
+                    <div className = {styles.avatar} onClick ={()=>console.log("open personal profile")}>
+                    </div>
+                </div> 
+                <h2>
+                </h2>
+            </div>
+        );
     }
 }
 
