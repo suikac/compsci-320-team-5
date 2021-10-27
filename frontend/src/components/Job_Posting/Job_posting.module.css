@@ -25,16 +25,6 @@ left: 1753px;
 top: 134px;
 }
 
-.logo2{
-position: absolute;
-width: 350px;
-height: 186.57px;
-left: 114px;
-top: 247px;
-
-background: url(.png);
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
-}
 .avatar{
 position: absolute;
 left: 94.41%;
@@ -47,7 +37,7 @@ background: #197278;
 
 /* Group 5 */
 .salary{
-
+  display: inline-block;
   position: absolute;
   width: 667px;
   height: 82px;
@@ -92,6 +82,7 @@ color: #000000;
 }
 /* Group 4 */
 .jobTitle{
+
   position: absolute;
   width: 667px;
   height: 82px;
@@ -105,6 +96,7 @@ color: #000000;
 
 /* Group 6 */
 .minYearofExp{
+  display: inline-block;
   position: absolute;
   width: 667px;
   height: 82px;
@@ -117,6 +109,7 @@ color: #000000;
 }
 
 .DescriptionBox{
+  display: inline-block;
   position: absolute;
   width: 1438px;
   height: 517px;
