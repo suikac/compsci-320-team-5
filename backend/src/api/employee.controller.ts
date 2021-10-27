@@ -10,8 +10,9 @@ import {
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { JwtGuard } from '../guards/jwt-guard';
+import { ManagerOnly, RolesGuard } from '../guards/role.guards';
 
-@UseGuards(JwtGuard)
+@UseGuards(JwtGuard, RolesGuard)
 @Controller('employee')
 export class EmployeeController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
@@ -28,12 +29,13 @@ export class EmployeeController {
     }
   }
 
+  @ManagerOnly()
   @Post('signUp')
   public async signUpEmployee(
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
-    console.log('signing up db..');
+    console.log('signing up api..');
     const cmd = { cmd: 'signUp' };
     const data = { email: email, password: password };
     const response = this.dbService.send(cmd, data);

@@ -2,16 +2,11 @@
     list-style-type: none;
     margin: 1em;
     padding: 1em;
-    width: 20%;
     background-color: #f1f1f1;
     overflow: auto;
-    height: 65%;
     border: 1.5px solid rgb(82, 81, 81);
     border-radius: 20px;
-    top: 0;
-    position: -webkit-sticky;
-    position: sticky;
-    z-index: 100;
+    z-index: 1;
 }
 
 .NavBarContainer li{
