@@ -1,13 +1,17 @@
 * {
-    box-sizing: content-box;
-    width: 100%;
-  }
+  box-sizing: content-box;
+  width: 100%;
+}
 .container{
-position: relative;
-width: 1650px;
-height: 1000px;
-
-background: #FFF8F4;
+background-color: #edddd4;
+width: 800px;
+height: 700px;
+margin-left: auto;
+margin-right: auto;
+border: 3px solid #772E25;
+border-radius: 20px;
+margin: 20em;
+padding: 2em;
 }
 /* Header */
 .pageHeader{
@@ -35,88 +39,143 @@ bottom: 90.99%;
 background: #197278;
 }
 
-/* Group 5 */
-.salary{
-  display: inline-block;
-  position: absolute;
-  width: 667px;
-  height: 82px;
-  left: 575px;
-  top: 400px;
-  transform: scale(0.5);
-  background: #C4C4C4;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-  border-radius: 102px;
-}
-
-/* Tag search bar */
-.tagSearchBar{
-position: absolute;
-width: 305px;
-height: 62px;
-left: 289px;
-top: 1664px;
-transform: scale(0.5);  
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
+.jobTitleContainer{
+display:inline-block;
 font-size: 48px;
-line-height: 56px;
-letter-spacing: -0.015em;
-    
-color: #000000;
+margin-bottom: 10px;
+text-align: center;
+padding: 10px;
+position: absolute;
+width: 667px;
+height: 82px;
+left: 188px;
+top: 350px;
+transform: scale(0.5);
+background: #C4C4C4;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+border-radius: 102px;
+}
+.jobTitleText{
+border: none;
+justify-content: center;
+display: inline-block;
+text-align: left;
+border-radius: 10px;
+width: 90%;
+height: 65px;
+background: #C4C4C4;
+}
+.salaryContainer{
+display:inline-block;
+font-size: 48px;
+margin-bottom: 10px;
+text-align: center;
+padding: 10px;
+position: absolute;
+width: 667px;
+height: 82px;
+left: 563px;
+top: 350px;
+transform: scale(0.5);
+background: #C4C4C4;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+border-radius: 102px;
+}
+.salaryText{
+border: none;
+justify-content: center;
+display: inline-block;
+text-align: left;
+border-radius: 10px;
+width: 90%;
+height: 65px;
+background: #C4C4C4;
 }
 
-
-/* Group 8 */
+.minYearofExpContainer{
+display:inline-block;
+font-size: 48px;
+margin-bottom: 10px;
+text-align: center;
+padding: 10px;
+position: absolute;
+width: 667px;
+height: 82px;
+left: 188px;
+top: 425px;
+transform: scale(0.5);
+background: #C4C4C4;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+border-radius: 102px;
+}
+.minYearofExpText{
+border: none;
+justify-content: center;
+display: inline-block;
+text-align: left;
+border-radius: 10px;
+width: 90%;
+height: 65px;
+background: #C4C4C4;
+}
+.DescriptionContainer{
+display: inline-block;
+position: absolute;
+font-size: 48px;
+margin-bottom: 10px;
+padding: 10px;
+width: 1438px;
+height: 517px;
+left: 0px;
+top: 390px;
+transform: scale(0.5);
+background: #C4C4C4;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+border-radius: 102px;
+}
+.DescriptionText{
+border: none;
+justify-content:start;
+display: inline-block;
+text-align: left;
+border-radius: 20px;
+width: 90%;
+height: 500px;
+background: #C4C4C4;
+}
+.tagSearchBarContainer{
+display: inline-block;
+position: absolute;
+font-size: 48px;
+margin-bottom: 10px;
+padding: 10px;
+width: 1438px;
+height: 185px;
+left: 0px;
+top: 765px;
+transform: scale(0.5);
+background: #C4C4C4;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+border-radius: 102px;
+}
+.tagSearchBarText{
+border: none;
+justify-content:start;
+display: inline-block;
+text-align: left;
+border-radius: 20px;
+width: 90%;
+height: 165px;
+background: #C4C4C4;
+}
 .createButton{
-  position: absolute;
-  width: 454px;
-  height: 142px;
-  left: 488px;
-  top: 860px;
-  transform: scale(0.5);
-  background: #197278;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
-  border-radius: 102px;
-}
-/* Group 4 */
-.jobTitle{
-
-  position: absolute;
-  width: 667px;
-  height: 82px;
-  left: 200px;
-  top: 400px;
-  transform: scale(0.5);
-  background: #C4C4C4;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-  border-radius: 102px;
-}
-
-/* Group 6 */
-.minYearofExp{
-  display: inline-block;
-  position: absolute;
-  width: 667px;
-  height: 82px;
-  left: 200px;
-  top: 480px;
-  transform: scale(0.5);
-  background: #C4C4C4;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-  border-radius: 102px;
-}
-
-.DescriptionBox{
-  display: inline-block;
-  position: absolute;
-  width: 1438px;
-  height: 517px;
-  left: 0px;
-  top: 440px;
-  transform: scale(0.5);
-  background: #C4C4C4;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-  border-radius: 102px;
+position: absolute;
+width: 454px;
+height: 142px;
+left: 488px;
+top: 890px;
+transform: scale(0.5);
+background: #197278;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
+border-radius: 102px;
 }
