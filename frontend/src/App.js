@@ -1,6 +1,5 @@
 import React, {Component} from "react"
 import Login from "./components/Login/Login"
-import Job_posting from "./components/Job_Posting/Job_posting"
 import Main from "./components/Main/Main"
 import MainPreviousRef from "./components/Main_Previous_Ref/Main_previous_ref"
 import "./App.css"
@@ -22,10 +21,18 @@ class App extends Component {
 
   render() {
     return (
+      <BrowserRouter>
         <div>
-          <Job_posting>
-          </Job_posting>
+          <Switch>
+            <Route path='/login'>
+              <Login onUserInfoChange={this.onUserInfoChange}/>
+            </Route>
+            <Route path='/'>
+              <Main userInfo={this.state.userInfo}/>
+            </Route>
+          </Switch>
         </div>
+      </BrowserRouter>
     )
   }
 }

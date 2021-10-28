@@ -7,7 +7,8 @@ import Footer from "../Footer/Footer"
 import Main_Mailbox from "../Main_Mailbox/main_mailbox"
 import Main_Home from "../Main_Home/main_home";
 import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import CreateJobPosting from "../Job_Posting/Job_posting";
+import { Route, Switch } from "react-router-dom";
 
 class Main extends Component {
   constructor(props) {
@@ -23,8 +24,8 @@ class Main extends Component {
     let userInfo = this.props.userInfo
     return (
       <div className = "container-fluid">
-        <div className = "row"><Header/></div>
-        <div style={{display: "flex", flexDirection: "row"}}>
+         <div className = "row"><Header/></div>
+         <div style={{display: "flex", flexDirection: "row"}}>
           <div style={{display: "flex", flexDirection: "column"}}>
             <NavBar/>
           </div>
@@ -40,10 +41,13 @@ class Main extends Component {
                 <MainPreviousRef />
               </Route>
               <Route path="/explore"></Route>
+              <Route path="/createPosting">
+                <CreateJobPosting isManager={() => this.props.userInfo.role == 'manager'}/>
+              </Route>
             </Switch>
           </div>
-        </div>
-        <div className = "row"><Footer /></div>
+         </div>
+         <div className = "row"><Footer /></div>
       </div>
     );
   }

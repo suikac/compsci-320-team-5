@@ -8,7 +8,7 @@ class CreateJobPosting extends Component{
         this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
     }
-    
+
     handleCredentialsChange(event) {
         const type = event.target.type
         this.setState({
