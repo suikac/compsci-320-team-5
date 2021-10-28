@@ -22,3 +22,7 @@ export class CreateReferralDto {
 
   id: number;
 }
+
+export class CompleteReferral {
+
+}

@@ -83,7 +83,6 @@ export class ReferralController {
     return response;
   }
 
-  @ManagerOnly()
   @Get('getUnread')
   public async getUnreadReferral(@Req() req) {
     const cmd = { cmd: 'getUnreadReferral' };

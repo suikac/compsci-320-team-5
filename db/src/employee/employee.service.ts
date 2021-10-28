@@ -11,9 +11,11 @@ export class EmployeeService {
     private employeeRepository: EmployeeRepository
   ) {}
 
-  public async getEmployee(): Promise<Employee[]> {
-    const employee = await this.employeeRepository.findByIds([1, 2]);
-    return employee;
+  public async getEmployee(id: number): Promise<Employee> {
+    return this.employeeRepository
+      .createQueryBuilder()
+      .where("id = :id", {id : id})
+      .getOneOrFail()
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {
@@ -24,7 +26,7 @@ export class EmployeeService {
   }
 
   public async signUpEmployee(email: string, password: string) {
-    this.employeeRepository
+    await this.employeeRepository
       .createQueryBuilder()
       .insert()
       .into("employee")
