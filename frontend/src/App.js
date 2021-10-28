@@ -7,6 +7,8 @@ import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom"
 import CreateJobPosting from "./components/Job_Posting/Job_posting"
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
+import NotFoundPage from "./components/NotFound/NotFoundPage"
+import * as paths from "./utils/paths"
 
 class App extends Component {
   constructor(props) {
@@ -31,13 +33,16 @@ class App extends Component {
         } */}
         <div className='main-div'>
           <Switch>
-            <Route path='/login'>
+            <Route path={paths.LOGIN}>
               <Login onUserInfoChange={this.onUserInfoChange}/>
             </Route>
-            <Route path='/createPosting'>
+            <Route path={paths.CREATE_POSTING}>
               <Header />
               <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
               <Footer />
+            </Route>
+            <Route path={paths.NOT_FOUND}>
+              <NotFoundPage />
             </Route>
             <Route path='/'>
               <Header />
