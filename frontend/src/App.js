@@ -4,6 +4,9 @@ import Main from "./components/Main/Main"
 import MainPreviousRef from "./components/Main_Previous_Ref/Main_previous_ref"
 import "./App.css"
 import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom"
+import CreateJobPosting from "./components/Job_Posting/Job_posting"
+import Header from "./components/Header/Header"
+import Footer from "./components/Footer/Footer"
 
 class App extends Component {
   constructor(props) {
@@ -22,17 +25,29 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
+        {/* {this.state.userInfo == undefined
+        ? <Redirect to='/login'/>
+        : null
+        } */}
+        <div className='main-div'>
           <Switch>
             <Route path='/login'>
               <Login onUserInfoChange={this.onUserInfoChange}/>
             </Route>
+            <Route path='/createPosting'>
+              <Header />
+              <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
+              <Footer />
+            </Route>
             <Route path='/'>
+              <Header />
               <Main userInfo={this.state.userInfo}/>
+              <Footer />
             </Route>
           </Switch>
         </div>
-      </BrowserRouter>
+    </BrowserRouter>
+
     )
   }
 }

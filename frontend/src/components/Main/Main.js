@@ -24,7 +24,6 @@ class Main extends Component {
     let userInfo = this.props.userInfo
     return (
       <div className = "container-fluid">
-         <div className = "row"><Header/></div>
          <div style={{display: "flex", flexDirection: "row"}}>
           <div style={{display: "flex", flexDirection: "column"}}>
             <NavBar/>
@@ -41,13 +40,9 @@ class Main extends Component {
                 <MainPreviousRef />
               </Route>
               <Route path="/explore"></Route>
-              <Route path="/createPosting">
-                <CreateJobPosting isManager={() => this.props.userInfo.role == 'manager'}/>
-              </Route>
             </Switch>
           </div>
          </div>
-         <div className = "row"><Footer /></div>
       </div>
     );
   }
