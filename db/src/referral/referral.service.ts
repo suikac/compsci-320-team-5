@@ -1,14 +1,21 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { ReferralRepository } from "./referral.repository";
 import { Referral } from "../entities/Referral";
 import { CreateReferralDto } from "./referral.dto";
+import { PositionController } from "../position/position.controller";
+import { PositionService } from "../position/position.service";
+import { EmployeeService } from "../employee/employee.service";
 
 @Injectable()
 export class ReferralService {
   constructor(
     @InjectRepository(ReferralRepository)
-    private readonly referralRepository: ReferralRepository
+    private readonly referralRepository: ReferralRepository,
+    @Inject(PositionService)
+    private readonly positionService: PositionService,
+    @Inject(EmployeeService)
+    private readonly employeeService: EmployeeService
   ) {}
 
   public async createReferral(createReferralDto: CreateReferralDto) {
@@ -65,11 +72,26 @@ export class ReferralService {
   }
 
   public async getUnreadReferral(id: number): Promise<Referral[]> {
-    return this.referralRepository
+    const referrals = await this.referralRepository
       .createQueryBuilder("getUnreadReferral")
       .where("referrer_id = :id", { id })
       .andWhere("is_read = 0")
       .getMany();
+    for (let i = 0; i < referrals.length; i++) {
+      referrals[i] = await this.completeReferral(referrals[i])
+    }
+    return referrals;
+  }
+
+  // some columns are id which has not meaning, this method adds
+  // some fields according to that id fields
+  private async completeReferral(referral: Referral) : Promise<Referral> {
+    referral.position = await this.positionService.getPositionById(referral.positionId.toString());
+    referral.referrer = await this.employeeService.getEmployee(referral.referrerId);
+    if (referral.refereeId !== null) {
+      referral.referee = await this.employeeService.getEmployee(referral.refereeId);
+    }
+    return referral;
   }
 
   public async readReferral(id: number) {

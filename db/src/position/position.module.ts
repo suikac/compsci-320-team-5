@@ -11,5 +11,6 @@ import { TagRepository } from "./tag.repository"
   imports: [TypeOrmModule.forFeature([Position, PositionRepository, TagRepository, PositionTagRepository])],
   controllers: [PositionController],
   providers: [PositionService],
+  exports: [PositionService]
 })
 export class PositionModule {}
