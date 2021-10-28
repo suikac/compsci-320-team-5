@@ -67,6 +67,21 @@ export class PositionController {
 
 
     // To Do: get by manager
+    @Get('getPositionsByManager')
+    public async getPositionsByManager(@Req() req: Request) {
+        let obj = this.parseInput(req.body, ['id'], [])
+        if (obj == null) {
+            return 'Need to send an id value'
+        }
+        let id = obj['id']
+        if (id == undefined || !(/^\d+$/.test(id))) {
+            return 'Given id (' + id + ') is undefined or is not an int'
+        }
+        const cmd = { cmd: 'getPositionsByManager' }
+        const data = { id: id }
+        const position = this.dbService.send(cmd, data)
+        return position
+    }
 
 
 
@@ -76,8 +91,11 @@ export class PositionController {
     // Get a position by ID
     @Get('getPositionById')
     public async getPositionById(@Req() req: Request) {
-        let id = this.parseInput(req.body, ['id'], [])['id']
-        console.log(id)
+        let obj = this.parseInput(req.body, ['id'], [])
+        if (obj == null) {
+            return 'Need to send an id value'
+        }
+        let id = obj['id']
         if (id == undefined || !(/^\d+$/.test(id))) {
             return 'Given id (' + id + ') is undefined or is not an int'
         }
@@ -122,28 +140,35 @@ export class PositionController {
 
 
 
+    @ManagerOnly()
     @Patch('UpdatePosition')
-    public async updatePosition(
-        @Body('title') title: string,
-        @Body('id') id: string
-    ) {
-        console.log('in backend update position title')
+    public async updatePosition(@Req() req: Request) {
+        let requiredFields = ['id']
+        let otherFields = ['description', 'minYearExperience', 'salary', 'managerId', 'tags', 'title']
+        let data = this.parseInput(req.body, requiredFields, otherFields)
+        if (data == null) {
+            return 'Require an id field in position data'
+        } else if (Object.keys(data).length == 1) {
+            return 'Need data to update position along with id'
+        }
         const cmd = { cmd: 'updatePosition' }
-        const data = { title: title, id: id }
-        const response = this.dbService.send(cmd, data)
-        return response
+        return this.dbService.send(cmd, data)
     }
 
 
 
 
+    @ManagerOnly()
     @Delete('DeletePosition')
-    public async(@Body('id') id: string) {
-        console.log('in backend delete position')
+    public async(@Req() req: Request) {
+        let requiredFields = ['id']
+        let otherFields = []
+        let data = this.parseInput(req.body, requiredFields, otherFields)
+        if (data == null) {
+            return 'Require an id field in position data'
+        }
         const cmd = { cmd: 'deletePosition' }
-        const data = { id: id }
-        const response = this.dbService.send(cmd, data)
-        return response
+        return this.dbService.send(cmd, data)
     }
 
 }

@@ -46,17 +46,48 @@ export class PositionController {
 
 
 
+    @MessagePattern({ cmd: 'getPositionsByManager' })
+    public async getPositionsByManger(@Payload('id') id: string) {
+        const positions = await this.positionService.getPositionsByManager(id)
+            .catch(() => null)
+        return positions
+    }
+
+
+
+
     @MessagePattern({ cmd: "createPosition" })
     public async createPosition(data: Object) {
         let tags = data['tags']
         delete data['tags']
-        console.log(tags)
         let position = await this.positionService.createPosition(data)
             .catch(() => null)
         if (position != null && tags != null && tags != undefined && tags.length > 0) {
             this.addTagsToPosition(position['id'], tags)
         }
         return position
+    }
+
+
+
+
+    @MessagePattern({ cmd: "updatePosition" })
+    public async updatePosition(data: Object) {
+        let tags = data['tags']
+        delete data['tags']
+        let id = data['id']
+        delete data['id']
+        let position = await this.positionService.updatePosition(id, data)
+            .catch(() => null)
+        if (position['affected'] != 1) {
+            return null
+        } else if (tags != null && tags != undefined) {
+            this.positionService.deleteAllPositionTags(id)
+            if (tags.length > 0) {
+                this.addTagsToPosition(id, tags)
+            }
+        }
+        return this.getPositionById(id)
     }
 
 
@@ -86,18 +117,13 @@ export class PositionController {
 
 
 
-    @MessagePattern({ cmd: 'updatePosition' })
-    async updatePosition(
-        @Payload('id') id: string,
-        @Payload('title') title: string
-    ) {
-        this.positionService.updatePosition(id, title)
-        return 'ok'
-    }
-
     @MessagePattern({ cmd: 'deletePosition' })
     async deletePosition(@Payload('id') id: string) {
-        this.positionService.deletePosition(id)
-        return 'ok'
+        this.positionService.deleteAllPositionTags(id)
+        let position = await this.positionService.deletePosition(id)
+        if (position['affected'] != 1) {
+            return null
+        }
+        return id
     }
 }
