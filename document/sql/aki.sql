@@ -7,7 +7,7 @@ create table employee
     last_name varchar(255) not null,
     email varchar(255) null,
     company_name varchar(255) not null,
-    manager_id bigint null ,
+    manager_id bigint null,
     position_title varchar(255) null,
     start_date date null,
     is_manager tinyint(1) null,
@@ -103,3 +103,4 @@ create index position_fk
 
 create index tag_fk
     on position_tag (tag_id);
+
