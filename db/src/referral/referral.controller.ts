@@ -17,21 +17,21 @@ export class ReferralController {
   }
 
   @MessagePattern({ cmd: "updateReferral" })
-  public async updateReferral(
-    updateReferralDto: CreateReferralDto,
-  ) {
-    return await this.referralService.updateReferral(updateReferralDto,
-      updateReferralDto.id);
+  public async updateReferral(updateReferralDto: CreateReferralDto) {
+    return await this.referralService.updateReferral(
+      updateReferralDto,
+      updateReferralDto.id
+    );
   }
 
   @MessagePattern({ cmd: "deleteReferral" })
-  public async deleteReferral(@Payload('id') id: number) {
+  public async deleteReferral(@Payload("id") id: number) {
     console.log(id);
     await this.referralService.deleteReferral(id);
   }
 
   @MessagePattern({ cmd: "getReferral" })
-  public async getReferral(@Payload('id') id: number): Promise<Referral> {
+  public async getReferral(@Payload("id") id: number): Promise<Referral> {
     return await this.referralService.getReferral(id);
   }
 

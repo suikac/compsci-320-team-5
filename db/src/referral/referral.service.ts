@@ -51,7 +51,7 @@ export class ReferralService {
   }
 
   public async getReferral(id: number): Promise<Referral> {
-    return this.referralRepository
+    return await this.referralRepository
       .createQueryBuilder("getReferral")
       .where("id = :id", { id })
       .getOne();
@@ -78,18 +78,24 @@ export class ReferralService {
       .andWhere("is_read = 0")
       .getMany();
     for (let i = 0; i < referrals.length; i++) {
-      referrals[i] = await this.completeReferral(referrals[i])
+      referrals[i] = await this.completeReferral(referrals[i]);
     }
     return referrals;
   }
 
   // some columns are id which has not meaning, this method adds
   // some fields according to that id fields
-  private async completeReferral(referral: Referral) : Promise<Referral> {
-    referral.position = await this.positionService.getPositionById(referral.positionId.toString());
-    referral.referrer = await this.employeeService.getEmployee(referral.referrerId);
+  private async completeReferral(referral: Referral): Promise<Referral> {
+    referral.position = await this.positionService.getPositionById(
+      referral.positionId.toString()
+    );
+    referral.referrer = await this.employeeService.getEmployee(
+      referral.referrerId
+    );
     if (referral.refereeId !== null) {
-      referral.referee = await this.employeeService.getEmployee(referral.refereeId);
+      referral.referee = await this.employeeService.getEmployee(
+        referral.refereeId
+      );
     }
     return referral;
   }

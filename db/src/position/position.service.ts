@@ -11,96 +11,96 @@ import { PositionTag } from "src/entities/PositionTag";
 
 @Injectable()
 export class PositionService {
-    constructor(
-        @InjectRepository(PositionRepository)
-        private positionRepository: PositionRepository,
-        private tagRepository: TagRepository,
-        private positionTagRepository: PositionTagRepository
-    ) {}
+  constructor(
+    @InjectRepository(PositionRepository)
+    private positionRepository: PositionRepository,
+    private tagRepository: TagRepository,
+    private positionTagRepository: PositionTagRepository
+  ) {}
 
-    public async test() {
-        return "hello"
-    }
+  public async test() {
+    return "hello";
+  }
 
-    public async getPositionById(id: string): Promise<Position> {
-        const position = await this.positionRepository
-            .createQueryBuilder("Position")
-            .where("id = :id", { id: parseInt(id) })
-            .getOneOrFail();
+  public async getPositionById(id: string): Promise<Position> {
+    const position = await this.positionRepository
+      .createQueryBuilder("Position")
+      .where("id = :id", { id: parseInt(id) })
+      .getOneOrFail();
 
-        return position;
-    }
+    return position;
+  }
 
-    public async getPositionsByManager(managerId: string): Promise<Position[]> {
-        const positions = await this.positionRepository
-            .createQueryBuilder('Position')
-            .where('manager_id = :manager_id', { manager_id: parseInt(managerId) })
-            .getMany()
+  public async getPositionsByManager(managerId: string): Promise<Position[]> {
+    const positions = await this.positionRepository
+      .createQueryBuilder("Position")
+      .where("manager_id = :manager_id", { manager_id: parseInt(managerId) })
+      .getMany();
 
-        return positions
-    }
+    return positions;
+  }
 
-    public async getAllPositions(): Promise<Position[]> {
-        const positions = await this.positionRepository
-            .createQueryBuilder('Position')
-            .getMany()
+  public async getAllPositions(): Promise<Position[]> {
+    const positions = await this.positionRepository
+      .createQueryBuilder("Position")
+      .getMany();
 
-        return positions
-    }
+    return positions;
+  }
 
-    public async createPosition(data: Object) {
-        const position = await this.positionRepository.save(data)
-        return position
-    }
+  public async createPosition(data: Object) {
+    const position = await this.positionRepository.save(data);
+    return position;
+  }
 
-    public async addTagToPosition(positionAddId: string, tag: Object) {
-        console.log(tag)
-        console.log(positionAddId)
-        const positionTag = await this.positionTagRepository.save({
-            positionId: parseInt(positionAddId),
-            tagId: parseInt(tag['id'])
-        })
-        return positionTag
-    }
+  public async addTagToPosition(positionAddId: string, tag: Object) {
+    console.log(tag);
+    console.log(positionAddId);
+    const positionTag = await this.positionTagRepository.save({
+      positionId: parseInt(positionAddId),
+      tagId: parseInt(tag["id"]),
+    });
+    return positionTag;
+  }
 
-    public async deleteAllPositionTags(positionId: string) {
-        await this.positionTagRepository
-            .createQueryBuilder('PositionTag')
-            .delete()
-            .from(PositionTag)
-            .where('position_id = :positionId', {positionId: parseInt(positionId)})
-            .execute()
-    }
+  public async deleteAllPositionTags(positionId: string) {
+    await this.positionTagRepository
+      .createQueryBuilder("PositionTag")
+      .delete()
+      .from(PositionTag)
+      .where("position_id = :positionId", { positionId: parseInt(positionId) })
+      .execute();
+  }
 
-    public async getTagByName(name: string) {
-        let tag = await this.tagRepository
-            .createQueryBuilder("Tag")
-            .where("name = :name", { name: name })
-            .getOneOrFail();
-        return tag
-    }
+  public async getTagByName(name: string) {
+    let tag = await this.tagRepository
+      .createQueryBuilder("Tag")
+      .where("name = :name", { name: name })
+      .getOneOrFail();
+    return tag;
+  }
 
-    public async createTag(name: string) {
-        const tag = await this.tagRepository.save({name: name})
-        return tag
-    }
+  public async createTag(name: string) {
+    const tag = await this.tagRepository.save({ name: name });
+    return tag;
+  }
 
-    public async updatePosition(positionId: string, data: Object) {
-        let value = await this.positionRepository
-            .createQueryBuilder('PositionTag')
-            .update(Position)
-            .set(data)
-            .where('id = :positionId', {positionId: parseInt(positionId)})
-            .execute()
-        return value
-    }
+  public async updatePosition(positionId: string, data: Object) {
+    let value = await this.positionRepository
+      .createQueryBuilder("PositionTag")
+      .update(Position)
+      .set(data)
+      .where("id = :positionId", { positionId: parseInt(positionId) })
+      .execute();
+    return value;
+  }
 
-    public async deletePosition(id: string) {
-        let position = await this.positionRepository
-            .createQueryBuilder()
-            .delete()
-            .where('id = :id', {id: id})
-            .execute()
-        return position
-    }
+  public async deletePosition(id: string) {
+    let position = await this.positionRepository
+      .createQueryBuilder()
+      .delete()
+      .where("id = :id", { id: id })
+      .execute();
+    return position;
+  }
 }

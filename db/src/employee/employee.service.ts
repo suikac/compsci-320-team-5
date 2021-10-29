@@ -14,8 +14,8 @@ export class EmployeeService {
   public async getEmployee(id: number): Promise<Employee> {
     return this.employeeRepository
       .createQueryBuilder()
-      .where("id = :id", {id : id})
-      .getOneOrFail()
+      .where("id = :id", { id: id })
+      .getOneOrFail();
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {

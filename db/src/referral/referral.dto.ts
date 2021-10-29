@@ -1,6 +1,12 @@
 // data transfer object for creating
 import { isNumberObject } from "util/types";
-import { IsEmail, IsNotEmpty } from "class-validator";
+import {
+  IsBoolean,
+  IsEmail,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+} from "class-validator";
 
 export class CreateReferralDto {
   resumeId: number;
@@ -23,6 +29,13 @@ export class CreateReferralDto {
   id: number;
 }
 
-export class CompleteReferral {
+export class GetReferralDto {
+  @IsBoolean()
+  isRead: boolean;
 
+  @IsNumber()
+  id: number;
+
+  @IsString()
+  referrerId: string;
 }

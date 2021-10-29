@@ -39,9 +39,9 @@ require("dotenv").config();
     }),
     EmployeeModule,
     PositionModule,
-    ReferralModule
+    ReferralModule,
   ],
-  controllers: [],//[LoginController],
-  providers: []//[LoginService],
+  controllers: [], //[LoginController],
+  providers: [], //[LoginService],
 })
 export class DbModule {}

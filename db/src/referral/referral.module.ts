@@ -10,8 +10,11 @@ import { PositionModule } from "../position/position.module";
 import { EmployeeModule } from "../employee/employee.module";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Referral, ReferralRepository]),
-            PositionModule, EmployeeModule],
+  imports: [
+    TypeOrmModule.forFeature([Referral, ReferralRepository]),
+    PositionModule,
+    EmployeeModule,
+  ],
   providers: [ReferralService],
   controllers: [ReferralController],
 })
