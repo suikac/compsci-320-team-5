@@ -94,4 +94,12 @@ export class ReferralController {
     const cmd = { cmd: 'readReferral' };
     this.dbService.emit(cmd, body.id);
   }
+
+  @Get('get')
+  public async get(@Req() req, @Query() query) {
+    const cmd = { cmd: 'get' };
+    query.referrerId = req.user.userId;
+    console.log(query);
+    this.dbService.send(cmd, query);
+  }
 }

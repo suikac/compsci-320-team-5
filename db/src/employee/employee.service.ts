@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Employee } from "src/entities/Employee";
-import { EmployeeRepository } from "./employee.repository";
-import * as bcrypt from "bcrypt";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Employee } from 'src/entities/Employee';
+import { EmployeeRepository } from './employee.repository';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class EmployeeService {
@@ -14,14 +14,14 @@ export class EmployeeService {
   public async getEmployee(id: number): Promise<Employee> {
     return this.employeeRepository
       .createQueryBuilder()
-      .where("id = :id", { id: id })
+      .where('id = :id', { id: id })
       .getOneOrFail();
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {
     return this.employeeRepository
-      .createQueryBuilder("Employee")
-      .where("email = :email", { email: email })
+      .createQueryBuilder('Employee')
+      .where('email = :email', { email: email })
       .getOne();
   }
 
@@ -29,7 +29,7 @@ export class EmployeeService {
     await this.employeeRepository
       .createQueryBuilder()
       .insert()
-      .into("employee")
+      .into('employee')
       .values({
         email: email,
         password: await bcrypt.hash(password, await bcrypt.genSalt()),

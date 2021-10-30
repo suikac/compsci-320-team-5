@@ -1,11 +1,11 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { ReferralRepository } from "./referral.repository";
-import { Referral } from "../entities/Referral";
-import { CreateReferralDto } from "./referral.dto";
-import { PositionController } from "../position/position.controller";
-import { PositionService } from "../position/position.service";
-import { EmployeeService } from "../employee/employee.service";
+import { Inject, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ReferralRepository } from './referral.repository';
+import { Referral } from '../entities/Referral';
+import { CreateReferralDto } from './referral.dto';
+import { PositionController } from '../position/position.controller';
+import { PositionService } from '../position/position.service';
+import { EmployeeService } from '../employee/employee.service';
 
 @Injectable()
 export class ReferralService {
@@ -20,7 +20,7 @@ export class ReferralService {
 
   public async createReferral(createReferralDto: CreateReferralDto) {
     await this.referralRepository
-      .createQueryBuilder("createReferral")
+      .createQueryBuilder('createReferral')
       .insert()
       .into(Referral)
       .values(createReferralDto)
@@ -33,49 +33,49 @@ export class ReferralService {
     id: number
   ) {
     await this.referralRepository
-      .createQueryBuilder("updateReferral")
+      .createQueryBuilder('updateReferral')
       .update(Referral)
       .set(updateReferralDto)
-      .where("id = :id", { id })
+      .where('id = :id', { id })
       .execute();
     return updateReferralDto;
   }
 
   public async deleteReferral(id: number) {
     await this.referralRepository
-      .createQueryBuilder("deleteReferral")
+      .createQueryBuilder('deleteReferral')
       .delete()
       .from(Referral)
-      .where("id = :id", { id })
+      .where('id = :id', { id })
       .execute();
   }
 
   public async getReferral(id: number): Promise<Referral> {
     return await this.referralRepository
-      .createQueryBuilder("getReferral")
-      .where("id = :id", { id })
+      .createQueryBuilder('getReferral')
+      .where('id = :id', { id })
       .getOne();
   }
 
   public async getReferralsByPosition(positionId: number): Promise<Referral[]> {
     return this.referralRepository
-      .createQueryBuilder("getReferralsByPosition")
-      .where("position_id = :positionId", { positionId })
+      .createQueryBuilder('getReferralsByPosition')
+      .where('position_id = :positionId', { positionId })
       .getMany();
   }
 
   public async getReferralsByReferrer(referrerId: number): Promise<Referral[]> {
     return this.referralRepository
-      .createQueryBuilder("getReferralsByEmployee")
-      .where("referrer_id = :referrerId", { referrerId })
+      .createQueryBuilder('getReferralsByEmployee')
+      .where('referrer_id = :referrerId', { referrerId })
       .getMany();
   }
 
   public async getUnreadReferral(id: number): Promise<Referral[]> {
     const referrals = await this.referralRepository
-      .createQueryBuilder("getUnreadReferral")
-      .where("referrer_id = :id", { id })
-      .andWhere("is_read = 0")
+      .createQueryBuilder('getUnreadReferral')
+      .where('referrer_id = :id', { id })
+      .andWhere('is_read = 0')
       .getMany();
     for (let i = 0; i < referrals.length; i++) {
       referrals[i] = await this.completeReferral(referrals[i]);
@@ -103,9 +103,9 @@ export class ReferralService {
   public async readReferral(id: number) {
     console.log(id);
     await this.referralRepository
-      .createQueryBuilder("readReferral")
+      .createQueryBuilder('readReferral')
       .update()
-      .where("id = :id", { id })
+      .where('id = :id', { id })
       .set({ isRead: true })
       .execute();
   }

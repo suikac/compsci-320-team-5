@@ -1,13 +1,13 @@
-import { Inject, Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import * as bcrypt from "bcrypt";
-import { REPL_MODE_STRICT } from "repl";
-import { Position } from "src/entities/Position";
-import { PositionRepository } from "./position.repository";
-import { PositionTagRepository } from "./positionTag.repository";
-import { TagRepository } from "./tag.repository";
-import { getRepository } from "typeorm";
-import { PositionTag } from "src/entities/PositionTag";
+import { Inject, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import * as bcrypt from 'bcrypt';
+import { REPL_MODE_STRICT } from 'repl';
+import { Position } from 'src/entities/Position';
+import { PositionRepository } from './position.repository';
+import { PositionTagRepository } from './positionTag.repository';
+import { TagRepository } from './tag.repository';
+import { getRepository } from 'typeorm';
+import { PositionTag } from 'src/entities/PositionTag';
 
 @Injectable()
 export class PositionService {
@@ -19,13 +19,13 @@ export class PositionService {
   ) {}
 
   public async test() {
-    return "hello";
+    return 'hello';
   }
 
   public async getPositionById(id: string): Promise<Position> {
     const position = await this.positionRepository
-      .createQueryBuilder("Position")
-      .where("id = :id", { id: parseInt(id) })
+      .createQueryBuilder('Position')
+      .where('id = :id', { id: parseInt(id) })
       .getOneOrFail();
 
     return position;
@@ -33,8 +33,8 @@ export class PositionService {
 
   public async getPositionsByManager(managerId: string): Promise<Position[]> {
     const positions = await this.positionRepository
-      .createQueryBuilder("Position")
-      .where("manager_id = :manager_id", { manager_id: parseInt(managerId) })
+      .createQueryBuilder('Position')
+      .where('manager_id = :manager_id', { manager_id: parseInt(managerId) })
       .getMany();
 
     return positions;
@@ -42,7 +42,7 @@ export class PositionService {
 
   public async getAllPositions(): Promise<Position[]> {
     const positions = await this.positionRepository
-      .createQueryBuilder("Position")
+      .createQueryBuilder('Position')
       .getMany();
 
     return positions;
@@ -58,24 +58,24 @@ export class PositionService {
     console.log(positionAddId);
     const positionTag = await this.positionTagRepository.save({
       positionId: parseInt(positionAddId),
-      tagId: parseInt(tag["id"]),
+      tagId: parseInt(tag['id']),
     });
     return positionTag;
   }
 
   public async deleteAllPositionTags(positionId: string) {
     await this.positionTagRepository
-      .createQueryBuilder("PositionTag")
+      .createQueryBuilder('PositionTag')
       .delete()
       .from(PositionTag)
-      .where("position_id = :positionId", { positionId: parseInt(positionId) })
+      .where('position_id = :positionId', { positionId: parseInt(positionId) })
       .execute();
   }
 
   public async getTagByName(name: string) {
     let tag = await this.tagRepository
-      .createQueryBuilder("Tag")
-      .where("name = :name", { name: name })
+      .createQueryBuilder('Tag')
+      .where('name = :name', { name: name })
       .getOneOrFail();
     return tag;
   }
@@ -87,10 +87,10 @@ export class PositionService {
 
   public async updatePosition(positionId: string, data: Object) {
     let value = await this.positionRepository
-      .createQueryBuilder("PositionTag")
+      .createQueryBuilder('PositionTag')
       .update(Position)
       .set(data)
-      .where("id = :positionId", { positionId: parseInt(positionId) })
+      .where('id = :positionId', { positionId: parseInt(positionId) })
       .execute();
     return value;
   }
@@ -99,7 +99,7 @@ export class PositionService {
     let position = await this.positionRepository
       .createQueryBuilder()
       .delete()
-      .where("id = :id", { id: id })
+      .where('id = :id', { id: id })
       .execute();
     return position;
   }
