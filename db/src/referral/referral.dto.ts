@@ -4,9 +4,9 @@ import {
   IsBoolean,
   IsEmail,
   IsNotEmpty,
-  IsNumber,
-  IsString,
-} from 'class-validator';
+  IsNumber, IsNumberString, IsOptional,
+  IsString
+} from "class-validator";
 
 export class CreateReferralDto {
   resumeId: number;
@@ -30,12 +30,17 @@ export class CreateReferralDto {
 }
 
 export class GetReferralDto {
-  @IsBoolean()
-  isRead: boolean;
 
-  @IsNumber()
+  @IsNumberString()
+  @IsOptional()
   id: number;
 
-  @IsString()
-  referrerId: string;
+  @IsNumberString()
+  isRead: number;
+
+  @IsNumber()
+  referrerId: number;
+
+  @IsNumberString()
+  positionId: number;
 }

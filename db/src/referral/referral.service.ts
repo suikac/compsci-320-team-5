@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ReferralRepository } from './referral.repository';
 import { Referral } from '../entities/Referral';
-import { CreateReferralDto } from './referral.dto';
+import { CreateReferralDto, GetReferralDto } from "./referral.dto";
 import { PositionController } from '../position/position.controller';
 import { PositionService } from '../position/position.service';
 import { EmployeeService } from '../employee/employee.service';
@@ -108,5 +108,36 @@ export class ReferralService {
       .where('id = :id', { id })
       .set({ isRead: true })
       .execute();
+  }
+
+  public async get(data: GetReferralDto) {
+    const query = this.referralRepository
+      .createQueryBuilder('getReferral')
+
+    if (data.referrerId) {
+      query.where('referrer_id = :id', {id: data.referrerId})
+      console.log('in here')
+    }
+
+    if (data.isRead) {
+      query.andWhere('is_read = :isRead', {isRead: data.isRead})
+    }
+
+    if (data.positionId) {
+      console.log(typeof data.positionId)
+      query.andWhere('position_id = :id', {id: data.positionId})
+    }
+
+    if (data.id) {
+      query.andWhere('id = :id', {id: data.id})
+    }
+
+    const res = await query.getMany();
+
+    for (let i = 0; i < res.length; i++) {
+      res[i] = await this.completeReferral(res[i])
+    }
+
+    return res;
   }
 }
