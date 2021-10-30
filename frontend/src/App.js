@@ -36,7 +36,8 @@ class App extends Component {
 
   render() {
     // Login bypass
-    this.state.userInfo = {};
+    // this.state.userInfo = {};
+
     if (this.state.userInfo === undefined) {
       return null
     }
