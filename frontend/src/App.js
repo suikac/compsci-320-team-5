@@ -9,15 +9,25 @@ import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import NotFoundPage from "./components/NotFound/NotFoundPage"
 import * as paths from "./utils/paths"
+import { apiGet } from "./utils/api-fetch"
 
 class App extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
-      userInfo: null
+      userInfo: undefined
     }
 
     this.onUserInfoChange = this.onUserInfoChange.bind(this)
+  }
+
+  async componentDidMount() {
+    const response = await apiGet('/employee/getSessionInfo')
+    let userInfo = response.status == 200 ? await response.json() : null
+    this.setState({
+      userInfo: userInfo
+    })
   }
 
   onUserInfoChange(userInfo) {
@@ -25,21 +35,29 @@ class App extends Component {
   }
 
   render() {
+    if (this.state.userInfo === undefined) {
+      return null
+    }
     return (
       <BrowserRouter>
-        {/* {this.state.userInfo == undefined
-        ? <Redirect to='/login'/>
-        : null
-        } */}
+        {this.state.userInfo == null
+        ?
+        <div className='main-div'>
+          <Redirect to={paths.LOGIN}/>
+          <Login onUserInfoChange={this.onUserInfoChange}/>
+        </div>
+        :
         <div className='main-div'>
           <Switch>
             <Route path={paths.LOGIN}>
-              <Login onUserInfoChange={this.onUserInfoChange}/>
+              <Redirect to='/' />
             </Route>
             <Route path={paths.CREATE_POSTING}>
-              <Header />
-              <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
-              <Footer />
+              <div>
+                <Header />
+                <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
+                <Footer />
+              </div>
             </Route>
             <Route path={paths.NOT_FOUND}>
               <NotFoundPage />
@@ -51,6 +69,7 @@ class App extends Component {
             </Route>
           </Switch>
         </div>
+        }
     </BrowserRouter>
 
     )
