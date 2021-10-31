@@ -115,17 +115,18 @@ export class ReferralService {
       .createQueryBuilder('getReferral')
 
     if (data.referrerId) {
-      query.where('referrer_id = :id', {id: data.referrerId})
+      query.where('referrer_id = :referrerId', {referrerId: data.referrerId})
       console.log('in here')
     }
 
     if (data.isRead) {
+      console.log(data.isRead)
       query.andWhere('is_read = :isRead', {isRead: data.isRead})
     }
 
     if (data.positionId) {
       console.log(typeof data.positionId)
-      query.andWhere('position_id = :id', {id: data.positionId})
+      query.andWhere('position_id = :positionId', {positionId: data.positionId})
     }
 
     if (data.id) {

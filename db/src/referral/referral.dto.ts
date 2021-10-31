@@ -36,11 +36,14 @@ export class GetReferralDto {
   id: number;
 
   @IsNumberString()
+  @IsOptional()
   isRead: number;
 
   @IsNumber()
+  @IsOptional()
   referrerId: number;
 
   @IsNumberString()
+  @IsOptional()
   positionId: number;
 }
