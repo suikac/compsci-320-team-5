@@ -1,0 +1,21 @@
+body {
+    box-sizing: border-box;
+}
+
+.TopInfo{
+    margin-left: 80%;
+}
+
+.column{
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /*Should be removed. Just for demonstration*/
+    border: 1px solid black;
+}
+
+.row::after{
+    content: "";
+    display: table;
+    clear: both;
+}

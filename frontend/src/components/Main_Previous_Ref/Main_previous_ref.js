@@ -20,9 +20,9 @@ function MainPreviousRef(){
     )
 }
 
-function getReferral() {
-  const data = apiGet("/referral/getUnread")
-  console.log()
+async function getReferral() {
+  const data = await apiGet("/referral/getUnread")
+  console.log(data.json())
 }
 
 export default MainPreviousRef;
