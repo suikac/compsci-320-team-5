@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer"
 import NotFoundPage from "./components/NotFound/NotFoundPage"
 import * as paths from "./utils/paths"
 import { apiGet } from "./utils/api-fetch"
+import NavBar from './components/NavBar/navBar'
 
 class App extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class App extends Component {
       return null
     }
     return (
+      <div className='wrapper'>
       <BrowserRouter>
         {this.state.userInfo == null
         ?
@@ -47,31 +49,30 @@ class App extends Component {
           <Login onUserInfoChange={this.onUserInfoChange}/>
         </div>
         :
-        <div className='main-div'>
           <Switch>
             <Route path={paths.LOGIN}>
               <Redirect to='/' />
-            </Route>
-            <Route path={paths.CREATE_POSTING}>
-              <div>
-                <Header />
-                <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
-                <Footer />
-              </div>
             </Route>
             <Route path={paths.NOT_FOUND}>
               <NotFoundPage />
             </Route>
             <Route path='/'>
-              <Header />
-              <Main userInfo={this.state.userInfo}/>
-              <Footer />
+              <div className='header-div'>
+                <Header />
+              </div>
+              <div className='appGrid'>
+                <div className='navBarDiv'>
+                  <NavBar />
+                </div>
+                <div className='mainDiv'>
+                  <Main userInfo={this.state.userInfo}/>
+                </div>
+              </div>
             </Route>
           </Switch>
-        </div>
         }
     </BrowserRouter>
-
+    </div>
     )
   }
 }

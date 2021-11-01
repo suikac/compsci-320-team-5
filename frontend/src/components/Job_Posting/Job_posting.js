@@ -18,8 +18,7 @@ class CreateJobPosting extends Component{
 
     render(){
         return(
-            <div className={styles.container}>
-                <h1>
+            <div className={styles.grid}>
                     <div className = {styles.jobTitleContainer}>
                         <input
                             type="title"
@@ -69,7 +68,6 @@ class CreateJobPosting extends Component{
                     onClick = {this.submit_credentials}
                     className = {styles.createButton}>Create Job
                     </button>
-                </h1>
             </div>
         );
     }

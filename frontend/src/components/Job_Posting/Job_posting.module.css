@@ -1,7 +1,7 @@
-* {
+/* * {
   box-sizing: content-box;
   width: 100%;
-}
+} */
 /* .container{
 background-color: #edddd4;
 width: 800px;
@@ -15,18 +15,20 @@ padding: 2em;
 } */
 /* Header */
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  grid-template-rows: 1fr 1fr 2fr 1fr;
+  gap: 20px;
+  margin: 10% 0 0 0 ;
+}
+
 .jobTitleContainer{
+  grid-row: 1;
+  grid-column: 1/span 2;
 display:inline-block;
-font-size: 48px;
-margin-bottom: 10px;
+/* font-size: 48px; */
 text-align: center;
-padding: 10px;
-position: relative;
-width: 1057px;
-height: 162px;
-left: -255px;
-top: 0px;
-transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
@@ -37,22 +39,16 @@ justify-content: center;
 display: inline-block;
 text-align: left;
 border-radius: 10px;
-width: 90%;
-height: 142px;
+/* width: 90%;
+height: 142px; */
 background: #C4C4C4;
 }
 .salaryContainer{
+  grid-row: 2;
+  grid-column: 1;
 display:inline-block;
-font-size: 48px;
 margin-bottom: 10px;
 text-align: center;
-padding: 10px;
-position: relative;
-width: 466px;
-height: 133px;
-left: -155px;
-top: 0px;
-transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
@@ -63,23 +59,15 @@ justify-content: center;
 display: inline-block;
 text-align: left;
 border-radius: 10px;
-width: 80%;
-height: 113px;
 background: #C4C4C4;
 }
 
 .minYearofExpContainer{
+  grid-row: 2;
+  grid-column: 2;
 display:inline-block;
-font-size: 48px;
 margin-bottom: 10px;
 text-align: center;
-padding: 10px;
-position: relative;
-width: 493.17px;
-height: 133px;
-left: -345px;
-top: 0px;
-transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
@@ -90,21 +78,12 @@ justify-content: center;
 display: inline-block;
 text-align: left;
 border-radius: 10px;
-width: 80%;
-height: 113px;
 background: #C4C4C4;
 }
 .DescriptionContainer{
+  grid-column: 3;
+  grid-row: 1/span 3;
 display: inline-block;
-position: relative;
-font-size: 48px;
-margin-bottom: 10px;
-padding: 10px;
-width: 1267px;
-height: 954px;
-left: 370px;
-top: -522px;
-transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
@@ -115,21 +94,12 @@ justify-content:start;
 display: inline-block;
 text-align: left;
 border-radius: 20px;
-width: 80%;
-height: 934px;
 background: #C4C4C4;
 }
 .tagSearchBarContainer{
+  grid-row: 3;
+  grid-column: 1/span 2;
 display: inline-block;
-position: relative;
-font-size: 48px;
-margin-bottom: 10px;
-padding: 10px;
-width: 1056px;
-height: 369px;
-left: -252px;
-top: -1047px;
-transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
@@ -140,17 +110,11 @@ justify-content:start;
 display: inline-block;
 text-align: left;
 border-radius: 20px;
-width: 90%;
-height: 369;
 background: #C4C4C4;
 }
 .createButton{
-position: relative;
-width: 454px;
-height: 142px;
-left: 50px;
-top: -1150px;
-transform: scale(0.5);
+  grid-row: 4;
+  grid-column: 1/span 3;
 background: #197278;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
 border-radius: 102px;
