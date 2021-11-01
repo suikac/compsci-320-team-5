@@ -2,7 +2,7 @@
   box-sizing: content-box;
   width: 100%;
 }
-.container{
+/* .container{
 background-color: #edddd4;
 width: 800px;
 height: 700px;
@@ -12,32 +12,8 @@ border: 3px solid #772E25;
 border-radius: 20px;
 margin: 20em;
 padding: 2em;
-}
+} */
 /* Header */
-.pageHeader{
-position: absolute;
-width: 1950px;
-height: 500px;
-left: 0px;
-top: 90px;
-}
-.bell{
-position: absolute;
-width: 65px;
-height: 74.29px;
-left: 1753px;
-top: 134px;
-}
-
-.avatar{
-position: absolute;
-left: 94.41%;
-right: 2%;
-top: 6.09%;
-bottom: 90.99%;
-
-background: #197278;
-}
 
 .jobTitleContainer{
 display:inline-block;
@@ -45,11 +21,11 @@ font-size: 48px;
 margin-bottom: 10px;
 text-align: center;
 padding: 10px;
-position: absolute;
-width: 1056px;
+position: relative;
+width: 1057px;
 height: 162px;
-left: 557px;
-top: 561px;
+left: -255px;
+top: 0px;
 transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
@@ -62,7 +38,7 @@ display: inline-block;
 text-align: left;
 border-radius: 10px;
 width: 90%;
-height: 162px;
+height: 142px;
 background: #C4C4C4;
 }
 .salaryContainer{
@@ -71,11 +47,11 @@ font-size: 48px;
 margin-bottom: 10px;
 text-align: center;
 padding: 10px;
-position: absolute;
+position: relative;
 width: 466px;
 height: 133px;
-left: 557px;
-top: 858px;
+left: -155px;
+top: 0px;
 transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
@@ -87,8 +63,8 @@ justify-content: center;
 display: inline-block;
 text-align: left;
 border-radius: 10px;
-width: 90%;
-height: 133px;
+width: 80%;
+height: 113px;
 background: #C4C4C4;
 }
 
@@ -98,11 +74,11 @@ font-size: 48px;
 margin-bottom: 10px;
 text-align: center;
 padding: 10px;
-position: absolute;
+position: relative;
 width: 493.17px;
 height: 133px;
-left: 1119.83px;
-top: 863px;
+left: -345px;
+top: 0px;
 transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
@@ -114,20 +90,20 @@ justify-content: center;
 display: inline-block;
 text-align: left;
 border-radius: 10px;
-width: 90%;
-height: 133px;
+width: 80%;
+height: 113px;
 background: #C4C4C4;
 }
 .DescriptionContainer{
 display: inline-block;
-position: absolute;
+position: relative;
 font-size: 48px;
 margin-bottom: 10px;
 padding: 10px;
 width: 1267px;
-height: 1094px;
-left: 1787px;
-top: 526px;
+height: 954px;
+left: 370px;
+top: -522px;
 transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
@@ -139,20 +115,20 @@ justify-content:start;
 display: inline-block;
 text-align: left;
 border-radius: 20px;
-width: 90%;
-height: 1094px;
+width: 80%;
+height: 934px;
 background: #C4C4C4;
 }
 .tagSearchBarContainer{
 display: inline-block;
-position: absolute;
+position: relative;
 font-size: 48px;
 margin-bottom: 10px;
 padding: 10px;
 width: 1056px;
 height: 369px;
-left: 557px;
-top: 1128px;
+left: -252px;
+top: -1047px;
 transform: scale(0.5);
 background: #C4C4C4;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
@@ -165,15 +141,15 @@ display: inline-block;
 text-align: left;
 border-radius: 20px;
 width: 90%;
-height: 165px;
+height: 369;
 background: #C4C4C4;
 }
 .createButton{
-position: absolute;
+position: relative;
 width: 454px;
 height: 142px;
-left: 488px;
-top: 890px;
+left: 50px;
+top: -1150px;
 transform: scale(0.5);
 background: #197278;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
