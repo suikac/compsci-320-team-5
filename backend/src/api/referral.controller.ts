@@ -102,6 +102,10 @@ export class ReferralController {
     console.log(req.user);
     query.referrerId = req.user.userId;
     console.log(query);
-    return this.dbService.send(cmd, query);
+    try {
+      return this.dbService.send(cmd, query);
+    } catch (e) {
+      throw e;
+    }
   }
 }

@@ -2,11 +2,13 @@
 import { isNumberObject } from 'util/types';
 import {
   IsBoolean,
-  IsEmail,
+  IsEmail, IsIn, IsInt,
   IsNotEmpty,
   IsNumber, IsNumberString, IsOptional,
   IsString
-} from "class-validator";
+} from 'class-validator';
+import { ParseIntPipe } from '@nestjs/common';
+import { Transform, Type } from 'class-transformer';
 
 export class CreateReferralDto {
   resumeId: number;
@@ -31,23 +33,28 @@ export class CreateReferralDto {
 
 export class GetReferralDto {
 
-  @IsNumberString()
+  @Type(() => Number)
+  @IsInt()
   @IsOptional()
   id: number;
 
-  @IsNumberString()
+  @Type(() => Number)
+  @IsInt()
   @IsOptional()
   isRead: number;
 
-  @IsNumber()
+  @Type(() => Number)
+  @IsInt()
   @IsOptional()
   referrerId: number;
 
-  @IsNumberString()
+  @Type(() => Number)
+  @IsInt()
   @IsOptional()
   positionId: number;
 
-  @IsNumberString()
+  @Type(() => Number)
+  @IsInt()
   @IsOptional()
   isManager: number;
 }
