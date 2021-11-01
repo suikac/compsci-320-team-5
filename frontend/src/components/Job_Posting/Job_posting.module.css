@@ -24,14 +24,19 @@ padding: 2em;
 }
 
 .jobTitleContainer{
-  grid-row: 1;
-  grid-column: 1/span 2;
-display:inline-block;
-/* font-size: 48px; */
-text-align: center;
-background: #C4C4C4;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-border-radius: 102px;
+font-size: 48px;
+margin-bottom: 10px;
+ text-align: center;
+ padding: 10px;
+ position: relative;
+ width: 950px;
+ height: 133px;
+ left: -220px;
+ top: -100px;
+ transform: scale(0.5);
+ background: #C4C4C4;
+ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 102px;
 }
 .jobTitleText{
 border: none;
@@ -39,83 +44,119 @@ justify-content: center;
 display: inline-block;
 text-align: left;
 border-radius: 10px;
-/* width: 90%;
-height: 142px; */
+width: 90%;
+height: 113px;
 background: #C4C4C4;
 }
 .salaryContainer{
-  grid-row: 2;
-  grid-column: 1;
-display:inline-block;
-margin-bottom: 10px;
-text-align: center;
-background: #C4C4C4;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  font-size: 48px;
+  margin-bottom: 10px;
+ text-align: center;
+ padding: 10px;
+ position: relative;
+ width: 400px;
+ height: 133px;
+ left: -1100px;
+ top: 0px;
+ transform: scale(0.5);
+ background: #C4C4C4;
+ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
 }
 .salaryText{
-border: none;
-justify-content: center;
-display: inline-block;
-text-align: left;
-border-radius: 10px;
-background: #C4C4C4;
+  border: none;
+  justify-content: center;
+  display: inline-block;
+  text-align: left;
+  border-radius: 10px;
+  width: 90%;
+  height: 113px;
+  background: #C4C4C4;
 }
 
 .minYearofExpContainer{
-  grid-row: 2;
-  grid-column: 2;
-display:inline-block;
-margin-bottom: 10px;
-text-align: center;
-background: #C4C4C4;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  font-size: 48px;
+ margin-bottom: 10px;
+ text-align: center;
+ padding: 10px;
+ position: relative;
+ width: 400px;
+ height: 133px;
+ left: -1798px;
+ top: 0px;
+ transform: scale(0.5);
+ background: #C4C4C4;
+ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
 }
 .minYearofExpText{
-border: none;
-justify-content: center;
-display: inline-block;
-text-align: left;
-border-radius: 10px;
-background: #C4C4C4;
+  border: none;
+  justify-content: center;
+  display: inline-block;
+  text-align: left;
+  border-radius: 10px;
+  width: 90%;
+  height: 113px;
+  background: #C4C4C4;
 }
+.tagSearchBarContainer{
+  font-size: 48px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  width: 950px;
+  height: 300px;
+  left: -1240px;
+  top: -770px;
+  transform: scale(0.5);
+  background: #C4C4C4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+ border-radius: 102px;
+ }
+ .tagSearchBarText{
+   border: none;
+   justify-content: center;
+   display: inline-block;
+   text-align: left;
+   border-radius: 10px;
+   width: 90%;
+   height: 280px;
+   background: #C4C4C4;
+ }
 .DescriptionContainer{
-  grid-column: 3;
-  grid-row: 1/span 3;
-display: inline-block;
-background: #C4C4C4;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  font-size: 48px;
+ margin-bottom: 10px;
+ text-align: center;
+ padding: 10px;
+ position: relative;
+ width: 1000px;
+ height: 800px;
+ left: 300px;
+ top: -1100px;
+ transform: scale(0.5);
+ background: #C4C4C4;
+ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
 }
 .DescriptionText{
-border: none;
-justify-content:start;
-display: inline-block;
-text-align: left;
-border-radius: 20px;
-background: #C4C4C4;
-}
-.tagSearchBarContainer{
-  grid-row: 3;
-  grid-column: 1/span 2;
-display: inline-block;
-background: #C4C4C4;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-border-radius: 102px;
-}
-.tagSearchBarText{
-border: none;
-justify-content:start;
-display: inline-block;
-text-align: left;
-border-radius: 20px;
-background: #C4C4C4;
+  border: none;
+  justify-content: center;
+  display: inline-block;
+  text-align: left;
+  border-radius: 10px;
+  width: 90%;
+  height: 780px;
+  background: #C4C4C4;
 }
 .createButton{
-  grid-row: 4;
-  grid-column: 1/span 3;
-background: #197278;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
-border-radius: 102px;
+  position: relative;
+  width: 454px;
+  height: 142px;
+  left: -1700px;
+  top: -500px;
+  transform: scale(0.5);
+  background: #197278;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
+ border-radius: 102px;
 }
