@@ -115,24 +115,24 @@ export class ReferralService {
     const query = this.referralRepository
       .createQueryBuilder('referral')
 
-    if (!data.isManager) {
+    if (data.isManager == null) {
       query.where('referrer_id = :referrerId', {referrerId: data.referrerId})
     } else {
       query.innerJoinAndSelect('referral.position', 'position')
         .where('position.manager_id = :managerId', {managerId: data.referrerId})
     }
 
-    if (data.isRead) {
+    if (data.isRead != null) {
       console.log(data.isRead)
       query.andWhere('is_read = :isRead', {isRead: data.isRead})
     }
 
-    if (data.positionId) {
+    if (data.positionId != null) {
       console.log(typeof data.positionId)
       query.andWhere('position_id = :positionId', {positionId: data.positionId})
     }
 
-    if (data.id) {
+    if (data.id != null) {
       query.andWhere('id = :id', {id: data.id})
     }
 
