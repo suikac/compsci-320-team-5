@@ -6,6 +6,7 @@ import { CreateReferralDto, GetReferralDto } from "./referral.dto";
 import { PositionController } from '../position/position.controller';
 import { PositionService } from '../position/position.service';
 import { EmployeeService } from '../employee/employee.service';
+import { Position } from '../entities/Position';
 
 @Injectable()
 export class ReferralService {
@@ -112,11 +113,13 @@ export class ReferralService {
 
   public async get(data: GetReferralDto) {
     const query = this.referralRepository
-      .createQueryBuilder('getReferral')
+      .createQueryBuilder('referral')
 
-    if (data.referrerId) {
+    if (!data.isManager) {
       query.where('referrer_id = :referrerId', {referrerId: data.referrerId})
-      console.log('in here')
+    } else {
+      query.innerJoinAndSelect('referral.position', 'position')
+        .where('position.manager_id = :managerId', {managerId: data.referrerId})
     }
 
     if (data.isRead) {

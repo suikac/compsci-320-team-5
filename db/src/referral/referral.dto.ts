@@ -46,4 +46,8 @@ export class GetReferralDto {
   @IsNumberString()
   @IsOptional()
   positionId: number;
+
+  @IsNumberString()
+  @IsOptional()
+  isManager: number;
 }

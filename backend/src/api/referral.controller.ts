@@ -99,6 +99,7 @@ export class ReferralController {
   @Get('get')
   public async get(@Req() req, @Query() query) {
     const cmd = { cmd: 'getReferral' };
+    console.log(req.user);
     query.referrerId = req.user.userId;
     console.log(query);
     return this.dbService.send(cmd, query);
