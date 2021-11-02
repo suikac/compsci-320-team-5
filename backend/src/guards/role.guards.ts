@@ -22,6 +22,7 @@ export class RolesGuard implements CanActivate {
     if (!isManagerRoute) {
       return true;
     }
+
     const request = context.switchToHttp().getRequest();
     return request.user.role == 'manager';
   }

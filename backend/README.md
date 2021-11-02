@@ -1,3 +1,5 @@
 # Before you start
-* copy content in `.env.example` to `.env`(create one
-if you don't have one.)
+* if you want to run using native system:
+  * put localhost in fields in `.env`
+* if you want to run using docker:
+  * put service name in both fields, for example: login for login_host

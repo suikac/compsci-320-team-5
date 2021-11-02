@@ -1,0 +1,49 @@
+.HeaderContainer{
+    background-color:rgb(202, 190, 190);
+    overflow: hidden;
+}
+
+.logocontainer{
+    float: left;
+}
+
+.logoimg{
+    width: 15%;
+    height: 10%;
+}
+
+.sbar{
+    float: left;
+    width: 20%;
+    height: 30px;
+    margin: 12px;
+    border: none;
+}
+
+.notifpic{
+    float: right;
+    width: 35px;
+    height: 35px;
+    margin: 4px;
+}
+
+.profpic{
+    float: right;
+    width: 35px;
+    height: 35px;
+    margin: 4px;
+}
+
+.searchicon{
+    width: 30px;
+    height: 30px;
+    margin: 12px;
+    border: 1px solid black;
+    background-color: rgba(35, 87, 86, 30%);
+    cursor: pointer;
+}
+h1,h2{
+    text-align: center;
+    margin-top: auto;
+    color: black;
+}

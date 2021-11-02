@@ -1,0 +1,8 @@
+.Mailbox {
+  list-style-type: none;
+  width: 80%;
+  height: 20em;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+

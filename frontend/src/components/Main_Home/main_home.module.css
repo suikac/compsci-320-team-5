@@ -1,0 +1,42 @@
+.MainContainer{
+  background-color: #edddd4;
+  width: 800px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 3px solid #772E25;
+  border-radius: 20px;
+  margin: 1em;
+  padding: 1em;
+}
+h1.rec{
+  text-align: center;
+  color: rgba(0, 0, 0, 50%);
+}
+.MainJobContainer{
+  background-color: white;
+  width: 600px;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+}
+input[type=submit]{
+  width: 100px;
+  height: 30px;
+  color: white;
+  background-color: #197278;
+  border: none;
+  border-radius:15px;
+  cursor: pointer;
+}
+input[type=submit]:hover{
+  color: black;
+  background-color: #edddd4;
+  border: 2px solid #C44536 ;
+}
+
+.refButton{
+  margin-left: 80%;
+  margin-top: 30%;
+}
