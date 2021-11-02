@@ -10,11 +10,21 @@ function Header(){
         <div className = {headercss.HeaderContainer}>
             <div>
                 <img className ={headercss.notifpic} src={NotifPic} alt="NotifPic"></img>
-                <img className ={headercss.profpic} src ={ProfPic} alt ="ProfPic"></img>
-                <input className ={headercss.sbar} type ="text" placeholder="Search"></input>
-                <img className ={headercss.searchicon} src ={searchicon} alt="Search Icon"></img>
-                <h1> Company Text Header </h1>
-                <h2> Company Text Sub-Header</h2>
+                <div className ={headercss.profpic}>
+                    <div class="dropdown">
+                        <a href="#" id="imageDropdown" data-toggle="dropdown">
+                            <img src= {ProfPic}></img>
+                        </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="imageDropdown">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 1</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 2</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 3</a></li>
+                        <li role="presentation" class="divider"></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 4</a></li>
+                    </ul>
+                    </div>
+                </div>
+                <h1> Insert Company logo here from the backend </h1>
             </div>
             <div className ={headercss.logocontainer}>
                 <img className = {headercss.logoimg} src = {logo} alt = "A logo"></img>
