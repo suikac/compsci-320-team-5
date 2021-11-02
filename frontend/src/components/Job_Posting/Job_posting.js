@@ -18,7 +18,7 @@ class CreateJobPosting extends Component{
 
     render(){
         return(
-            <div className = {styles.container}>
+            <h2> Job Creating
                 <div className = {styles.jobTitleContainer}>
                     <input
                         type="title"
@@ -58,8 +58,7 @@ class CreateJobPosting extends Component{
                 <button 
                 type ="button"
                 onClick = {this.submit_credentials}
-                className = {styles.createButton}>Create Job
-                </button>
+                className = {styles.createButton}>Create</button>
                 <div className = {styles.DescriptionContainer}>
                     <textarea
                         className = {styles.DescriptionText}
@@ -69,7 +68,7 @@ class CreateJobPosting extends Component{
                         placeholder = "enter the job description"
                     />
                 </div>
-            </div>
+            </h2>
         );
     }
     async submit_credentials() {
