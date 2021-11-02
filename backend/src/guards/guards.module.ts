@@ -1,6 +1,5 @@
 import { DynamicModule, Global, Module } from '@nestjs/common';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { JwtGuard } from './jwt-guard';
 import { LoginController } from './login.controller';
 
 @Global()
@@ -20,7 +19,6 @@ export class GuardsModule {
     return {
       imports: [loginService],
       module: GuardsModule,
-      providers: [JwtGuard],
       exports: [loginService],
       controllers: [LoginController],
     };

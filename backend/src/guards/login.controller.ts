@@ -16,7 +16,7 @@ import { JwtGuard } from './jwt-guard';
 import { Response } from 'express';
 import { firstValueFrom } from 'rxjs';
 import { TokenResponse } from '../interfaces';
-import { RolesGuard } from './role.guards';
+import { ManagerOnly, RolesGuard } from './role.guards';
 
 @Controller()
 export class LoginController {
@@ -24,9 +24,9 @@ export class LoginController {
     @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy,
   ) {}
 
-  @UseGuards(JwtGuard)
-  @UseGuards(RolesGuard)
-  @Get()
+  @UseGuards(JwtGuard, RolesGuard)
+  @ManagerOnly()
+  @Get('managerOnly')
   getHello(): string {
     return 'hello1';
   }

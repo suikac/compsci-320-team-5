@@ -1,6 +1,13 @@
 import { Component } from "react";
 import { apiPost } from "../../utils/api-fetch";
 import { Redirect } from "react-router-dom"
+import Header from "../Header/Header";
+import NavBar from '../NavBar/navBar'
+import Footer from "../Footer/Footer"
+import Main_Mailbox from "../Main_Mailbox/main_mailbox"
+import Main_Home from "../Main_Home/main_home";
+import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class Main extends Component {
   constructor(props) {
@@ -15,10 +22,28 @@ class Main extends Component {
     }
     let userInfo = this.props.userInfo
     return (
-      <div>
-        Main page<br />
-        Role: {userInfo.role}
-      <button type='button' onClick={this.logout_credentials}>Logout</button>
+      <div className = "container-fluid">
+        <div className = "row"><Header/></div>
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
+            <NavBar/>
+          </div>
+          <div style={{display: "flex", flexDirection: "column", overflowY: "auto"}}>
+            <Switch>
+              <Route exact path="/">
+                <Main_Home />
+              </Route>
+              <Route path="/mailbox">
+                <Main_Mailbox />
+              </Route>
+              <Route path="/prevRef">
+                <MainPreviousRef />
+              </Route>
+              <Route path="/explore"></Route>
+            </Switch>
+          </div>
+        </div>
+        <div className = "row"><Footer /></div>
       </div>
     );
   }

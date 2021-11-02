@@ -1,16 +1,16 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { Employee } from "./Employee";
-import { Referral } from "./Referral";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Employee } from './Employee';
+import { Referral } from './Referral';
 
-@Entity("resume", { schema: "aki" })
+@Entity('resume', { schema: 'aki' })
 export class Resume {
-  @PrimaryGeneratedColumn({ type: "int", name: "id" })
+  @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
   id: number;
 
-  @Column("varchar", { name: "name", length: 255 })
+  @Column('varchar', { name: 'name', length: 255 })
   name: string;
 
-  @Column("mediumblob", { name: "file" })
+  @Column('mediumblob', { name: 'file' })
   file: Buffer;
 
   @OneToMany(() => Employee, (employee) => employee.resume)

@@ -1,0 +1,7 @@
+.refBoxCont{
+    background-color: rgb(201, 194, 194);
+    border-radius: 15px;
+    margin: 1em;
+    padding: 1em;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}

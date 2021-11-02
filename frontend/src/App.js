@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import Login from "./components/Login/Login"
 import Main from "./components/Main/Main"
+import MainPreviousRef from "./components/Main_Previous_Ref/Main_previous_ref"
 import "./App.css"
 import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom"
 
@@ -15,7 +16,6 @@ class App extends Component {
   }
 
   onUserInfoChange(userInfo) {
-    console.log(userInfo)
     this.setState({ userInfo: userInfo })
   }
 
@@ -24,11 +24,11 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Switch>
-            <Route exact path='/'>
-              <Main userInfo={this.state.userInfo}/>
-            </Route>
             <Route path='/login'>
               <Login onUserInfoChange={this.onUserInfoChange}/>
+            </Route>
+            <Route path='/'>
+              <Main userInfo={this.state.userInfo}/>
             </Route>
           </Switch>
         </div>
