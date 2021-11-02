@@ -79,7 +79,11 @@ class CreateJobPosting extends Component{
         );
     }
     async submit_credentials() {
-        
+        _tags = this.state.tags.split(" ")
+        _title = this.state.title
+        _minYear = this.state.minYearsExperience
+        _description = this.state.description
+        _salary = this.state.salary
     }
 
 }
