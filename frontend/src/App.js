@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import Login from "./components/Login/Login"
 import Main from "./components/Main/Main"
-import MainPreviousRef from "./components/Main_Previous_Ref/Main_previous_ref"
 import "./App.css"
 import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom"
 import CreateJobPosting from "./components/Job_Posting/Job_posting"
@@ -36,6 +35,8 @@ class App extends Component {
   }
 
   render() {
+    // Login bypass
+    this.state.userInfo = {};
     if (this.state.userInfo === undefined) {
       return null
     }
