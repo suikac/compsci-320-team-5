@@ -1,28 +1,38 @@
-import React from "react";
-import RefBox from "./Previous_refs";
-import { apiGet } from "../../utils/api-fetch";
-
-const prevrefdata = [{refTitle: "Whatever",
-                    referred: "Whatever",
-                    referredDesc: "Whatever",
-                    imgUrl: "Whatever",
-                    refStat: "Whatever",
-                    refStatDesc: "Whatever"
-                    }]
+import React, { useEffect, useState } from 'react';
+import RefBox from './Previous_refs';
+import { apiGet } from '../../utils/api-fetch';
 
 function MainPreviousRef(){
-    getReferral()
-    const prevRefComponents = prevrefdata.map( refData => <RefBox refTitle = {refData?.refTitle} referred = {refData?.referred}
-        referredDesc = {refData?.referredDesc} imgUrl = {refData?.imgUrl} refStat = {refData?.refStat}  refStatDesc = {refData?.refStatDesc}/>)
-        console.log(prevrefdata)
-    return(
-            <React.Fragment>{prevRefComponents}</React.Fragment>
-    )
+    const [refData, setRefData] = useState([])
+  const [isLoad, setIsLoad] = useState(false)
+    useEffect(() => {
+        getReferral()
+          .then(r => r.json())
+          .then(r => {
+            setRefData(r);
+            setIsLoad(true);
+          })
+      }
+    , [])
+
+    if (!isLoad){
+      return <div>Loading...</div>;
+    } else {
+      console.log(refData['0']['position'])
+      const prevRefComponents =
+        refData.map(refData => <RefBox refTitle={refData.position.title}
+                                                                   referred={refData?.referred}
+                                                                   referredDesc={refData?.referredDesc}
+                                                                   imgUrl={refData?.imgUrl} refStat={refData?.refStat}
+                                                                   refStatDesc={refData?.refStatDesc} />)
+      return (
+        <React.Fragment>{prevRefComponents}</React.Fragment>
+      )
+    }
 }
 
 async function getReferral() {
-  const data = await apiGet("/referral/getUnread")
-  console.log(data.json())
+  return await apiGet("/referral/get?isManager=1&isRead=0");
 }
 
 export default MainPreviousRef;

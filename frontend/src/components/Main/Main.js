@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer"
 import Main_Mailbox from "../Main_Mailbox/main_mailbox"
 import Main_Home from "../Main_Home/main_home";
-import MainPreviousRef from "../Main_Previous_Ref/main_previous_ref";
+import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
 import CreateJobPosting from "../Job_Posting/Job_posting";
 import { Route, Switch } from "react-router-dom";
 import * as paths from "../../utils/paths"
