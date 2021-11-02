@@ -5,7 +5,7 @@ import {
   JoinColumn,
   ManyToOne,
   OneToMany,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { Employee } from "./Employee";
 import { PositionTag } from "./PositionTag";
@@ -14,7 +14,7 @@ import { Referral } from "./Referral";
 @Index("position_employee_fk", ["managerId"], {})
 @Entity("position", { schema: "aki" })
 export class Position {
-    // Matt Cappucci - made this auto increment
+  // Matt Cappucci - made this auto increment
   @PrimaryGeneratedColumn({ type: "int", name: "id" })
   id: number;
 

@@ -31,7 +31,7 @@ export class LoginService {
         return {
           token: token,
           expires: expiry,
-          role: response.role
+          role: response.role,
         };
       } else {
         throw new RpcException("invalid credentials");

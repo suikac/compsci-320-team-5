@@ -37,9 +37,9 @@ require("dotenv").config();
       synchronize: true,
     }),
     EmployeeModule,
-    PositionModule
+    PositionModule,
   ],
-  controllers: [],//[LoginController],
-  providers: []//[LoginService],
+  controllers: [], //[LoginController],
+  providers: [], //[LoginService],
 })
 export class DbModule {}
