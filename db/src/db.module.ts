@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
-//import { LoginController } from './db.controller'
-//import { LoginService } from './db.service';
+//import { LoginController } from './api.controller'
+//import { LoginService } from './api.service';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { join } from "path";
 import { ClientsModule, Transport } from "@nestjs/microservices";
