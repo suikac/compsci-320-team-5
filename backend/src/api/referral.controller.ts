@@ -50,7 +50,7 @@ export class ReferralController {
     console.log('backend' + id);
     const cmd = { cmd: 'deleteReferral' };
     const data = { id: id };
-    this.dbService.send(cmd, data);
+    return await this.dbService.send(cmd, data);
   }
 
   @Get('getReferral')
@@ -83,7 +83,6 @@ export class ReferralController {
     return response;
   }
 
-  @ManagerOnly()
   @Get('getUnread')
   public async getUnreadReferral(@Req() req) {
     console.log(req.user.userId);
@@ -95,5 +94,18 @@ export class ReferralController {
   public async read(@Req() req, @Body() body) {
     const cmd = { cmd: 'readReferral' };
     this.dbService.emit(cmd, body.id);
+  }
+
+  @Get('get')
+  public async get(@Req() req, @Query() query) {
+    const cmd = { cmd: 'getReferral' };
+    console.log(req.user);
+    query.referrerId = req.user.userId;
+    console.log(query);
+    try {
+      return this.dbService.send(cmd, query);
+    } catch (e) {
+      throw e;
+    }
   }
 }

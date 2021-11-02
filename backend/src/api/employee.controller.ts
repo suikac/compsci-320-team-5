@@ -3,16 +3,12 @@ import {
   Controller,
   Get,
   Inject,
-  NotFoundException,
   Post,
   Query,
-  Req,
   Res,
   UseGuards,
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { firstValueFrom } from 'rxjs';
-import { AuthorizedRequest, UserData } from 'src/interfaces';
 import { JwtGuard } from '../guards/jwt-guard';
 import { ManagerOnly, RolesGuard } from '../guards/role.guards';
 
@@ -31,11 +27,6 @@ export class EmployeeController {
     } catch (exception) {
       throw exception;
     }
-  }
-
-  @Get('getSessionInfo')
-  public async getSessionInfo(@Req() req: AuthorizedRequest) {
-    return req.user
   }
 
   @ManagerOnly()
