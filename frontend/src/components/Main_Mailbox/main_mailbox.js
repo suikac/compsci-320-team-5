@@ -6,7 +6,7 @@ import { apiGet } from '../../utils/api-fetch';
 
 function Main_Mailbox() {
   const [isload, setIsLoad] = useState(false);
-  const [referrals, setReferrals] = useState();
+  const [referrals, setReferrals] = useState([]);
   useEffect(() => {
     getUnreadReferral()
       .then(r => r.json())
@@ -23,20 +23,14 @@ function Main_Mailbox() {
     return (
       <ul>
         {referrals.map(referral => (
-          <li key={referral.id}>
-            {referral.position.title} {referral.position.salary}
+          <li>
+            <Email_Bar
+              job={referral.position.title}
+              referrer={referral.referrer.firstName + " " + referral.referrer.lastName}
+              referee={referral.referee === undefined ? referral.refereeName :
+                referral.referee.firstName + " " + referral.referee.lastName}/>
           </li>
         ))}
-        <li>this.referrals[0]<Email_Bar /></li>
-        <li><Email_Bar /></li>
-        <li><Email_Bar /></li>
-        <li><Email_Bar /></li>
-        <li><Email_Bar /></li>
-        <li><Email_Bar /></li>
-        <li><Email_Bar /></li>
-        <li><Email_Bar /></li>
-        <li><Email_Bar /></li>
-        <li><Email_Bar /></li>
       </ul>
     );
   }
