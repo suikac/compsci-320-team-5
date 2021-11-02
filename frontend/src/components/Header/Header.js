@@ -13,12 +13,15 @@ function Header(){
                 <img className ={headercss.profpic} src ={ProfPic} alt ="ProfPic"></img>
                 <input className ={headercss.sbar} type ="text" placeholder="Search"></input>
                 <img className ={headercss.searchicon} src ={searchicon} alt="Search Icon"></img>
-                <h1> Company Text Header </h1>
-                <h2> Company Text Sub-Header</h2>
+                <div className={headercss.text}>
+                    <div className ={headercss.logocontainer}>
+                        <img className = {headercss.logoimg} src = {logo} alt = "A logo"></img>
+                    </div>
+                    <h1> Company Text Header </h1>
+                    <h2> Company Text Sub-Header</h2>
+                </div>
             </div>
-            <div className ={headercss.logocontainer}>
-                <img className = {headercss.logoimg} src = {logo} alt = "A logo"></img>
-            </div>
+
         </div>
     )
 }

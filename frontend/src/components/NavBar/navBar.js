@@ -1,9 +1,14 @@
-import React from "react"
+import React, { Component } from "react"
 import NavBarcss from "./navBar.module.css";
 import { Link } from 'react-router-dom'
 
-function NavBar(){
-    return(
+class NavBar extends Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        return(
                 <ul className={NavBarcss.NavBarContainer}>
                     <li>
                         <Link to='/'>
@@ -30,8 +35,18 @@ function NavBar(){
                             EXPLORE
                         </Link>
                     </li>
+                    {this.props.isManager
+                    ?
+                        <li>
+                        <Link to='/createPosting'>
+                            CREATE JOB
+                        </Link>
+                        </li>
+                    : null
+                    }
                 </ul>
-    )
+        )
+    }
 }
 
 export default NavBar;

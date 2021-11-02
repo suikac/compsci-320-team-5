@@ -20,6 +20,6 @@ import { PositionService } from './position.service';
   // Matt Cappucci - Added Position controller
   controllers: [EmployeeController, PositionController],
   // Matt Cappucci - Added Position service
-  providers: [PositionService],
+  providers: [PositionService]
 })
 export class DbModule {}
