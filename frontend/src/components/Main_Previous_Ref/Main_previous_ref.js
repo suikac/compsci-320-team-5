@@ -32,8 +32,7 @@ function MainPreviousRef(){
 }
 
 async function getReferral() {
-  const data = await apiGet("/referral/get?isManager=1&isRead=0");
-  return data;
+  return await apiGet("/referral/get?isManager=1&isRead=0");
 }
 
 export default MainPreviousRef;

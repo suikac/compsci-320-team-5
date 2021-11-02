@@ -1,33 +1,49 @@
-import React, {Component} from "react";
-import Email_Bar from "./email_bar";
-import "./main_mailbox.module.css";
-import main_mailboxcss from "./main_mailbox.module.css";
-import { apiGet, apiPost } from '../../utils/api-fetch';
+import React, { useEffect, useState } from 'react';
+import Email_Bar from './email_bar';
+import './main_mailbox.module.css';
+import { apiGet } from '../../utils/api-fetch';
 
-
-let referrals = []
 
 function Main_Mailbox() {
-  getUnreadReferral().then(r => console.log(r))
+  const [isload, setIsLoad] = useState(false);
+  const [referrals, setReferrals] = useState();
+  useEffect(() => {
+    getUnreadReferral()
+      .then(r => r.json())
+      .then(r => {
+        setReferrals(r);
+        setIsLoad(true);
+      })
+  }, [])
+
+  if (!isload) {
+    return <div>loading</div>
+  } else {
+    console.log(referrals)
     return (
-        <ul>
-            <li><Email_Bar/></li>
-            <li><Email_Bar/></li>
-            <li><Email_Bar/></li>
-            <li><Email_Bar/></li>
-            <li><Email_Bar/></li>
-            <li><Email_Bar/></li>
-            <li><Email_Bar/></li>
-            <li><Email_Bar/></li>
-            <li><Email_Bar/></li>
-            <li><Email_Bar/></li>
-        </ul>
+      <ul>
+        {referrals.map(referral => (
+          <li key={referral.id}>
+            {referral.position.title} {referral.position.salary}
+          </li>
+        ))}
+        <li>this.referrals[0]<Email_Bar /></li>
+        <li><Email_Bar /></li>
+        <li><Email_Bar /></li>
+        <li><Email_Bar /></li>
+        <li><Email_Bar /></li>
+        <li><Email_Bar /></li>
+        <li><Email_Bar /></li>
+        <li><Email_Bar /></li>
+        <li><Email_Bar /></li>
+        <li><Email_Bar /></li>
+      </ul>
     );
+  }
 }
 
 async function getUnreadReferral() {
-  const data = await apiGet("/referral/get?isManager=1&isRead=0")
-  return data.json()
+  return await apiGet("/referral/get?isManager=1&isRead=0")
 }
 
 export default Main_Mailbox
