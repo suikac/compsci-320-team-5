@@ -49,6 +49,11 @@ export class EmployeeController {
     }
   }
 
+  @MessagePattern({ cmd: 'getById '})
+  async getEmployeeById(@Payload('id') id: number) {
+    return this.employeeService.getEmployeeById(id)
+  }
+
   @MessagePattern({ cmd: "signUp" })
   async signUpEmployee(
     @Payload("email") email: string,

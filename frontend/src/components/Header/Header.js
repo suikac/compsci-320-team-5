@@ -29,6 +29,7 @@ function Header(){
             <div className ={headercss.logocontainer}>
                 <img className = {headercss.logoimg} src = {logo} alt = "A logo"></img>
             </div>
+
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Footer/Footer";
 import maincss from "./main_home.module.css";
 
 function Main_Home(){
@@ -13,6 +14,7 @@ function Main_Home(){
                 <input type="submit" value="REFER" class="refer-button" />
               </div>
           </div>
+          <Footer />
       </div>
   )
 }
