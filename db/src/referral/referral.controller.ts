@@ -26,8 +26,9 @@ export class ReferralController {
 
   @MessagePattern({ cmd: 'deleteReferral' })
   public async deleteReferral(@Payload('id') id: number) {
+    console.log("Hello World!");
     console.log(id);
-    await this.referralService.deleteReferral(id);
+    return await this.referralService.deleteReferral(id);
   }
 
   @MessagePattern({ cmd: 'getReferralsByPosition' })

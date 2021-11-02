@@ -43,11 +43,11 @@ export class ReferralService {
   }
 
   public async deleteReferral(id: number) {
-    await this.referralRepository
+    return await this.referralRepository
       .createQueryBuilder('deleteReferral')
       .delete()
       .from(Referral)
-      .where('id = :id', { id })
+      .where('id = :id', { id: id })
       .execute();
   }
 

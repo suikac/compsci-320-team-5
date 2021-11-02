@@ -50,7 +50,7 @@ export class ReferralController {
     console.log('backend' + id);
     const cmd = { cmd: 'deleteReferral' };
     const data = { id: id };
-    this.dbService.send(cmd, data);
+    return await this.dbService.send(cmd, data);
   }
 
   @Get('getReferral')
