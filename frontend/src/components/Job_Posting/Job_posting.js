@@ -79,13 +79,15 @@ class CreateJobPosting extends Component{
         );
     }
     async submit_credentials() {
-        _tags = this.state.tags.split(" ")
-        _title = this.state.title
-        _minYear = this.state.minYearsExperience
-        _description = this.state.description
-        _salary = this.state.salary
+        const payload = {
+            tags:this.state.tags.split(" "),
+            title:this.state.title,
+            minYearExperience:this.state.minYearsExperience,
+            description:this.state.description,
+            salary:this.state.salary
+        }
+        const response = await apiPost('/createPosition', payload)
     }
-
 }
 
 export default CreateJobPosting
