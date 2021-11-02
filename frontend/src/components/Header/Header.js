@@ -1,37 +1,38 @@
-import React from "react";
+import React, { Component } from "react";
 import logo from "../Login/Logo2.png";
 import NotifPic from "./Notif.png";
 import ProfPic from "./ProfPic.png";
 import searchicon from "./searchicon.png"
 import headercss from "./Header.module.css";
+import {DropdownButton, Dropdown} from "react-bootstrap"
 
-function Header(){
-    return(
+class Header extends Component {
+    render() {
+       return (
         <div className = {headercss.HeaderContainer}>
             <div>
                 <img className ={headercss.notifpic} src={NotifPic} alt="NotifPic"></img>
                 <div className ={headercss.profpic}>
-                    <div class="dropdown">
-                        <a href="#" id="imageDropdown" data-toggle="dropdown">
-                            <img src= {ProfPic}></img>
-                        </a>
-                    <ul class="dropdown-menu" role="menu" aria-labelledby="imageDropdown">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 1</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 2</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 3</a></li>
-                        <li role="presentation" class="divider"></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Menu item 4</a></li>
-                    </ul>
-                    </div>
-                </div>
+                        <Dropdown>
+                            <Dropdown.Toggle variant='default' bsPrefix='p-0'>
+                                <img src= {ProfPic}></img>
+                            </Dropdown.Toggle>
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
                 <h1> Insert Company logo here from the backend </h1>
             </div>
-            <div className ={headercss.logocontainer}>
-                <img className = {headercss.logoimg} src = {logo} alt = "A logo"></img>
+                <div className ={headercss.logocontainer}>
+                    <img className = {headercss.logoimg} src = {logo} alt = "A logo"></img>
+                </div>
             </div>
-
         </div>
-    )
+
+        )
+    }
 }
 
 export default Header;

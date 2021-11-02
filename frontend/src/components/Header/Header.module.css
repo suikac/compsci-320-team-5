@@ -1,6 +1,6 @@
 .HeaderContainer{
     background-color:rgb(202, 190, 190);
-    overflow: hidden;
+    /* overflow: hidden; */
     height: 100%;
 }
 
@@ -30,8 +30,8 @@
 
 .profpic{
     float: right;
-    width: 35px;
-    height: 35px;
+    width: 5px;
+    height: 5px;
     margin: 4px;
 }
 
