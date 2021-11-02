@@ -1,0 +1,71 @@
+.container{
+  position: relative; 
+  top: -575px;
+  margin: auto;
+  justify-content: center;
+  width: 500px;
+  height: 615px;
+  background: #FFF8F4;
+  border: 3px solid #C44536;
+  border-radius: 10%;
+  text-align: center;
+  margin-top: 150px;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+.name{
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 5px;
+  border: 2px solid rgb(216, 214, 214);
+  background-color: #dfdede;
+  box-sizing: border-box;
+  border-radius: 25px;
+  box-shadow: 5px 5px 5px #747373;
+  
+}
+.name label{
+  color: #747373;
+}
+.reason{
+  width: 90%;
+  height: 200px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid rgb(216, 214, 214);
+  border-radius: 25px;
+  background-color: #dfdede;
+  resize: none;
+  box-shadow: 5px 5px 5px #747373;
+}
+.email{
+  width: 60%;
+  height:fit-content;
+  padding: 12px 20px;
+  margin: 8px 5px;
+  border: 2px solid rgb(216, 214, 214);
+  background-color: #dfdede;
+  box-sizing: border-box;
+  border-radius: 25px; 
+  box-shadow: 5px 5px 5px #747373;
+}
+.current{
+  padding: 20px 20px;
+  margin: 8px 5px; 
+  box-sizing: border-box;
+  border-radius: 25px; 
+ 
+}
+.id{
+  width: 40%;
+  height: 30px;
+  box-sizing: border-box;
+  border: 2px solid rgb(216, 214, 214);
+  border-radius: 25px;
+  background-color: #dfdede;
+  box-shadow: 5px 5px 5px #747373; 
+  padding: 12px 20px;
+  margin: 8px 5px;
+}
+
+
