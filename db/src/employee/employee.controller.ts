@@ -15,13 +15,6 @@ export class EmployeeController {
     private employeeService: EmployeeService
   ) {}
 
-  @MessagePattern({ cmd: 'password' })
-  getPassword(@Payload('email') email: string) {
-    console.log('welcome api service');
-    const employee = this.employeeService.getEmployee();
-    return employee;
-  }
-
   @MessagePattern({ cmd: 'getByEmail' })
   getEmployeeByEmail(@Payload('email') email: string) {
     console.log('in api');
@@ -47,11 +40,6 @@ export class EmployeeController {
       // );
       throw e;
     }
-  }
-
-  @MessagePattern({ cmd: 'getById ' })
-  async getEmployeeById(@Payload('id') id: number) {
-    return this.employeeService.getEmployeeById(id);
   }
 
   @MessagePattern({ cmd: 'signUp' })

@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Employee } from 'src/entities/Employee';
 import { EmployeeRepository } from './employee.repository';
 import * as bcrypt from 'bcrypt';
-import { EntityNotFoundError } from 'typeorm';
 
 @Injectable()
 export class EmployeeService {
@@ -12,17 +11,11 @@ export class EmployeeService {
     private employeeRepository: EmployeeRepository
   ) {}
 
-  public async getEmployee(): Promise<Employee[]> {
-    const employee = await this.employeeRepository.findByIds([1, 2]);
-    return employee;
-  }
-
-  public async getEmployeeById(id: number): Promise<Employee> {
-    const employees = await this.employeeRepository.findByIds([1]);
-    if (employees.length == 0) {
-      throw EntityNotFoundError;
-    }
-    return employees[0];
+  public async getEmployee(id: number): Promise<Employee> {
+    return this.employeeRepository
+      .createQueryBuilder()
+      .where('id = :id', { id: id })
+      .getOneOrFail();
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {
@@ -33,7 +26,7 @@ export class EmployeeService {
   }
 
   public async signUpEmployee(email: string, password: string) {
-    this.employeeRepository
+    await this.employeeRepository
       .createQueryBuilder()
       .insert()
       .into('employee')

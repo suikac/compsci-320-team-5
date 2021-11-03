@@ -1,33 +1,18 @@
 import React, {Component} from "react"
 import Login from "./components/Login/Login"
 import Main from "./components/Main/Main"
+import MainPreviousRef from "./components/Main_Previous_Ref/Main_previous_ref"
 import "./App.css"
 import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom"
-import CreateJobPosting from "./components/Job_Posting/Job_posting"
-import Header from "./components/Header/Header"
-import Footer from "./components/Footer/Footer"
-import NotFoundPage from "./components/NotFound/NotFoundPage"
-import * as paths from "./utils/paths"
-import { apiGet } from "./utils/api-fetch"
-import NavBar from './components/NavBar/navBar'
 
 class App extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
-      userInfo: undefined
+      userInfo: null
     }
 
     this.onUserInfoChange = this.onUserInfoChange.bind(this)
-  }
-
-  async componentDidMount() {
-    const response = await apiGet('/employee/getSessionInfo')
-    let userInfo = response.status == 200 ? await response.json() : null
-    this.setState({
-      userInfo: userInfo
-    })
   }
 
   onUserInfoChange(userInfo) {
@@ -35,45 +20,19 @@ class App extends Component {
   }
 
   render() {
-    // Login bypass
-    this.state.userInfo = {};
-    if (this.state.userInfo === undefined) {
-      return null
-    }
     return (
-      <div className='wrapper'>
       <BrowserRouter>
-        {this.state.userInfo == null
-        ?
-        <div className='main-div'>
-          <Redirect to={paths.LOGIN}/>
-          <Login onUserInfoChange={this.onUserInfoChange}/>
-        </div>
-        :
+        <div>
           <Switch>
-            <Route path={paths.LOGIN}>
-              <Redirect to='/' />
-            </Route>
-            <Route path={paths.NOT_FOUND}>
-              <NotFoundPage />
+            <Route path='/login'>
+              <Login onUserInfoChange={this.onUserInfoChange}/>
             </Route>
             <Route path='/'>
-              <div className='header-div'>
-                <Header />
-              </div>
-              <div className='appGrid'>
-                <div className='navBarDiv'>
-                  <NavBar />
-                </div>
-                <div className='mainDiv'>
-                  <Main userInfo={this.state.userInfo}/>
-                </div>
-              </div>
+              <Main userInfo={this.state.userInfo}/>
             </Route>
           </Switch>
-        }
-    </BrowserRouter>
-    </div>
+        </div>
+      </BrowserRouter>
     )
   }
 }

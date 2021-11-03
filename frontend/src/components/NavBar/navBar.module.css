@@ -1,32 +1,24 @@
 .NavBarContainer{
     list-style-type: none;
-    /* margin: 1em; */
-    padding: 0;
+    margin: 1em;
+    padding: 1em;
     background-color: #f1f1f1;
-    overflow: hidden;
+    overflow: auto;
     border: 1.5px solid rgb(82, 81, 81);
     border-radius: 20px;
     z-index: 1;
-    /* grid-column: 1;
-    grid-row: 1; */
-    /* height: 90%; */
-    margin: 5% 5% 5% 5%;
-}
-
-.NavBarContainer ul {
-    /* margin: 10px 0; */
 }
 
 .NavBarContainer li{
-    margin: 20% 0;
+    margin: 2em;
 }
 
 .NavBarContainer a{
-    /* padding: 1em; */
+    padding: 1em;
 }
 
 .NavBarContainer li a {
-    /* padding: 8px 16px 8px 16px; */
+    padding: 8px 16px 8px 16px;
     text-decoration: none;
     text-align: center;
     font-size: 20px;
@@ -34,7 +26,6 @@
     display: block;
     border: 1.5px solid rgb(146, 146, 146);
     border-radius: 20px;
-    margin: 0 5% 0 5%
 }
 
 .NavBarContainer li:last-child{
