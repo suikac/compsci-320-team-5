@@ -1,8 +1,8 @@
-import { Controller, Inject } from '@nestjs/common';
+import { Controller, Inject, UsePipes, ValidationPipe } from "@nestjs/common";
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 import { ReferralService } from './referral.service';
 import { Referral } from '../entities/Referral';
-import { CreateReferralDto } from './referral.dto';
+import { CreateReferralDto, GetReferralDto } from "./referral.dto";
 
 @Controller('referral')
 export class ReferralController {
@@ -26,13 +26,9 @@ export class ReferralController {
 
   @MessagePattern({ cmd: 'deleteReferral' })
   public async deleteReferral(@Payload('id') id: number) {
+    console.log("Hello World!");
     console.log(id);
-    await this.referralService.deleteReferral(id);
-  }
-
-  @MessagePattern({ cmd: 'getReferral' })
-  public async getReferral(@Payload('id') id: number): Promise<Referral> {
-    return await this.referralService.getReferral(id);
+    return await this.referralService.deleteReferral(id);
   }
 
   @MessagePattern({ cmd: 'getReferralsByPosition' })
@@ -54,5 +50,12 @@ export class ReferralController {
   @EventPattern({ cmd: 'readReferral' })
   public async readReferral(id: number) {
     await this.referralService.readReferral(id);
+  }
+
+  @UsePipes(new ValidationPipe({transform: true}))
+  @MessagePattern({ cmd: 'getReferral'})
+  public async get(@Payload() data: GetReferralDto) {
+    console.log(data)
+    return await this.referralService.get(data);
   }
 }

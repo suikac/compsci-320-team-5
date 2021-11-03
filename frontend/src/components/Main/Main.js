@@ -2,14 +2,12 @@ import { Component } from "react";
 import { apiPost } from "../../utils/api-fetch";
 import { Redirect } from "react-router-dom"
 import Header from "../Header/Header";
+import NavBar from '../NavBar/navBar'
 import Footer from "../Footer/Footer"
 import Main_Mailbox from "../Main_Mailbox/main_mailbox"
 import Main_Home from "../Main_Home/main_home";
 import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
-import CreateJobPosting from "../Job_Posting/Job_posting";
-import { Route, Switch } from "react-router-dom";
-import * as paths from "../../utils/paths"
-import * as styles from './Main.module.css'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class Main extends Component {
   constructor(props) {
@@ -24,14 +22,16 @@ class Main extends Component {
     }
     let userInfo = this.props.userInfo
     return (
-      <div className={styles.mainDiv}>
-          <div className={styles.mainArea}>
+      <div className = "container-fluid">
+        <div className = "row"><Header/></div>
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
+            <NavBar/>
+          </div>
+          <div style={{display: "flex", flexDirection: "column", overflowY: "auto"}}>
             <Switch>
               <Route exact path="/">
                 <Main_Home />
-              </Route>
-              <Route path={paths.CREATE_POSTING}>
-                <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
               </Route>
               <Route path="/mailbox">
                 <Main_Mailbox />
@@ -42,6 +42,8 @@ class Main extends Component {
               <Route path="/explore"></Route>
             </Switch>
           </div>
+        </div>
+        <div className = "row"><Footer /></div>
       </div>
     );
   }
