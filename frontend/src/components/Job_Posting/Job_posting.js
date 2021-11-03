@@ -2,16 +2,13 @@ import React, {Component} from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
 import{JobCreateSuccessedPopUp,JobCreateFailedPopUp} from "./Job_postingPopUp"
+import { style } from "dom-helpers";
 
 class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:"",
-<<<<<<< HEAD
         description:"",createJobSuccess:false,createJobFailed:false}
-=======
-        description:"", createJobSuccess:false, createJobFailed:false}
->>>>>>> 49c759db57f3c285f2a895f2a14b6e5f22f3592f
         this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
@@ -70,13 +67,6 @@ class CreateJobPosting extends Component{
                             placeholder = "choose job required tags"
                         />
                     </div>
-<<<<<<< HEAD
-=======
-                    <button
-                    type ="button"
-                    onClick = {this.submit_credentials}
-                    className = {styles.createButton}>Create</button>
->>>>>>> 49c759db57f3c285f2a895f2a14b6e5f22f3592f
                     <div className = {styles.DescriptionContainer}>
                         <textarea required
                             type= 'text'
@@ -101,7 +91,12 @@ class CreateJobPosting extends Component{
                             type ="button"
                             onSubmit = {this.submit_credentials}
                             className = {styles.createButton}>Create</button>
-                            :null
+                            :
+                            <button
+                            type = 'button'
+                            disabled
+                            className = {styles.disabledcreateButton}>Create
+                            </button>
                 }
             </form>
         );
