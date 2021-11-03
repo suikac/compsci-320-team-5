@@ -1,11 +1,13 @@
 import React, {Component} from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
+import{JobCreateSuccessedPopUp,JobCreateFailedPopUp} from "./Job_postingPopUp"
 
 class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
-        this.state = {title: "", salary: "", minYearsExperience: "", tags:"",description:""}
+        this.state = {title: "", salary: "", minYearsExperience: "", tags:"",
+        description:"",createJobSuccess:false,createJobFailed:true}
         this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
@@ -30,7 +32,8 @@ class CreateJobPosting extends Component{
                             className = {styles.jobTitleText}
                             onChange={this.handleCredentialsChange}
                             placeholder = "enter job title"
-                        />
+                        >
+                        </input>
                     </div>
                     <div className = {styles.salaryContainer}>
                         <input
@@ -52,6 +55,7 @@ class CreateJobPosting extends Component{
                             placeholder = "enter job minimum year of Experience"
                         />
                     </div>
+
                     <div className = {styles.tagSearchBarContainer}>
                         <textarea
                             type='text'
@@ -64,10 +68,10 @@ class CreateJobPosting extends Component{
                     </div>
                     <button 
                     type ="button"
-                    onClick = {this.submit_credentials}
+                    onSubmit = {this.submit_credentials}
                     className = {styles.createButton}>Create</button>
                     <div className = {styles.DescriptionContainer}>
-                        <textarea
+                        <textarea required
                             type= 'text'
                             name = 'description'
                             className = {styles.DescriptionText}
@@ -76,11 +80,25 @@ class CreateJobPosting extends Component{
                             placeholder = "enter the job description"
                         />
                     </div>
+                    <JobCreateSuccessedPopUp trigger = {this.state.createJobSuccess} 
+                    effect = {() => setTimeout(() => this.setState({
+                        createJobSuccess: false}), 5000)}>
+                    </JobCreateSuccessedPopUp>
+                    <JobCreateFailedPopUp trigger = {this.state.createJobFailed} 
+                    effect = {() => setTimeout(() => this.setState({
+                        createJobFailed: false}), 5000)}>
+                    </JobCreateFailedPopUp>
                 </h2>
             </form>
         );
     }
     async submit_credentials() {
+        if (this.state.title == "" || this.state.description == ""){
+            this.setState({
+                createJobFailed: true}
+            )
+            return
+        }
         const payload = {
             tags:this.state.tags.split(" "),
             title:this.state.title,
@@ -89,6 +107,11 @@ class CreateJobPosting extends Component{
             salary:this.state.salary
         }
         const response = await apiPost('/createPosition', payload)
+        if(response.status != 404){
+            this.setState({
+                createJobSuccess: true}
+            )
+        }
     }
 }
 
