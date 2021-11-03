@@ -7,7 +7,11 @@ class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:"",
+<<<<<<< HEAD
         description:"",createJobSuccess:false,createJobFailed:false}
+=======
+        description:"", createJobSuccess:false, createJobFailed:false}
+>>>>>>> 49c759db57f3c285f2a895f2a14b6e5f22f3592f
         this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
@@ -59,13 +63,20 @@ class CreateJobPosting extends Component{
                     <div className = {styles.tagSearchBarContainer}>
                         <textarea
                             type='text'
-                            name= 'tags' 
+                            name= 'tags'
                             className = {styles.tagSearchBarText}
                             value = {this.state.tags}
                             onChange={this.handleCredentialsChange}
                             placeholder = "choose job required tags"
                         />
                     </div>
+<<<<<<< HEAD
+=======
+                    <button
+                    type ="button"
+                    onClick = {this.submit_credentials}
+                    className = {styles.createButton}>Create</button>
+>>>>>>> 49c759db57f3c285f2a895f2a14b6e5f22f3592f
                     <div className = {styles.DescriptionContainer}>
                         <textarea required
                             type= 'text'
@@ -76,13 +87,13 @@ class CreateJobPosting extends Component{
                             placeholder = "enter the job description"
                         />
                     </div>
-                    <JobCreateSuccessedPopUp trigger = {this.state.createJobSuccess} 
+                    <JobCreateSuccessedPopUp trigger = {this.state.createJobSuccess}
                     effect = {() => setTimeout(() => this.setState({
-                        createJobSuccess: false}), 5000)}>
+                        createJobSuccess: false}), 3000)}>
                     </JobCreateSuccessedPopUp>
-                    <JobCreateFailedPopUp trigger = {this.state.createJobFailed} 
+                    <JobCreateFailedPopUp trigger = {this.state.createJobFailed}
                     effect = {() => setTimeout(() => this.setState({
-                        createJobFailed: false}), 5000)}>
+                        createJobFailed: false}), 3000)}>
                     </JobCreateFailedPopUp>
                 </h2>
                 {this.state.title != "" && this.state.description !=""?
@@ -110,7 +121,7 @@ class CreateJobPosting extends Component{
             salary:this.state.salary
         }
         const response = await apiPost('/createPosition', payload)
-        if(response.status != 404){
+        if(response.status == 200){
             this.setState({
                 createJobSuccess: true}
             )
