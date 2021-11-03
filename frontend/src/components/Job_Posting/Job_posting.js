@@ -24,7 +24,8 @@ class CreateJobPosting extends Component{
     render(){
         return(
             <form>
-                <h2> Job Creating
+                <h2> 
+                    <p> Job Creating </p>
                     <div className = {styles.jobTitleContainer}>
                         <input
                             name='title'
@@ -85,8 +86,7 @@ class CreateJobPosting extends Component{
                     effect = {() => setTimeout(() => this.setState({
                         createJobFailed: false}), 3000)}>
                     </JobCreateFailedPopUp> */}
-                </h2>
-                {this.state.title != "" && this.state.description !=""?
+                    {this.state.title != "" && this.state.description !=""?
                             <button 
                             type ="button"
                             onSubmit = {this.submit_credentials}
@@ -97,7 +97,8 @@ class CreateJobPosting extends Component{
                             disabled
                             className = {styles.disabledcreateButton}>Create
                             </button>
-                }
+                    }
+                </h2>
             </form>
         );
     }

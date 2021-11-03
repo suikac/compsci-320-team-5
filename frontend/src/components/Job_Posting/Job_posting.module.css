@@ -16,10 +16,15 @@ margin: 20px;
 padding: 5px;
 overflow: hidden;
 }
+
+p{
+  position: relative;
+  font-size: 40;
+  left: -40px;
+}
 /* Header */
 .jobTitleContainer{
 font-size: 22px;
-text-align: center;
 padding: 5px;
 position: relative;
 max-width: 42.1%;/**/
@@ -35,7 +40,7 @@ border-radius: 102px;
 border: none;
 justify-content: center;
 display: inline-block;
-text-align: left;
+text-align: center;
 border-radius: 0px;
 width: 90%;
 height: 90%;
@@ -44,7 +49,6 @@ background: #C4C4C4;
 
 .salaryContainer{
 font-size: 22px;
-text-align: center;
 padding: 5px;
 position: relative;
 max-width: 19.1%;/**/
@@ -60,7 +64,7 @@ border-radius: 102px;
   border: none;
   justify-content: center;
   display: inline-block;
-  text-align: left;
+  text-align: center;
   border-radius: 0px;
   width: 90%;
   height: 90%;
@@ -69,7 +73,6 @@ border-radius: 102px;
 
 .minYearofExpContainer{
   font-size: 22px;
-  text-align: center;
   padding: 5px;
   position:relative;
   max-width: 19.1%;/**/
@@ -85,8 +88,8 @@ border-radius: 102px;
   border: none;
   justify-content: center;
   display: inline-block;
-  text-align: left;
-  border-radius: 10px;
+  text-align: center;
+  border-radius: 0px;
   width: 90%;
   height: 90%;
   background: #C4C4C4;
@@ -94,7 +97,6 @@ border-radius: 102px;
 .tagSearchBarContainer{
   font-size: 24px;
   margin-bottom: 10px;
-  text-align: center;
   padding:5px;
   position: relative;
   max-width: 42.1%;
@@ -111,7 +113,7 @@ border-radius: 102px;
    justify-content: center;
    display: inline-block;
    text-align: left;
-   border-radius: 10px;
+   border-radius: 0px;
    width: 80%;
    height: 200px;
    resize: none;
@@ -138,28 +140,30 @@ border-radius: 52px;
   justify-content: center;
   display: inline-block;
   text-align: left;
-  border-radius: 10px;
+  border-radius: 0px;
   width: 90%;
-  height: 90%;
+  height: 100%;
   background: #C4C4C4;
 }
 .createButton{
+  font-size: 22px;
   position:relative;
   width: 20%;
   height: 10%;
-  top: -70px;
-  left: 33.73%;
+  top: -380px;
+  left: -4%;
   background: #197278;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
  border-radius: 102px;
 }
 .disabledcreateButton{
   color:#772E25;
+  font-size: 22px;
   position:relative;
   width: 20%;
   height: 10%;
-  top: -70px;
-  left: 33.73%;
+  top: -380px;
+  left: -4%;
   background: #edddd4;
   border: 3px solid #772E25;
   border-radius: 102px;

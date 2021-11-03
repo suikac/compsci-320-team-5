@@ -1,10 +1,6 @@
 import React from 'react'
 import styles from "./Job_postingPopUp.module.css"
 
-export function JobCreateFailedPopUp(props) {
-    return PopUp(props, "Job Create Failed title and/or description cannot be empty")
-}
-
 export function JobCreateSuccessedPopUp(props) {
     return PopUp(props, "Job Create Successful")
 }
