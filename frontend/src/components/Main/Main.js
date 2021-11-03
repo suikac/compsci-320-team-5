@@ -8,6 +8,8 @@ import Main_Mailbox from "../Main_Mailbox/main_mailbox"
 import Main_Home from "../Main_Home/main_home";
 import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import CreateJobPosting from '../Job_Posting/Job_posting' 
+import * as paths from "../../utils/paths";
 
 class Main extends Component {
   constructor(props) {
@@ -33,6 +35,9 @@ class Main extends Component {
               <Route exact path="/">
                 <Main_Home />
               </Route>
+              <Route path={paths.CREATE_POSTING}>
+                <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
+              </Route>
               <Route path="/mailbox">
                 <Main_Mailbox />
               </Route>
@@ -40,6 +45,7 @@ class Main extends Component {
                 <MainPreviousRef />
               </Route>
               <Route path="/explore"></Route>
+              
             </Switch>
           </div>
         </div>
