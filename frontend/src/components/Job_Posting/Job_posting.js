@@ -41,7 +41,7 @@ class CreateJobPosting extends Component{
                             value = {this.state.title}
                             className = {styles.jobTitleText}
                             onChange={this.handleCredentialsChange}
-                            placeholder = "enter job title"
+                            placeholder = "Job Title"
                         >
                         </input>
                     </div>
@@ -52,7 +52,7 @@ class CreateJobPosting extends Component{
                             className = {styles.salaryText}
                             value = {this.state.salary}
                             onChange={this.handleCredentialsChange}
-                            placeholder = "enter job salary"
+                            placeholder = "Job Salary"
                         />
                     </div>
                     <div className = {styles.minYearofExpContainer}>
@@ -62,7 +62,7 @@ class CreateJobPosting extends Component{
                             className={styles.minYearofExpText}
                             value = {this.state.minYearsExperience}
                             onChange={this.handleCredentialsChange}
-                            placeholder = "enter job minimum year of Experience"
+                            placeholder = "Minimum Year of Experience"
                         />
                     </div>
 
@@ -73,7 +73,7 @@ class CreateJobPosting extends Component{
                             className = {styles.tagSearchBarText}
                             value = {this.state.tags}
                             onChange={this.handleCredentialsChange}
-                            placeholder = "choose job required tags"
+                            placeholder = "Required Tags"
                         />
                     </div>
                     <div className = {styles.DescriptionContainer}>
@@ -83,7 +83,7 @@ class CreateJobPosting extends Component{
                             className = {styles.DescriptionText}
                             value = {this.state.description}
                             onChange={this.handleCredentialsChange}
-                            placeholder = "enter the job description"
+                            placeholder = "Job Description"
                         />
                     </div>
                     {this.state.title != "" && this.state.description !=""?
