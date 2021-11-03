@@ -15,7 +15,7 @@ class Header extends Component {
                 <img className = {headercss.logoimg} src = {logo} alt = "A logo"></img>
                 {/* </div> */}
                 <h1> Insert Company logo here from the backend </h1>
-                <Dropdown>
+                <Dropdown className='ms-auto'>
                     <Dropdown.Toggle variant='default' bsPrefix='p-0'>
                         <img src= {ProfPic} className ={headercss.profpic}></img>
                     </Dropdown.Toggle>
@@ -25,6 +25,7 @@ class Header extends Component {
                         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
+                <img className ={headercss.notifpic} src={NotifPic} alt="NotifPic"></img>
             </Stack>
            </div>
         )
