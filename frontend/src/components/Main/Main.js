@@ -30,9 +30,7 @@ class Main extends Component {
               <Route exact path="/">
                 <Main_Home />
               </Route>
-              <Route path={paths.CREATE_POSTING}>
-                <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
-              </Route>
+
               <Route path="/mailbox">
                 <Main_Mailbox />
               </Route>
@@ -40,7 +38,16 @@ class Main extends Component {
                 <MainPreviousRef />
               </Route>
               <Route path="/explore"></Route>
-
+              {userInfo.role == 'manager'
+              ?
+              <Route path={paths.CREATE_POSTING}>
+                <CreateJobPosting isManager={userInfo.role == 'manager'}/>
+              </Route>
+              : null
+              }
+              <Route path='/'>
+                <Redirect to={paths.NOT_FOUND} />
+              </Route>
             </Switch>
           </div>
       </div>
