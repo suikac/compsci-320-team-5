@@ -86,10 +86,6 @@ class CreateJobPosting extends Component{
                             placeholder = "enter the job description"
                         />
                     </div>
-                    <JobCreateSuccessedPopUp trigger = {this.state.createJobSuccess}
-                    effect = {() => setTimeout(() => this.setState({
-                        createJobSuccess: false}), 3000)}>
-                    </JobCreateSuccessedPopUp>
                     {/* <JobCreateFailedPopUp trigger = {this.state.createJobFailed}
                     effect = {() => setTimeout(() => this.setState({
                         createJobFailed: false}), 3000)}>
@@ -106,6 +102,10 @@ class CreateJobPosting extends Component{
                             className = {styles.disabledcreateButton}>Create
                             </button>
                     }
+                    <JobCreateSuccessedPopUp trigger = {this.state.createJobSuccess}
+                    effect = {() => setTimeout(() => this.setState({
+                        createJobSuccess: false}), 3000)}>
+                    </JobCreateSuccessedPopUp>
                 </h2>
             </form>
         );
