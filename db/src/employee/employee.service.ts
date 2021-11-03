@@ -1,9 +1,9 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Employee } from "src/entities/Employee";
-import { EmployeeRepository } from "./employee.repository";
-import * as bcrypt from "bcrypt";
-import { EntityNotFoundError } from "typeorm";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Employee } from 'src/entities/Employee';
+import { EmployeeRepository } from './employee.repository';
+import * as bcrypt from 'bcrypt';
+import { EntityNotFoundError } from 'typeorm';
 
 @Injectable()
 export class EmployeeService {
@@ -18,17 +18,17 @@ export class EmployeeService {
   }
 
   public async getEmployeeById(id: number): Promise<Employee> {
-    const employees = await this.employeeRepository.findByIds([1])
+    const employees = await this.employeeRepository.findByIds([1]);
     if (employees.length == 0) {
-      throw EntityNotFoundError
+      throw EntityNotFoundError;
     }
-    return employees[0]
+    return employees[0];
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {
     return this.employeeRepository
-      .createQueryBuilder("Employee")
-      .where("email = :email", { email: email })
+      .createQueryBuilder('Employee')
+      .where('email = :email', { email: email })
       .getOne();
   }
 
@@ -36,7 +36,7 @@ export class EmployeeService {
     this.employeeRepository
       .createQueryBuilder()
       .insert()
-      .into("employee")
+      .into('employee')
       .values({
         email: email,
         password: await bcrypt.hash(password, await bcrypt.genSalt()),

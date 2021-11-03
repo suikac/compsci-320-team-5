@@ -1,6 +1,6 @@
 // data transfer object for creating
-import { isNumberObject } from "util/types";
-import { IsEmail, IsNotEmpty } from "class-validator";
+import { isNumberObject } from 'util/types';
+import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class CreateReferralDto {
   resumeId: number;

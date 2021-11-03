@@ -4,34 +4,34 @@ import {
   HttpStatus,
   Inject,
   NotFoundException,
-} from "@nestjs/common";
-import { MessagePattern, Payload } from "@nestjs/microservices";
-import { EmployeeService } from "./employee.service";
+} from '@nestjs/common';
+import { MessagePattern, Payload } from '@nestjs/microservices';
+import { EmployeeService } from './employee.service';
 
-@Controller("employee")
+@Controller('employee')
 export class EmployeeController {
   constructor(
     @Inject(EmployeeService)
     private employeeService: EmployeeService
   ) {}
 
-  @MessagePattern({ cmd: "password" })
-  getPassword(@Payload("email") email: string) {
-    console.log("welcome api service");
+  @MessagePattern({ cmd: 'password' })
+  getPassword(@Payload('email') email: string) {
+    console.log('welcome api service');
     const employee = this.employeeService.getEmployee();
     return employee;
   }
 
-  @MessagePattern({ cmd: "getByEmail" })
-  getEmployeeByEmail(@Payload("email") email: string) {
-    console.log("in api");
+  @MessagePattern({ cmd: 'getByEmail' })
+  getEmployeeByEmail(@Payload('email') email: string) {
+    console.log('in api');
     try {
       const employee = this.employeeService.getEmployeeByEmail(email);
       if (!employee) {
         return new HttpException(
           {
             STATUS_CODES: 400,
-            error: "Employee Not Founded",
+            error: 'Employee Not Founded',
           },
           HttpStatus.BAD_REQUEST
         );
@@ -49,33 +49,33 @@ export class EmployeeController {
     }
   }
 
-  @MessagePattern({ cmd: 'getById '})
+  @MessagePattern({ cmd: 'getById ' })
   async getEmployeeById(@Payload('id') id: number) {
-    return this.employeeService.getEmployeeById(id)
+    return this.employeeService.getEmployeeById(id);
   }
 
-  @MessagePattern({ cmd: "signUp" })
+  @MessagePattern({ cmd: 'signUp' })
   async signUpEmployee(
-    @Payload("email") email: string,
-    @Payload("password") password: string
+    @Payload('email') email: string,
+    @Payload('password') password: string
   ) {
     this.employeeService.signUpEmployee(email, password);
-    return "ok";
+    return 'ok';
   }
 
-  @MessagePattern({ cmd: "retrieve password hash" })
-  async retrievePwdHash(@Payload("email") email: string) {
-    console.log("welcome to api");
+  @MessagePattern({ cmd: 'retrieve password hash' })
+  async retrievePwdHash(@Payload('email') email: string) {
+    console.log('welcome to api');
     try {
       const employee = await this.employeeService.getEmployeeByEmail(email);
 
       return {
         pwdHash: employee.password,
         userId: employee.id,
-        role: employee.isManager ? "manager" : "employee",
+        role: employee.isManager ? 'manager' : 'employee',
       };
     } catch (exception) {
-      throw new NotFoundException("api not found");
+      throw new NotFoundException('api not found');
     }
   }
 }

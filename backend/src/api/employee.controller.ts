@@ -35,7 +35,7 @@ export class EmployeeController {
 
   @Get('getSessionInfo')
   public async getSessionInfo(@Req() req: AuthorizedRequest) {
-    return req.user
+    return req.user;
   }
 
   @ManagerOnly()
