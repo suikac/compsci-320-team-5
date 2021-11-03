@@ -8,7 +8,7 @@ class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:"",
-        description:"",createJobSuccess:false,createJobFailed:false}
+        description:"",createJobSuccess:false}
         this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
@@ -81,10 +81,10 @@ class CreateJobPosting extends Component{
                     effect = {() => setTimeout(() => this.setState({
                         createJobSuccess: false}), 3000)}>
                     </JobCreateSuccessedPopUp>
-                    <JobCreateFailedPopUp trigger = {this.state.createJobFailed}
+                    {/* <JobCreateFailedPopUp trigger = {this.state.createJobFailed}
                     effect = {() => setTimeout(() => this.setState({
                         createJobFailed: false}), 3000)}>
-                    </JobCreateFailedPopUp>
+                    </JobCreateFailedPopUp> */}
                 </h2>
                 {this.state.title != "" && this.state.description !=""?
                             <button 
@@ -102,12 +102,12 @@ class CreateJobPosting extends Component{
         );
     }
     async submit_credentials() {
-        if (this.state.title == "" || this.state.description == ""){
-            this.setState({
-                createJobFailed: true}
-            )
-            return
-        }
+        // if (this.state.title == "" || this.state.description == ""){
+        //     this.setState({
+        //         createJobFailed: true}
+        //     )
+        //     return
+        // }
         const payload = {
             tags:this.state.tags.split(" "),
             title:this.state.title,
