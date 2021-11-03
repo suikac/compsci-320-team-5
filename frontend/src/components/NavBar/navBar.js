@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import NavBarcss from "./navBar.module.css";
 import { Link } from 'react-router-dom'
+import * as paths from "../../utils/paths"
 
 class NavBar extends Component {
     constructor(props) {
@@ -16,28 +17,28 @@ class NavBar extends Component {
                         </Link>
                     </li>
                     <li>
-                        <Link to='/refer'>
+                        <Link to={paths.REFER}>
                             REFER
                         </Link>
                     </li>
                     <li>
-                        <Link to='/mailbox'>
+                        <Link to={paths.MAILBOX}>
                             MAILBOX
                         </Link>
                     </li>
                     <li>
-                        <Link to='/prevRef'>
+                        <Link to={paths.PREV_REF}>
                             PREVIOUS REF
                         </Link>
                     </li>
                     <li>
-                        <Link to='/explore'>
+                        <Link to={paths.EXPLORE}>
                             EXPLORE
                         </Link>
                     </li>
                     {this.props.isManager ?
                     <li>
-                        <Link to='/createPosting'>
+                        <Link to={paths.CREATE_POSTING}>
                             CREATE POSTING
                         </Link>
                     </li>

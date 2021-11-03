@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer"
 import Main_Mailbox from "../Main_Mailbox/main_mailbox"
 import Main_Home from "../Main_Home/main_home";
+import Main_Refer from "../Main_Refer/Main_refer"
 import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
 import CreateJobPosting from "../Job_Posting/Job_posting";
 import { Route, Switch } from "react-router-dom";
@@ -30,7 +31,9 @@ class Main extends Component {
               <Route exact path="/">
                 <Main_Home />
               </Route>
-
+              <Route path={paths.REFER}>
+                <Main_Refer />
+              </Route>
               <Route path="/mailbox">
                 <Main_Mailbox />
               </Route>
