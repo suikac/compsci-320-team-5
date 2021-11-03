@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import styles from "./Job_posting.module.css"
+import { apiPost } from "../../utils/api-fetch"
 
 class CreateJobPosting extends Component{
     constructor(props) {
@@ -86,7 +87,7 @@ class CreateJobPosting extends Component{
             description:this.state.description,
             salary:this.state.salary
         }
-        const response = await apiPost('/createPosition', payload)
+        const response = await apiPost('/createPosition', payload)
     }
 }
 
