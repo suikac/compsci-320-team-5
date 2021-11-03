@@ -1,6 +1,7 @@
 .HeaderContainer{
     background-color:rgb(202, 190, 190);
     overflow: hidden;
+    height: 100%;
 }
 
 .logocontainer{

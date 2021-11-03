@@ -1,22 +1,14 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ReferralRepository } from './referral.repository';
 import { Referral } from '../entities/Referral';
-import { CreateReferralDto, GetReferralDto } from "./referral.dto";
-import { PositionController } from '../position/position.controller';
-import { PositionService } from '../position/position.service';
-import { EmployeeService } from '../employee/employee.service';
-import { Position } from '../entities/Position';
+import { CreateReferralDto } from './referral.dto';
 
 @Injectable()
 export class ReferralService {
   constructor(
     @InjectRepository(ReferralRepository)
-    private readonly referralRepository: ReferralRepository,
-    @Inject(PositionService)
-    private readonly positionService: PositionService,
-    @Inject(EmployeeService)
-    private readonly employeeService: EmployeeService
+    private readonly referralRepository: ReferralRepository
   ) {}
 
   public async createReferral(createReferralDto: CreateReferralDto) {
@@ -43,16 +35,16 @@ export class ReferralService {
   }
 
   public async deleteReferral(id: number) {
-    return await this.referralRepository
+    await this.referralRepository
       .createQueryBuilder('deleteReferral')
       .delete()
       .from(Referral)
-      .where('id = :id', { id: id })
+      .where('id = :id', { id })
       .execute();
   }
 
   public async getReferral(id: number): Promise<Referral> {
-    return await this.referralRepository
+    return this.referralRepository
       .createQueryBuilder('getReferral')
       .where('id = :id', { id })
       .getOne();
@@ -73,32 +65,11 @@ export class ReferralService {
   }
 
   public async getUnreadReferral(id: number): Promise<Referral[]> {
-    const referrals = await this.referralRepository
+    return this.referralRepository
       .createQueryBuilder('getUnreadReferral')
       .where('referrer_id = :id', { id })
       .andWhere('is_read = 0')
       .getMany();
-    for (let i = 0; i < referrals.length; i++) {
-      referrals[i] = await this.completeReferral(referrals[i]);
-    }
-    return referrals;
-  }
-
-  // some columns are id which has not meaning, this method adds
-  // some fields according to that id fields
-  private async completeReferral(referral: Referral): Promise<Referral> {
-    referral.position = await this.positionService.getPositionById(
-      referral.positionId.toString()
-    );
-    referral.referrer = await this.employeeService.getEmployee(
-      referral.referrerId
-    );
-    if (referral.refereeId !== null) {
-      referral.referee = await this.employeeService.getEmployee(
-        referral.refereeId
-      );
-    }
-    return referral;
   }
 
   public async readReferral(id: number) {
@@ -109,39 +80,5 @@ export class ReferralService {
       .where('id = :id', { id })
       .set({ isRead: true })
       .execute();
-  }
-
-  public async get(data: GetReferralDto) {
-    const query = this.referralRepository
-      .createQueryBuilder('referral')
-
-    if (data.isManager == null) {
-      query.where('referrer_id = :referrerId', {referrerId: data.referrerId})
-    } else {
-      query.innerJoinAndSelect('referral.position', 'position')
-        .where('position.manager_id = :managerId', {managerId: data.referrerId})
-    }
-
-    if (data.isRead != null) {
-      console.log(data.isRead)
-      query.andWhere('is_read = :isRead', {isRead: data.isRead})
-    }
-
-    if (data.positionId != null) {
-      console.log(typeof data.positionId)
-      query.andWhere('position_id = :positionId', {positionId: data.positionId})
-    }
-
-    if (data.id != null) {
-      query.andWhere('id = :id', {id: data.id})
-    }
-
-    const res = await query.getMany();
-
-    for (let i = 0; i < res.length; i++) {
-      res[i] = await this.completeReferral(res[i])
-    }
-
-    return res;
   }
 }

@@ -15,11 +15,12 @@ import { Referral } from './Referral';
 @Entity('position', { schema: 'aki' })
 export class Position {
   // Matt Cappucci - made this auto increment
-  @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
+  @PrimaryGeneratedColumn({ type: 'bigint', name: 'id' })
   id: number;
 
   /*@Column("bigint", { primary: true, name: "id" })
   id: string;*/
+
   @Column('longtext', { name: 'description', nullable: true })
   description: string | null;
 

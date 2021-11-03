@@ -7,7 +7,6 @@ import { PositionRepository } from './position.repository';
 import { PositionTagRepository } from './positionTag.repository';
 import { TagRepository } from './tag.repository';
 import { getRepository } from 'typeorm';
-import { PositionTag } from 'src/entities/PositionTag';
 
 @Injectable()
 export class PositionService {
@@ -31,15 +30,6 @@ export class PositionService {
     return position;
   }
 
-  public async getPositionsByManager(managerId: string): Promise<Position[]> {
-    const positions = await this.positionRepository
-      .createQueryBuilder('Position')
-      .where('manager_id = :manager_id', { manager_id: parseInt(managerId) })
-      .getMany();
-
-    return positions;
-  }
-
   public async getAllPositions(): Promise<Position[]> {
     const positions = await this.positionRepository
       .createQueryBuilder('Position')
@@ -54,8 +44,6 @@ export class PositionService {
   }
 
   public async addTagToPosition(positionAddId: string, tag: Object) {
-    console.log(tag);
-    console.log(positionAddId);
     const positionTag = await this.positionTagRepository.save({
       positionId: parseInt(positionAddId),
       tagId: parseInt(tag['id']),
@@ -63,19 +51,10 @@ export class PositionService {
     return positionTag;
   }
 
-  public async deleteAllPositionTags(positionId: string) {
-    await this.positionTagRepository
-      .createQueryBuilder('PositionTag')
-      .delete()
-      .from(PositionTag)
-      .where('position_id = :positionId', { positionId: parseInt(positionId) })
-      .execute();
-  }
-
   public async getTagByName(name: string) {
     let tag = await this.tagRepository
       .createQueryBuilder('Tag')
-      .where('name = :name', { name: name })
+      .where('name = :name', { id: parseInt(name) })
       .getOneOrFail();
     return tag;
   }
@@ -85,22 +64,20 @@ export class PositionService {
     return tag;
   }
 
-  public async updatePosition(positionId: string, data: Object) {
-    let value = await this.positionRepository
-      .createQueryBuilder('PositionTag')
-      .update(Position)
-      .set(data)
-      .where('id = :positionId', { positionId: parseInt(positionId) })
+  public async updatePosition(id: string, title: string) {
+    this.positionRepository
+      .createQueryBuilder()
+      .update()
+      .set({ title: title })
+      .where('id = :id', { id: id })
       .execute();
-    return value;
   }
 
   public async deletePosition(id: string) {
-    let position = await this.positionRepository
+    this.positionRepository
       .createQueryBuilder()
       .delete()
       .where('id = :id', { id: id })
       .execute();
-    return position;
   }
 }

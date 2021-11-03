@@ -58,33 +58,13 @@ export class PositionController {
     return this.dbService.send({ cmd: 'test' }, {});
   }
 
-  // To Do: get by manager
-  @Get('getPositionsByManager')
-  public async getPositionsByManager(@Req() req: Request) {
-    let obj = this.parseInput(req.body, ['id'], []);
-    if (obj == null) {
-      return 'Need to send an id value';
-    }
-    let id = obj['id'];
-    if (id == undefined || !/^\d+$/.test(id)) {
-      return 'Given id (' + id + ') is undefined or is not an int';
-    }
-    const cmd = { cmd: 'getPositionsByManager' };
-    const data = { id: id };
-    const position = this.dbService.send(cmd, data);
-    return position;
-  }
-
   // Matt Cappucci
   // /getPositionById Get route
   // Get a position by ID
   @Get('getPositionById')
   public async getPositionById(@Req() req: Request) {
-    let obj = this.parseInput(req.body, ['id'], []);
-    if (obj == null) {
-      return 'Need to send an id value';
-    }
-    let id = obj['id'];
+    let id = this.parseInput(req.body, ['id'], [])['id'];
+    console.log(id);
     if (id == undefined || !/^\d+$/.test(id)) {
       return 'Given id (' + id + ') is undefined or is not an int';
     }
@@ -110,54 +90,52 @@ export class PositionController {
   @ManagerOnly()
   @Post('createPosition')
   public async createPosition(@Req() req: Request) {
+    let tags = req.body['tags'];
     let requiredFields = ['title'];
     let otherFields = [
       'description',
       'minYearExperience',
       'salary',
       'managerId',
-      'tags',
     ];
     let data = this.parseInput(req.body, requiredFields, otherFields);
     if (data == null) {
       return 'Require a title field in position data';
     }
     const cmd = { cmd: 'createPosition' };
-    return this.dbService.send(cmd, data);
+    const position = this.dbService.send(cmd, data);
+    if (position != null) {
+      if (tags != undefined && tags.length != 0) {
+        for (let i = 0; i < tags.length; ++i) {
+          let tagsCmd = { cmd: 'addTagToPosition' };
+          let tagsData = {
+            positionId: position['id'],
+            tag: tags[i],
+          };
+          const tag = this.dbService.send(tagsCmd, tagsData);
+        }
+      }
+    }
   }
 
-  @ManagerOnly()
   @Patch('UpdatePosition')
-  public async updatePosition(@Req() req: Request) {
-    let requiredFields = ['id'];
-    let otherFields = [
-      'description',
-      'minYearExperience',
-      'salary',
-      'managerId',
-      'tags',
-      'title',
-    ];
-    let data = this.parseInput(req.body, requiredFields, otherFields);
-    if (data == null) {
-      return 'Require an id field in position data';
-    } else if (Object.keys(data).length == 1) {
-      return 'Need data to update position along with id';
-    }
+  public async updatePosition(
+    @Body('title') title: string,
+    @Body('id') id: string,
+  ) {
+    console.log('in backend update position title');
     const cmd = { cmd: 'updatePosition' };
-    return this.dbService.send(cmd, data);
+    const data = { title: title, id: id };
+    const response = this.dbService.send(cmd, data);
+    return response;
   }
 
-  @ManagerOnly()
   @Delete('DeletePosition')
-  public async(@Req() req: Request) {
-    let requiredFields = ['id'];
-    let otherFields = [];
-    let data = this.parseInput(req.body, requiredFields, otherFields);
-    if (data == null) {
-      return 'Require an id field in position data';
-    }
+  public async(@Body('id') id: string) {
+    console.log('in backend delete position');
     const cmd = { cmd: 'deletePosition' };
-    return this.dbService.send(cmd, data);
+    const data = { id: id };
+    const response = this.dbService.send(cmd, data);
+    return response;
   }
 }

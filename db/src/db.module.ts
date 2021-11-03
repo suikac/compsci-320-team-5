@@ -13,7 +13,6 @@ import { Referral } from './entities/Referral';
 import { Position } from './entities/Position';
 import { PositionTag } from './entities/PositionTag';
 import { Tag } from './entities/Tag';
-import { ReferralModule } from './referral/referral.module';
 require('dotenv').config();
 
 @Module({
@@ -36,11 +35,9 @@ require('dotenv').config();
       database: process.env.mysql_db,
       entities: [Employee, Referral, Resume, Position, PositionTag, Tag],
       synchronize: true,
-      logging: true,
     }),
     EmployeeModule,
     PositionModule,
-    ReferralModule,
   ],
   controllers: [], //[LoginController],
   providers: [], //[LoginService],
