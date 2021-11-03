@@ -20,7 +20,6 @@ export class Position {
 
   /*@Column("bigint", { primary: true, name: "id" })
   id: string;*/
-
   @Column('longtext', { name: 'description', nullable: true })
   description: string | null;
 

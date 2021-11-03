@@ -35,7 +35,7 @@ export class PositionController {
     const position = this.positionService.getAllPositions().catch(() => null);
     return position;
   }
-
+  
   @MessagePattern({ cmd: 'getPositionsByManager' })
   public async getPositionsByManger(@Payload('id') id: string) {
     const positions = await this.positionService

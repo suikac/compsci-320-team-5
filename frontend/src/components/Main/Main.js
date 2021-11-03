@@ -40,6 +40,7 @@ class Main extends Component {
                 <MainPreviousRef />
               </Route>
               <Route path="/explore"></Route>
+
             </Switch>
           </div>
       </div>

@@ -35,15 +35,6 @@ class NavBar extends Component {
                             EXPLORE
                         </Link>
                     </li>
-                    {this.props.isManager
-                    ?
-                        <li>
-                        <Link to='/createPosting'>
-                            CREATE JOB
-                        </Link>
-                        </li>
-                    : null
-                    }
                 </ul>
         )
     }

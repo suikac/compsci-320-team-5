@@ -37,9 +37,9 @@ describe("EmployeeController (e2e)", () => {
       await app.close();
       client.close();
     });
-    describe("should return api by email", () => {
-      const cmd = { cmd: "getByEmail" };
-      const data = { email: "aki@gmail.com" };
+    describe('should return api by email', () => {
+      const cmd = { cmd: 'getByEmail' };
+      const data = { email: 'aki@gmail.com' };
       const employee = client.send(cmd, data);
       expect(employee).toBeDefined;
     });
