@@ -7,7 +7,7 @@ class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:"",
-        description:"",createJobSuccess:false,createJobFailed:true}
+        description:"",createJobSuccess:false,createJobFailed:false}
         this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
@@ -66,10 +66,6 @@ class CreateJobPosting extends Component{
                             placeholder = "choose job required tags"
                         />
                     </div>
-                    <button 
-                    type ="button"
-                    onSubmit = {this.submit_credentials}
-                    className = {styles.createButton}>Create</button>
                     <div className = {styles.DescriptionContainer}>
                         <textarea required
                             type= 'text'
@@ -89,6 +85,13 @@ class CreateJobPosting extends Component{
                         createJobFailed: false}), 5000)}>
                     </JobCreateFailedPopUp>
                 </h2>
+                {this.state.title != "" && this.state.description !=""?
+                            <button 
+                            type ="button"
+                            onSubmit = {this.submit_credentials}
+                            className = {styles.createButton}>Create</button>
+                            :null
+                }
             </form>
         );
     }
