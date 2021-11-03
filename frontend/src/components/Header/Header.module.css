@@ -2,15 +2,18 @@
     background-color:rgb(202, 190, 190);
     /* overflow: hidden; */
     height: 100%;
+    display: flex
 }
 
 .logocontainer{
-    float: left;
+    /* float: left; */
+    width: auto;
+    height: 100%
 }
 
 .logoimg{
-    width: 15%;
-    height: 10%;
+    width: auto;
+    height: 80%;
 }
 
 .sbar{
@@ -30,9 +33,9 @@
 
 .profpic{
     float: right;
-    width: 5px;
-    height: 5px;
-    margin: 4px;
+    /* width: 20% */
+    width: 20px;
+    height: 20px;
 }
 
 .searchicon{
