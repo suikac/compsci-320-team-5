@@ -10,7 +10,7 @@ class Header extends Component {
     render() {
        return (
            <div className = {headercss.HeaderContainer}>
-            <Stack direction='horizontal'>
+            <Stack direction='horizontal' className={headercss.hstack}>
                 {/* <div className={headercss.logoContainer}> */}
                 <img className = {headercss.logoimg} src = {logo} alt = "A logo"></img>
                 {/* </div> */}
