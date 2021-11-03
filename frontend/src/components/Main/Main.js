@@ -21,7 +21,7 @@ class Main extends Component {
 
   render() {
     if (this.state.didLogout) {
-      return <Redirect to='/login' />
+      return <Redirect to={paths.LOGIN} />
     }
     let userInfo = this.props.userInfo
     return (
@@ -34,13 +34,15 @@ class Main extends Component {
               <Route path={paths.REFER}>
                 <Main_Refer />
               </Route>
-              <Route path="/mailbox">
+              <Route path={paths.MAILBOX}>
                 <Main_Mailbox />
               </Route>
-              <Route path="/prevRef">
+              <Route path={paths.PREV_REF}>
                 <MainPreviousRef />
               </Route>
-              <Route path="/explore"></Route>
+              <Route path={paths.EXPLORE}>
+
+              </Route>
               {userInfo.role == 'manager'
               ?
               <Route path={paths.CREATE_POSTING}>
