@@ -12,7 +12,16 @@ class CreateJobPosting extends Component{
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
     }
-
+    reset(){
+        this.setState({
+            title: "", 
+            salary: "", 
+            minYearsExperience: "", 
+            tags:"",
+            description:"",
+            createJobSuccess:true
+        })
+    }
     handleCredentialsChange(event) {
         const type = event.target.name
         this.setState({
@@ -120,6 +129,7 @@ class CreateJobPosting extends Component{
             this.setState({
                 createJobSuccess: true}
             )
+            this.reset()
         }
     }
 }
