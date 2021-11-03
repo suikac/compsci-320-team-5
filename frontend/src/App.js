@@ -36,7 +36,10 @@ class App extends Component {
 
   render() {
     // Login bypass
-    this.state.userInfo = {};
+    this.state.userInfo = {
+      role: 'manager'
+    };
+
     if (this.state.userInfo === undefined) {
       return null
     }
@@ -63,7 +66,7 @@ class App extends Component {
               </div>
               <div className='appGrid'>
                 <div className='navBarDiv'>
-                  <NavBar />
+                  <NavBar isManager={this.state.userInfo.role == 'manager'}/>
                 </div>
                 <div className='mainDiv'>
                   <Main userInfo={this.state.userInfo}/>

@@ -35,6 +35,15 @@ class NavBar extends Component {
                             EXPLORE
                         </Link>
                     </li>
+                    {this.props.isManager ?
+                    <li>
+                        <Link to='/createPosting'>
+                            CREATE POSTING
+                        </Link>
+                    </li>
+                    :
+                    null
+                    }
                 </ul>
         )
     }
