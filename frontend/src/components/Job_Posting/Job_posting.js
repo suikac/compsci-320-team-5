@@ -115,7 +115,7 @@ class CreateJobPosting extends Component{
             description:this.state.description,
             salary:this.state.salary
         }
-        const response = await apiPost('/createPosition', payload)
+        const response = await apiPost('/position/createPosition', payload)
         if(response.status == 200){
             this.setState({
                 createJobSuccess: true}
