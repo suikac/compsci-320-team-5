@@ -21,7 +21,6 @@ import { ManagerOnly, RolesGuard } from 'src/guards/role.guards';
 @Controller('position')
 export class PositionController {
   constructor(
-    //private readonly positionService: PositionService,
     @Inject('DB_SERVICE') private readonly dbService: ClientProxy,
   ) {}
 
@@ -60,12 +59,7 @@ export class PositionController {
 
   // To Do: get by manager
   @Get('getPositionsByManager')
-  public async getPositionsByManager(@Req() req: Request) {
-    let obj = this.parseInput(req.body, ['id'], []);
-    if (obj == null) {
-      return 'Need to send an id value';
-    }
-    let id = obj['id'];
+  public async getPositionsByManager(@Query('id') id: string) {
     if (id == undefined || !/^\d+$/.test(id)) {
       return 'Given id (' + id + ') is undefined or is not an int';
     }
@@ -79,12 +73,7 @@ export class PositionController {
   // /getPositionById Get route
   // Get a position by ID
   @Get('getPositionById')
-  public async getPositionById(@Req() req: Request) {
-    let obj = this.parseInput(req.body, ['id'], []);
-    if (obj == null) {
-      return 'Need to send an id value';
-    }
-    let id = obj['id'];
+  public async getPositionById(@Query('id') id: string) {
     if (id == undefined || !/^\d+$/.test(id)) {
       return 'Given id (' + id + ') is undefined or is not an int';
     }
@@ -127,7 +116,7 @@ export class PositionController {
   }
 
   @ManagerOnly()
-  @Patch('UpdatePosition')
+  @Patch('updatePosition')
   public async updatePosition(@Req() req: Request) {
     let requiredFields = ['id'];
     let otherFields = [
@@ -149,7 +138,7 @@ export class PositionController {
   }
 
   @ManagerOnly()
-  @Delete('DeletePosition')
+  @Delete('deletePosition')
   public async(@Req() req: Request) {
     let requiredFields = ['id'];
     let otherFields = [];
