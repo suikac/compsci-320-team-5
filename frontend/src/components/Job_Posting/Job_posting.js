@@ -7,6 +7,7 @@ class CreateJobPosting extends Component{
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:"",description:""}
         this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
+        this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
     }
 
