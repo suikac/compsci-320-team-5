@@ -1,14 +1,13 @@
 import React, {Component} from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
-import{JobCreateSuccessedPopUp,JobCreateFailedPopUp} from "./Job_postingPopUp"
-import { style } from "dom-helpers";
+import{JobCreateSuccessedPopUp} from "./Job_postingPopUp"
 
 class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:"",
-        description:"",createJobSuccess:false}
+        description:"",createJobSuccess:true}
         this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
