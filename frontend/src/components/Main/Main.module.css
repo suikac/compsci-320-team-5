@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .mainArea {
   grid-row: 1;
   grid-column: 2;
@@ -8,3 +9,5 @@
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 5fr;
 }
+=======
+>>>>>>> parent of b470a8d (Merge remote-tracking branch 'origin/job-posting_fix' into position_feature)

@@ -2,15 +2,20 @@ import { Component } from "react";
 import { apiPost } from "../../utils/api-fetch";
 import { Redirect } from "react-router-dom"
 import Header from "../Header/Header";
+import NavBar from '../NavBar/navBar'
 import Footer from "../Footer/Footer"
 import Main_Mailbox from "../Main_Mailbox/main_mailbox"
 import Main_Home from "../Main_Home/main_home";
 import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
+<<<<<<< HEAD
 import CreateJobPosting from "../Job_Posting/Job_posting";
 import { Route, Switch } from "react-router-dom";
 import * as paths from "../../utils/paths";
 import * as styles from './Main.module.css'
 import NavBar from '../NavBar/navBar';
+=======
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+>>>>>>> parent of b470a8d (Merge remote-tracking branch 'origin/job-posting_fix' into position_feature)
 
 class Main extends Component {
   constructor(props) {
@@ -35,9 +40,6 @@ class Main extends Component {
             <Switch>
               <Route exact path="/">
                 <Main_Home />
-              </Route>
-              <Route path={paths.CREATE_POSTING}>
-                <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
               </Route>
               <Route path="/mailbox">
                 <Main_Mailbox />
