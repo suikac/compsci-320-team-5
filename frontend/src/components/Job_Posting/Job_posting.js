@@ -7,6 +7,7 @@ class CreateJobPosting extends Component{
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:"",description:""}
         this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
+        this.submit_credentials = this.submit_credentials.bind(this);
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
     }
 
@@ -54,14 +55,14 @@ class CreateJobPosting extends Component{
                     <div className = {styles.tagSearchBarContainer}>
                         <textarea
                             type='text'
-                            name= 'tags' 
+                            name= 'tags'
                             className = {styles.tagSearchBarText}
                             value = {this.state.tags}
                             onChange={this.handleCredentialsChange}
                             placeholder = "choose job required tags"
                         />
                     </div>
-                    <button 
+                    <button
                     type ="button"
                     onClick = {this.submit_credentials}
                     className = {styles.createButton}>Create</button>
@@ -80,6 +81,7 @@ class CreateJobPosting extends Component{
         );
     }
     async submit_credentials() {
+        console.log(this.state)
         const payload = {
             tags:this.state.tags.split(" "),
             title:this.state.title,
@@ -87,7 +89,7 @@ class CreateJobPosting extends Component{
             description:this.state.description,
             salary:this.state.salary
         }
-        const response = await apiPost('/createPosition', payload)
+        const response = await apiPost('/position/createPosition', payload)
     }
 }
 

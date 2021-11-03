@@ -1,4 +1,4 @@
-/* .mainArea {
+.mainArea {
   grid-row: 1;
   grid-column: 2;
 }
@@ -7,4 +7,4 @@
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 5fr;
-} */
+}

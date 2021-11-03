@@ -8,8 +8,9 @@ import Main_Home from "../Main_Home/main_home";
 import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
 import CreateJobPosting from "../Job_Posting/Job_posting";
 import { Route, Switch } from "react-router-dom";
-import * as paths from "../../utils/paths"
+import * as paths from "../../utils/paths";
 import * as styles from './Main.module.css'
+import NavBar from '../NavBar/navBar';
 
 class Main extends Component {
   constructor(props) {
@@ -24,8 +25,13 @@ class Main extends Component {
     }
     let userInfo = this.props.userInfo
     return (
-      <div className={styles.mainDiv}>
-          <div className={styles.mainArea}>
+      <div className = "container-fluid">
+        <div className = "row"><Header/></div>
+        <div style={{display: "flex", flexDirection: "row"}}>
+          <div style={{display: "flex", flexDirection: "column"}}>
+            <NavBar/>
+          </div>
+          <div style={{display: "flex", flexDirection: "column", overflowY: "auto"}}>
             <Switch>
               <Route exact path="/">
                 <Main_Home />
@@ -42,6 +48,8 @@ class Main extends Component {
               <Route path="/explore"></Route>
             </Switch>
           </div>
+        </div>
+        <div className = "row"><Footer /></div>
       </div>
     );
   }
