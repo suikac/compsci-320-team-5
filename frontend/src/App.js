@@ -35,10 +35,10 @@ class App extends Component {
   }
 
   render() {
-    // Login bypass
-    this.state.userInfo = {
-      role: 'manager'
-    };
+    // // Login bypass
+    // this.state.userInfo = {
+    //   role: 'manager'
+    // };
 
     if (this.state.userInfo === undefined) {
       return null

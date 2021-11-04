@@ -18,7 +18,7 @@ function MainPreviousRef(){
     if (!isLoad){
       return <div>Loading...</div>;
     } else {
-      console.log(refData['0']['position'])
+      console.log(refData)
       const prevRefComponents =
         refData.map(refData => <RefBox refTitle={refData.position.title}
                                                                    referred={refData?.referred}
@@ -32,7 +32,7 @@ function MainPreviousRef(){
 }
 
 async function getReferral() {
-  return await apiGet("/referral/get?isManager=1&isRead=0");
+  return await apiGet("/referral/get?isRead=0");
 }
 
 export default MainPreviousRef;
