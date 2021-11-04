@@ -14,9 +14,9 @@ class CreateJobPosting extends Component{
     }
     reset(){
         this.setState({
-            title: "", 
-            salary: "", 
-            minYearsExperience: "", 
+            title: "",
+            salary: "",
+            minYearsExperience: "",
             tags:"",
             description:"",
             createJobSuccess:true
@@ -32,7 +32,7 @@ class CreateJobPosting extends Component{
     render(){
         return(
             <form>
-                <h2> 
+                <h2>
                     <p> Job Creating </p>
                     <div className = {styles.jobTitleContainer}>
                         <input
@@ -87,9 +87,9 @@ class CreateJobPosting extends Component{
                         />
                     </div>
                     {this.state.title != "" && this.state.description !=""?
-                            <button 
+                            <button
                             type ="button"
-                            onSubmit = {this.submit_credentials}
+                            onClick = {this.submit_credentials}
                             className = {styles.createButton}>Create</button>
                             :
                             <button
@@ -114,7 +114,7 @@ class CreateJobPosting extends Component{
             description:this.state.description,
             salary:this.state.salary
         }
-        const response = await apiPost('/position/createPosition', payload)
+        const response = await apiPost('/position/createPosition', payload)
         if(response.status == 200){
             this.setState({
                 createJobSuccess: true}
