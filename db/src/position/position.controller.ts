@@ -15,9 +15,6 @@ export class PositionController {
     private positionService: PositionService
   ) {}
 
-
-
-
   // Matt Cappucci
   // Test route to see if connection to DB is working
   @MessagePattern({ cmd: 'test' })
@@ -25,50 +22,43 @@ export class PositionController {
     return this.positionService.test();
   }
 
-
-
-
   // Matt Cappucci
   // Route for getting a position by its ID
-    @MessagePattern({ cmd: 'getPositionById' })
-    public async getPositionById(@Payload('id') id: string) {
-        let position = await this.positionService
-            .getPositionById(id)
-            .catch(() => null);
+  @MessagePattern({ cmd: 'getPositionById' })
+  public async getPositionById(@Payload('id') id: string) {
+    let position = await this.positionService
+      .getPositionById(id)
+      .catch(() => null);
 
-        if (position != null) {
-            let tags = await this.positionService
-                .getTagsByPositionId(id)
-                .catch(() => null);
-            if (tags != null) {
-                position['tags'] = tags;
-            } else {
-                position = null;
-            }
-        }
-
-        return position;
+    if (position != null) {
+      let tags = await this.positionService
+        .getTagsByPositionId(id)
+        .catch(() => null);
+      if (tags != null) {
+        position['tags'] = tags;
+      } else {
+        position = null;
+      }
     }
 
-
-
+    return position;
+  }
 
   @MessagePattern({ cmd: 'getAllPositions' })
   public async getAllPositions() {
     let positions = await this.positionService
-        .getAllPositions()
-        .catch(() => null);
+      .getAllPositions()
+      .catch(() => null);
     if (positions != null && positions != undefined) {
-        for (let i = 0; i < positions.length; ++i) {
-            let tags = await this.positionService.getTagsByPositionId(positions[i]['id'].toString());
-            positions[i]['tags'] = tags;
-        }
+      for (let i = 0; i < positions.length; ++i) {
+        let tags = await this.positionService.getTagsByPositionId(
+          positions[i]['id'].toString()
+        );
+        positions[i]['tags'] = tags;
+      }
     }
     return positions;
   }
-  
-
-
 
   @MessagePattern({ cmd: 'getPositionsByManager' })
   public async getPositionsByManger(@Payload('id') id: string) {
@@ -76,16 +66,15 @@ export class PositionController {
       .getPositionsByManager(id)
       .catch(() => null);
     if (positions != null && positions != undefined) {
-        for (let i = 0; i < positions.length; ++i) {
-            let tags = await this.positionService.getTagsByPositionId(positions[i]['id'].toString());
-            positions[i]['tags'] = tags;
-        }
+      for (let i = 0; i < positions.length; ++i) {
+        let tags = await this.positionService.getTagsByPositionId(
+          positions[i]['id'].toString()
+        );
+        positions[i]['tags'] = tags;
+      }
     }
     return positions;
   }
-
-
-
 
   @MessagePattern({ cmd: 'createPosition' })
   public async createPosition(data: Object) {
@@ -104,9 +93,6 @@ export class PositionController {
     }
     return position;
   }
-
-
-
 
   @MessagePattern({ cmd: 'updatePosition' })
   public async updatePosition(data: Object) {
@@ -127,9 +113,6 @@ export class PositionController {
     }
     return this.getPositionById(id);
   }
-
-
-
 
   @MessagePattern({ cmd: 'addTagsToPosition' })
   public async addTagsToPosition(
@@ -155,9 +138,6 @@ export class PositionController {
     return 'works';
   }
 
-
-
-  
   @MessagePattern({ cmd: 'deletePosition' })
   async deletePosition(@Payload('id') id: string) {
     this.positionService.deleteAllPositionTags(id);

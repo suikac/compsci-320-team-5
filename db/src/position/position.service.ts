@@ -18,15 +18,9 @@ export class PositionService {
     private positionTagRepository: PositionTagRepository
   ) {}
 
-
-
-
   public async test() {
     return 'hello';
   }
-
-
-
 
   public async getPositionById(id: string): Promise<Position> {
     const position = await this.positionRepository
@@ -37,9 +31,6 @@ export class PositionService {
     return position;
   }
 
-
-
-
   public async getPositionsByManager(managerId: string): Promise<Position[]> {
     const positions = await this.positionRepository
       .createQueryBuilder('Position')
@@ -49,9 +40,6 @@ export class PositionService {
     return positions;
   }
 
-
-
-
   public async getAllPositions(): Promise<Position[]> {
     const positions = await this.positionRepository
       .createQueryBuilder('Position')
@@ -60,16 +48,10 @@ export class PositionService {
     return positions;
   }
 
-
-
-
   public async createPosition(data: Object) {
     const position = await this.positionRepository.save(data);
     return position;
   }
-
-
-
 
   public async getPositionTagsByPositionId(positionId: string) {
     return await this.positionTagRepository
@@ -78,9 +60,6 @@ export class PositionService {
       .getMany();
   }
 
-
-
-
   public async getTagsTagId(tagIds: number[]) {
     return await this.tagRepository
       .createQueryBuilder('Tag')
@@ -88,33 +67,27 @@ export class PositionService {
       .getMany();
   }
 
+  public async getTagsByPositionId(id: string): Promise<string[]> {
+    const positionTags = await this.getPositionTagsByPositionId(id).catch(
+      () => null
+    );
 
+    if (positionTags != null && positionTags != undefined) {
+      if (positionTags.length == 0) {
+        return [];
+      } else {
+        let arr = positionTags.map((e) => parseInt(e['tagId']));
 
+        let tags = await this.getTagsTagId(arr).catch(() => null);
 
-    public async getTagsByPositionId(id: string): Promise<string[]> {
-        const positionTags = await this.getPositionTagsByPositionId(id)
-            .catch(() => null);
-
-        if (positionTags != null && positionTags != undefined) {
-            if (positionTags.length == 0) {
-                return [];
-            } else {
-                let arr = positionTags.map((e) => parseInt(e['tagId']));
-
-                let tags = await this.getTagsTagId(arr)
-                    .catch(() => null);
-
-                if (tags != null && tags != undefined && tags.length != 0) {
-                    tags = tags.map(e => e['name']);
-                    return tags;
-                }
-            }
+        if (tags != null && tags != undefined && tags.length != 0) {
+          tags = tags.map((e) => e['name']);
+          return tags;
         }
-        return null;
+      }
     }
-
-
-
+    return null;
+  }
 
   public async addTagToPosition(positionAddId: string, tag: Object) {
     console.log(tag);
@@ -126,9 +99,6 @@ export class PositionService {
     return positionTag;
   }
 
-
-
-
   public async deleteAllPositionTags(positionId: string) {
     await this.positionTagRepository
       .createQueryBuilder('PositionTag')
@@ -138,9 +108,6 @@ export class PositionService {
       .execute();
   }
 
-
-
-
   public async getTagByName(name: string) {
     let tag = await this.tagRepository
       .createQueryBuilder('Tag')
@@ -149,16 +116,10 @@ export class PositionService {
     return tag;
   }
 
-
-
-
   public async createTag(name: string) {
     const tag = await this.tagRepository.save({ name: name });
     return tag;
   }
-
-
-
 
   public async updatePosition(positionId: string, data: Object) {
     let value = await this.positionRepository
@@ -169,9 +130,6 @@ export class PositionService {
       .execute();
     return value;
   }
-
-
-
 
   public async deletePosition(id: string) {
     let position = await this.positionRepository

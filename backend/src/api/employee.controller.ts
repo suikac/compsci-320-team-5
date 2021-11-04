@@ -30,12 +30,11 @@ export class EmployeeController {
     }
   }
 
-
   @ManagerOnly()
   @Post('signUp')
   public async signUpEmployee(
     @Body('email') email: string,
-    @Body('password') password: string,
+    @Body('password') password: string
   ) {
     console.log('signing up api..');
     const cmd = { cmd: 'signUp' };
