@@ -160,4 +160,10 @@ export class PositionController {
     const cmd = { cmd: 'deletePosition' };
     return this.dbService.send(cmd, data);
   }
+
+  @Get('get')
+  public async getPosition(@Req() req, @Query() query) {
+    const cmd = { cmd: 'getPosition' };
+    return this.dbService.send(cmd, query);
+  }
 }
