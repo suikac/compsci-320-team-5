@@ -24,6 +24,9 @@ export class PositionController {
     @Inject('DB_SERVICE') private readonly dbService: ClientProxy,
   ) {}
 
+
+
+
   // Matt Cappucci
   // Function used for parsing JSON sent to controller
   private parseInput(
@@ -48,6 +51,9 @@ export class PositionController {
     return data;
   }
 
+
+
+
   // Matt Cappucci
   // /test GET route
   // Just used to make such you can connect to this controller
@@ -56,6 +62,9 @@ export class PositionController {
   public async test() {
     return this.dbService.send({ cmd: 'test' }, {});
   }
+
+
+
 
   // To Do: get by manager
   @Get('getPositionsByManager')
@@ -68,6 +77,9 @@ export class PositionController {
     const position = this.dbService.send(cmd, data);
     return position;
   }
+
+
+
 
   // Matt Cappucci
   // /getPositionById Get route
@@ -83,6 +95,9 @@ export class PositionController {
     return position;
   }
 
+
+
+
   // Matt Cappucci
   // /getAllPositions GET route
   // Gets all positions in the DB
@@ -93,27 +108,33 @@ export class PositionController {
     return this.dbService.send(cmd, data);
   }
 
+
+
+
   // Matt Cappucci
   // /createPosition POST request
   // Creates a new position with tags in the DB
   @ManagerOnly()
   @Post('createPosition')
-  public async createPosition(@Req() req: Request) {
+  public async createPosition(@Req() req) {
     let requiredFields = ['title'];
     let otherFields = [
       'description',
       'minYearExperience',
       'salary',
-      'managerId',
       'tags',
     ];
     let data = this.parseInput(req.body, requiredFields, otherFields);
     if (data == null) {
       return 'Require a title field in position data';
     }
+    data['managerId'] = req.user.userId;
     const cmd = { cmd: 'createPosition' };
     return this.dbService.send(cmd, data);
   }
+
+
+
 
   @ManagerOnly()
   @Patch('updatePosition')
@@ -137,6 +158,9 @@ export class PositionController {
     return this.dbService.send(cmd, data);
   }
 
+
+
+  
   @ManagerOnly()
   @Delete('deletePosition')
   public async(@Req() req: Request) {
