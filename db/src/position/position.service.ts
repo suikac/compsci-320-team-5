@@ -8,6 +8,7 @@ import { PositionTagRepository } from './positionTag.repository';
 import { TagRepository } from './tag.repository';
 import { getRepository } from 'typeorm';
 import { PositionTag } from 'src/entities/PositionTag';
+import { GetPositionDto } from './position.dto';
 
 @Injectable()
 export class PositionService {
@@ -138,5 +139,18 @@ export class PositionService {
       .where('id = :id', { id: id })
       .execute();
     return position;
+  }
+
+  public async getPosition(param: GetPositionDto) {
+    const query = this.positionRepository
+      .createQueryBuilder()
+
+    if (param.maxSalary) {
+      query
+        .andWhere('salary < :maxSalary', {maxSalary: param.maxSalary})
+    }
+
+    return query
+      .getMany()
   }
 }
