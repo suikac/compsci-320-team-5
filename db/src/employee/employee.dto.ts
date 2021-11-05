@@ -1,4 +1,4 @@
-export class getEmployeeDto {
+export class GetEmployeeDto {
 
   email: string
 
