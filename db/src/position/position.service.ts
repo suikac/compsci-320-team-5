@@ -1,14 +1,14 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import * as bcrypt from 'bcrypt';
-import { REPL_MODE_STRICT } from 'repl';
 import { Position } from 'src/entities/Position';
 import { PositionRepository } from './position.repository';
 import { PositionTagRepository } from './positionTag.repository';
 import { TagRepository } from './tag.repository';
-import { getRepository, SelectQueryBuilder } from 'typeorm';
+import { SelectQueryBuilder } from 'typeorm';
 import { PositionTag } from 'src/entities/PositionTag';
 import { GetPositionDto } from './position.dto';
+import { EmployeeRepository } from '../employee/employee.repository';
+import { EmployeeService } from '../employee/employee.service';
 
 @Injectable()
 export class PositionService {
@@ -16,7 +16,8 @@ export class PositionService {
     @InjectRepository(PositionRepository)
     private positionRepository: PositionRepository,
     private tagRepository: TagRepository,
-    private positionTagRepository: PositionTagRepository
+    private positionTagRepository: PositionTagRepository,
+    private employeeService: EmployeeService
   ) {}
 
   public async test() {
@@ -118,6 +119,13 @@ export class PositionService {
     return tag;
   }
 
+  public async searchTagByName(name: string) {
+    return await this.tagRepository
+      .createQueryBuilder('Tag')
+      .where('name like :name', { name: `%${name}%` })
+      .getMany();
+  }
+
   public async createTag(name: string) {
     const tag = await this.tagRepository.save({ name: name });
     return tag;
@@ -143,7 +151,6 @@ export class PositionService {
   }
 
   public async getPosition(param: GetPositionDto) {
-    console.log(param.minYearExperience)
     let query = this.positionRepository
       .createQueryBuilder('position')
       .innerJoin('position.positionTags', 'pt')
@@ -173,6 +180,8 @@ export class PositionService {
       query = await this.getPositionByTagsName(query, param)
     }
 
+    // TODO: add manager name search
+
     const res = await query.getMany();
 
     for (let i = 0; i < res.length; i++) {
@@ -184,6 +193,7 @@ export class PositionService {
 
   private async completePosition(position) {
     position.tags = await this.getTagsByPositionId(position.id)
+    position.manager = await this.employeeService.getEmployeeById(position.managerId)
     return position
   }
 

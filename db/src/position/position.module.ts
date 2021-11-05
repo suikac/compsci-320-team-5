@@ -6,6 +6,7 @@ import { PositionRepository } from './position.repository';
 import { PositionService } from './position.service';
 import { PositionTagRepository } from './positionTag.repository';
 import { TagRepository } from './tag.repository';
+import { EmployeeModule } from '../employee/employee.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { TagRepository } from './tag.repository';
       TagRepository,
       PositionTagRepository,
     ]),
+    EmployeeModule
   ],
   controllers: [PositionController],
   providers: [PositionService],

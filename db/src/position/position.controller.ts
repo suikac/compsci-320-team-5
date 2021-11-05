@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PositionService } from './position.service';
-import { GetPositionDto } from './position.dto';
+import { GetPositionDto, GetTagsDto } from './position.dto';
 import { RpcValidationFilter } from '../interface/RpcValidationFilter';
 
 @Controller('Position')
@@ -154,5 +154,10 @@ export class PositionController {
   async getPosition(@Payload() param: GetPositionDto) {
     console.log(param)
     return this.positionService.getPosition(param);
+  }
+
+  @MessagePattern( { cmd: 'getTag' })
+  async getTag(@Payload() param: GetTagsDto) {
+    return await this.positionService.searchTagByName(param.name)
   }
 }
