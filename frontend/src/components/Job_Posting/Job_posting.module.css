@@ -1,0 +1,155 @@
+/* * {
+  box-sizing: content-box;
+  width: 100%;
+} */
+
+h2{
+background-color: #edddd4;
+position: relative;
+max-width: 1020px;
+max-height: 500px;
+margin-left: 10px;
+margin-top:20px;
+border: 3px solid #772E25;
+border-radius: 20px;
+margin: 20px;
+padding: 5px;
+overflow: hidden;
+}
+/* Header */
+.jobTitleContainer{
+font-size: 22px;
+text-align: center;
+padding: 5px;
+position: relative;
+max-width: 42.1%;/**/
+max-height: 13.4%;/**/
+left: 0px;
+top: 0px;
+background: #C4C4C4;
+margin: 15px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+border-radius: 102px;
+}
+.jobTitleText{
+border: none;
+justify-content: center;
+display: inline-block;
+text-align: left;
+border-radius: 0px;
+width: 90%;
+height: 90%;
+background: #C4C4C4;
+}
+
+.salaryContainer{
+font-size: 22px;
+text-align: center;
+padding: 5px;
+position: relative;
+max-width: 19.1%;/**/
+max-height: 13.4%;/**/
+margin: 15px;
+left: 0px;
+top: 0px;
+background: #C4C4C4;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+border-radius: 102px;
+}
+.salaryText{
+  border: none;
+  justify-content: center;
+  display: inline-block;
+  text-align: left;
+  border-radius: 0px;
+  width: 90%;
+  height: 90%;
+  background: #C4C4C4;
+}
+
+.minYearofExpContainer{
+  font-size: 22px;
+  text-align: center;
+  padding: 5px;
+  position:relative;
+  max-width: 19.1%;/**/
+  max-height: 13.4%;/**/  
+  left: 22.9%;
+  top: -54px;
+  margin: 15px;
+  background: #C4C4C4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 102px;
+}
+.minYearofExpText{
+  border: none;
+  justify-content: center;
+  display: inline-block;
+  text-align: left;
+  border-radius: 10px;
+  width: 90%;
+  height: 90%;
+  background: #C4C4C4;
+}
+.tagSearchBarContainer{
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding:5px;
+  position: relative;
+  max-width: 42.1%;
+  max-height: 50%;
+  left: 0px;
+  top: -50px;
+  margin: 15px;
+  background: #C4C4C4;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+ border-radius: 52px;
+ }
+ .tagSearchBarText{
+   border: none;
+   justify-content: center;
+   display: inline-block;
+   text-align: left;
+   border-radius: 10px;
+   width: 80%;
+   height: 200px;
+   resize: none;
+   background: #C4C4C4;
+ }
+
+.DescriptionContainer{
+  margin: 15px;
+font-size: 24px;
+ text-align: center;
+ padding: 8px;
+ position: relative;
+ max-width: 49.12%;
+ height: 325px;
+ left: 48.04%;
+ top: -448px;
+ background: #C4C4C4;
+ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+border-radius: 52px;
+}
+.DescriptionText{
+  resize: none;
+  border: none;
+  justify-content: center;
+  display: inline-block;
+  text-align: left;
+  border-radius: 10px;
+  width: 90%;
+  height: 90%;
+  background: #C4C4C4;
+}
+.createButton{
+  position:relative;
+  width: 20%;
+  height: 10%;
+  top: -20px;
+  left: 0px;
+  background: #197278;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
+ border-radius: 102px;
+}

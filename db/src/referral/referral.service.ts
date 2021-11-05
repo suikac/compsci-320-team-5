@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ReferralRepository } from './referral.repository';
 import { Referral } from '../entities/Referral';
-import { CreateReferralDto, GetReferralDto } from "./referral.dto";
+import { CreateReferralDto, GetReferralDto } from './referral.dto';
 import { PositionController } from '../position/position.controller';
 import { PositionService } from '../position/position.service';
 import { EmployeeService } from '../employee/employee.service';
@@ -112,34 +112,38 @@ export class ReferralService {
   }
 
   public async get(data: GetReferralDto) {
-    const query = this.referralRepository
-      .createQueryBuilder('referral')
+    const query = this.referralRepository.createQueryBuilder('referral');
 
     if (data.isManager == null) {
-      query.where('referrer_id = :referrerId', {referrerId: data.referrerId})
+      query.where('referrer_id = :referrerId', { referrerId: data.referrerId });
     } else {
-      query.innerJoinAndSelect('referral.position', 'position')
-        .where('position.manager_id = :managerId', {managerId: data.referrerId})
+      query
+        .innerJoinAndSelect('referral.position', 'position')
+        .where('position.manager_id = :managerId', {
+          managerId: data.referrerId,
+        });
     }
 
     if (data.isRead != null) {
-      console.log(data.isRead)
-      query.andWhere('is_read = :isRead', {isRead: data.isRead})
+      console.log(data.isRead);
+      query.andWhere('is_read = :isRead', { isRead: data.isRead });
     }
 
     if (data.positionId != null) {
-      console.log(typeof data.positionId)
-      query.andWhere('position_id = :positionId', {positionId: data.positionId})
+      console.log(typeof data.positionId);
+      query.andWhere('position_id = :positionId', {
+        positionId: data.positionId,
+      });
     }
 
     if (data.id != null) {
-      query.andWhere('id = :id', {id: data.id})
+      query.andWhere('id = :id', { id: data.id });
     }
 
     const res = await query.getMany();
 
     for (let i = 0; i < res.length; i++) {
-      res[i] = await this.completeReferral(res[i])
+      res[i] = await this.completeReferral(res[i]);
     }
 
     return res;

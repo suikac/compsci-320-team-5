@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { JwtGuard } from '../guards/jwt-guard';
+
 import { ManagerOnly, RolesGuard } from '../guards/role.guards';
 
 @UseGuards(JwtGuard, RolesGuard)
@@ -33,7 +34,7 @@ export class EmployeeController {
   @Post('signUp')
   public async signUpEmployee(
     @Body('email') email: string,
-    @Body('password') password: string,
+    @Body('password') password: string
   ) {
     console.log('signing up api..');
     const cmd = { cmd: 'signUp' };

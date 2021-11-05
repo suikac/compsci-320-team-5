@@ -31,7 +31,7 @@ export class JwtGuard implements CanActivate {
     const cmd = { cmd: 'jwt-auth' };
     try {
       const response: UserData = await firstValueFrom(
-        this.loginService.send(cmd, { token: tokenString }),
+        this.loginService.send(cmd, { token: tokenString })
       );
       request.user = response;
       return true;
