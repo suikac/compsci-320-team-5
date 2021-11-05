@@ -6,8 +6,9 @@ import { Position } from 'src/entities/Position';
 import { PositionRepository } from './position.repository';
 import { PositionTagRepository } from './positionTag.repository';
 import { TagRepository } from './tag.repository';
-import { getRepository } from 'typeorm';
+import { getRepository, SelectQueryBuilder } from 'typeorm';
 import { PositionTag } from 'src/entities/PositionTag';
+import { GetPositionDto } from './position.dto';
 
 @Injectable()
 export class PositionService {
@@ -109,6 +110,7 @@ export class PositionService {
   }
 
   public async getTagByName(name: string) {
+    console.log(name)
     let tag = await this.tagRepository
       .createQueryBuilder('Tag')
       .where('name = :name', { name: name })
@@ -138,5 +140,62 @@ export class PositionService {
       .where('id = :id', { id: id })
       .execute();
     return position;
+  }
+
+  public async getPosition(param: GetPositionDto) {
+    console.log(param.minYearExperience)
+    let query = this.positionRepository
+      .createQueryBuilder('position')
+      .innerJoin('position.positionTags', 'pt')
+
+    if (param.maxSalary) {
+      query
+        .andWhere('salary < :maxSalary', {maxSalary: param.maxSalary})
+    }
+
+    if (param.minSalary) {
+      query
+        .andWhere('salary > :minSalary', {minSalary: param.minSalary})
+    }
+
+    if (param.title) {
+      query
+        .andWhere('title like :title', {title: `%${param.title}%`})
+    }
+
+    if (param.minYearExperience) {
+      query
+        .andWhere('min_year_experience >= :minYearExperience',
+          {minYearExperience: param.minYearExperience})
+    }
+
+    if (param.tags) {
+      query = await this.getPositionByTagsName(query, param)
+    }
+
+    const res = await query.getMany();
+
+    for (let i = 0; i < res.length; i++) {
+      res[i] = await this.completePosition(res[i]);
+    }
+
+    return res;
+  }
+
+  private async completePosition(position) {
+    position.tags = await this.getTagsByPositionId(position.id)
+    return position
+  }
+
+  private async getPositionByTagsName(query: SelectQueryBuilder<Position>, param) {
+    let tagsId = []
+    for (let i = 0; i < param.tags.length; i++) {
+      tagsId.push(await this.getTagByName(param.tags[i])
+        .then(r => r.id))
+    }
+    console.log(tagsId)
+    return query
+      .andWhere('position.id = pt.position_id')
+      .andWhere('pt.tag_id in (:tag_id)', {tag_id : tagsId})
   }
 }

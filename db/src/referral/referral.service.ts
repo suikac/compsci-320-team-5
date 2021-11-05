@@ -137,7 +137,7 @@ export class ReferralService {
     }
 
     if (data.id != null) {
-      query.andWhere('id = :id', { id: data.id });
+      query.andWhere('referral.id = :id', { id: data.id });
     }
 
     const res = await query.getMany();

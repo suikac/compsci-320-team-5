@@ -1,26 +1,29 @@
 import { Optional } from '@nestjs/common';
-import { IsNumberString } from 'class-validator';
+import { IsNumberString, IsOptional } from 'class-validator';
 
-export class getPositionDto {
+export class GetPositionDto {
 
+  @IsOptional()
   @IsNumberString()
-  @Optional()
   minSalary: number
 
   @IsNumberString()
-
+  @IsOptional()
   maxSalary: number
 
-  jobTitle: string
+  @IsOptional()
+  title: string
 
-  minExperience: number
+  @IsOptional()
+  minYearExperience: number
 
+  @IsOptional()
   managerName: string
 
-  @Optional()
+  @IsOptional()
   tags: string[]
 }
 
-export class getTagsDto {
+export class GetTagsDto {
   name: string
 }

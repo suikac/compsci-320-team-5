@@ -3,10 +3,12 @@ import {
   HttpException,
   HttpStatus,
   Inject,
-  NotFoundException,
+  NotFoundException, UseFilters, ValidationPipe
 } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PositionService } from './position.service';
+import { GetPositionDto } from './position.dto';
+import { RpcValidationFilter } from '../interface/RpcValidationFilter';
 
 @Controller('Position')
 export class PositionController {
@@ -146,5 +148,11 @@ export class PositionController {
       return null;
     }
     return id;
+  }
+
+  @MessagePattern({ cmd: 'getPosition'})
+  async getPosition(@Payload() param: GetPositionDto) {
+    console.log(param)
+    return this.positionService.getPosition(param);
   }
 }
