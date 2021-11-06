@@ -9,6 +9,7 @@ import { PositionTag } from 'src/entities/PositionTag';
 import { GetPositionDto } from './position.dto';
 import { EmployeeRepository } from '../employee/employee.repository';
 import { EmployeeService } from '../employee/employee.service';
+import { GetEmployeeDto } from '../employee/employee.dto';
 
 @Injectable()
 export class PositionService {
@@ -180,7 +181,9 @@ export class PositionService {
       query = await this.getPositionByTagsName(query, param)
     }
 
-    // TODO: add manager name search
+    if (param.managerName) {
+      query = await this.getPositionByManagerName(query, param)
+    }
 
     const res = await query.getMany();
 
@@ -197,6 +200,18 @@ export class PositionService {
     return position
   }
 
+  private async getPositionByManagerName(query: SelectQueryBuilder<Position>, param) {
+    let managerId = await this.employeeService
+      .getEmployee(
+        {name: param.managerName, email: ""})
+      .then(r => r.map(e => e.id))
+
+    console.log(managerId);
+      return managerId.length > 0 ? query.andWhere(
+        'manager_id in (:managerId)', { managerId: managerId }
+      ) : query;
+  }
+
   private async getPositionByTagsName(query: SelectQueryBuilder<Position>, param) {
     let tagsId = []
     for (let i = 0; i < param.tags.length; i++) {
@@ -204,8 +219,10 @@ export class PositionService {
         .then(r => r.id))
     }
     console.log(tagsId)
-    return query
-      .andWhere('position.id = pt.position_id')
-      .andWhere('pt.tag_id in (:tag_id)', {tag_id : tagsId})
+    if (tagsId.length > 0) {
+      return query
+        .andWhere('position.id = pt.position_id')
+        .andWhere('pt.tag_id in (:tagId)', {tagId : tagsId})
+    }
   }
 }

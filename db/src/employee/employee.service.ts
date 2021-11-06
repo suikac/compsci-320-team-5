@@ -22,7 +22,6 @@ export class EmployeeService {
   public async getEmployee(param: GetEmployeeDto) {
     const query = this.employeeRepository
       .createQueryBuilder()
-      .where('False')
 
     console.log(param.name)
     if (param.email) {
