@@ -25,7 +25,6 @@ class Main extends Component {
     }
     let userInfo = this.props.userInfo
     return (
-      <div className={styles.mainDiv}>
           <div className={styles.mainArea}>
             <Switch>
               <Route exact path="/">
@@ -55,7 +54,6 @@ class Main extends Component {
               </Route>
             </Switch>
           </div>
-      </div>
     );
   }
 
