@@ -53,6 +53,42 @@ export class PositionService {
     return position;
   }
 
+  public async getPositionTagsByPositionId(positionId: string) {
+    return await this.positionTagRepository
+      .createQueryBuilder('PositionTag')
+      .where('position_id = :positionId', { positionId: parseInt(positionId) })
+      .getMany();
+  }
+
+  public async getTagsTagId(tagIds: number[]) {
+    return await this.tagRepository
+      .createQueryBuilder('Tag')
+      .where('id IN (:ids)', { ids: tagIds })
+      .getMany();
+  }
+
+  public async getTagsByPositionId(id: string): Promise<string[]> {
+    const positionTags = await this.getPositionTagsByPositionId(id).catch(
+      () => null
+    );
+
+    if (positionTags != null && positionTags != undefined) {
+      if (positionTags.length == 0) {
+        return [];
+      } else {
+        let arr = positionTags.map((e) => parseInt(e['tagId']));
+
+        let tags = await this.getTagsTagId(arr).catch(() => null);
+
+        if (tags != null && tags != undefined && tags.length != 0) {
+          tags = tags.map((e) => e['name']);
+          return tags;
+        }
+      }
+    }
+    return null;
+  }
+
   public async addTagToPosition(positionAddId: string, tag: Object) {
     console.log(tag);
     console.log(positionAddId);

@@ -21,7 +21,7 @@ import { ManagerOnly, RolesGuard } from './role.guards';
 @Controller()
 export class LoginController {
   constructor(
-    @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy,
+    @Inject('LOGIN_SERVICE') private readonly loginClient: ClientProxy
   ) {}
 
   @UseGuards(JwtGuard, RolesGuard)
@@ -35,7 +35,7 @@ export class LoginController {
   async login(
     @Body('email') email: string,
     @Body('password') password: string,
-    @Res() res: Response,
+    @Res() res: Response
   ) {
     const cmd = { cmd: 'login' };
     const data = { email: email, password: password };

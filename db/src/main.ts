@@ -11,7 +11,7 @@ async function bootstrap() {
       port: 3001,
     },
   });
-  app.useGlobalPipes(new ValidationPipe())
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen();
 }
 bootstrap();
