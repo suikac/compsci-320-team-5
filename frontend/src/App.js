@@ -8,7 +8,7 @@ import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import NotFoundPage from "./components/NotFound/NotFoundPage"
 import * as paths from "./utils/paths"
-import { apiGet } from "./utils/api-fetch"
+import { apiGet, apiPost } from "./utils/api-fetch"
 import NavBar from './components/NavBar/navBar'
 
 class App extends Component {
@@ -20,6 +20,7 @@ class App extends Component {
     }
 
     this.onUserInfoChange = this.onUserInfoChange.bind(this)
+    this.onLogout = this.onLogout.bind(this)
   }
 
   async componentDidMount() {
@@ -34,8 +35,13 @@ class App extends Component {
     this.setState({ userInfo: userInfo })
   }
 
+  async onLogout() {
+    await apiPost("/logout")
+    this.onUserInfoChange(null)
+  }
+
   render() {
-    // // Login bypass
+    // Login bypass
     // this.state.userInfo = {
     //   role: 'manager'
     // };
@@ -62,7 +68,7 @@ class App extends Component {
             </Route>
             <Route path='/'>
               <div className='header-div'>
-                <Header />
+                <Header onLogout={this.onLogout}/>
               </div>
               <div className='appGrid'>
                 <div className='navBarDiv'>

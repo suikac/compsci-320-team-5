@@ -29,9 +29,6 @@ class Login extends Component {
             <div className={styles.container}>
                 <form>
                     <h1>Login</h1>
-                    <button type="button"
-                    onClick = {this.logout_credentials}
-                    className={styles.logoutButton}>Log Out</button>
                     <div className={styles.credentials}>
                         <label>Username</label>
                         <input
