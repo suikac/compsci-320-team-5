@@ -6,17 +6,10 @@ class Main_Home extends Component{
 
   constructor(props) {
     super(props)
-    this.state = {}
-    
+    this.state = {jobTitle: "", tags: "", managerInfo: ""}
+  
 }
-
-handleCredentialsChange(event) {
-    const type = event.target.type
-    this.setState({
-        [type]: event.target.value
-    })
-}
-render(){
+  render(){
     return(
         <div className = {maincss.MainContainer}>
             <h1 class = "rec"> RECOMMENDED</h1>
