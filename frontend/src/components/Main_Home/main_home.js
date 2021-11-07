@@ -1,30 +1,44 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from 'react';
 import Footer from "../Footer/Footer";
 import maincss from "./main_home.module.css";
+import { apiGet } from '../../utils/api-fetch';
 
-class Main_Home extends Component{
+function Main_Home(){
+  const [positionData, setPositionData] = useState([])
+  const [isLoad, setIsLoad] = useState(false)
+  useEffect(() => {
+      getPosition()
+        .then(r => r.json())
+        .then(r => {
+          setPositionData(r);
+          setIsLoad(true);
+        })
+    }
+    , [])
 
-  constructor(props) {
-    super(props)
-    this.state = {jobTitle: "", tags: "", managerInfo: ""}
-  
-}
-  render(){
+  if (!isLoad){
+    return <div>Loading...</div>;
+  } else {
+    console.log(positionData)
     return(
-        <div className = {maincss.MainContainer}>
-            <h1 class = "rec"> RECOMMENDED</h1>
-            <div className = {maincss.MainJobContainer}>
-                <h1 class = "jobTitle"> Job Title</h1>
-                <h1 class = "managerInfo"> Manager Info</h1>
-                <h1 class = "tags"> Tags</h1>
-                <div className = {maincss.refButton}>
-                  <input type="submit" value="REFER" class="refer-button" />
-                </div>
-            </div>
-            <Footer />
+      <div className={maincss.MainContainer}>
+        <h1 className="rec"> RECOMMENDED</h1>
+        <div className={maincss.MainJobContainer}>
+          <h1 className="jobTitle"> {positionData[0].title} </h1>
+          <h1 className="managerInfo"> Manager Info</h1>
+          <h1 className="tags"> Tags</h1>
+          <div className={maincss.refButton}>
+            <input type="submit" value="REFER" className="refer-button" />
+          </div>
         </div>
+        <Footer />
+      </div>
     )
   }
 }
 
-export default Main_Home
+async function getPosition() {
+  return await apiGet("/position/getAllPositions");
+}
+
+export default Main_Home;
