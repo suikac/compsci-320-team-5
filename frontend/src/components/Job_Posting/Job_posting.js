@@ -32,8 +32,8 @@ class CreateJobPosting extends Component{
     render(){
         return(
             <form>
-                <h2>
-                    <p> Job Creating </p>
+                <h2 className={styles.h2}>
+                    <p className={styles.p}> Job Creating </p>
                     <div className = {styles.jobTitleContainer}>
                         <input
                             name='title'

@@ -9,13 +9,12 @@
   background: #EDDDD4;
   border: 3px solid #C44536;
   border-radius: 10%;
-  text-align: center;
   margin-top: 150px;
   font-weight: 400;
   font-family: 'Roboto', sans-serif;
 }
 
-h1{
+.h1{
   color: #893026;
 }
 
@@ -30,22 +29,21 @@ h1{
 }
 
 .credentials{
-  display: inline-block;
+  display: block;
   font-size: x-small;
   margin-bottom: 10px;
   text-align: left;
-  transform: translate(-25px);
+  /* transform: translate(-25px); */
   padding: 10px;
 }
 .formControl{
   border: none;
   justify-content: center;
-  display: inline-block;
+  display: block;
   text-align: center;
   border-radius: 20px;
-  width: 125%;
   height: 30px;
-
+  width: 100%
 }
 .loginButton{
   background-color: #C44536;
@@ -55,15 +53,18 @@ h1{
   padding: 8px 100px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 16px;
   cursor: pointer;
-  justify-content: center;
-  transform: translateY(70px)
+  transform: translateY(100%);
 }
 
 .forgotPassword{
-  transform: translate(20%,-50px);
+  margin-left: auto;
+  margin-right: 10px;
+  text-align: right;
   font-size: small;
 }
 .photo{
@@ -117,7 +118,7 @@ h2{
   top: 0;
   left: 0;
   width: 100%;
-  
+
   margin-top: 250px;
   display: flex;
   align-items: center;
