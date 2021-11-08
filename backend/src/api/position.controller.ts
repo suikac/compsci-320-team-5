@@ -143,8 +143,8 @@ export class PositionController {
     return this.dbService.send(cmd, data);
   }
 
-  @Get('get')
-  public async getPosition(@Req() req, @Query() query) {
+  @Post('get')
+  public async getPosition(@Req() req, @Body() query) {
     const cmd = { cmd: 'getPosition' };
     console.log(query);
     return this.dbService.send(cmd, query);

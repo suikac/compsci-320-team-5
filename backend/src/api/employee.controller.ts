@@ -43,8 +43,8 @@ export class EmployeeController {
     return response;
   }
 
-  @Get('get')
-  public async getEmployee(@Query() query) {
+  @Post('get')
+  public async getEmployee(@Body() query) {
     return this.dbService.send({ cmd: 'getEmployee' }, query);
   }
 }
