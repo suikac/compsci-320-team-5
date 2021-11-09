@@ -67,14 +67,22 @@ class CreateJobPosting extends Component{
                     </div>
 
                     <div className = {styles.tagSearchBarContainer}>
-                        <textarea
-                            type='text'
-                            name= 'tags'
-                            className = {styles.tagSearchBarText}
-                            value = {this.state.tags}
-                            onChange={this.handleCredentialsChange}
-                            placeholder = "Required Tags"
-                        />
+                        <input list="brow"
+                                className = {styles.tagSearchBarText}/>
+                            <datalist id="brow">
+                                <option value="Internet Explorer">
+                                </option>
+                                <option value="Firefox">
+                                </option>
+                                <option value="Chrome">
+                                </option>
+                                <option value="Opera">
+                                </option>
+                                <option value="Safari">
+                                </option>
+                            </datalist>  
+                        <div className = {styles.tagStoreContainer}>
+                        </div>
                     </div>
                     <div className = {styles.DescriptionContainer}>
                         <textarea required
