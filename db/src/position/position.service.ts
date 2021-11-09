@@ -26,10 +26,12 @@ export class PositionService {
   }
 
   public async getPositionById(id: string): Promise<Position> {
-    const position = await this.positionRepository
+    let position = await this.positionRepository
       .createQueryBuilder('Position')
       .where('id = :id', { id: parseInt(id) })
       .getOneOrFail();
+
+    position = await this.completePosition(position)
 
     return position;
   }
@@ -40,6 +42,10 @@ export class PositionService {
       .where('manager_id = :manager_id', { manager_id: parseInt(managerId) })
       .getMany();
 
+    for (let i = 0; i < positions.length; i++) {
+      positions[i] = await this.completePosition(positions[i])
+    }
+
     return positions;
   }
 
@@ -47,6 +53,10 @@ export class PositionService {
     const positions = await this.positionRepository
       .createQueryBuilder('Position')
       .getMany();
+
+    for (let i = 0; i < positions.length; i++) {
+      positions[i] = await this.completePosition(positions[i])
+    }
 
     return positions;
   }
