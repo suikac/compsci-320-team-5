@@ -22,7 +22,7 @@ function MainPreviousRef(){
       const prevRefComponents =
         refData.map(refData => <RefBox refTitle={refData.position.title}
                                                                    referred={refData?.referred}
-                                                                   referredDesc={refData?.referredDesc}
+                                                                   referredDesc={refData.position.description}
                                                                    imgUrl={refData?.imgUrl} refStat={refData?.refStat}
                                                                    refStatDesc={refData?.refStatDesc} />)
       return (

@@ -2,7 +2,10 @@
     background-color:rgb(202, 190, 190);
     /* overflow: hidden; */
     height: 100%;
-    display: flex
+    display: flex;
+    padding: 1em 1em 1em 1em;
+    align-items: center;
+    justify-content: center;
 }
 
 .logocontainer{
@@ -54,4 +57,8 @@ h1,h2{
 
 .hstack {
     width: 100%
+}
+
+.logo{
+    justify-content: center;
 }

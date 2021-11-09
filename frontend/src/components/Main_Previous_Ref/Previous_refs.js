@@ -8,21 +8,14 @@ function RefBox(props){
                 <div className="row">
                     <h2>{props.refTitle}</h2> {/*Referral Title*/}
                     <div className="col-sm-4">
-                        <h3>{props.referred}</h3> {/*Person Referred*/}
-                        <p>{props.referredDesc}</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                        <h3>Name: {props.referred}</h3> {/*Person Referred*/}
+                        <p>About Position: {props.referredDesc}</p>
                     </div>
                     <div className="col-sm-4">
-                        <img src = {props.imgUrl} alt = "image of a fish"></img> {/*Image for the Job*/}
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                        <h3>Referral Status: {props.refStat}</h3> {/*Referral Status*/}
                     </div>
                     <div className="col-sm-4">
-                        <h3>{props.refStat}</h3> {/*Referral Status*/}
-                        <p>{props.refStatDesc}</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+                        <h3>Status Description: {props.refStatDesc}</h3>
                     </div>
                 </div>
             </div>
