@@ -17,7 +17,7 @@ export class RolesGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const isManagerRoute = this.reflector.getAllAndOverride<boolean>(
       MANAGER_KEY,
-      [context.getHandler(), context.getClass()],
+      [context.getHandler(), context.getClass()]
     );
     if (!isManagerRoute) {
       return true;

@@ -36,7 +36,6 @@ require('dotenv').config();
       database: process.env.mysql_db,
       entities: [Employee, Referral, Resume, Position, PositionTag, Tag],
       synchronize: true,
-      logging: true,
     }),
     EmployeeModule,
     PositionModule,

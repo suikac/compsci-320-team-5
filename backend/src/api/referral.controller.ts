@@ -19,7 +19,6 @@ import { ManagerOnly, RolesGuard } from '../guards/role.guards';
 export class ReferralController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
-
   @Post('create')
   public async createReferral(@Req() req, @Body() data) {
     console.log('Creating a new referral');
@@ -64,7 +63,7 @@ export class ReferralController {
 
   @Get('getReferralsByReferrer')
   public async getReferralsByReferrer(
-    @Query('referrer_id') referrer_id: number,
+    @Query('referrer_id') referrer_id: number
   ) {
     console.log('Fetch existing referrals (by referrer)');
     const cmd = { cmd: 'getReferralsByReferrer' };
@@ -75,7 +74,7 @@ export class ReferralController {
 
   @Get('getReferralsByPosition')
   public async getReferralsByPosition(
-    @Query('position_id') position_id: number,
+    @Query('position_id') position_id: number
   ) {
     console.log('Fetch existing referrals (by position)');
     const cmd = { cmd: 'getReferralsByPosition' };
