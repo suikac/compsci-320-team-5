@@ -1,3 +1,89 @@
+/* General */
+.test {
+    border: 1px solid red;
+}
+h3 {
+    color: black !important;
+}
+
+
+/* Main referral page */
+#outline {
+    width: 100%;
+}
+#positions {
+    width: 100%;
+}
+.referBtn {
+    margin: 0;
+    background-color: #26989e;
+    color: white;
+    border: 2px solid #26989e;
+    border-radius: 15px;
+    padding: 0 2vw 0 2vw;
+    transition: 200ms;
+}
+.referBtn:hover {
+    background-color: white;
+    color: #26989e;
+}
+.positionItemContainer {
+    margin-right: 10px;
+    border-radius: 0 0 25px 25px;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-bottom: 1px solid #aaaaaa;
+    box-shadow: 3px 3px 3px #aaaaaa; 
+}
+Link {
+    color: white;
+}
+
+
+/* PositionItem Referral */
+.positionContainer {
+    width: 100%;
+    height: 15vh;
+}
+.referBtnContainer {
+    position: relative;
+    bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .container{
   position: relative; 
   top: -575px;

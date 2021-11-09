@@ -1,8 +1,99 @@
 import React, {Component} from "react";
+import PositionItem from "./Position_item";
 import ReferCSS from "./main_refer.module.css"
 
-class referal extends Component{
-    constructor(props){
+let fakeData = [
+    {
+        id: 1,
+        title: 'Software Engineer',
+        description: 'Python and java skills.',
+        minYearExperience: 2,
+        salary: 64000,
+        manager: {
+            id: 1,
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'johnD@gmail.com',
+            positionTitle: 'manager II'
+        },
+        tags: ['Python', 'Java']
+    },
+    {
+        id: 2,
+        title: 'Senior Software Engineer',
+        description: 'You must know everything.',
+        minYearExperience: 20,
+        salary: 200000,
+        manager: {
+            id: 2,
+            firstName: 'Jane',
+            lastName: 'Doe',
+            email: 'janeDoe@hotmail.com',
+            positionTitle: 'manager IV'
+        },
+        tags: ['C++', 'C', 'C#', 'Objective-C']
+    },
+    {
+        id: 1,
+        title: 'Junior Software Engineer',
+        description: 'JS developer',
+        minYearExperience: 0,
+        salary: 50000,
+        manager: {
+            id: 1,
+            firstName: 'Some',
+            lastName: 'Person',
+            email: 'somePerson@gmail.com',
+            positionTitle: 'manager II'
+        },
+        tags: ['JS', 'Node.js']
+    }
+]
+
+const positionsDisplay = fakeData.map(
+    e => {
+        return ( <div className={`mb-2 ${ReferCSS.positionItemContainer}`}><PositionItem {...e} /></div> );
+    }
+);
+
+class referal extends Component {
+    render() {
+        return (
+            <>
+                <div id={ReferCSS.outline} className={`mt-5`}>
+                    <h5 className={`d-inline-block mx-4`}>Filter Options</h5>
+                    <select name='referral-dropdown' id='referral-dropdown' placeholder='select value'>
+                        <option value='none' selected disabled hidden>filter options</option>
+                        <option value='option1'>option1</option>
+                        <option value='option2'>option2</option>
+                    </select>
+                </div>
+                <div id={ReferCSS.positions} className='mt-5'>
+                {
+                    positionsDisplay
+                }
+                </div>
+            </>
+        )
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*constructor(props){
         super(props)
         this.state = {refereeName: "", currentEmployee:false,
         refereeEmail: "", resume:null, description: "", employeeID: 0}
@@ -14,8 +105,6 @@ class referal extends Component{
     handleSubmit(event){
         alert('Form Submitted');
         event.preventDefault();
-
-
     }
 
 
@@ -39,6 +128,7 @@ class referal extends Component{
             [name]: value
         });
     }
+
     render(){
         return(
             <div>
@@ -51,7 +141,7 @@ class referal extends Component{
                             <option value="No">No</option>
 
                         </select>
-                    </label> */}
+                    </label> *//*}
                     <br/>
                    
                     <label className={ReferCSS.current}>
@@ -101,6 +191,6 @@ class referal extends Component{
                     <input type="submit" value="submit"/>
                 </form>
             </div>
-        )}
+        )}*/
         }
 export default referal

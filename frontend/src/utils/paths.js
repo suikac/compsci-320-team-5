@@ -5,3 +5,6 @@ export const REFER = '/refer'
 export const MAILBOX = '/mailbox'
 export const PREV_REF = '/prevRef'
 export const EXPLORE = '/explore'
+
+// Matt Cappucci - add path to create referral page
+export const CREATE_REFER = '/create'
