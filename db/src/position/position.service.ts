@@ -31,7 +31,7 @@ export class PositionService {
       .where('id = :id', { id: parseInt(id) })
       .getOneOrFail();
 
-    position = await this.completePosition(position)
+    await this.completePosition([position])
 
     return position;
   }
@@ -42,9 +42,7 @@ export class PositionService {
       .where('manager_id = :manager_id', { manager_id: parseInt(managerId) })
       .getMany();
 
-    for (let i = 0; i < positions.length; i++) {
-      positions[i] = await this.completePosition(positions[i])
-    }
+    await this.completePosition(positions)
 
     return positions;
   }
@@ -54,9 +52,7 @@ export class PositionService {
       .createQueryBuilder('Position')
       .getMany();
 
-    for (let i = 0; i < positions.length; i++) {
-      positions[i] = await this.completePosition(positions[i])
-    }
+    await this.completePosition(positions)
 
     return positions;
   }
@@ -197,17 +193,34 @@ export class PositionService {
 
     const res = await query.getMany();
 
-    for (let i = 0; i < res.length; i++) {
-      res[i] = await this.completePosition(res[i]);
-    }
+    await this.completePosition(res);
 
     return res;
   }
 
-  private async completePosition(position) {
-    position.tags = await this.getTagsByPositionId(position.id)
-    position.manager = await this.employeeService.getEmployeeById(position.managerId)
-    return position
+  private async completePosition(positions) {
+    let tags = await this.getAllTags()
+    for (const position of positions) {
+      let tagsId = await this.getTagsIdByPositionId(position.id)
+      position.tag = []
+      for (let i = 0; i < tagsId.length; i++) {
+        position.tag.push(tags[tagsId[i].tagId - 1].name)
+      }
+      position.manager = await this.employeeService.getEmployeeById(position.managerId)
+    }
+  }
+
+  private async getAllTags() {
+    return this.tagRepository
+      .createQueryBuilder()
+      .getMany()
+  }
+
+  private async getTagsIdByPositionId(positionId) {
+    return this.positionTagRepository
+      .createQueryBuilder()
+      .where('position_id = :id', {id: positionId})
+      .getMany()
   }
 
   private async getPositionByManagerName(query: SelectQueryBuilder<Position>, param) {
