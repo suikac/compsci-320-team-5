@@ -12,6 +12,9 @@ import { Route, Switch } from "react-router-dom";
 import * as paths from "../../utils/paths"
 import * as styles from './Main.module.css'
 
+// Matt Cappucci - import referral creation page
+import CreateRefer from '../Main_Create_Refer/CreateRefer';
+
 class Main extends Component {
   constructor(props) {
     super(props)
@@ -33,6 +36,9 @@ class Main extends Component {
               </Route>
               <Route path={paths.REFER}>
                 <Main_Refer />
+              </Route>
+              <Route path={paths.CREATE_REFER}>
+                  <CreateRefer />
               </Route>
               <Route path={paths.MAILBOX}>
                 <Main_Mailbox />
