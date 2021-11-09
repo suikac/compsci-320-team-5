@@ -202,9 +202,9 @@ export class PositionService {
     let tags = await this.getAllTags()
     for (const position of positions) {
       let tagsId = await this.getTagsIdByPositionId(position.id)
-      position.tag = []
+      position.tags = []
       for (let i = 0; i < tagsId.length; i++) {
-        position.tag.push(tags[tagsId[i].tagId - 1].name)
+        position.tags.push(tags[tagsId[i].tagId - 1].name)
       }
       position.manager = await this.employeeService.getEmployeeById(position.managerId)
     }
