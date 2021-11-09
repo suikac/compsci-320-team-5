@@ -63,7 +63,7 @@ export class ReferralController {
 
   @Get('getReferralsByReferrer')
   public async getReferralsByReferrer(
-    @Query('referrer_id') referrer_id: number,
+    @Query('referrer_id') referrer_id: number
   ) {
     console.log('Fetch existing referrals (by referrer)');
     const cmd = { cmd: 'getReferralsByReferrer' };
@@ -74,7 +74,7 @@ export class ReferralController {
 
   @Get('getReferralsByPosition')
   public async getReferralsByPosition(
-    @Query('position_id') position_id: number,
+    @Query('position_id') position_id: number
   ) {
     console.log('Fetch existing referrals (by position)');
     const cmd = { cmd: 'getReferralsByPosition' };

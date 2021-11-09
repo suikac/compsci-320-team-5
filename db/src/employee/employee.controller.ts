@@ -7,6 +7,8 @@ import {
 } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { EmployeeService } from './employee.service';
+import { GetReferralDto } from '../referral/referral.dto';
+import { GetEmployeeDto } from './employee.dto';
 
 @Controller('employee')
 export class EmployeeController {
@@ -65,5 +67,16 @@ export class EmployeeController {
     } catch (exception) {
       throw new NotFoundException('api not found');
     }
+  }
+
+  @MessagePattern({ cmd: 'getEmployee'} )
+  async getEmployee(@Payload() query: GetEmployeeDto) {
+    console
+    return this.employeeService.getEmployee(query);
+  }
+
+  @MessagePattern( {cmd: 'getEmployeeById'})
+  async getEmployeeById(@Payload('id') id: number) {
+    return this.employeeService.getEmployeeById(id);
   }
 }

@@ -2,9 +2,13 @@
 import { isNumberObject } from 'util/types';
 import {
   IsBoolean,
-  IsEmail, IsIn, IsInt,
+  IsEmail,
+  IsIn,
+  IsInt,
   IsNotEmpty,
-  IsNumber, IsNumberString, IsOptional,
+  IsNumber, isNumberString,
+  IsNumberString,
+  IsOptional,
   IsString
 } from 'class-validator';
 import { ParseIntPipe } from '@nestjs/common';
@@ -33,8 +37,7 @@ export class CreateReferralDto {
 
 export class GetReferralDto {
 
-  @Type(() => Number)
-  @IsInt()
+  @IsNumberString()
   @IsOptional()
   id: number;
 

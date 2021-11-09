@@ -3,10 +3,12 @@ import {
   HttpException,
   HttpStatus,
   Inject,
-  NotFoundException,
+  NotFoundException, UseFilters, ValidationPipe
 } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PositionService } from './position.service';
+import { GetPositionDto, GetTagsDto } from './position.dto';
+import { RpcValidationFilter } from '../interface/RpcValidationFilter';
 
 @Controller('Position')
 export class PositionController {
@@ -26,14 +28,38 @@ export class PositionController {
   // Route for getting a position by its ID
   @MessagePattern({ cmd: 'getPositionById' })
   public async getPositionById(@Payload('id') id: string) {
-    const position = this.positionService.getPositionById(id).catch(() => null);
+    let position = await this.positionService
+      .getPositionById(id)
+      .catch(() => null);
+
+    if (position != null) {
+      let tags = await this.positionService
+        .getTagsByPositionId(id)
+        .catch(() => null);
+      if (tags != null) {
+        position['tags'] = tags;
+      } else {
+        position = null;
+      }
+    }
+
     return position;
   }
 
   @MessagePattern({ cmd: 'getAllPositions' })
   public async getAllPositions() {
-    const position = this.positionService.getAllPositions().catch(() => null);
-    return position;
+    let positions = await this.positionService
+      .getAllPositions()
+      .catch(() => null);
+    if (positions != null && positions != undefined) {
+      for (let i = 0; i < positions.length; ++i) {
+        let tags = await this.positionService.getTagsByPositionId(
+          positions[i]['id'].toString()
+        );
+        positions[i]['tags'] = tags;
+      }
+    }
+    return positions;
   }
 
   @MessagePattern({ cmd: 'getPositionsByManager' })
@@ -41,6 +67,14 @@ export class PositionController {
     const positions = await this.positionService
       .getPositionsByManager(id)
       .catch(() => null);
+    if (positions != null && positions != undefined) {
+      for (let i = 0; i < positions.length; ++i) {
+        let tags = await this.positionService.getTagsByPositionId(
+          positions[i]['id'].toString()
+        );
+        positions[i]['tags'] = tags;
+      }
+    }
     return positions;
   }
 
@@ -114,5 +148,16 @@ export class PositionController {
       return null;
     }
     return id;
+  }
+
+  @MessagePattern({ cmd: 'getPosition'})
+  async getPosition(@Payload() param: GetPositionDto) {
+    console.log(param)
+    return this.positionService.getPosition(param);
+  }
+
+  @MessagePattern( { cmd: 'getTag' })
+  async getTag(@Payload() param: GetTagsDto) {
+    return await this.positionService.searchTagByName(param.name)
   }
 }

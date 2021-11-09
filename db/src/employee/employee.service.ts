@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Employee } from 'src/entities/Employee';
 import { EmployeeRepository } from './employee.repository';
 import * as bcrypt from 'bcrypt';
+import { GetEmployeeDto } from './employee.dto';
 
 @Injectable()
 export class EmployeeService {
@@ -11,11 +12,32 @@ export class EmployeeService {
     private employeeRepository: EmployeeRepository
   ) {}
 
-  public async getEmployee(id: number): Promise<Employee> {
+  public async getEmployeeById(id: number) {
     return this.employeeRepository
       .createQueryBuilder()
-      .where('id = :id', { id: id })
-      .getOneOrFail();
+      .where('id = :id', {id : id})
+      .getOne()
+  }
+
+  public async getEmployee(param: GetEmployeeDto) {
+    const query = this.employeeRepository
+      .createQueryBuilder()
+
+    console.log(param.name)
+    if (param.email) {
+      query
+        .orWhere('email like :email', { email: `%${param.email}%`})
+    }
+
+    if (param.name) {
+      query
+        .orWhere('concat(last_name, " ", first_name) like :name',
+          {name: `%${param.name}%`})
+        .orWhere('concat(first_name, " ", last_name) like :name',
+          {name: `%${param.name}%`})
+    }
+
+    return query.getMany()
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {

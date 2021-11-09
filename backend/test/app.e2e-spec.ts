@@ -4,20 +4,22 @@ import * as request from 'supertest';
 import { AppModule } from './../src/app.module';
 import { NestFactory } from '@nestjs/core';
 import { TcpOptions, Transport } from '@nestjs/microservices';
-import { ChildProcess, exec } from "child_process"
+import { ChildProcess, exec } from 'child_process';
 import { exit } from 'process';
 
-let microservices: ChildProcess
+let microservices: ChildProcess;
 beforeAll(async () => {
-  console.log("Running microservices")
-  microservices = exec('rm test/microservices.log && bash test/test_e2e.sh >test/microservices.log 2>&1')
-  await new Promise(r => setTimeout(r, 10000));
-}, 12000)
+  console.log('Running microservices');
+  microservices = exec(
+    'rm test/microservices.log && bash test/test_e2e.sh >test/microservices.log 2>&1'
+  );
+  await new Promise((r) => setTimeout(r, 10000));
+}, 12000);
 
 //// This doesn't kill microservices on exit. For now just ctrl-c
 
 // afterAll(() => {
-  // microservices.kill(9)
+// microservices.kill(9)
 // })
 
 describe('LoginController (e2e)', () => {
@@ -43,11 +45,11 @@ describe('LoginController (e2e)', () => {
     return request(app.getHttpServer())
       .post('/api/referral/create')
       .send({
-        "resumeId":1,
-        "refereeEmail":"test@gmail.com",
-        "positionId":1,
-        "referrerId":2
+        resumeId: 1,
+        refereeEmail: 'test@gmail.com',
+        positionId: 1,
+        referrerId: 2,
       })
-      .expect(200)
-  })
+      .expect(200);
+  });
 });

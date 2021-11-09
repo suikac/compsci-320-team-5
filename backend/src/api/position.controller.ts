@@ -20,17 +20,14 @@ import { ManagerOnly, RolesGuard } from 'src/guards/role.guards';
 @UseGuards(JwtGuard, RolesGuard)
 @Controller('position')
 export class PositionController {
-  constructor(
-    //private readonly positionService: PositionService,
-    @Inject('DB_SERVICE') private readonly dbService: ClientProxy,
-  ) {}
+  constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
   // Matt Cappucci
   // Function used for parsing JSON sent to controller
   private parseInput(
     requestBody: Object,
     requiredFields: string[],
-    otherFields: string[],
+    otherFields: string[]
   ) {
     let data = {};
     let requestBodyFields = Object.keys(requestBody);
@@ -60,12 +57,7 @@ export class PositionController {
 
   // To Do: get by manager
   @Get('getPositionsByManager')
-  public async getPositionsByManager(@Req() req: Request) {
-    let obj = this.parseInput(req.body, ['id'], []);
-    if (obj == null) {
-      return 'Need to send an id value';
-    }
-    let id = obj['id'];
+  public async getPositionsByManager(@Query('id') id: string) {
     if (id == undefined || !/^\d+$/.test(id)) {
       return 'Given id (' + id + ') is undefined or is not an int';
     }
@@ -79,12 +71,7 @@ export class PositionController {
   // /getPositionById Get route
   // Get a position by ID
   @Get('getPositionById')
-  public async getPositionById(@Req() req: Request) {
-    let obj = this.parseInput(req.body, ['id'], []);
-    if (obj == null) {
-      return 'Need to send an id value';
-    }
-    let id = obj['id'];
+  public async getPositionById(@Query('id') id: string) {
     if (id == undefined || !/^\d+$/.test(id)) {
       return 'Given id (' + id + ') is undefined or is not an int';
     }
@@ -109,25 +96,20 @@ export class PositionController {
   // Creates a new position with tags in the DB
   @ManagerOnly()
   @Post('createPosition')
-  public async createPosition(@Req() req: Request) {
+  public async createPosition(@Req() req) {
     let requiredFields = ['title'];
-    let otherFields = [
-      'description',
-      'minYearExperience',
-      'salary',
-      'managerId',
-      'tags',
-    ];
+    let otherFields = ['description', 'minYearExperience', 'salary', 'tags'];
     let data = this.parseInput(req.body, requiredFields, otherFields);
     if (data == null) {
       return 'Require a title field in position data';
     }
+    data['managerId'] = req.user.userId;
     const cmd = { cmd: 'createPosition' };
     return this.dbService.send(cmd, data);
   }
 
   @ManagerOnly()
-  @Patch('UpdatePosition')
+  @Patch('updatePosition')
   public async updatePosition(@Req() req: Request) {
     let requiredFields = ['id'];
     let otherFields = [
@@ -149,7 +131,7 @@ export class PositionController {
   }
 
   @ManagerOnly()
-  @Delete('DeletePosition')
+  @Delete('deletePosition')
   public async(@Req() req: Request) {
     let requiredFields = ['id'];
     let otherFields = [];
@@ -159,5 +141,12 @@ export class PositionController {
     }
     const cmd = { cmd: 'deletePosition' };
     return this.dbService.send(cmd, data);
+  }
+
+  @Post('get')
+  public async getPosition(@Req() req, @Body() query) {
+    const cmd = { cmd: 'getPosition' };
+    console.log(query);
+    return this.dbService.send(cmd, query);
   }
 }
