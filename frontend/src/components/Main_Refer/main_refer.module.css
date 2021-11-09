@@ -29,7 +29,7 @@ h3 {
 }
 .positionItemContainer {
     margin-right: 10px;
-    border-radius: 0 0 25px 25px;
+    border-radius: 0 0 15px 15px;
     border-right: 1px solid #cccccc;
     border-left: 1px solid #cccccc;
     border-bottom: 1px solid #aaaaaa;
@@ -43,7 +43,9 @@ Link {
 /* PositionItem Referral */
 .positionContainer {
     width: 100%;
-    height: 15vh;
+    height: 20vh;
+    min-height: 150px;
+    overflow: hidden;
 }
 .referBtnContainer {
     position: relative;

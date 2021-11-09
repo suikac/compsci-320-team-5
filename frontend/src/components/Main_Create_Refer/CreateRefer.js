@@ -39,11 +39,11 @@ class CreateRefer extends Component {
                     <div className='row'>
                         <div className='col-6'>
                             <div>
-                                <input type='radio' name='current_employee' value='current_employee' />
+                                <input type='radio' name='employee_type' value='current_employee' />
                                 <label for='in-house'>Current Employee</label>
                             </div>
                             <div>
-                                <input type='radio' name='outside_referral' value='outside_referral' />
+                                <input type='radio' name='employee_type' value='outside_referral' />
                                 <label for='in-house'>Outside Referral</label>
                             </div>
                         </div>
