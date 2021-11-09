@@ -25,12 +25,12 @@ export class PositionController {
   // Matt Cappucci
   // Function used for parsing JSON sent to controller
   private parseInput(
-    requestBody: Object,
+    requestBody,
     requiredFields: string[],
     otherFields: string[]
   ) {
-    let data = {};
-    let requestBodyFields = Object.keys(requestBody);
+    const data = {};
+    const requestBodyFields = Object.keys(requestBody);
     for (let i = 0; i < requiredFields.length; ++i) {
       if (!requestBodyFields.includes(requiredFields[i])) {
         return null;
@@ -97,9 +97,9 @@ export class PositionController {
   @ManagerOnly()
   @Post('createPosition')
   public async createPosition(@Req() req) {
-    let requiredFields = ['title'];
-    let otherFields = ['description', 'minYearExperience', 'salary', 'tags'];
-    let data = this.parseInput(req.body, requiredFields, otherFields);
+    const requiredFields = ['title'];
+    const otherFields = ['description', 'minYearExperience', 'salary', 'tags'];
+    const data = this.parseInput(req.body, requiredFields, otherFields);
     if (data == null) {
       return 'Require a title field in position data';
     }
@@ -111,8 +111,8 @@ export class PositionController {
   @ManagerOnly()
   @Patch('updatePosition')
   public async updatePosition(@Req() req: Request) {
-    let requiredFields = ['id'];
-    let otherFields = [
+    const requiredFields = ['id'];
+    const otherFields = [
       'description',
       'minYearExperience',
       'salary',
@@ -120,7 +120,7 @@ export class PositionController {
       'tags',
       'title',
     ];
-    let data = this.parseInput(req.body, requiredFields, otherFields);
+    const data = this.parseInput(req.body, requiredFields, otherFields);
     if (data == null) {
       return 'Require an id field in position data';
     } else if (Object.keys(data).length == 1) {
@@ -133,9 +133,9 @@ export class PositionController {
   @ManagerOnly()
   @Delete('deletePosition')
   public async(@Req() req: Request) {
-    let requiredFields = ['id'];
-    let otherFields = [];
-    let data = this.parseInput(req.body, requiredFields, otherFields);
+    const requiredFields = ['id'];
+    const otherFields = [];
+    const data = this.parseInput(req.body, requiredFields, otherFields);
     if (data == null) {
       return 'Require an id field in position data';
     }
