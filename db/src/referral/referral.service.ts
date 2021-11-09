@@ -90,11 +90,11 @@ export class ReferralService {
     referral.position = await this.positionService.getPositionById(
       referral.positionId.toString()
     );
-    referral.referrer = await this.employeeService.getEmployee(
+    referral.referrer = await this.employeeService.getEmployeeById(
       referral.referrerId
     );
     if (referral.refereeId !== null) {
-      referral.referee = await this.employeeService.getEmployee(
+      referral.referee = await this.employeeService.getEmployeeById(
         referral.refereeId
       );
     }
@@ -137,7 +137,7 @@ export class ReferralService {
     }
 
     if (data.id != null) {
-      query.andWhere('id = :id', { id: data.id });
+      query.andWhere('referral.id = :id', { id: data.id });
     }
 
     const res = await query.getMany();

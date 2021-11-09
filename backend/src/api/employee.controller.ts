@@ -42,4 +42,9 @@ export class EmployeeController {
     const response = this.dbService.send(cmd, data);
     return response;
   }
+
+  @Post('get')
+  public async getEmployee(@Body() query) {
+    return this.dbService.send({ cmd: 'getEmployee' }, query);
+  }
 }
