@@ -20,19 +20,11 @@ function MainPreviousRef(){
     } else {
       console.log(refData)
       const prevRefComponents =
-<<<<<<< HEAD
-        refData.map(refData => <RefBox refTitle={refData.position.title}
-                                                                   referred={refData?.referred}
-                                                                   referredDesc={refData.position.description}
-                                                                   imgUrl={refData?.imgUrl} refStat={refData?.refStat}
-                                                                   refStatDesc={refData?.refStatDesc} />)
-=======
         refData.map(refData => <RefBox  refTitle={refData.position.title}
                                         referred={refData?.referred}
                                         referredDesc={refData?.referredDesc}
                                         imgUrl={refData?.imgUrl} refStat={refData?.refStat}
                                         refStatDesc={refData?.refStatDesc} />)
->>>>>>> 3d83cf3fb37c754b5863e190b2447951766bb1da
       return (
         <React.Fragment>{prevRefComponents}</React.Fragment>
       )
