@@ -57,6 +57,20 @@ export class PositionService {
     return positions;
   }
 
+  public async getRecommendedPositions(page: string): Promise<Position[]> {
+    const PAGESIZE = 10
+    const positions = await this.positionRepository
+      .createQueryBuilder('Position')
+      .orderBy('id', 'DESC')
+      .offset(parseInt(page) * PAGESIZE)
+      .limit(PAGESIZE)
+      .getMany();
+
+    await this.completePosition(positions)
+
+    return positions
+  }
+
   public async createPosition(data: Object) {
     const position = await this.positionRepository.save(data);
     return position;

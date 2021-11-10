@@ -62,6 +62,22 @@ export class PositionController {
     return positions;
   }
 
+  @MessagePattern({ cmd: 'getRecommendedPositions' })
+  public async getRecommendedPositions(@Payload('page') page: string) {
+    let positions = await this.positionService
+      .getRecommendedPositions(page)
+      .catch(() => null);
+    if (positions != null && positions != undefined) {
+      for (let i = 0; i < positions.length; ++i) {
+        let tags = await this.positionService.getTagsByPositionId(
+          positions[i]['id'].toString()
+        );
+        positions[i]['tags'] = tags;
+      }
+    }
+    return positions;
+  }
+
   @MessagePattern({ cmd: 'getPositionsByManager' })
   public async getPositionsByManger(@Payload('id') id: string) {
     const positions = await this.positionService

@@ -91,6 +91,19 @@ export class PositionController {
     return this.dbService.send(cmd, data);
   }
 
+  //Richard Paul
+  // /getRecommendedPostions Get route
+  // gets a page of the recommended positions
+  @Get('getRecommendedPositions')
+  public async getRecommendedPositions(@Query('page') page: string) {
+    if (page == undefined || !/^\d+$/.test(page)) {
+      return 'Given id (' + page + ') is undefined or is not an int';
+    }
+    const cmd = { cmd: 'getRecommendedPositions'};
+    const data = {page: page};
+    return this.dbService.send(cmd, data);
+  }
+
   // Matt Cappucci
   // /createPosition POST request
   // Creates a new position with tags in the DB
