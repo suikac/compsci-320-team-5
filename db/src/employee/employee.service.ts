@@ -41,14 +41,6 @@ export class EmployeeService {
     return query.getMany()
   }
 
-  public async getEmployeeById(id: number): Promise<Employee> {
-    const employees = await this.employeeRepository.findByIds([1])
-    if (employees.length == 0) {
-      throw EntityNotFoundError
-    }
-    return employees[0]
-  }
-
   public async getEmployeeByEmail(email: string): Promise<Employee> {
     return this.employeeRepository
       .createQueryBuilder('Employee')
