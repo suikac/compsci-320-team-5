@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Employee } from 'src/entities/Employee';
-import { EmployeeRepository } from './employee.repository';
-import * as bcrypt from 'bcrypt';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Employee } from "src/entities/Employee";
+import { EmployeeRepository } from "./employee.repository";
+import * as bcrypt from "bcrypt";
+import { EntityNotFoundError } from "typeorm";
 import { GetEmployeeDto } from './employee.dto';
 
 @Injectable()
@@ -38,6 +39,14 @@ export class EmployeeService {
     }
 
     return query.getMany()
+  }
+
+  public async getEmployeeById(id: number): Promise<Employee> {
+    const employees = await this.employeeRepository.findByIds([1])
+    if (employees.length == 0) {
+      throw EntityNotFoundError
+    }
+    return employees[0]
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {

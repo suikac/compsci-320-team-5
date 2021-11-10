@@ -1,9 +1,9 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication, Inject } from '@nestjs/common';
-import { ClientProxy, ClientsModule, Transport } from '@nestjs/microservices';
-import { DbModule } from 'src/db.module';
+import { Test, TestingModule } from "@nestjs/testing";
+import { INestApplication, Inject } from "@nestjs/common";
+import { ClientProxy, ClientsModule, Transport } from "@nestjs/microservices";
+import { DbModule } from "src/db.module";
 
-describe('EmployeeController (e2e)', () => {
+describe("EmployeeController (e2e)", () => {
   let app: INestApplication;
   let client: ClientProxy;
 
@@ -13,7 +13,7 @@ describe('EmployeeController (e2e)', () => {
         DbModule,
         ClientsModule.register([
           {
-            name: 'DB_SERVICE',
+            name: "DB_SERVICE",
             transport: Transport.TCP,
             options: {
               port: 3001,
@@ -31,7 +31,7 @@ describe('EmployeeController (e2e)', () => {
     await app.startAllMicroservices();
     await app.init();
 
-    const client = app.get('DB_SERVICE');
+    const client = app.get("DB_SERVICE");
     await client.connect();
     afterAll(async () => {
       await app.close();

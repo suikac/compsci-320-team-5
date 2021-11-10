@@ -5,12 +5,15 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer"
 import Main_Mailbox from "../Main_Mailbox/main_mailbox"
 import Main_Home from "../Main_Home/main_home";
+import Main_Refer from "../Main_Refer/Main_refer"
 import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
 import CreateJobPosting from "../Job_Posting/Job_posting";
 import { Route, Switch } from "react-router-dom";
-import * as paths from "../../utils/paths";
+import * as paths from "../../utils/paths"
 import * as styles from './Main.module.css'
-import NavBar from '../NavBar/navBar';
+
+// Matt Cappucci - import referral creation page
+import CreateRefer from '../Main_Create_Refer/CreateRefer';
 
 class Main extends Component {
   constructor(props) {
@@ -21,36 +24,42 @@ class Main extends Component {
 
   render() {
     if (this.state.didLogout) {
-      return <Redirect to='/login' />
+      return <Redirect to={paths.LOGIN} />
     }
     let userInfo = this.props.userInfo
     return (
-      <div className = "container-fluid">
-        <div className = "row"><Header/></div>
-        <div style={{display: "flex", flexDirection: "row"}}>
-          <div style={{display: "flex", flexDirection: "column"}}>
-            <NavBar/>
-          </div>
-          <div style={{display: "flex", flexDirection: "column", overflowY: "auto"}}>
+          <div className={styles.mainArea}>
             <Switch>
               <Route exact path="/">
                 <Main_Home />
               </Route>
-              <Route path={paths.CREATE_POSTING}>
-                <CreateJobPosting isManager={() => this.state.userInfo.role == 'manager'}/>
+              <Route path={paths.REFER}>
+                <Main_Refer />
               </Route>
-              <Route path="/mailbox">
+              <Route path={paths.CREATE_REFER}>
+                  <CreateRefer />
+              </Route>
+              <Route path={paths.MAILBOX}>
                 <Main_Mailbox />
               </Route>
-              <Route path="/prevRef">
+              <Route path={paths.PREV_REF}>
                 <MainPreviousRef />
               </Route>
-              <Route path="/explore"></Route>
+              <Route path={paths.EXPLORE}>
+
+              </Route>
+              {userInfo.role == 'manager'
+              ?
+              <Route path={paths.CREATE_POSTING}>
+                <CreateJobPosting isManager={userInfo.role == 'manager'}/>
+              </Route>
+              : null
+              }
+              <Route path='/'>
+                <Redirect to={paths.NOT_FOUND} />
+              </Route>
             </Switch>
           </div>
-        </div>
-        <div className = "row"><Footer /></div>
-      </div>
     );
   }
 
