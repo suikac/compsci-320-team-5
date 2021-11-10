@@ -16,7 +16,7 @@ class PositionItem extends Component {
                         <tr><td><p className={`text-center`}>Years Experience: {this.props.minYearExperience}</p></td></tr>
                         <tr><td>
                             <div className={`text-center ${ReferCSS.referBtnContainer}`}>
-                                <Link to={{ pathname: paths.CREATE_REFER, state: this.props }}>
+                                <Link className='link' to={{ pathname: paths.CREATE_REFER, state: this.props }}>
                                     <button className={ReferCSS.referBtn}>REFER</button>
                                 </Link>
                             </div>
