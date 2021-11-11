@@ -2,16 +2,16 @@ import React, {Component} from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
 import{JobCreateSuccessedPopUp} from "./Job_postingPopUp"
-import { ListGroupItem } from "react-bootstrap";
+import { apiGet } from '../../utils/api-fetch';
 
 class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
-        this.state = {title: "", salary: "", minYearsExperience: "", tags:"",
+        this.state = {title: "", salary: "", minYearsExperience: "", tags:[], searchBarTag: "",
         description:"",createJobSuccess:false}
-        this.defaulttags = ['Git','MySQL','React','Kotlin','Kafka']
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
+        this.addValueToTag = this.addValueToTag.bind(this)
     }
     reset(){
         this.setState({
@@ -28,11 +28,22 @@ class CreateJobPosting extends Component{
         this.setState({
             [type]: event.target.value
         })
+        console.log(this.state)
+    }
+    addValueToTag(event){
+        let temp = this.state.tags.slice()
+        temp.push(this.state.searchBarTag)
+        this.setState({
+            tags:temp,
+            searchBarTag:''
+        })
     }
 
     render(){
+        // const defaulttags = this.getTags()
         return(
             <form>
+                {this.getTags()}
                 <h2 className={styles.h2}>
                     <p className={styles.p}> Job Creating </p>
                     <div className = {styles.jobTitleContainer}>
@@ -68,14 +79,31 @@ class CreateJobPosting extends Component{
                     </div>
 
                     <div className = {styles.tagSearchBarContainer}>
-                        <input list="brow"
+                        <input  list="brow"
+                                name = 'searchBarTag'
+                                type = 'text'
+                                value = {this.state.searchBarTag}
+                                onChange={this.handleCredentialsChange}
+                                placeholder = "Search Tag"
                                 className = {styles.tagSearchBarText}/>
                             <datalist id="brow">
-                            {this.defaulttags.map(tags => (
+                            {/* {defaulttags.map(tags => (
                                 <option>{tags}</option>
-                            ))}
+                            ))} */}
                             </datalist> 
+                            {this.state.searchBarTag != ''?
+                            <button type = 'button'
+                                    className = {styles.addButton}
+                                    onClick = {this.addValueToTag}
+                                    >add</button>:
+                                    <button className = {styles.disabledaddButton}>add</button>
+                            }
                         <div className = {styles.tagStoreContainer}>
+                            {
+                                this.state.tags.map(tag => (
+                                    <div>{tag}</div>
+                                ))
+                            }
                         </div>
                     </div>
                     <div className = {styles.DescriptionContainer}>
@@ -90,7 +118,7 @@ class CreateJobPosting extends Component{
                     </div>
                     {this.state.title != "" && this.state.description !=""?
                             <button
-                            type ="button"
+                            type = 'button'
                             onClick = {this.submit_credentials}
                             className = {styles.createButton}>Create</button>
                             :
@@ -110,7 +138,7 @@ class CreateJobPosting extends Component{
     }
     async submit_credentials() {
         const payload = {
-            tags:this.state.tags.split(" "),
+            tags:this.tags,
             title:this.state.title,
             minYearExperience:this.state.minYearsExperience,
             description:this.state.description,
@@ -124,6 +152,10 @@ class CreateJobPosting extends Component{
             )
             this.reset()
         }
+    }
+    async getTags() {
+        let toReturn  = await apiGet('/tag/get')
+        console.log(toReturn)
     }
 }
 
