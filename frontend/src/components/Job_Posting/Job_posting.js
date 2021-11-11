@@ -9,7 +9,7 @@ class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:[], searchBarTag: "",
-        description:"",createJobSuccess:true,isLoaded:false,defaultTag:[]}
+        description:"",createJobSuccess:false,isLoaded:false,defaultTag:[]}
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
         this.addValueToTag = this.addValueToTag.bind(this)
