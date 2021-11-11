@@ -1,3 +1,4 @@
+import { style } from 'dom-helpers'
 import React from 'react'
 import styles from "./Job_postingPopUp.module.css"
 
@@ -12,8 +13,8 @@ function PopUp(props, message) {
         <h2>
             <div className={styles.popUp}>
                 <div className = {styles.popUpInner}>
-                    <h1>{message} </h1>
-                    <h3>{props.effect()}</h3>
+                    <div className = {styles.h1}>{message} </div>
+                    <div className = {styles.h3}>{props.effect()}</div>
                 </div>
             </div>
         </h2>
