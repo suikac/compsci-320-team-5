@@ -9,8 +9,6 @@ class CreateJobPosting extends Component{
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:[], searchBarTag: "",
         description:"",createJobSuccess:false,isLoaded:false,defaultTag:[]}
-        this.defaultTags = ['Git','hahaha','hahahahaha']
-        this.tagFromDB = []
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
         this.addValueToTag = this.addValueToTag.bind(this)
@@ -20,10 +18,14 @@ class CreateJobPosting extends Component{
             title: "",
             salary: "",
             minYearsExperience: "",
-            tags:"",
+            tags:[],
             description:"",
-            createJobSuccess:true
+            createJobSuccess:false,
+            isLoaded:false,
+            searchBarTag:"",
+            defaultTag:[]
         })
+        this.setTagsArray()
     }
     handleCredentialsChange(event) {
         const type = event.target.name
@@ -170,12 +172,6 @@ class CreateJobPosting extends Component{
                         isLoaded:true
                     })
         })
-        // .then(a=>{
-        //     this.setState({
-        //         defaultTag:a,
-        //         isLoaded:true
-        //     })
-        // })
     }
 }
 
