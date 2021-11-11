@@ -41,7 +41,8 @@ class CreateJobPosting extends Component{
     }
 
     render(){
-        const defaulttags = this.getTags()
+        const defaulttags = []
+        this.getTags()
         return(
             <form>
                 <h2 className={styles.h2}>
@@ -90,7 +91,7 @@ class CreateJobPosting extends Component{
                             {defaulttags.map(tags => (
                                 <option>{tags}</option>
                             ))}
-                            </datalist> 
+                            </datalist>
                             {this.state.searchBarTag != ''?
                             <button type = 'button'
                                     className = {styles.addButton}
@@ -154,7 +155,8 @@ class CreateJobPosting extends Component{
         }
     }
     async getTags() {
-        return await apiPost('/tag/get')
+        const a = await apiPost('/tag/get')
+        return a.json()
     }
 }
 
