@@ -1,63 +1,23 @@
-import React, {Component} from "react";
+import React, { useState, useEffect } from "react";
 import PositionItem from "./Position_item";
-import ReferCSS from "./main_refer.module.css"
+import ReferCSS from "./main_refer.module.css";
+import * as api from "../../utils/api-fetch";
 
-let fakeData = [
-    {
-        id: 1,
-        title: 'Software Engineer',
-        description: 'Python and java skills.',
-        minYearExperience: 2,
-        salary: 64000,
-        manager: {
-            id: 1,
-            firstName: 'John',
-            lastName: 'Doe',
-            email: 'johnD@gmail.com',
-            positionTitle: 'manager II'
-        },
-        tags: ['Python', 'Java']
-    },
-    {
-        id: 2,
-        title: 'Senior Software Engineer',
-        description: 'You must know everything.',
-        minYearExperience: 20,
-        salary: 200000,
-        manager: {
-            id: 2,
-            firstName: 'Jane',
-            lastName: 'Doe',
-            email: 'janeDoe@hotmail.com',
-            positionTitle: 'manager IV'
-        },
-        tags: ['C++', 'C', 'C#', 'Objective-C']
-    },
-    {
-        id: 1,
-        title: 'Junior Software Engineer',
-        description: 'JS developer',
-        minYearExperience: 0,
-        salary: 50000,
-        manager: {
-            id: 1,
-            firstName: 'Some',
-            lastName: 'Person',
-            email: 'somePerson@gmail.com',
-            positionTitle: 'manager II'
-        },
-        tags: ['JS', 'Node.js']
-    }
-]
+function Referral() {
+    let [data, setData] = useState(null);
 
-const positionsDisplay = fakeData.map(
-    e => {
-        return ( <div className={`mb-2 ${ReferCSS.positionItemContainer}`}><PositionItem {...e} /></div> );
-    }
-);
+    useEffect(() => {
+        async function loadData() {
+            let response = await api.apiPost('/position/get')
+                .then(res => res.json());
+            setData(response);
+        }
+        loadData();
+    }, []);
 
-class referal extends Component {
-    render() {
+    if (data === null) {
+        return (<div> yeet </div>);
+    } else {
         return (
             <>
                 <div id={ReferCSS.outline} className={`mt-5`}>
@@ -70,13 +30,18 @@ class referal extends Component {
                 </div>
                 <div id={ReferCSS.positions} className='mt-5'>
                 {
-                    positionsDisplay
+                    data.map(
+                        e => {
+                            return ( <div className={`mb-2 ${ReferCSS.positionItemContainer}`}><PositionItem {...e} /></div> );
+                        }
+                    )
                 }
                 </div>
             </>
         )
     }
-    
+}
+export default Referral;
 
 
 
@@ -93,7 +58,18 @@ class referal extends Component {
 
 
 
-    /*constructor(props){
+
+
+
+
+
+
+
+
+
+
+
+/*constructor(props){
         super(props)
         this.state = {refereeName: "", currentEmployee:false,
         refereeEmail: "", resume:null, description: "", employeeID: 0}
@@ -192,5 +168,3 @@ class referal extends Component {
                 </form>
             </div>
         )}*/
-        }
-export default referal
