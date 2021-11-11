@@ -10,6 +10,7 @@ import { GetPositionDto } from './position.dto';
 import { EmployeeRepository } from '../employee/employee.repository';
 import { EmployeeService } from '../employee/employee.service';
 import { GetEmployeeDto } from '../employee/employee.dto';
+import { query } from 'express';
 
 @Injectable()
 export class PositionService {
@@ -141,10 +142,12 @@ export class PositionService {
   }
 
   public async searchTagByName(name: string) {
-    return await this.tagRepository
+    let query = this.tagRepository
       .createQueryBuilder('Tag')
-      .where('name like :name', { name: `%${name}%` })
-      .getMany();
+    if (name != null) {
+      query.where('name like :name', { name: `%${name}%` })
+    }
+    return await query.getMany()
   }
 
   public async createTag(name: string) {
