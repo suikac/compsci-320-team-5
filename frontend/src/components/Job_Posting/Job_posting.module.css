@@ -199,3 +199,21 @@ border-radius: 52px;
   border: solid #772E25;
   border-radius: 102px;
 }
+.tagHolder{
+  display: inline-block;
+  color:#772E25;
+  text-align: center;
+  font-size: 12px;
+  max-width: 25%;
+  max-height: 40px;;
+  border-radius:102px;
+  border: solid #772E25;
+  background: #edddd4;
+}
+.cancelButton{
+  font-size: 5px;
+  background: #edddd4;
+  max-height: 30%;
+  max-width: 20%;
+  ;
+}

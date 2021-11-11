@@ -3,6 +3,7 @@ import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
 import{JobCreateSuccessedPopUp} from "./Job_postingPopUp"
 import { apiGet } from '../../utils/api-fetch';
+import { style } from "dom-helpers";
 
 class CreateJobPosting extends Component{
     constructor(props) {
@@ -43,8 +44,9 @@ class CreateJobPosting extends Component{
         })
     }
     render(){  
-        this.setTagsArray()
+
         if(!this.state.isLoaded){
+            this.setTagsArray()
             return <div>loading</div>
         }
         else{
@@ -107,7 +109,10 @@ class CreateJobPosting extends Component{
                             <div className = {styles.tagStoreContainer}>
                                 {
                                     this.state.tags.map(tag => (
-                                        <div>{tag}</div>
+                                        <div className = {styles.tagHolder}>
+                                            {tag}
+                                            <button className = {styles.cancelButton}>X</button>
+                                        </div>
                                     ))
                                 }
                             </div>
