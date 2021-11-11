@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
 import{JobCreateSuccessedPopUp} from "./Job_postingPopUp"
+import { ListGroupItem } from "react-bootstrap";
 
 class CreateJobPosting extends Component{
     constructor(props) {
@@ -70,17 +71,10 @@ class CreateJobPosting extends Component{
                         <input list="brow"
                                 className = {styles.tagSearchBarText}/>
                             <datalist id="brow">
-                                <option value="Internet Explorer">
-                                </option>
-                                <option value="Firefox">
-                                </option>
-                                <option value="Chrome">
-                                </option>
-                                <option value="Opera">
-                                </option>
-                                <option value="Safari">
-                                </option>
-                            </datalist>  
+                            {this.defaulttags.map(tags => (
+                                <option>{tags}</option>
+                            ))}
+                            </datalist> 
                         <div className = {styles.tagStoreContainer}>
                         </div>
                     </div>
