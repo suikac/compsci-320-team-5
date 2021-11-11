@@ -96,7 +96,7 @@ border-radius: 102px;
   background: #C4C4C4;
 }
 .tagSearchBarContainer{
-  font-size: 18px;
+  font-size: 12px;
   margin-bottom: 10px;
   padding:5px;
   position: relative;
@@ -124,7 +124,6 @@ border-radius: 102px;
  .tagStoreContainer{
    border: none;
    justify-content: center;
-   display: inline-block;
    text-align: left;
    border-radius: 0px;
    width: 80%;
@@ -204,16 +203,17 @@ border-radius: 52px;
   color:#772E25;
   text-align: center;
   font-size: 12px;
-  max-width: 25%;
-  max-height: 40px;;
+  max-width: 100%;
+  padding-top: 1px;
+  height: 15%;
   border-radius:102px;
   border: solid #772E25;
   background: #edddd4;
 }
 .cancelButton{
   font-size: 5px;
-  background: #edddd4;
+  border: none;
+  background:transparent;
   max-height: 30%;
   max-width: 20%;
-  ;
 }

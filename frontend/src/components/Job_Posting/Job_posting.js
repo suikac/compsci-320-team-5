@@ -21,7 +21,6 @@ class CreateJobPosting extends Component{
             minYearsExperience: "",
             tags:[],
             description:"",
-            createJobSuccess:false,
             isLoaded:false,
             searchBarTag:"",
             defaultTag:[]
@@ -33,18 +32,34 @@ class CreateJobPosting extends Component{
         this.setState({
             [type]: event.target.value
         })
-        console.log(this.state)
     }
     addValueToTag(event){
+        // event.preventDefault()
         let temp = this.state.tags.slice()
-        temp.push(this.state.searchBarTag)
+        temp.push(this.state.searchBarTag.trim())
         this.setState({
             tags:temp,
             searchBarTag:''
         })
     }
-    render(){
-
+    render(){  
+        const listItem = this.state.tags.map((tag,i) => (
+            <li className = {styles.tagHolder} key = {tag+i}>
+                {tag}
+                <button
+                        type = 'button'
+                        className = {styles.cancelButton} 
+                        onClick = {()=>{
+                            let removeIndex = this.state.tags.indexOf(tag)
+                            let temp = this.state.tags.slice()
+                            temp.splice(removeIndex,1)
+                            this.setState({
+                                tags:temp,
+                            })
+                        }
+                    }>X</button>
+            </li>
+        ))
         if(!this.state.isLoaded){
             this.setTagsArray()
             return <div>loading</div>
@@ -99,26 +114,21 @@ class CreateJobPosting extends Component{
                                     <option>{tags}</option>
                                 ))}
                                 </datalist>
-                                {this.state.searchBarTag != ''?
+                                {this.state.searchBarTag.trim() != ''?
                                 <button type = 'button'
                                         className = {styles.addButton}
                                         onClick = {this.addValueToTag}
                                         >add</button>:
-                                        <button className = {styles.disabledaddButton}>add</button>
+                                <button className = {styles.disabledaddButton}
+                                        disabled
+                                        >add</button>
                                 }
-                            <div className = {styles.tagStoreContainer}>
-                                {
-                                    this.state.tags.map(tag => (
-                                        <div className = {styles.tagHolder}>
-                                            {tag}
-                                            <button className = {styles.cancelButton}>X</button>
-                                        </div>
-                                    ))
-                                }
-                            </div>
+                            <ul className = {styles.tagStoreContainer}>
+                                {listItem}
+                            </ul>
                         </div>
                         <div className = {styles.DescriptionContainer}>
-                            <textarea required
+                            <textarea
                                 type= 'text'
                                 name = 'description'
                                 className = {styles.DescriptionText}
@@ -151,7 +161,7 @@ class CreateJobPosting extends Component{
     //}
     async submit_credentials() {
         const payload = {
-            tags:this.tags,
+            tags:this.state.tags,
             title:this.state.title,
             minYearExperience:this.state.minYearsExperience,
             description:this.state.description,
@@ -159,7 +169,7 @@ class CreateJobPosting extends Component{
         }
         const response = await apiPost('/position/createPosition', payload)
         console.log(response.status)
-        if(response.status == 201 || response.status == 200){
+        if(response.ok){
             this.setState({
                 createJobSuccess: true}
             )
