@@ -1,6 +1,7 @@
+import {API_BASE} from "./paths"
 
 export async function apiPost(relativePath, jsonPayload = undefined) {
-  return fetch("http://localhost:3000/api" + relativePath, {
+  return fetch(API_BASE + relativePath, {
     headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -12,7 +13,7 @@ export async function apiPost(relativePath, jsonPayload = undefined) {
 }
 
 export async function apiGet(relativePath) {
-  return fetch("http://localhost:3000/api" + relativePath, {
+  return fetch(API_BASE + relativePath, {
     headers: {
         'Accept': 'application/json',
     },

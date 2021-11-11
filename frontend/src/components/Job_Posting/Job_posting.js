@@ -43,7 +43,7 @@ class CreateJobPosting extends Component{
             searchBarTag:''
         })
     }
-    render(){  
+    render(){
 
         if(!this.state.isLoaded){
             this.setTagsArray()

@@ -23,7 +23,8 @@ function MainPreviousRef(){
         refData.map(refData => <RefBox  refTitle={refData.position.title}
                                         referred={refData?.referred}
                                         referredDesc={refData?.referredDesc}
-                                        imgUrl={refData?.imgUrl} refStat={refData?.refStat}
+                                        imgUrl={refData?.imgUrl}
+                                        refStat={refData?.refStat}
                                         refStatDesc={refData?.refStatDesc} />)
       return (
         <React.Fragment>{prevRefComponents}</React.Fragment>
