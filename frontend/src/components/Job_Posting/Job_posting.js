@@ -9,6 +9,7 @@ class CreateJobPosting extends Component{
         super(props)
         this.state = {title: "", salary: "", minYearsExperience: "", tags:[], searchBarTag: "",
         description:"",createJobSuccess:false}
+        this.tagFromDB = []
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
         this.addValueToTag = this.addValueToTag.bind(this)
@@ -40,10 +41,9 @@ class CreateJobPosting extends Component{
     }
 
     render(){
-        // const defaulttags = this.getTags()
+        const defaulttags = this.getTags()
         return(
             <form>
-                {this.getTags()}
                 <h2 className={styles.h2}>
                     <p className={styles.p}> Job Creating </p>
                     <div className = {styles.jobTitleContainer}>
@@ -87,9 +87,9 @@ class CreateJobPosting extends Component{
                                 placeholder = "Search Tag"
                                 className = {styles.tagSearchBarText}/>
                             <datalist id="brow">
-                            {/* {defaulttags.map(tags => (
+                            {defaulttags.map(tags => (
                                 <option>{tags}</option>
-                            ))} */}
+                            ))}
                             </datalist> 
                             {this.state.searchBarTag != ''?
                             <button type = 'button'
@@ -154,8 +154,7 @@ class CreateJobPosting extends Component{
         }
     }
     async getTags() {
-        let toReturn  = await apiGet('/tag/get')
-        console.log(toReturn)
+        return await apiPost('/tag/get')
     }
 }
 
