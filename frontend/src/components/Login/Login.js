@@ -28,10 +28,7 @@ class Login extends Component {
         return (
             <div className={styles.container}>
                 <form>
-                    <h1>Login</h1>
-                    <button type="button"
-                    onClick = {this.logout_credentials}
-                    className={styles.logoutButton}>Log Out</button>
+                    <h1 className={styles.h1}>Login</h1>
                     <div className={styles.credentials}>
                         <label>Username</label>
                         <input
@@ -50,14 +47,14 @@ class Login extends Component {
                         onChange={this.handleCredentialsChange}
                         placeholder="Enter password" />
                     </div>
+                    <div className={styles.forgotPassword}>
+                        <a href="#"> Forgot password?</a>
+                    </div>
                     <button type="button"
                     onClick={this.submit_credentials}
                     className={styles.loginButton}>
                         Log In
                     </button>
-                    <p className={styles.forgotPassword}>
-                        <a href="#"> Forgot password?</a>
-                    </p>
                 </form>
                 <LoginFailedPopUp trigger = {this.state.loginFails} exist = {() => this.setState({
                 loginFails: false})}>

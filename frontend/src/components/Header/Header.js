@@ -1,24 +1,29 @@
-import React from "react";
+import React, { Component, useState } from "react";
 import logo from "../Login/Logo2.png";
 import NotifPic from "./Notif.png";
 import ProfPic from "./ProfPic.png";
 import searchicon from "./searchicon.png"
 import headercss from "./Header.module.css";
+import { DropdownButton, Dropdown, Stack } from "react-bootstrap"
 
-function Header(){
-    return(
-        <div className = {headercss.HeaderContainer}>
-            <div>
-                <img className ={headercss.notifpic} src={NotifPic} alt="NotifPic"></img>
-                <img className ={headercss.profpic} src ={ProfPic} alt ="ProfPic"></img>
-                <input className ={headercss.sbar} type ="text" placeholder="Search"></input>
-                <img className ={headercss.searchicon} src ={searchicon} alt="Search Icon"></img>
-                <h1> Company Text Header </h1>
-                <h2> Company Text Sub-Header</h2>
-            </div>
-            <div className ={headercss.logocontainer}>
-                <img className = {headercss.logoimg} src = {logo} alt = "A logo"></img>
-            </div>
+function Header(props) {
+    return (
+        <div className={headercss.HeaderContainer}>
+            <Stack direction='horizontal' className={headercss.hstack}>
+                <img className={headercss.logoimg} src={logo} alt="A logo"></img>
+                <div className = "mx-auto"><h1> URefer </h1></div>
+                <Dropdown>
+                    <Dropdown.Toggle variant='default' bsPrefix='p-0'>
+                        <img src={ProfPic} className={headercss.profpic}></img>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                        <Dropdown.Item
+                        onClick={props.onLogout}>
+                            Logout
+                        </Dropdown.Item>
+                    </Dropdown.Menu>
+                </Dropdown>
+            </Stack>
         </div>
     )
 }

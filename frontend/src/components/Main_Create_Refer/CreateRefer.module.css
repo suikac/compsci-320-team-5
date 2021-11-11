@@ -1,0 +1,35 @@
+.row {
+    width: 90%;
+}
+.test {
+    border: 1px solid red;
+}
+input[type='radio'] {
+    margin-right: 10px;
+}
+textarea {
+    width: 75%;
+    height: 25vh;
+}
+.cancelBtn {
+    border: 1px solid white;
+    background: transparent;
+    margin-left: 20px;
+    transition: 200ms;
+}
+.cancelBtn:hover {
+    border-bottom-color: black;
+}
+.referBtn {
+    border: 2px solid #26989e;
+    color: white;
+    background-color: #26989e;
+    border-radius: 10px;
+    margin-left: 20px;
+    transition: 200ms;
+    padding: 1px 25px 1px 25px;
+}
+.referBtn:hover {
+    background-color: white;
+    color: #26989e;
+}

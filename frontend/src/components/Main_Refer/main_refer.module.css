@@ -1,0 +1,159 @@
+/* General */
+.test {
+    border: 1px solid red;
+}
+h3 {
+    color: black !important;
+}
+
+
+/* Main referral page */
+#outline {
+    width: 100%;
+}
+#positions {
+    width: 100%;
+}
+.referBtn {
+    margin: 0;
+    background-color: #26989e;
+    color: white;
+    border: 2px solid #26989e;
+    border-radius: 15px;
+    padding: 0 2vw 0 2vw;
+    transition: 200ms;
+}
+.referBtn:hover {
+    background-color: white;
+    color: #26989e;
+}
+.positionItemContainer {
+    margin-right: 10px;
+    border-radius: 0 0 15px 15px;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-bottom: 1px solid #aaaaaa;
+    box-shadow: 3px 3px 3px #aaaaaa; 
+}
+.link {
+    color: white;
+}
+
+
+/* PositionItem Referral */
+.positionContainer {
+    width: 100%;
+    height: 20vh;
+    min-height: 150px;
+    overflow: hidden;
+}
+.referBtnContainer {
+    position: relative;
+    bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container{
+  position: relative; 
+  top: -575px;
+  margin: auto;
+  justify-content: center;
+  width: 500px;
+  height: 615px;
+  background: #FFF8F4;
+  border: 3px solid #C44536;
+  border-radius: 10%;
+  text-align: center;
+  margin-top: 150px;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+.name{
+  width: 80%;
+  padding: 12px 20px;
+  margin: 8px 5px;
+  border: 2px solid rgb(216, 214, 214);
+  background-color: #dfdede;
+  box-sizing: border-box;
+  border-radius: 25px;
+  box-shadow: 5px 5px 5px #747373;
+  
+}
+.name label{
+  color: #747373;
+}
+.reason{
+  width: 90%;
+  height: 200px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid rgb(216, 214, 214);
+  border-radius: 25px;
+  background-color: #dfdede;
+  resize: none;
+  box-shadow: 5px 5px 5px #747373;
+}
+.email{
+  width: 60%;
+  height:fit-content;
+  padding: 12px 20px;
+  margin: 8px 5px;
+  border: 2px solid rgb(216, 214, 214);
+  background-color: #dfdede;
+  box-sizing: border-box;
+  border-radius: 25px; 
+  box-shadow: 5px 5px 5px #747373;
+}
+.current{
+  padding: 20px 20px;
+  margin: 8px 5px; 
+  box-sizing: border-box;
+  border-radius: 25px; 
+ 
+}
+.id{
+  width: 40%;
+  height: 30px;
+  box-sizing: border-box;
+  border: 2px solid rgb(216, 214, 214);
+  border-radius: 25px;
+  background-color: #dfdede;
+  box-shadow: 5px 5px 5px #747373; 
+  padding: 12px 20px;
+  margin: 8px 5px;
+}
+
+

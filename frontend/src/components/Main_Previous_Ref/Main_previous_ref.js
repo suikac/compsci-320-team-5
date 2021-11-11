@@ -3,13 +3,13 @@ import RefBox from './Previous_refs';
 import { apiGet } from '../../utils/api-fetch';
 
 function MainPreviousRef(){
-    const [prevrefdata, setPrevrefdata] = useState([])
+    const [refData, setRefData] = useState([])
   const [isLoad, setIsLoad] = useState(false)
     useEffect(() => {
         getReferral()
           .then(r => r.json())
           .then(r => {
-            setPrevrefdata(r);
+            setRefData(r);
             setIsLoad(true);
           })
       }
@@ -18,13 +18,13 @@ function MainPreviousRef(){
     if (!isLoad){
       return <div>Loading...</div>;
     } else {
-      console.log(prevrefdata['0']['position'])
+      console.log(refData)
       const prevRefComponents =
-        prevrefdata.map(refData => <RefBox refTitle={refData?.refTitle}
-                                                                   referred={refData?.referred}
-                                                                   referredDesc={refData?.referredDesc}
-                                                                   imgUrl={refData?.imgUrl} refStat={refData?.refStat}
-                                                                   refStatDesc={refData?.refStatDesc} />)
+        refData.map(refData => <RefBox  refTitle={refData.position.title}
+                                        referred={refData?.referred}
+                                        referredDesc={refData?.referredDesc}
+                                        imgUrl={refData?.imgUrl} refStat={refData?.refStat}
+                                        refStatDesc={refData?.refStatDesc} />)
       return (
         <React.Fragment>{prevRefComponents}</React.Fragment>
       )
@@ -32,7 +32,7 @@ function MainPreviousRef(){
 }
 
 async function getReferral() {
-  return await apiGet("/referral/get?isManager=1&isRead=0");
+  return await apiGet("/referral/get?isRead=0");
 }
 
 export default MainPreviousRef;

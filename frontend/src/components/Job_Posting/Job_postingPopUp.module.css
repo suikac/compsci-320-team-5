@@ -1,0 +1,27 @@
+h2{
+    color: #893026;
+  }
+h3{
+    color: #EDDDD4;
+}
+  .popUp {
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    
+    margin-top: 250px;
+    display: flex;
+    align-items: center;
+  }
+  .popUpInner{
+    position: relative;
+    left: 50px;
+    width: 100%;
+    max-width: 250px;
+    height: 150px;
+    background-color:#EDDDD4;
+    border: #C44536 solid 3px;
+    border-radius: 10px;
+  }

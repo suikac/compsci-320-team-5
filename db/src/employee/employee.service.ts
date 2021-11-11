@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Employee } from 'src/entities/Employee';
-import { EmployeeRepository } from './employee.repository';
-import * as bcrypt from 'bcrypt';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Employee } from "src/entities/Employee";
+import { EmployeeRepository } from "./employee.repository";
+import * as bcrypt from "bcrypt";
+import { EntityNotFoundError } from "typeorm";
 import { GetEmployeeDto } from './employee.dto';
 
 @Injectable()

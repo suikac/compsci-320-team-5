@@ -6,10 +6,10 @@ import {
   IsIn,
   IsInt,
   IsNotEmpty,
-  IsNumber, isNumberString,
+  IsNumber,
   IsNumberString,
   IsOptional,
-  IsString
+  IsString,
 } from 'class-validator';
 import { ParseIntPipe } from '@nestjs/common';
 import { Transform, Type } from 'class-transformer';
@@ -36,7 +36,8 @@ export class CreateReferralDto {
 }
 
 export class GetReferralDto {
-
+  @Type(() => Number)
+  @IsInt()
   @IsNumberString()
   @IsOptional()
   id: number;
