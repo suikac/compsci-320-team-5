@@ -4,10 +4,14 @@ import ReferCSS from "./main_refer.module.css";
 import * as api from "../../utils/api-fetch";
 import JobListingFilter from "./JobListingFilter";
 
+// Function based component for refer page
 function Referral() {
+    // State object that stores data on positions
     let [data, setData] = useState(null);
 
+    // Hook that loads data when component is rendered
     useEffect(() => {
+        // Function that makes request to api/position/get for positions
         async function loadData() {
             let response = await api.apiPost('/position/get')
                 .then(res => res.json());
@@ -16,25 +20,31 @@ function Referral() {
         loadData();
     }, []);
 
+    // If data has not loaded yet, render a basic laoding message
     if (data === null) {
-        return (<div> yeet </div>);
-    } else {
+        return (<div> loading... </div>);
+    }
+    // Otherwise render the normal refer page
+    else {
         return (
             <div className={ReferCSS.container}>
+                {/* Component used for filtering position data */}
                 <JobListingFilter />
+
+                {/* Component that displays position data with PositionItem components */}
                 <div id={ReferCSS.positions} className='mt-5'>
                 {
-                    data.map(
-                        e => {
-                            return ( <div className={`mb-2 ${ReferCSS.positionItemContainer}`}><PositionItem {...e} /></div> );
-                        }
-                    )
+                    data.map((e) => {
+                        return (<div className={`mb-2 ${ReferCSS.positionItemContainer}`}> <PositionItem key={e.id} {...e} /></div> );
+                    })
                 }
                 </div>
             </div>
         )
     }
 }
+
+// Export component for use in Main.js
 export default Referral;
 
 
@@ -61,6 +71,7 @@ export default Referral;
 
 
 
+// Not really sure what this code is for so I just commented it out
 
 
 /*constructor(props){
