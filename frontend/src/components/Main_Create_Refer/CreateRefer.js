@@ -60,9 +60,16 @@ function CreateRefer(props) {
         delete submission.file;
         submission['positionId'] = state.id;
         submission['referrerId'] = 5010;
-        console.log(submission);
+        submission['isRead'] = 0;
+        //console.log(submission);
         const json = JSON.stringify(submission);
-        api.apiPost('/referral/create', json);
+        console.log(json);
+        async function sendRequest() {
+            return await api.apiPost('/referral/create', submission)
+                .then(res => res.json());
+        }
+        let response = sendRequest();
+        console.log(response);
     }
 
     const state = props.location.state;

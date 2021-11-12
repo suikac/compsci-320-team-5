@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PositionItem from "./Position_item";
 import ReferCSS from "./main_refer.module.css";
 import * as api from "../../utils/api-fetch";
+import JobListingFilter from "./JobListingFilter";
 
 function Referral() {
     let [data, setData] = useState(null);
@@ -19,15 +20,8 @@ function Referral() {
         return (<div> yeet </div>);
     } else {
         return (
-            <>
-                <div id={ReferCSS.outline} className={`mt-5`}>
-                    <h5 className={`d-inline-block mx-4`}>Filter Options</h5>
-                    <select name='referral-dropdown' id='referral-dropdown' placeholder='select value'>
-                        <option value='none' selected disabled hidden>filter options</option>
-                        <option value='option1'>option1</option>
-                        <option value='option2'>option2</option>
-                    </select>
-                </div>
+            <div className={ReferCSS.container}>
+                <JobListingFilter />
                 <div id={ReferCSS.positions} className='mt-5'>
                 {
                     data.map(
@@ -37,7 +31,7 @@ function Referral() {
                     )
                 }
                 </div>
-            </>
+            </div>
         )
     }
 }
@@ -77,7 +71,7 @@ export default Referral;
         this.handleInputChange = this.handleInputChange.bind(this)
         //add positionID: number from job posting
     }
-    
+
     handleSubmit(event){
         alert('Form Submitted');
         event.preventDefault();
@@ -96,7 +90,7 @@ export default Referral;
             else{
                 value = false;
             }
-            
+
 
         }
         console.log(this.state);
@@ -119,7 +113,7 @@ export default Referral;
                         </select>
                     </label> *//*}
                     <br/>
-                   
+
                     <label className={ReferCSS.current}>
                          Current Employee:
                         <input type="radio" name="choice" value="yes" id="choice-yes" onClick="showHideDiv()"/>
@@ -127,21 +121,21 @@ export default Referral;
                         <input type="radio" name="choice" value="no" id="choice-no" onClick="showHideDiv()"/>
                         <label for="choice-no">No  </label>
                     </label>
-                   
+
                     <br/>
                     <br/>
                     <label id = "employeeID">
                         <input  type="long" defaultValue={this.state.refereeName}
                         onChange={this.handleInputChange} className={ReferCSS.id}
                         placeholder={"Employee ID"}/>
-                        
+
                     </label>
                     <br/>
                     <br/>
                     <label >
                         <input type="text" defaultValue={this.state.refereeName}
                         onChange={this.handleInputChange} className={ReferCSS.name} placeholder={"Name"} name='refereeName'/>
-            
+
                     </label>
                     <br/>
                     <br/>

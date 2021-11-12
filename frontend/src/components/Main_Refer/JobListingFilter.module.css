@@ -1,0 +1,29 @@
+.menu > div {
+  font-weight: bold;
+  display: inline;
+}
+
+.menu button:disabled{
+  background-color: transparent;
+  border-radius: 100px;
+  border-color: #197278;
+  color: #197278;
+  font-weight: 500;
+}
+
+.menu button:enabled {
+  background-color: transparent;
+  border-width: 0;
+  font-weight: 200;
+}
+
+.row1 > div {
+  display: inline
+}
+
+.clearButton {
+  background-color: #197278;
+  color: white;
+  border-radius: 100px;
+  padding: 0 20px 0 20px
+}
