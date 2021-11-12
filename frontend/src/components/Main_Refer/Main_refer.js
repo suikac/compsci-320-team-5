@@ -29,7 +29,7 @@ function Referral() {
         return (
             <div className={ReferCSS.container}>
                 {/* Component used for filtering position data */}
-                <JobListingFilter />
+                <JobListingFilter setResult={setData}/>
 
                 {/* Component that displays position data with PositionItem components */}
                 <div id={ReferCSS.positions} className='mt-5'>

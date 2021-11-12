@@ -1,35 +1,34 @@
 import { useEffect, useState } from "react"
-import { Subject, map, mergeAll, from } from "rxjs"
+import { Subject, map, mergeAll, from, debounceTime } from "rxjs"
 import { apiPost } from "../../utils/api-fetch";
 
-export function Filter(props) {
-  const [subjects, setSubjects] = props.filter;
-  const [result, setResult] = useState([])
-
+export function useFilter(apiEndpoint, setResult, delay=500) {
+  const filter = useState({})
+  const [subjects, setSubjects] = filter
   useEffect(() => {
     const query = {}
     const sub = from(
       Object.entries(subjects)
-        .map(([key, subject]) => subject.pipe(map((v) => [key, v])))
-    )
-      .pipe(mergeAll())
+        .map(([key, subject]) =>
+          subject.pipe(
+            map((v) => [key, v]),
+            debounceTime(delay)
+          )
+        )
+    ) // stream of stream
+      .pipe(mergeAll()) // convert to stream of [param, v] objects
       .subscribe(([key, v]) => {
         query[key] = v
-        apiPost(props.searchApi, query)
+        apiPost(apiEndpoint, query)
         .then(async (response) => {
           if (response.ok) {
             setResult(await response.json())
           }
         })
       })
-    return () => sub.unsubscribe
+    return () => sub.unsubscribe()
   }, [subjects])
-
-  return props.renderResult(result)
-}
-
-export function useFilter() {
-  return useState({})
+  return filter
 }
 
 export function useFilterParam(initial, key, filter) {
