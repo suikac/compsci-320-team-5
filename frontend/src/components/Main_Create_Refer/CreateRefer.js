@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom'
 import CreateReferCSS from "./CreateRefer.module.css";
@@ -9,11 +9,9 @@ function CreateRefer(props) {
     let [referType, setReferType] = useState(null);
     function changeReferType(e) {
         changeInput(['refereeEmail', 'firstName', 'lastName', 'description'], ['', '', '', '']);
-        setEmployee(null);
         setReferType(e.target.value)
     }
 
-    let [employee, setEmployee] = useState(null);
     function searchEmployee(e) {
         async function loadData() {
             let json = { "email": input.refereeEmail };
@@ -25,10 +23,8 @@ function CreateRefer(props) {
                     ['firstName', 'lastName', 'refereeEmail'],
                     [response[0].firstName, response[0].lastName, response[0].email]
                 );
-                setEmployee(response);
             } else {
                 changeInput(['refereeEmail', 'firstName', 'lastName', 'description'], ['', '', '', '']);
-                setEmployee(null);
             }
         }
         loadData();
@@ -52,23 +48,24 @@ function CreateRefer(props) {
         });
     }
 
-    function submitReferral() {
+    async function submitReferral() {
         const submission = {...input};
         submission['refereeName'] = input.firstName + " " + input.lastName;
         delete submission.firstName;
         delete submission.lastName;
         delete submission.file;
         submission['positionId'] = state.id;
-        submission['referrerId'] = 5010;
         submission['isRead'] = 0;
-        //console.log(submission);
+        submission['isInternal'] = referType === '1' ? 1 : 0;
         const json = JSON.stringify(submission);
-        console.log(json);
         async function sendRequest() {
+            let userValue = await api.apiGet('/employee/getSessionInfo')
+                .then(e => e.json());
+            submission['referrerId'] = userValue.userId;
             return await api.apiPost('/referral/create', submission)
                 .then(res => res.json());
         }
-        let response = sendRequest();
+        let response = await sendRequest();
         console.log(response);
     }
 
@@ -124,7 +121,7 @@ function CreateRefer(props) {
                                     onChange={ (e) => changeInput(['refereeEmail'], [e.target.value]) }
                                     placeholder='Employee email'
                                 />
-                                {referType == '1' ? <button onClick={searchEmployee}>Search</button> : <></>}
+                                {referType === '1' ? <button onClick={searchEmployee}>Search</button> : <></>}
                             </div>
                             <div className={`col-6 pr-3 text-start`}>
                                     <input
