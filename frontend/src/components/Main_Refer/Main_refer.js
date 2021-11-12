@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import PositionItem from "./Position_item";
 import ReferCSS from "./main_refer.module.css"
+import JobListingFilter from "./JobListingFilter";
 
 let fakeData = [
     {
@@ -47,6 +48,36 @@ let fakeData = [
             positionTitle: 'manager II'
         },
         tags: ['JS', 'Node.js']
+    },
+    {
+        id: 1,
+        title: 'Junior Software Engineer',
+        description: 'JS developer',
+        minYearExperience: 0,
+        salary: 50000,
+        manager: {
+            id: 1,
+            firstName: 'Some',
+            lastName: 'Person',
+            email: 'somePerson@gmail.com',
+            positionTitle: 'manager II'
+        },
+        tags: ['JS', 'Node.js']
+    },
+    {
+        id: 1,
+        title: 'Junior Software Engineer',
+        description: 'JS developer',
+        minYearExperience: 0,
+        salary: 50000,
+        manager: {
+            id: 1,
+            firstName: 'Some',
+            lastName: 'Person',
+            email: 'somePerson@gmail.com',
+            positionTitle: 'manager II'
+        },
+        tags: ['JS', 'Node.js']
     }
 ]
 
@@ -59,24 +90,17 @@ const positionsDisplay = fakeData.map(
 class referal extends Component {
     render() {
         return (
-            <>
-                <div id={ReferCSS.outline} className={`mt-5`}>
-                    <h5 className={`d-inline-block mx-4`}>Filter Options</h5>
-                    <select name='referral-dropdown' id='referral-dropdown' placeholder='select value'>
-                        <option value='none' selected disabled hidden>filter options</option>
-                        <option value='option1'>option1</option>
-                        <option value='option2'>option2</option>
-                    </select>
-                </div>
+            <div className={ReferCSS.container}>
+                <JobListingFilter />
                 <div id={ReferCSS.positions} className='mt-5'>
                 {
                     positionsDisplay
                 }
                 </div>
-            </>
+            </div>
         )
     }
-    
+
 
 
 
@@ -101,7 +125,7 @@ class referal extends Component {
         this.handleInputChange = this.handleInputChange.bind(this)
         //add positionID: number from job posting
     }
-    
+
     handleSubmit(event){
         alert('Form Submitted');
         event.preventDefault();
@@ -120,7 +144,7 @@ class referal extends Component {
             else{
                 value = false;
             }
-            
+
 
         }
         console.log(this.state);
@@ -143,7 +167,7 @@ class referal extends Component {
                         </select>
                     </label> *//*}
                     <br/>
-                   
+
                     <label className={ReferCSS.current}>
                          Current Employee:
                         <input type="radio" name="choice" value="yes" id="choice-yes" onClick="showHideDiv()"/>
@@ -151,21 +175,21 @@ class referal extends Component {
                         <input type="radio" name="choice" value="no" id="choice-no" onClick="showHideDiv()"/>
                         <label for="choice-no">No  </label>
                     </label>
-                   
+
                     <br/>
                     <br/>
                     <label id = "employeeID">
                         <input  type="long" defaultValue={this.state.refereeName}
                         onChange={this.handleInputChange} className={ReferCSS.id}
                         placeholder={"Employee ID"}/>
-                        
+
                     </label>
                     <br/>
                     <br/>
                     <label >
                         <input type="text" defaultValue={this.state.refereeName}
                         onChange={this.handleInputChange} className={ReferCSS.name} placeholder={"Name"} name='refereeName'/>
-            
+
                     </label>
                     <br/>
                     <br/>
