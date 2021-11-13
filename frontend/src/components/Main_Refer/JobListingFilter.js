@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import { clearFilter, useFilter, useFilterParam } from "../Filter/Filter"
+import FilterInput from "../Filter/FilterInput"
 import * as styles from "./JobListingFilter.module.css"
 
 const JOB_MODE = 0
@@ -32,9 +33,9 @@ function JobListingFilter(props) {
       ?
       <>
       <Row className={styles.row1} xs='auto'>
-        <Col>Job Title <Input value={jobTitle} onChange={setJobtitle}/></Col>
+        <Col>Job Title <FilterInput value={jobTitle} onChange={setJobtitle}/></Col>
         <Col>
-        Salary range <Input value={minSalary} onChange={setMinSalary}/>-<Input value={maxSalary} onChange={setMaxSalary} />
+        Salary range <FilterInput value={minSalary} onChange={setMinSalary}/>-<FilterInput value={maxSalary} onChange={setMaxSalary} />
         </Col>
         <Col>
           <button className={styles.clearButton}
@@ -52,15 +53,6 @@ function JobListingFilter(props) {
       </div>}
     </Container>
   )
-}
-
-function Input(props) {
-  return <input {...props}
-    value={props.value}
-    onChange={(e) => {
-      // Remove from query if value is empty. Setting `undefined` doesn't affect <input>, thankfully.
-      props.onChange(e.target.value == '' ? undefined : e.target.value)}
-    } />
 }
 
 export default JobListingFilter
