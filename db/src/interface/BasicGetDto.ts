@@ -7,11 +7,11 @@ export class BasicGetDto {
 
   static DEFAULT_PAGE = '1'
 
-  static DEFAULT_LIMIT = '1'
+  static DEFAULT_LIMIT = '10'
 
   @IsNumberString()
   @IsOptional()
-  page? : string
+  page?: string
 
   @IsNumberString()
   @IsOptional()

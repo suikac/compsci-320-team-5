@@ -7,11 +7,8 @@ import { TagRepository } from './tag.repository';
 import { SelectQueryBuilder } from 'typeorm';
 import { PositionTag } from 'src/entities/PositionTag';
 import { GetPositionDto } from './position.dto';
-import { EmployeeRepository } from '../employee/employee.repository';
 import { EmployeeService } from '../employee/employee.service';
-import { GetEmployeeDto } from '../employee/employee.dto';
-import { query } from 'express';
-import { paginate } from 'nestjs-typeorm-paginate';
+import { IPaginationMeta, paginate } from 'nestjs-typeorm-paginate';
 
 @Injectable()
 export class PositionService {
@@ -178,7 +175,6 @@ export class PositionService {
   public async getPosition(param: GetPositionDto) {
     let query = this.positionRepository
       .createQueryBuilder('position')
-      .innerJoin('position.positionTags', 'pt')
 
     if (param.maxSalary) {
       query
@@ -202,6 +198,8 @@ export class PositionService {
     }
 
     if (param.tags) {
+      query
+        .innerJoin('position.positionTags', 'pt')
       query = await this.getPositionByTagsName(query, param)
     }
 
@@ -209,13 +207,16 @@ export class PositionService {
       query = await this.getPositionByManagerName(query, param)
     }
 
-    // TODO: add pagination to the param
     const res =  await paginate<Position>(query,
       { page: param.page == null ? GetPositionDto.DEFAULT_PAGE : param.page,
-      limit: param.limit == null ? GetPositionDto.DEFAULT_LIMIT: param.limit})
+      limit: param.limit == null ? GetPositionDto.DEFAULT_LIMIT: param.limit,
+      }
+    )
+      .then(r => r.items)
 
-    //const res = query.getMany()
-    await this.completePosition(res.items);
+    console.log(res.length)
+
+    await this.completePosition(res);
 
     return res;
   }
