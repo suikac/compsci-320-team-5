@@ -11,6 +11,7 @@ import { EmployeeRepository } from '../employee/employee.repository';
 import { EmployeeService } from '../employee/employee.service';
 import { GetEmployeeDto } from '../employee/employee.dto';
 import { query } from 'express';
+import { paginate } from 'nestjs-typeorm-paginate';
 
 @Injectable()
 export class PositionService {
@@ -208,9 +209,13 @@ export class PositionService {
       query = await this.getPositionByManagerName(query, param)
     }
 
-    const res = await query.getMany();
+    // TODO: add pagination to the param
+    const res =  await paginate<Position>(query,
+      { page: param.page == null ? GetPositionDto.DEFAULT_PAGE : param.page,
+      limit: param.limit == null ? GetPositionDto.DEFAULT_LIMIT: param.limit})
 
-    await this.completePosition(res);
+    //const res = query.getMany()
+    await this.completePosition(res.items);
 
     return res;
   }
