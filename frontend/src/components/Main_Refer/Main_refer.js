@@ -32,7 +32,7 @@ function Referral() {
                 <JobListingFilter setResult={setData}/>
 
                 {/* Component that displays position data with PositionItem components */}
-                <div id={ReferCSS.positions} className='mt-5'>
+                <div id={ReferCSS.positions} className='mt-1'>
                 {
                     data.map((e) => {
                         return (<div className={`mb-2 ${ReferCSS.positionItemContainer}`}> <PositionItem key={e.id} {...e} /></div> );

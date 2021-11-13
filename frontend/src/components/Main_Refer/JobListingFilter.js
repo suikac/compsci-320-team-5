@@ -18,7 +18,7 @@ function JobListingFilter(props) {
 
   return (
     <Container>
-      <Row className={styles.menu} xs='auto'>
+      <Row className={[styles.menu, 'py-1']} xs='auto'>
         <Col>Filter by:</Col>
         <Col>
           <button onClick={() => setFilterMode(JOB_MODE)} disabled={filterMode==JOB_MODE}>
@@ -32,10 +32,10 @@ function JobListingFilter(props) {
       {filterMode == JOB_MODE
       ?
       <>
-      <Row className={styles.row1} xs='auto'>
+      <Row className={[styles.row, 'py-1']} xs='auto'>
         <Col>Job Title <FilterInput value={jobTitle} onChange={setJobtitle}/></Col>
         <Col>
-        Salary range <FilterInput value={minSalary} onChange={setMinSalary}/>-<FilterInput value={maxSalary} onChange={setMaxSalary} />
+        Salary range <FilterInput value={minSalary} onChange={setMinSalary}/>–<FilterInput value={maxSalary} onChange={setMaxSalary} />
         </Col>
         <Col>
           <button className={styles.clearButton}
@@ -45,7 +45,7 @@ function JobListingFilter(props) {
         </Col>
       </Row>
       <Row>
-        <Col xs='auto'>Tag <input/></Col>
+        <Col className={[styles.row, 'py-1']} xs='auto'>Tag <input/></Col>
       </Row>
       </>
       :
