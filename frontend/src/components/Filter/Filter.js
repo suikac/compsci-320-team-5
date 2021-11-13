@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { Subject, map, mergeAll, from, debounceTime } from "rxjs"
-import { apiPost } from "../../utils/api-fetch";
+import { Subject, map, mergeAll, from, debounceTime, switchMap, EMPTY, mergeMap } from "rxjs"
+import { fromApiPost } from "../../utils/api-fetch";
 
 /**
  * Create a filter. Similar to `useState()`
@@ -23,15 +23,25 @@ export function useFilter(apiEndpoint, setResult, delay=500) {
           )
         )
     ) // stream of stream
-      .pipe(mergeAll()) // convert to stream of [param, v] objects
-      .subscribe(([key, v]) => {
-        query[key] = v
-        apiPost(apiEndpoint, query)
-        .then(async (response) => {
-          if (response.ok) {
-            setResult(await response.json())
-          }
+      .pipe(
+        // convert to stream of [param, v] objects
+        mergeAll(),
+        // Take latest value and cancel previous requests
+        switchMap(([key, v]) => {
+          query[key] = v
+          return fromApiPost(apiEndpoint, query).pipe(
+            switchMap(response => {
+              if (response.ok) {
+                return response.json()
+              } else {
+                return EMPTY
+              }
+            })
+          )
         })
+      )
+      .subscribe(json => {
+        setResult(json)
       })
     return () => sub.unsubscribe()
   }, [subjects])
