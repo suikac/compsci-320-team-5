@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
-import { useFilter, useFilterParam } from "../Filter/Filter"
+import { clearFilter, useFilter, useFilterParam } from "../Filter/Filter"
 import * as styles from "./JobListingFilter.module.css"
 
 const JOB_MODE = 0
@@ -8,11 +8,11 @@ const MANAGER_MODE = 1
 
 function JobListingFilter(props) {
   const filter = useFilter('/position/get', props.setResult)
-  const [minSalary, setMinSalary] = useFilterParam(null, 'minSalary', filter)
-  const [maxSalary, setMaxSalary] = useFilterParam(null, 'maxSalary', filter)
-  const [jobTitle, setJobtitle] = useFilterParam(null, 'title', filter)
+  const [minSalary, setMinSalary] = useFilterParam("", 'minSalary', filter)
+  const [maxSalary, setMaxSalary] = useFilterParam("", 'maxSalary', filter)
+  const [jobTitle, setJobtitle] = useFilterParam("", 'title', filter)
   const managerFilter = useFilter('/position/get', props.setResult)
-  const [managerName, setManagerName] = useFilterParam(null, 'managerName', managerFilter)
+  const [managerName, setManagerName] = useFilterParam("", 'managerName', managerFilter)
   const [filterMode, setFilterMode] = useState(JOB_MODE)
 
   return (
@@ -38,11 +38,7 @@ function JobListingFilter(props) {
         </Col>
         <Col>
           <button className={styles.clearButton}
-          onClick={() => {
-            setJobtitle(undefined)
-            setMinSalary(undefined)
-            setMaxSalary(undefined)
-          }}>
+          onClick={() => clearFilter(filter)}>
             Clear
           </button>
         </Col>
@@ -59,7 +55,12 @@ function JobListingFilter(props) {
 }
 
 function Input(props) {
-  return <input {...props} value={props.value} onChange={(e) => props.onChange(e.target.value)} />
+  return <input {...props}
+    value={props.value}
+    onChange={(e) => {
+      // Remove from query if value is empty. Setting `undefined` doesn't affect <input>, thankfully.
+      props.onChange(e.target.value == '' ? undefined : e.target.value)}
+    } />
 }
 
 export default JobListingFilter

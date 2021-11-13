@@ -2,6 +2,13 @@ import { useEffect, useState } from "react"
 import { Subject, map, mergeAll, from, debounceTime } from "rxjs"
 import { apiPost } from "../../utils/api-fetch";
 
+/**
+ * Create a filter. Similar to `useState()`
+ * @param {string} apiEndpoint where to send the query to. e.g: `/position/get`
+ * @param {(result: any[]) => void} setResult callback with `response.json()`
+ * @param delay wait time between queries in ms
+ * @return an opaque filter
+ */
 export function useFilter(apiEndpoint, setResult, delay=500) {
   const filter = useState({})
   const [subjects, setSubjects] = filter
@@ -31,6 +38,18 @@ export function useFilter(apiEndpoint, setResult, delay=500) {
   return filter
 }
 
+/**
+ * Reset all query params to initial value without sending a query to server
+ */
+export function clearFilter(filter) {
+  const [subjects, setSubjects] = filter
+  setSubjects({})
+}
+
+/**
+ * Add a parameter to a filter. Similar to `useState()`
+ * @return [value, setValue]
+ */
 export function useFilterParam(initial, key, filter) {
   const [subjects, setSubjects] = filter
   const [value, setValue] = useState(initial)
@@ -39,6 +58,7 @@ export function useFilterParam(initial, key, filter) {
     setValue(v)
   }
   useEffect(() => {
+    setValue(initial)
     if (key in subjects) {
       return
     }
