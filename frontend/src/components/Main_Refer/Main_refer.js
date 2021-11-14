@@ -39,7 +39,7 @@ function Referral() {
                     <InfiniteScroll
                     dataLength={data.length}
                     hasMore={true}
-                    next={() => loadPage(2)}
+                    next={loadPage}
                     scrollableTarget={ReferCSS.scrollableTarget}
                     >
                         {data.map((e) => {

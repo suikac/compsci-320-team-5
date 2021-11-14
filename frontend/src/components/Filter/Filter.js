@@ -31,10 +31,10 @@ export function useFilter(apiEndpoint, setResult, loadTrigger, delay=250) {
         switchMap(([key, v]) => {
           query[key] = v
           return loadTrigger.pipe(
-            startWith(1),
-            distinct(),
-            mergeMap((page) => {
-              return fromApiPost(apiEndpoint, {...query, page: page.toString()}).pipe(
+            // load initial page
+            startWith(0),
+            mergeMap((_, index) => {
+              return fromApiPost(apiEndpoint, {...query, page: (index+1).toString()}).pipe(
                 switchMap(response => {
                   if (response.ok) {
                     return response.json()
@@ -87,5 +87,5 @@ export function useFilterParam(initial, key, filter) {
 export function usePageLoadTrigger() {
   const [subject, setSubject] = useState(new Subject())
 
-  return [subject, (page) => subject.next(page)]
+  return [subject, () => subject.next(0)]
 }
