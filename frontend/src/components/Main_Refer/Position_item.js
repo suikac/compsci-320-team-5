@@ -57,13 +57,13 @@ function PositionItem(props) {
                     <tr><td>
                         <h5 className={`text-center`}>
                             {props.manager.firstName + " " + props.manager.lastName}
-                        </h5>    
+                        </h5>
                     </td></tr>
                     <tr><td className={`text-end`}>
-                        <p>{props.manager.positionTitle}</p>    
+                        <p>{props.manager.positionTitle}</p>
                     </td></tr>
                     <tr><td className={`text-end`}>
-                        <p>{props.manager.email}</p>  
+                        <p>{props.manager.email}</p>
                     </td></tr>
                 </table>
             </div>

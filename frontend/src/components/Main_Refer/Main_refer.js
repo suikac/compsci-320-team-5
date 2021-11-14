@@ -3,11 +3,13 @@ import PositionItem from "./Position_item";
 import ReferCSS from "./main_refer.module.css";
 import * as api from "../../utils/api-fetch";
 import JobListingFilter from "./JobListingFilter";
+import { usePageLoadTrigger } from "../Filter/Filter";
 
 // Function based component for refer page
 function Referral() {
     // State object that stores data on positions
     let [data, setData] = useState(null);
+    const [trigger, loadPage] = usePageLoadTrigger()
 
     // Hook that loads data when component is rendered
     useEffect(() => {
@@ -29,7 +31,7 @@ function Referral() {
         return (
             <div className={ReferCSS.container}>
                 {/* Component used for filtering position data */}
-                <JobListingFilter setResult={setData}/>
+                <JobListingFilter setResult={setData} pageLoadTrigger={trigger}/>
 
                 {/* Component that displays position data with PositionItem components */}
                 <div id={ReferCSS.positions} className='mt-1'>

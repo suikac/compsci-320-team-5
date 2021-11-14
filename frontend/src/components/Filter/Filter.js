@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Subject, map, mergeAll, from, debounceTime, switchMap, EMPTY, mergeMap } from "rxjs"
+import { Subject, map, mergeAll, from, debounceTime, switchMap, EMPTY, mergeMap, startWith, scan, distinct } from "rxjs"
 import { fromApiPost } from "../../utils/api-fetch";
 
 /**
@@ -9,9 +9,10 @@ import { fromApiPost } from "../../utils/api-fetch";
  * @param delay wait time between queries in ms
  * @return an opaque filter
  */
-export function useFilter(apiEndpoint, setResult, delay=500) {
+export function useFilter(apiEndpoint, setResult, loadTrigger, delay=250) {
   const filter = useState({})
   const [subjects, setSubjects] = filter
+
   useEffect(() => {
     const query = {}
     const sub = from(
@@ -29,14 +30,21 @@ export function useFilter(apiEndpoint, setResult, delay=500) {
         // Take latest value and cancel previous requests
         switchMap(([key, v]) => {
           query[key] = v
-          return fromApiPost(apiEndpoint, query).pipe(
-            switchMap(response => {
-              if (response.ok) {
-                return response.json()
-              } else {
-                return EMPTY
-              }
-            })
+          return loadTrigger.pipe(
+            startWith(1),
+            distinct(),
+            mergeMap((page) => {
+              return fromApiPost(apiEndpoint, {...query, page: page.toString()}).pipe(
+                switchMap(response => {
+                  if (response.ok) {
+                    return response.json()
+                  } else {
+                    return EMPTY
+                  }
+                })
+              )
+            }),
+            scan((allPages, page) => allPages.concat(page), [])
           )
         })
       )
@@ -75,4 +83,10 @@ export function useFilterParam(initial, key, filter) {
     setSubjects({...subjects, [key]: new Subject()})
   }, [subjects])
   return [value, watch]
+}
+
+export function usePageLoadTrigger() {
+  const [subject, setSubject] = useState(new Subject())
+
+  return [subject, (page) => subject.next(page)]
 }

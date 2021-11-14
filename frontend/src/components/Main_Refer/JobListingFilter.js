@@ -8,12 +8,12 @@ const JOB_MODE = 0
 const MANAGER_MODE = 1
 
 function JobListingFilter(props) {
-  const filter = useFilter('/position/get', props.setResult)
+  const filter = useFilter('/position/get', props.setResult, props.pageLoadTrigger)
   const [minSalary, setMinSalary] = useFilterParam("", 'minSalary', filter)
   const [maxSalary, setMaxSalary] = useFilterParam("", 'maxSalary', filter)
   const [jobTitle, setJobtitle] = useFilterParam("", 'title', filter)
-  const managerFilter = useFilter('/position/get', props.setResult)
-  const [managerName, setManagerName] = useFilterParam("", 'managerName', managerFilter)
+  // const managerFilter = useFilter('/position/get', props.setResult)
+  // const [managerName, setManagerName] = useFilterParam("", 'managerName', managerFilter)
   const [filterMode, setFilterMode] = useState(JOB_MODE)
 
   return (
