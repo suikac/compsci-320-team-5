@@ -4,6 +4,7 @@ import ReferCSS from "./main_refer.module.css";
 import * as api from "../../utils/api-fetch";
 import JobListingFilter from "./JobListingFilter";
 import { usePageLoadTrigger } from "../Filter/Filter";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 // Function based component for refer page
 function Referral() {
@@ -34,12 +35,17 @@ function Referral() {
                 <JobListingFilter setResult={setData} pageLoadTrigger={trigger}/>
 
                 {/* Component that displays position data with PositionItem components */}
-                <div id={ReferCSS.positions} className='mt-1'>
-                {
-                    data.map((e) => {
-                        return (<div className={`mb-2 ${ReferCSS.positionItemContainer}`}> <PositionItem key={e.id} {...e} /></div> );
-                    })
-                }
+                <div className={'mt-1'} id={ReferCSS.scrollableTarget}>
+                    <InfiniteScroll
+                    dataLength={data.length}
+                    hasMore={true}
+                    next={() => loadPage(2)}
+                    scrollableTarget={ReferCSS.scrollableTarget}
+                    >
+                        {data.map((e) => {
+                            return (<div className={`mb-2 ${ReferCSS.positionItemContainer}`}> <PositionItem key={e.id} {...e} /></div> );
+                        })}
+                    </InfiniteScroll>
                 </div>
             </div>
         )

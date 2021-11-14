@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Subject, map, mergeAll, from, debounceTime, switchMap, EMPTY, mergeMap, startWith, scan, distinct } from "rxjs"
+import { Subject, map, mergeAll, from, debounceTime, switchMap, EMPTY, mergeMap, startWith, scan, distinct, zipWith, of, repeat, concat, take, combineLatestWith } from "rxjs"
 import { fromApiPost } from "../../utils/api-fetch";
 
 /**
@@ -44,13 +44,12 @@ export function useFilter(apiEndpoint, setResult, loadTrigger, delay=250) {
                 })
               )
             }),
-            scan((allPages, page) => allPages.concat(page), [])
+            scan((allPages, page) => allPages.concat(page), []),
+            startWith([])
           )
         })
       )
-      .subscribe(json => {
-        setResult(json)
-      })
+      .subscribe((json) => setResult(json))
     return () => sub.unsubscribe()
   }, [subjects])
   return filter

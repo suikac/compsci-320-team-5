@@ -11,9 +11,7 @@ h3 {
 #outline {
     width: 100%;
 }
-#positions {
-    width: 100%;
-}
+
 .referBtn {
     margin: 0;
     background-color: #26989e;
@@ -107,14 +105,14 @@ h3 {
   margin: 8px 5px;
 }
 
-#positions {
-  flex-grow: 1;
-  overflow: auto;
-}
-
 .container {
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow-y: auto;
+}
+
+#scrollableTarget {
+  flex-grow: 1;
+  overflow: auto;
 }
