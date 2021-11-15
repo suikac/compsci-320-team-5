@@ -175,6 +175,8 @@ export class PositionService {
   public async getPosition(param: GetPositionDto) {
     let query = this.positionRepository
       .createQueryBuilder('position')
+      .innerJoinAndSelect('position.manager', 'manager')
+      .where('position.manager_id = manager.id')
 
     if (param.maxSalary) {
       query
@@ -229,7 +231,6 @@ export class PositionService {
       for (let i = 0; i < tagsId.length; i++) {
         position.tags.push(tags[tagsId[i].tagId - 1].name)
       }
-      position.manager = await this.employeeService.getEmployeeById(position.managerId)
     }
   }
 
