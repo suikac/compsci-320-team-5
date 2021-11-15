@@ -9,47 +9,28 @@ import InfiniteScroll from "react-infinite-scroll-component";
 // Function based component for refer page
 function Referral() {
     // State object that stores data on positions
-    let [data, setData] = useState(null);
+    let [data, setData] = useState([]);
     const [trigger, loadPage] = usePageLoadTrigger()
 
-    // Hook that loads data when component is rendered
-    useEffect(() => {
-        // Function that makes request to api/position/get for positions
-        async function loadData() {
-            let response = await api.apiPost('/position/get')
-                .then(res => res.json());
-            setData(response);
-        }
-        loadData();
-    }, []);
+    return (
+        <div className={ReferCSS.container}>
+            {/* Component used for filtering position data */}
+            <JobListingFilter setResult={setData} pageLoadTrigger={trigger}/>
 
-    // If data has not loaded yet, render a basic laoding message
-    if (data === null) {
-        return (<div> loading... </div>);
-    }
-    // Otherwise render the normal refer page
-    else {
-        return (
-            <div className={ReferCSS.container}>
-                {/* Component used for filtering position data */}
-                <JobListingFilter setResult={setData} pageLoadTrigger={trigger}/>
-
-                {/* Component that displays position data with PositionItem components */}
-                <div className={'mt-1'} id={ReferCSS.scrollableTarget}>
-                    <InfiniteScroll
-                    dataLength={data.length}
-                    hasMore={true}
-                    next={loadPage}
-                    scrollableTarget={ReferCSS.scrollableTarget}
-                    >
-                        {data.map((e) => {
-                            return (<div className={`mb-2 ${ReferCSS.positionItemContainer}`}> <PositionItem key={e.id} {...e} /></div> );
-                        })}
-                    </InfiniteScroll>
-                </div>
+            {/* Component that displays position data with PositionItem components */}
+            <div className={'mt-1'} id={ReferCSS.scrollableTarget}>
+                <InfiniteScroll
+                dataLength={data.length}
+                hasMore={true}
+                next={loadPage}
+                scrollableTarget={ReferCSS.scrollableTarget}>
+                    {data.map((e) => {
+                        return (<div className={`mb-2 ${ReferCSS.positionItemContainer}`}> <PositionItem key={e.id} {...e} /></div> );
+                    })}
+                </InfiniteScroll>
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 // Export component for use in Main.js

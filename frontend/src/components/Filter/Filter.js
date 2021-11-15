@@ -19,17 +19,21 @@ export function useFilter(apiEndpoint, setResult, loadTrigger, delay=250) {
       Object.entries(subjects)
         .map(([key, subject]) =>
           subject.pipe(
-            map((v) => [key, v]),
-            debounceTime(delay)
+            debounceTime(delay),
+            map((v) => {
+              query[key] = v
+              return query
+            })
           )
         )
     ) // stream of stream
       .pipe(
-        // convert to stream of [param, v] objects
+        // convert to stream of query objects
         mergeAll(),
+        // initial page load -- empty query
+        startWith(of({})),
         // Take latest value and cancel previous requests
-        switchMap(([key, v]) => {
-          query[key] = v
+        switchMap((query) => {
           return loadTrigger.pipe(
             // load initial page
             startWith(0),
