@@ -5,13 +5,14 @@ import ProfPic from "./ProfPic.png";
 import searchicon from "./searchicon.png"
 import headercss from "./Header.module.css";
 import { DropdownButton, Dropdown, Stack } from "react-bootstrap"
+import CompanyLogo from "./companylogo.png"
 
 function Header(props) {
     return (
         <div className={headercss.HeaderContainer}>
             <Stack direction='horizontal' className={headercss.hstack}>
                 <img className={headercss.logoimg} src={logo} alt="A logo"></img>
-                <div className = "mx-auto"><h1> URefer </h1></div>
+                <div className = "mx-auto"><img className = {headercss.complogo} src = {CompanyLogo} alt = "Company Logo"></img></div>
                 <Dropdown>
                     <Dropdown.Toggle variant='default' bsPrefix='p-0'>
                         <img src={ProfPic} className={headercss.profpic}></img>
