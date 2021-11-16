@@ -13,6 +13,14 @@ export async function apiPost(relativePath, jsonPayload = undefined) {
   })
 }
 
+export async function apiPostFormData(relativePath, formData) {
+  return fetch(API_BASE + relativePath, {
+    credentials: "include",  // this field is needed so that browser will send/store cookies
+    method: "POST",
+    body: formData
+  })
+}
+
 /**
  * Rxjs version of apiPost
  * @param {*} relativePath
