@@ -39,7 +39,7 @@ function Main_Home(){
 }
 
 async function getPosition() {
-  return await apiGet("/position/getAllPositions");
+  return await apiGet("/position/getRecommendedPositions?page=0");
 }
 /*async function getEmployee(){
   return await apiGet("/")

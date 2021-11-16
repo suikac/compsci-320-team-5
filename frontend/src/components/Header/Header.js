@@ -11,8 +11,8 @@ function Header(props) {
         <div className={headercss.HeaderContainer}>
             <Stack direction='horizontal' className={headercss.hstack}>
                 <img className={headercss.logoimg} src={logo} alt="A logo"></img>
-                <h1> Insert Company logo here from the backend </h1>
-                <Dropdown className='ms-auto'>
+                <div className = "mx-auto"><h1> URefer </h1></div>
+                <Dropdown>
                     <Dropdown.Toggle variant='default' bsPrefix='p-0'>
                         <img src={ProfPic} className={headercss.profpic}></img>
                     </Dropdown.Toggle>
@@ -23,7 +23,6 @@ function Header(props) {
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-                <img className={headercss.notifpic} src={NotifPic} alt="NotifPic"></img>
             </Stack>
         </div>
     )

@@ -28,7 +28,7 @@ class Main extends Component {
     }
     let userInfo = this.props.userInfo
     return (
-          <div className={styles.mainArea}>
+          <>
             <Switch>
               <Route exact path="/">
                 <Main_Home />
@@ -59,7 +59,7 @@ class Main extends Component {
                 <Redirect to={paths.NOT_FOUND} />
               </Route>
             </Switch>
-          </div>
+          </>
     );
   }
 
