@@ -2,7 +2,7 @@ import { Controller, Inject, UsePipes, ValidationPipe } from '@nestjs/common';
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 import { ReferralService } from './referral.service';
 import { Referral } from '../entities/Referral';
-import { CreateReferralDto, GetReferralDto } from './referral.dto';
+import { CreateReferralDto, CreateResumeDto, GetReferralDto } from './referral.dto';
 
 @Controller('referral')
 export class ReferralController {
@@ -13,7 +13,7 @@ export class ReferralController {
 
   @MessagePattern({ cmd: 'createReferral' })
   public async createReferral(@Payload('data') createReferralDto: CreateReferralDto,
-                              @Payload('resume') resume: Buffer) {
+                              @Payload('resume') resume: CreateResumeDto) {
     return await this.referralService.createReferral(createReferralDto, resume);
   }
 
