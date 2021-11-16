@@ -25,14 +25,14 @@ export class ReferralController {
 
   @Post('create')
   @UseInterceptors(FileInterceptor('resume'))
-  public async createReferral(@Req() req, @Body() data, @UploadedFile() file) {
+  public async createReferral(@Req() req, @Body() data, @UploadedFile() resume) {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
     const cmd = { cmd: 'createReferral' };
-    console.log(file);
+    console.log(resume);
     try {
-      return this.dbService.send(cmd, data);
+      return this.dbService.send(cmd, { data: data, resume: resume });
     } catch (e) {
       throw e;
     }

@@ -35,7 +35,6 @@ export class CreateReferralDto {
 
   id: number;
 
-  Resume: Buffer
 }
 
 export class GetReferralDto {

@@ -8,6 +8,7 @@ import { PositionService } from '../position/position.service';
 import { EmployeeService } from '../employee/employee.service';
 import { Position } from '../entities/Position';
 import { ResumeRepository } from './resume.repository';
+import { Payload } from '@nestjs/microservices';
 
 @Injectable()
 export class ReferralService {
@@ -22,10 +23,12 @@ export class ReferralService {
     private readonly resumeRepository: ResumeRepository,
   ) {}
 
-  public async createReferral(createReferralDto: CreateReferralDto) {
-    createReferralDto.resumeId = await this.referralRepository
-      .save(createReferralDto)
+  public async createReferral(@Payload('data') createReferralDto: CreateReferralDto,
+                              @Payload('resume') resume: Buffer) {
+    createReferralDto.resumeId = await this.resumeRepository
+      .save({file: resume})
       .then(r => r.id)
+
     await this.referralRepository
       .save(createReferralDto)
     return createReferralDto;
