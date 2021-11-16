@@ -255,7 +255,7 @@ export class PositionService {
 
     console.log(managerId);
       return managerId.length > 0 ? query.andWhere(
-        'manager_id in (:managerId)', { managerId: managerId }
+        'position.manager_id in (:managerId)', { managerId: managerId }
       ) : query;
   }
 
