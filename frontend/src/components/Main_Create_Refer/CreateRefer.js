@@ -89,12 +89,12 @@ function CreateRefer(props) {
         }
 
         let response = await api.apiPostFormData('/referral/create', formData)
-            .then(res => res.json());
+        let body = await response.json()
         // Process response
-        if (('statusCode' in response) && (response['statusCode'] !== 201)) {
-            alert('failure');
-        } else {
+        if (response.ok) {
             alert('success');
+        } else {
+            alert('failure');
         }
     }
 
