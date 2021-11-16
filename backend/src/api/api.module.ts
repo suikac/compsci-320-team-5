@@ -20,9 +20,7 @@ import { MulterModule } from '@nestjs/platform-express';
       },
     ]),
     GuardsModule.forRoot(),
-    MulterModule.register({
-      dest: './files',
-    }),
+    MulterModule.register({}),
   ],
   controllers: [
     EmployeeController,

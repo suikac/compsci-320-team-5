@@ -34,7 +34,7 @@ export class ReferralController {
     try {
       return this.dbService.send(cmd, {
         data: data,
-        resume: { resume: resume, name: resume.fileName },
+        resume: { resume: resume, name: resume.filename },
       });
     } catch (e) {
       throw e;
