@@ -12,9 +12,13 @@ function JobListingFilter(props) {
   const [minSalary, setMinSalary] = useFilterParam("", 'minSalary', filter)
   const [maxSalary, setMaxSalary] = useFilterParam("", 'maxSalary', filter)
   const [jobTitle, setJobtitle] = useFilterParam("", 'title', filter)
-  // const managerFilter = useFilter('/position/get', props.setResult)
-  // const [managerName, setManagerName] = useFilterParam("", 'managerName', managerFilter)
-  const [filterMode, setFilterMode] = useState(JOB_MODE)
+  const [managerName, setManagerName] = useFilterParam("", 'managerName', filter)
+  const [managerEmail, setManagerEmail] = useFilterParam("", 'managerEmail', filter)
+  const [filterMode, _setFilterMode] = useState(JOB_MODE)
+  const setFilterMode = (mode) => {
+    _setFilterMode(mode)
+    clearFilter(filter)
+  }
 
   return (
     <Container>
@@ -49,8 +53,21 @@ function JobListingFilter(props) {
       </Row>
       </>
       :
-      <div>
-      </div>}
+      <>
+      <Row className={[styles.row, 'py-1']} xs='auto'>
+        <Col>Name <FilterInput value={managerName} onChange={setManagerName}/></Col>
+        <Col>
+          <button className={styles.clearButton}
+          onClick={() => clearFilter(filter)}>
+            Clear
+          </button>
+        </Col>
+      </Row>
+      <Row>
+        <Col className={[styles.row, 'py-1']} xs='auto'>Email <input/></Col>
+      </Row>
+      </>
+      }
     </Container>
   )
 }

@@ -60,7 +60,7 @@ export function useFilter(apiEndpoint, setResult, loadTrigger, delay=250) {
 }
 
 /**
- * Reset all query params to initial value without sending a query to server
+ * Reset all query params to initial value (and send a query to server)
  */
 export function clearFilter(filter) {
   const [subjects, setSubjects] = filter
