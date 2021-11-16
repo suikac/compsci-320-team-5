@@ -32,7 +32,10 @@ export class ReferralController {
     const cmd = { cmd: 'createReferral' };
     console.log(resume);
     try {
-      return this.dbService.send(cmd, { data: data, resume: resume });
+      return this.dbService.send(cmd, {
+        data: data,
+        resume: { resume: resume, name: resume.fileName },
+      });
     } catch (e) {
       throw e;
     }

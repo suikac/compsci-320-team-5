@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ReferralRepository } from './referral.repository';
 import { Referral } from '../entities/Referral';
-import { CreateReferralDto, GetReferralDto } from './referral.dto';
+import { CreateReferralDto, CreateResumeDto, GetReferralDto } from './referral.dto';
 import { PositionController } from '../position/position.controller';
 import { PositionService } from '../position/position.service';
 import { EmployeeService } from '../employee/employee.service';
@@ -24,9 +24,9 @@ export class ReferralService {
   ) {}
 
   public async createReferral(createReferralDto: CreateReferralDto,
-                              resume: Buffer) {
+                              createResumeDto: CreateResumeDto) {
     createReferralDto.resumeId = await this.resumeRepository
-      .save({file: resume})
+      .save(createResumeDto)
       .then(r => r.id)
 
     await this.referralRepository

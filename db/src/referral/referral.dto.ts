@@ -14,6 +14,7 @@ import {
 import { ParseIntPipe } from '@nestjs/common';
 import { Transform, Type } from 'class-transformer';
 import * as buffer from 'buffer';
+import * as Buffer from 'buffer';
 
 export class CreateReferralDto {
   resumeId: number;
@@ -63,4 +64,10 @@ export class GetReferralDto {
   @IsInt()
   @IsOptional()
   isManager: number;
+}
+
+export class CreateResumeDto{
+  resume: Buffer
+
+  name: string
 }
