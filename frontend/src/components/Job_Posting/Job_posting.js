@@ -2,8 +2,7 @@ import React, {Component, useEffect, useState } from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
 import{JobCreateSuccessedPopUp} from "./Job_postingPopUp"
-import { apiGet } from '../../utils/api-fetch';
-import { style } from "dom-helpers";
+
 
 class CreateJobPosting extends Component{
     constructor(props) {
