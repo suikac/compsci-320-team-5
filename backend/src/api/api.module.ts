@@ -5,6 +5,7 @@ import { GuardsModule } from '../guards/guards.module';
 import { Module } from '@nestjs/common';
 import { PositionController } from './position.controller';
 import { TagController } from './tag.controller';
+import { MulterModule } from '@nestjs/platform-express';
 
 @Module({
   imports: [
@@ -19,7 +20,15 @@ import { TagController } from './tag.controller';
       },
     ]),
     GuardsModule.forRoot(),
+    MulterModule.register({
+      dest: './files',
+    }),
   ],
-  controllers: [EmployeeController, ReferralController, PositionController, TagController],
+  controllers: [
+    EmployeeController,
+    ReferralController,
+    PositionController,
+    TagController,
+  ],
 })
 export class ApiModule {}

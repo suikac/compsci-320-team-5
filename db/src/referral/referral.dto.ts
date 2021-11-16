@@ -13,6 +13,7 @@ import {
 } from 'class-validator';
 import { ParseIntPipe } from '@nestjs/common';
 import { Transform, Type } from 'class-transformer';
+import * as buffer from 'buffer';
 
 export class CreateReferralDto {
   resumeId: number;
@@ -33,6 +34,8 @@ export class CreateReferralDto {
   referrerId: number;
 
   id: number;
+
+  Resume: Buffer
 }
 
 export class GetReferralDto {

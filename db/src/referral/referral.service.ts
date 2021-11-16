@@ -7,6 +7,7 @@ import { PositionController } from '../position/position.controller';
 import { PositionService } from '../position/position.service';
 import { EmployeeService } from '../employee/employee.service';
 import { Position } from '../entities/Position';
+import { ResumeRepository } from './resume.repository';
 
 @Injectable()
 export class ReferralService {
@@ -16,16 +17,17 @@ export class ReferralService {
     @Inject(PositionService)
     private readonly positionService: PositionService,
     @Inject(EmployeeService)
-    private readonly employeeService: EmployeeService
+    private readonly employeeService: EmployeeService,
+    @InjectRepository(ResumeRepository)
+    private readonly resumeRepository: ResumeRepository,
   ) {}
 
   public async createReferral(createReferralDto: CreateReferralDto) {
+    createReferralDto.resumeId = await this.referralRepository
+      .save(createReferralDto)
+      .then(r => r.id)
     await this.referralRepository
-      .createQueryBuilder('createReferral')
-      .insert()
-      .into(Referral)
-      .values(createReferralDto)
-      .execute();
+      .save(createReferralDto)
     return createReferralDto;
   }
 

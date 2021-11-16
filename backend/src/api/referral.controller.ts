@@ -8,11 +8,15 @@ import {
   Post,
   Query,
   Req,
-  UseGuards,
+  UploadedFile,
+  UseGuards, UseInterceptors
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { JwtGuard } from '../guards/jwt-guard';
 import { ManagerOnly, RolesGuard } from '../guards/role.guards';
+import { FileInterceptor, MulterModule } from '@nestjs/platform-express';
+import { Express } from 'express';
+
 
 @UseGuards(JwtGuard, RolesGuard)
 @Controller('referral')
@@ -20,12 +24,13 @@ export class ReferralController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
   @Post('create')
-  public async createReferral(@Req() req, @Body() data) {
+  @UseInterceptors(FileInterceptor('resume'))
+  public async createReferral(@Req() req, @Body() data, @UploadedFile() file) {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
     const cmd = { cmd: 'createReferral' };
-    console.log(data);
+    console.log(file);
     try {
       return this.dbService.send(cmd, data);
     } catch (e) {
@@ -34,7 +39,7 @@ export class ReferralController {
   }
 
   @Patch('updateReferral')
-  public async updateReferral(@Req() req, @Body() data) {
+  public async updateReferral(@Req() req, @Body() data, @UploadedFile() resume) {
     console.log('Updating an existing referral');
     const cmd = { cmd: 'updateReferral' };
     try {
