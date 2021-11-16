@@ -20,13 +20,14 @@ function Main_Home(){
     return <div>Loading...</div>;
   } else {
     console.log(positionData)
+    
     return(
       <div className={maincss.MainContainer}>
         <h1 className="rec"> RECOMMENDED</h1>
         <div className={maincss.MainJobContainer}>
-          <h1 className="jobTitle"> {positionData[0].title} </h1>
-          <h1 className="managerInfo"> Manager Info</h1>
-          <h1 className="tags"> Tags</h1>
+          <h1 className="jobTitle">Role: {positionData[0].title} </h1>
+          <h1 className="managerInfo">Manager:  {positionData[0].managerId}</h1>
+          <h1 className="tags">Tags: {positionData[0].tags.join(', ')}</h1>
           <div className={maincss.refButton}>
             <input type="submit" value="REFER" className="refer-button" />
           </div>
@@ -40,5 +41,9 @@ function Main_Home(){
 async function getPosition() {
   return await apiGet("/position/getAllPositions");
 }
+/*async function getEmployee(){
+  return await apiGet("/")
+}
+*/
 
 export default Main_Home;
