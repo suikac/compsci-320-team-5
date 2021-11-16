@@ -33,7 +33,7 @@ class CreateJobPosting extends Component{
         })
     }
     addValueToTag(event){
-        // event.preventDefault()
+        event.preventDefault()
         let temp = this.state.tags.slice()
         temp.push(this.state.searchBarTag.trim())
         this.setState({
@@ -41,13 +41,13 @@ class CreateJobPosting extends Component{
             searchBarTag:''
         })
     }
-    render(){  
+    render(){
         const listItem = this.state.tags.map((tag,i) => (
             <li className = {styles.tagHolder} key = {tag+i}>
                 {tag}
                 <button
                         type = 'button'
-                        className = {styles.cancelButton} 
+                        className = {styles.cancelButton}
                         onClick = {()=>{
                             let removeIndex = this.state.tags.indexOf(tag)
                             let temp = this.state.tags.slice()
