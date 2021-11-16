@@ -4,6 +4,7 @@ import { ReferralController } from './referral.controller';
 import { GuardsModule } from '../guards/guards.module';
 import { Module } from '@nestjs/common';
 import { PositionController } from './position.controller';
+import { TagController } from './tag.controller';
 
 @Module({
   imports: [
@@ -19,6 +20,6 @@ import { PositionController } from './position.controller';
     ]),
     GuardsModule.forRoot(),
   ],
-  controllers: [EmployeeController, ReferralController, PositionController],
+  controllers: [EmployeeController, ReferralController, PositionController, TagController],
 })
 export class ApiModule {}

@@ -1,86 +1,213 @@
-import React, {Component} from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom'
 import CreateReferCSS from "./CreateRefer.module.css";
 import * as paths from "../../utils/paths"
+import * as api from '../../utils/api-fetch'
 
-class CreateRefer extends Component {
-    render() {
-        const state = this.props.location.state; 
-        return (
-            <div className={`row`}>
-                <div className={`col-6 m-0 p-5`}>
-                    <table className={`w-100 h-100`}><tbody>
-                        <tr><td className={``}>
-                            <h1>{state.title}</h1>
-                        </td></tr>
-                        <tr><td className={`text-end`}>
-                            <h5>Job ID: {state.id}</h5>
-                        </td></tr>
-                        <tr><td className={``}>
-                            <h5>Job Description:</h5>
-                            <p>{state.description}</p>
-                        </td></tr>
-                        <tr><td className={``}>
-                            <h5>Salary: {state.salary}</h5>
-                        </td></tr>
-                        <tr><td className={``}>
-                            <h5>Minimum Years Experience: {state.minYearExperience}</h5>
-                        </td></tr>
-                        <tr><td className={`pt-5`}>
-                            <h5>Manager:</h5>
-                            <p>{state.manager.firstName} {state.manager.lastName}</p>
-                            <p>{state.manager.email}</p>
-                            <p>{state.manager.positionTitle}</p>
-                        </td></tr>
-                    </tbody></table>
-                </div>
-                <div className={`col-6 p-5`}>
-                    <div className='row'>
-                        <div className='col-6'>
-                            <div>
-                                <input type='radio' name='current_employee' value='current_employee' />
-                                <label for='in-house'>Current Employee</label>
-                            </div>
-                            <div>
-                                <input type='radio' name='outside_referral' value='outside_referral' />
-                                <label for='in-house'>Outside Referral</label>
-                            </div>
-                        </div>
-                        <div className={`col-6 d-flex align-items-center`}>
-                            <input className='my-auto' type='text' id='name' name='name' placeholder='Name' required/>
-                        </div>
-                    </div>
-                    <div className='row mt-4'>
-                        <div className='col-6'>
-                            <input className='my-auto' type='text' id='email' name='email' placeholder='Email' required/>
-                        </div>
-                        <div className={`col-6 d-flex align-items-center`}>
-                            <input className='my-auto' type='text' id='resume' name='resume' placeholder='Attach Resume' required/>
-                        </div>
-                    </div>
-                    <div className='row mt-4'>
-                        <div className='col-12'>
-                            <textarea
-                                id='description'
-                                name='description'
-                                placeholder='Brief description as to why you think this candidate would be a good hire...'>
+// Function component used for create refer page
+function CreateRefer(props) {
+    // Input is object that stores information entered in refer inputs
+    let [input, setInput] = useState({
+        refereeEmail: '',
+        firstName: '',
+        lastName: '',
+        description: '',
+        file: ''
+    });
 
-                            </textarea>
-                        </div>
-                    </div>
-                </div>
-                <div className={`col-6 `}>
-                    <Link to={paths.REFER} className={`d-block`}>
-                        <button className={`${CreateReferCSS.cancelBtn}`}>{'< Cancel'}</button>
-                    </Link>
-                </div>
-                <div className={`col-6 p-5`}>
-                    <button className={`d-block mx-auto ${CreateReferCSS.referBtn}`}>REFER</button>
-                </div>
-            </div>
-        )
+    // This function changes given input fields and rerenders component with useState hook
+    function changeInput(fields, values) {
+        const updatedValue = {}
+        for (let i = 0; i < fields.length; ++i) {
+            updatedValue[fields[i]] = values[i];
+        }
+        setInput({
+            ...input,
+            ...updatedValue
+        });
     }
+
+    // referType stores whether the referral is a current employee or outside referral
+    let [referType, setReferType] = useState(null);
+
+    // This function changes referType and rerenders component using useState
+    function changeReferType(e) {
+        changeInput(['refereeEmail', 'firstName', 'lastName', 'description'], ['', '', '', '']);
+        setReferType(e.target.value)
+    }
+
+    // This function searches db for employee with the entered email
+    // It only performs correctly when a single employee is returned
+    // ** Might want to change this to async function **
+    function searchEmployee(e) {
+        // Function that queries db
+        // Sends post request to /api/employee/get, with object containing email key-value pair
+        async function loadData() {
+            let json = { "email": input.refereeEmail };
+            let response = await api.apiPost('/employee/get', json)
+                .then(res => res.json());
+            // Change input values to employee info if one employee is returned
+            if (response !== null && response.length === 1) {
+                changeInput(
+                    ['firstName', 'lastName', 'refereeEmail'],
+                    [response[0].firstName, response[0].lastName, response[0].email]
+                );
+            }
+            // Otherwise clear input values because response isn't valid
+            else {
+                changeInput(['refereeEmail', 'firstName', 'lastName', 'description'], ['', '', '', '']);
+            }
+        }
+        loadData();
+    }
+
+    // Function used to submit a referral
+    // Submits information to /api/referral/create
+    // Information contained in input state
+    async function submitReferral() {
+        // Submission object set to contain referral info, so data is formatted correctly
+        const submission = {...input};
+        // Set refereeName from first and last name fields in input
+        submission['refereeName'] = input.firstName + " " + input.lastName;
+        // Delete fields that aren't used in referral creation
+        delete submission.firstName;
+        delete submission.lastName;
+        delete submission.file;
+        // Set values needed for creating referral
+        submission['positionId'] = state.id;
+        submission['isRead'] = 0;
+        submission['isInternal'] = referType === '1' ? 1 : 0;
+        // Get the employee id of the person currently logged in to set referrerId
+        submission['referrerId'] = await api.apiGet('/employee/getSessionInfo')
+            .then(e => e.json()).userId;
+        // Send POST to /api/referral/create to create referral
+        let response = await api.apiPost('/referral/create', submission)
+            .then(res => res.json());
+        // Process response
+        if (('statusCode' in response) && (response['statusCode'] !== 201)) {
+            alert('failure');
+        } else {
+            alert('success');
+        }
+    }
+
+    // state contains that information about position on this page
+    const state = props.location.state;
+    
+    // Return html to be rendered
+    return (
+        // Containing div
+        <div className={`row`}>
+            {/* Div that contains position and manager info */}
+            <div className={`col-6 m-0 p-5`}>
+                <table className={`w-100 h-100`}><tbody>
+                    <tr><td className={``}>
+                        <h1>{state.title}</h1>
+                    </td></tr>
+                    <tr><td className={`text-end`}>
+                        <h5>Job ID: {state.id}</h5>
+                    </td></tr>
+                    <tr><td className={``}>
+                        <h5>Job Description:</h5>
+                        <p>{state.description}</p>
+                    </td></tr>
+                    <tr><td className={``}>
+                        <h5>Salary: {state.salary}</h5>
+                    </td></tr>
+                    <tr><td className={``}>
+                        <h5>Minimum Years Experience: {state.minYearExperience}</h5>
+                    </td></tr>
+                    <tr><td className={`pt-5`}>
+                        <h5>Manager:</h5>
+                        <p>{state.manager.firstName} {state.manager.lastName}</p>
+                        <p>{state.manager.email}</p>
+                        <p>{state.manager.positionTitle}</p>
+                    </td></tr>
+                </tbody></table>
+            </div>
+            {/* Div that contains inputs for referral */}
+            <div className={`col-6 p-5 text-center`}>
+                {/* Referral type dropdown */}
+                <select
+                    className={`mt-5`}
+                    onChange={changeReferType}
+                    defaultValue={'-1'}
+                >
+                    <option value='-1' disabled hidden>Select a Type of Referral</option>
+                    <option value='1'>Current Employee</option>
+                    <option value='0'>Outside Referrence</option>
+                </select>
+                {/* Conditionally render email, first name, last name, description and refer button */}
+                {
+                    referType !== null ?
+                    <>
+                        <div className={`row mt-5`}>
+                            <div className={`col-6 w-50 pl-3 text-end`}>
+                                <input
+                                    type='text'
+                                    value={input.refereeEmail}
+                                    onChange={ (e) => changeInput(['refereeEmail'], [e.target.value]) }
+                                    placeholder='Employee email'
+                                />
+                                {referType === '1' ? <button onClick={searchEmployee}>Search</button> : <></>}
+                            </div>
+                            <div className={`col-6 pr-3 text-start`}>
+                                    <input
+                                        type='file'
+                                        value={input.file}
+                                        onChange={ (e) => changeInput(['file'], [e.target.value]) }
+                                    />
+                            </div>
+                        </div>
+                        <div className='row mt-3'>
+                            <div className={`col-6 pl-3 text-end`}>
+                                    <input
+                                        type='text'
+                                        placeholder='First Name'
+                                        value={input.firstName}
+                                        onChange={(e) => changeInput(['firstName'], [e.target.value]) }
+                                    />
+                            </div>
+                            <div className={`col-6  pr-3 text-start`}>
+                                    <input
+                                        type='text'
+                                        placeholder='Last Name'
+                                        value={input.lastName}
+                                        onChange={ (e) => changeInput(['lastName'], [e.target.value]) }
+                                    />
+                            </div>
+                        </div>
+                        <div className='row mt-3'>
+                            <textarea
+                                placeholder='Enter a brief description as to why you think this candidate would be a good hire...'
+                                value={input.description}
+                                onChange={ (e) => changeInput(['description'], [e.target.value]) }
+                            />
+                        </div>
+                        <div className='row mt-5'>
+                            <div className='col-12'>
+                                <button
+                                    className={`${CreateReferCSS.referBtn}`}
+                                    onClick={submitReferral}
+                                >
+                                    REFER
+                                </button>
+                            </div>
+                        </div>
+                    </>
+                    : <></>
+                }
+            </div>
+            {/* cancel button */}
+            <div className={`col-12`}>
+                <Link to={paths.REFER} className={`d-block`}>
+                    <button className={`${CreateReferCSS.cancelBtn}`}>{'< Cancel'}</button>
+                </Link>
+            </div>
+        </div>
+    )
 }
 
+// Export CreateRefer item, use withRouter() so it can store state (position info) passed to it
 export default withRouter(CreateRefer);

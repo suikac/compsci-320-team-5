@@ -96,7 +96,7 @@ border-radius: 102px;
   background: #C4C4C4;
 }
 .tagSearchBarContainer{
-  font-size: 24px;
+  font-size: 12px;
   margin-bottom: 10px;
   padding:5px;
   position: relative;
@@ -115,8 +115,19 @@ border-radius: 102px;
    display: inline-block;
    text-align: left;
    border-radius: 0px;
+   margin: 3px;
+   width: 65%;
+   height: 22px;
+   resize: none;
+   background: #C4C4C4;
+ }
+ .tagStoreContainer{
+   border: none;
+   justify-content: center;
+   text-align: left;
+   border-radius: 0px;
    width: 80%;
-   height: 200px;
+   height: 170px;
    resize: none;
    background: #C4C4C4;
  }
@@ -168,4 +179,41 @@ border-radius: 52px;
   background: #edddd4;
   border: 3px solid #772E25;
   border-radius: 102px;
+}
+.addButton{
+  font-size: 12px;
+  position:relative;
+  width: 18%;
+  height: 10%;
+  background: #197278;
+  border-radius: 102px;
+}
+.disabledaddButton{
+  color:#772E25;
+  font-size: 12px;
+  position:relative;
+  width: 18%;
+  height: 10%;
+  background: #C4C4C4;
+  border: solid #772E25;
+  border-radius: 102px;
+}
+.tagHolder{
+  display: inline-block;
+  color:#772E25;
+  text-align: center;
+  font-size: 100%;
+  max-width: 100%;
+  padding-top: 1px;
+  height: 15%;
+  border-radius:102px;
+  border: solid #772E25;
+  background: #edddd4;
+}
+.cancelButton{
+  font-size: 100%;
+  border: none;
+  background:transparent;
+  max-height: 100%;
+  max-width: 100%;
 }

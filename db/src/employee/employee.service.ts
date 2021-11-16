@@ -4,6 +4,10 @@ import { Employee } from "src/entities/Employee";
 import { EmployeeRepository } from "./employee.repository";
 import * as bcrypt from "bcrypt";
 import { EntityNotFoundError } from "typeorm";
+import { GetEmployeeDto } from './employee.dto';
+import { paginate } from 'nestjs-typeorm-paginate';
+import { Position } from '../entities/Position';
+import { GetPositionDto } from '../position/position.dto';
 
 @Injectable()
 export class EmployeeService {
@@ -12,19 +16,41 @@ export class EmployeeService {
     private employeeRepository: EmployeeRepository
   ) {}
 
-  public async getEmployee(id: number): Promise<Employee> {
+  public async getEmployeeById(id: number) {
     return this.employeeRepository
       .createQueryBuilder()
-      .where('id = :id', { id: id })
-      .getOneOrFail();
+      .where('id = :id', {id : id})
+      .getOne()
   }
 
-  public async getEmployeeById(id: number): Promise<Employee> {
-    const employees = await this.employeeRepository.findByIds([1])
-    if (employees.length == 0) {
-      throw EntityNotFoundError
+  public async getEmployee(param: GetEmployeeDto) {
+    const query = this.employeeRepository
+      .createQueryBuilder()
+
+    console.log(param.name)
+    if (param.email) {
+      query
+        .orWhere('email like :email', { email: `%${param.email}%`})
     }
-    return employees[0]
+
+    if (param.name) {
+      query
+        .orWhere('concat(last_name, " ", first_name) like :name',
+          {name: `%${param.name}%`})
+        .orWhere('concat(first_name, " ", last_name) like :name',
+          {name: `%${param.name}%`})
+    }
+
+    const res =  await paginate<Employee>(query,
+      { page: param.page == null ? GetPositionDto.DEFAULT_PAGE : param.page,
+        limit: param.limit == null ? GetPositionDto.DEFAULT_LIMIT: param.limit,
+      }
+    )
+      .then(r => r.items)
+
+    console.log(res.length)
+
+    return res;
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {
