@@ -23,8 +23,8 @@ export class ReferralService {
     private readonly resumeRepository: ResumeRepository,
   ) {}
 
-  public async createReferral(@Payload('data') createReferralDto: CreateReferralDto,
-                              @Payload('resume') resume: Buffer) {
+  public async createReferral(createReferralDto: CreateReferralDto,
+                              resume: Buffer) {
     createReferralDto.resumeId = await this.resumeRepository
       .save({file: resume})
       .then(r => r.id)

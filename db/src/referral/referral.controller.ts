@@ -12,8 +12,9 @@ export class ReferralController {
   ) {}
 
   @MessagePattern({ cmd: 'createReferral' })
-  public async createReferral(createReferralDto: CreateReferralDto) {
-    return await this.referralService.createReferral(createReferralDto);
+  public async createReferral(@Payload('data') createReferralDto: CreateReferralDto,
+                              @Payload('resume') resume: Buffer) {
+    return await this.referralService.createReferral(createReferralDto, resume);
   }
 
   @MessagePattern({ cmd: 'updateReferral' })
