@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState } from 'react';
 import Footer from "../Footer/Footer";
 import maincss from "./main_home.module.css";
-import { apiGet } from '../../utils/api-fetch';
+import { apiGet,apiPost } from '../../utils/api-fetch';
 
 function Main_Home(){
   const [positionData, setPositionData] = useState([])
@@ -26,7 +26,7 @@ function Main_Home(){
         <h1 className="rec"> RECOMMENDED</h1>
         <div className={maincss.MainJobContainer}>
           <h1 className="jobTitle">Role: {positionData[0].title} </h1>
-          <h1 className="managerInfo">Manager:  {positionData[0].managerId}</h1>
+          <h1 className="managerInfo">Manager:  {positionData[0].manager.firstName} {positionData[0].manager.lastName}</h1>
           <h1 className="tags">Tags: {positionData[0].tags.join(', ')}</h1>
           <div className={maincss.refButton}>
             <input type="submit" value="REFER" className="refer-button" />
@@ -39,7 +39,7 @@ function Main_Home(){
 }
 
 async function getPosition() {
-  return await apiGet("/position/getRecommendedPositions?page=0");
+  return await apiPost("/position/get",{limit:'5'});
 }
 /*async function getEmployee(){
   return await apiGet("/")
