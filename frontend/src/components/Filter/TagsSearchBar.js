@@ -3,7 +3,6 @@ import { apiPost } from "../../utils/api-fetch"
 
 function TagsSearchBar(props) {
     const [curTag,setCurTag] = useState('')
-    const [selectedTags,setSeletedTags] = useState([])
     const [isLoaded,setLoad] = useState(false)
     const [deafaultTags,setDefaultTags] = useState([])
     const target = useRef(null)
@@ -19,25 +18,14 @@ function TagsSearchBar(props) {
         })
     },[])
 
-    function _onKeyDown(e){
-       // if(e.key == 'Enter'){
-            let temp = [...selectedTags]
-            temp.push(curTag)
-            console.log(temp)
-            // setSeletedTags(temp)
-            // console.log(selectedTags)
-        //}
-    }
-
     return(
         <div>
             <input list="brow" 
                     onKeyDown = {curTag != '' ? async (e) => {
                         if(e.key == 'Enter'){
-                            let temp = [...selectedTags]
+                            let temp = [...props.tags]
                             temp.push(curTag)
-                            setSeletedTags(temp)
-                            props.fun(selectedTags)
+                            props.fun(temp)
                         }
                       }:undefined}
                     value = {curTag}

@@ -52,11 +52,11 @@ function JobListingFilter(props) {
         </Col>
       </Row>
       <Row>
-        <Col>Tag <TagsSearchBar fun = {setTags}></TagsSearchBar></Col>
+        <Col>Tag <TagsSearchBar fun = {setTags} tags = {tags}></TagsSearchBar></Col>
       </Row>
-      {/* <Row>
-        <Col>Tag <TagStore></TagStore></Col>
-      </Row> */}
+      <Row>
+        <Col>Tag: <TagStore fun = {setTags} tags = {tags}></TagStore></Col>
+      </Row>
       </>
       :
       <>
