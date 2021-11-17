@@ -3,6 +3,8 @@ import { Container, Row, Col } from "react-bootstrap"
 import { clearFilter, useFilter, useFilterParam } from "../Filter/Filter"
 import FilterInput from "../Filter/FilterInput"
 import * as styles from "./JobListingFilter.module.css"
+import TagsSearchBar from "../Filter/TagsSearchBar"
+import TagStore from "../Filter/TagStore"
 
 const JOB_MODE = 0
 const MANAGER_MODE = 1
@@ -14,12 +16,13 @@ function JobListingFilter(props) {
   const [jobTitle, setJobtitle] = useFilterParam("", 'title', filter)
   const [managerName, setManagerName] = useFilterParam("", 'managerName', filter)
   const [managerEmail, setManagerEmail] = useFilterParam("", 'managerEmail', filter)
+  const [tags, setTags] = useFilterParam([], 'tags', filter)
   const [filterMode, _setFilterMode] = useState(JOB_MODE)
   const setFilterMode = (mode) => {
     _setFilterMode(mode)
     clearFilter(filter)
   }
-
+  
   return (
     <Container>
       <Row className={[styles.menu, 'py-1']} xs='auto'>
@@ -49,8 +52,11 @@ function JobListingFilter(props) {
         </Col>
       </Row>
       <Row>
-        <Col className={[styles.row, 'py-1']} xs='auto'>Tag <input/></Col>
+        <Col>Tag <TagsSearchBar fun = {setTags}></TagsSearchBar></Col>
       </Row>
+      {/* <Row>
+        <Col>Tag <TagStore></TagStore></Col>
+      </Row> */}
       </>
       :
       <>
