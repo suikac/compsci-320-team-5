@@ -66,7 +66,7 @@ export class GetReferralDto {
 }
 
 export class CreateResumeDto {
-  file: string
+  file: Buffer
 
   name: string
 }

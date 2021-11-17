@@ -31,7 +31,7 @@ export class ReferralController {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
-    this.file = '\\x' + resume.buffer ? resume.buffer.toString('hex') : '';
+    this.file = resume.buffer
     const cmd = { cmd: 'createReferral' };
     try {
       return this.dbService.send(cmd, {
@@ -81,8 +81,8 @@ export class ReferralController {
     );
     data = new Buffer(data, 'hex');
     console.log(data);
-    res.setHeader('Content-Type', 'image/jpeg');
-    res.setHeader('Content-Length', 174165);
+    // res.setHeader('Content-Type', 'image/jpeg');
+    // res.setHeader('Content-Length', 174165);
     res.send(data);
   }
 

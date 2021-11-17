@@ -11,7 +11,7 @@ export class Resume {
   name: string;
 
   @Column('mediumblob', { name: 'file' })
-  file: string;
+  file: Buffer;
 
   @OneToMany(() => Employee, (employee) => employee.resume)
   employees: Employee[];
