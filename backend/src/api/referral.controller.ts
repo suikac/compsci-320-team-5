@@ -22,7 +22,6 @@ import { firstValueFrom } from 'rxjs';
 @UseGuards(JwtGuard, RolesGuard)
 @Controller('referral')
 export class ReferralController {
-  private file: any;
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
   @Post('create')
@@ -31,14 +30,12 @@ export class ReferralController {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
-    console.log(resume);
-    this.file = resume.buffer;
     const cmd = { cmd: 'createReferral' };
     try {
       return this.dbService.send(cmd, {
         data: data,
         resume: {
-          file: this.file, // store the file as string
+          file: resume.buffer, // store the file as string
           name: resume.originalname,
           type: resume.mimetype,
         },
@@ -81,7 +78,6 @@ export class ReferralController {
     const data = await firstValueFrom(
       this.dbService.send({ cmd: 'getFile' }, { id: id })
     );
-    console.log(data)
     const file = Buffer.from(data.data);
     res.setHeader('Content-Type', data.type);
     res.send(file);
