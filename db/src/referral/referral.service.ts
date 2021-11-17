@@ -26,6 +26,7 @@ export class ReferralService {
 
   public async createReferral(createReferralDto: CreateReferralDto,
                               createResumeDto: CreateResumeDto) {
+    console.log(createResumeDto.file)
     createReferralDto.resumeId = await this.resumeRepository
       .save(createResumeDto)
       .then(r => r.id)
@@ -154,12 +155,11 @@ export class ReferralService {
     return res;
   }
 
-  async getFile() {
+  public async getFile() {
     const file = await this.resumeRepository
       .createQueryBuilder()
-      .where('id = 20')
+      .where('id = 45')
       .getOne()
-    console.log(Buffer.from(file.file))
-    return new Buffer(file.file, "hex");
+    return file.file;
   }
 }

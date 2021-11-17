@@ -7,7 +7,7 @@ import {
   Patch,
   Post,
   Query,
-  Req,
+  Req, Res,
   UploadedFile,
   UseGuards, UseInterceptors
 } from '@nestjs/common';
@@ -15,12 +15,14 @@ import { ClientProxy } from '@nestjs/microservices';
 import { JwtGuard } from '../guards/jwt-guard';
 import { ManagerOnly, RolesGuard } from '../guards/role.guards';
 import { FileInterceptor, MulterModule } from '@nestjs/platform-express';
-import { Express } from 'express';
+import { Express, Response } from 'express';
+import { firstValueFrom } from 'rxjs';
 
 
 @UseGuards(JwtGuard, RolesGuard)
 @Controller('referral')
 export class ReferralController {
+  private file: any;
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
   @Post('create')
@@ -29,13 +31,13 @@ export class ReferralController {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
-    console.log(resume.buffer);
+    this.file = '\\x' + resume.buffer ? resume.buffer.toString('hex') : '';
     const cmd = { cmd: 'createReferral' };
     try {
       return this.dbService.send(cmd, {
         data: data,
         resume: {
-          file: '\\x' + (resume.buffer ? resume.buffer.toString('hex') : ''), // store the file as string
+          file: this.file, // store the file as string
           name: resume.originalname,
         },
       });
@@ -73,8 +75,15 @@ export class ReferralController {
   }
 
   @Get('file')
-  public async getFile() {
-    return this.dbService.send({ cmd: 'getFile' }, {});
+  public async getFile(@Res() res) {
+    let data = await firstValueFrom(
+      this.dbService.send({ cmd: 'getFile' }, {})
+    );
+    data = new Buffer(data, 'hex');
+    console.log(data);
+    res.setHeader('Content-Type', 'image/jpeg');
+    res.setHeader('Content-Length', 174165);
+    res.send(data);
   }
 
   @Get('getReferralsByReferrer')

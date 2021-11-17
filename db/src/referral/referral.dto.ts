@@ -39,8 +39,7 @@ export class CreateReferralDto {
 }
 
 export class GetReferralDto {
-  @Type(() => Number)
-  @IsInt()
+
   @IsNumberString()
   @IsOptional()
   id: number;
