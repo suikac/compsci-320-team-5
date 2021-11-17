@@ -6,6 +6,7 @@ import { fromApiPost } from "../../utils/api-fetch";
  * Create a filter. Similar to `useState()`
  * @param {string} apiEndpoint where to send the query to. e.g: `/position/get`
  * @param {(result: any[]) => void} setResult callback with `response.json()`
+ * @param loadTrigger the trigger from `usePageLoadTrigger()`
  * @param delay wait time between queries in ms
  * @return an opaque filter
  */
@@ -68,7 +69,9 @@ export function clearFilter(filter) {
 }
 
 /**
- * Add a parameter to a filter. Similar to `useState()`
+ * Add a parameter to a filter. Similar to `useState()`.
+ *
+ * Every time `setValue` is called, the filter will update the param in the query.
  * @return [value, setValue]
  */
 export function useFilterParam(initial, key, filter) {
@@ -88,6 +91,14 @@ export function useFilterParam(initial, key, filter) {
   return [value, watch]
 }
 
+/**
+ *
+ * @returns [trigger, loadNextPage]
+ *
+ * - Call `loadNextPage()` to load the next page of results.
+ *
+ * - `trigger` is passed into `useFilter()`
+ */
 export function usePageLoadTrigger() {
   const [subject, setSubject] = useState(new Subject())
 

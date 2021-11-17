@@ -66,8 +66,8 @@ export class GetReferralDto {
   isManager: number;
 }
 
-export class CreateResumeDto{
-  resume: Buffer
+export class CreateResumeDto {
+  file: Buffer
 
   name: string
 }
