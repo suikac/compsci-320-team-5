@@ -80,7 +80,7 @@ function CreateRefer(props) {
         submission['positionId'] = state.id;
         submission['isInternal'] = referType === '1' ? 1 : 0;
         // Get the employee id of the person currently logged in to set referrerId
-        submission['resume'] = fileInputElement.current.files[0]
+        submission['file'] = fileInputElement.current.files[0]
         // Send POST to /api/referral/create to create referral
 
         const formData = new FormData()

@@ -24,17 +24,20 @@ export class ReferralController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
   @Post('create')
-  @UseInterceptors(FileInterceptor('resume'))
+  @UseInterceptors(FileInterceptor('file'))
   public async createReferral(@Req() req, @Body() data, @UploadedFile() resume) {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
+    console.log(resume.buffer instanceof Buffer);
     const cmd = { cmd: 'createReferral' };
-    console.log(resume);
     try {
       return this.dbService.send(cmd, {
         data: data,
-        resume: { resume: resume, name: resume.filename },
+        resume: {
+          file: resume.buffer.toString('utf8'),
+          name: resume.originalname,
+        },
       });
     } catch (e) {
       throw e;
@@ -67,6 +70,11 @@ export class ReferralController {
     const cmd = { cmd: 'getReferral' };
     const data = { id: id };
     return this.dbService.send(cmd, data);
+  }
+
+  @Get('file')
+  public async getFile() {
+    return this.dbService.send({ cmd: 'getFile' }, {});
   }
 
   @Get('getReferralsByReferrer')

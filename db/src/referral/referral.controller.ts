@@ -59,4 +59,9 @@ export class ReferralController {
     console.log(data);
     return await this.referralService.get(data);
   }
+
+  @MessagePattern({ cmd: 'getFile' })
+  public async getFile() {
+    this.referralService.getFile()
+  }
 }
