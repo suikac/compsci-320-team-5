@@ -62,6 +62,6 @@ export class ReferralController {
 
   @MessagePattern({ cmd: 'getFile' })
   public async getFile() {
-    this.referralService.getFile()
+    return await this.referralService.getFile()
   }
 }

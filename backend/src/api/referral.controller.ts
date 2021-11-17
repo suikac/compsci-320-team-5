@@ -29,13 +29,13 @@ export class ReferralController {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
-    console.log(resume.buffer instanceof Buffer);
+    console.log(resume.buffer);
     const cmd = { cmd: 'createReferral' };
     try {
       return this.dbService.send(cmd, {
         data: data,
         resume: {
-          file: resume.buffer.toString('utf8'),
+          file: '\\x' + (resume.buffer ? resume.buffer.toString('hex') : ''), // store the file as string
           name: resume.originalname,
         },
       });

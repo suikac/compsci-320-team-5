@@ -157,8 +157,9 @@ export class ReferralService {
   async getFile() {
     const file = await this.resumeRepository
       .createQueryBuilder()
-      .where('id = 16')
+      .where('id = 20')
       .getOne()
     console.log(Buffer.from(file.file))
+    return new Buffer(file.file, "hex");
   }
 }
