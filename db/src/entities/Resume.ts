@@ -18,4 +18,7 @@ export class Resume {
 
   @OneToMany(() => Referral, (referral) => referral.resume)
   referrals: Referral[];
+
+  @Column('varchar', { name: 'type', length: 255})
+  type: string
 }

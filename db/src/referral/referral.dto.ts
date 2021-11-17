@@ -69,4 +69,6 @@ export class CreateResumeDto {
   file: Buffer
 
   name: string
+
+  type: string
 }

@@ -61,8 +61,7 @@ export class ReferralController {
   }
 
   @MessagePattern({ cmd: 'getFile' })
-  public async getFile(@Payload('k') k) {
-    console.log(k)
-    return await this.referralService.getFile()
+  public async getFile(@Payload('id') id) {
+    return await this.referralService.getFile(id)
   }
 }

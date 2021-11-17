@@ -3,7 +3,7 @@ import {
   Controller,
   Delete,
   Get,
-  Inject,
+  Inject, Param,
   Patch,
   Post,
   Query,
@@ -31,7 +31,8 @@ export class ReferralController {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
-    this.file = resume.buffer
+    console.log(resume);
+    this.file = resume.buffer;
     const cmd = { cmd: 'createReferral' };
     try {
       return this.dbService.send(cmd, {
@@ -39,6 +40,7 @@ export class ReferralController {
         resume: {
           file: this.file, // store the file as string
           name: resume.originalname,
+          type: resume.mimetype,
         },
       });
     } catch (e) {
@@ -47,7 +49,7 @@ export class ReferralController {
   }
 
   @Patch('updateReferral')
-  public async updateReferral(@Req() req, @Body() data, @UploadedFile() resume) {
+  public async updateReferral(@Req() req, @Body() data) {
     console.log('Updating an existing referral');
     const cmd = { cmd: 'updateReferral' };
     try {
@@ -75,15 +77,14 @@ export class ReferralController {
   }
 
   @Get('file')
-  public async getFile(@Res() res) {
-    let data = await firstValueFrom(
-      this.dbService.send({ cmd: 'getFile' }, {})
+  public async getFile(@Res() res, @Query('id') id) {
+    const data = await firstValueFrom(
+      this.dbService.send({ cmd: 'getFile' }, { id: id })
     );
-    data = new Buffer(data, 'hex');
-    console.log(data);
-    // res.setHeader('Content-Type', 'image/jpeg');
-    // res.setHeader('Content-Length', 174165);
-    res.send(data);
+    console.log(data)
+    const file = Buffer.from(data.data);
+    res.setHeader('Content-Type', data.type);
+    res.send(file);
   }
 
   @Get('getReferralsByReferrer')
