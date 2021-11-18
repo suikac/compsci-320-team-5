@@ -7,6 +7,7 @@ phases:
       nodejs: 14
     commands:
       - echo Installing all dependencies...
+      - cd backend
       - yarn install
   build:
     commands:
