@@ -35,9 +35,9 @@ export class ReferralController {
       return this.dbService.send(cmd, {
         data: data,
         resume: {
-          file: resume.buffer, // store the file as string
-          name: resume.originalname,
-          type: resume.mimetype,
+          file: resume ? resume.buffer : null, // store the file as string
+          name: resume ? resume.originalname : null,
+          type: resume ? resume.mimetype : null,
         },
       });
     } catch (e) {

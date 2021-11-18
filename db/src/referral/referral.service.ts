@@ -26,11 +26,13 @@ export class ReferralService {
 
   public async createReferral(createReferralDto: CreateReferralDto,
                               createResumeDto: CreateResumeDto) {
-    createResumeDto.file = Buffer.from(createResumeDto.file)
-    console.log(createResumeDto)
-    createReferralDto.resumeId = await this.resumeRepository
-      .save(createResumeDto)
-      .then(r => r.id)
+    if (createResumeDto.name != null) {
+      createResumeDto.file = Buffer.from(createResumeDto.file)
+      console.log(createResumeDto)
+      createReferralDto.resumeId = await this.resumeRepository
+        .save(createResumeDto)
+        .then(r => r.id)
+    }
     await this.referralRepository
       .save(createReferralDto)
     return createReferralDto;
