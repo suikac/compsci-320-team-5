@@ -15,7 +15,7 @@ function Header(props) {
                 <div className = "mx-auto"><img className = {headercss.complogo} src = {CompanyLogo} alt = "Company Logo"></img></div>
                 <Dropdown>
                     <Dropdown.Toggle variant='default' bsPrefix='p-0'>
-                        <img src={ProfPic} className={headercss.profpic}></img>
+                        <img src={ProfPic} className={headercss.profpic} alt="Profile Picture"></img>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item

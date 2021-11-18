@@ -17,10 +17,11 @@ function PositionItem(props) {
             {/* Wireframe had images for position, not really sure what to put here */}
             <div className={`col-1`}>img</div>
             {/* Div that contains position title, years experience and refer button */}
-            <div className={`col-3 p-0 m-0`}>
+            <div className={`col-2 p-0 m-0`}>
                 <table className={`w-100 h-100`}>
                     <tr><td><h4 className='text-center'>{props.title}</h4></td></tr>
                     <tr><td><p className={`text-center`}>Years Experience: {props.minYearExperience}</p></td></tr>
+                    <tr><td><p className={`text-center`}>Salary: ${props.salary}</p></td></tr>
                     <tr><td>
                         <div className={`text-center ${ReferCSS.referBtnContainer}`}>
                             {/* Link to create refer page, passes position info in props as state */}
@@ -55,7 +56,7 @@ function PositionItem(props) {
             <div className={`col-2`}>
                 <table className='w-100 h-100'>
                     <tr><td>
-                        <h5 className={`text-center`}>
+                        <h5 className={`text-end`}>
                             {props.manager.firstName + " " + props.manager.lastName}
                         </h5>
                     </td></tr>

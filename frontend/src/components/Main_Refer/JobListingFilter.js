@@ -40,9 +40,13 @@ function JobListingFilter(props) {
       ?
       <>
       <Row className={[styles.row, 'py-1']} xs='auto'>
-        <Col>Job Title <FilterInput value={jobTitle} onChange={setJobtitle}/></Col>
+        <Col> 
+          <label for="Job Title"> Job Title </label> <FilterInput value={jobTitle} onChange={setJobtitle} id="Job Title"/>
+        </Col>
         <Col>
-        Salary range <FilterInput value={minSalary} onChange={setMinSalary}/>–<FilterInput value={maxSalary} onChange={setMaxSalary} />
+          <label for="Salary Range"> Salary Range </label> 
+          <FilterInput value={minSalary} onChange={setMinSalary} id="Salary Range"/>
+          –<FilterInput value={maxSalary} onChange={setMaxSalary} id="Salary Range"/>
         </Col>
         <Col>
           <button className={styles.clearButton}
@@ -52,7 +56,9 @@ function JobListingFilter(props) {
         </Col>
       </Row>
       <Row>
-        <Col>Tag <TagsSearchBar fun = {setTags} tags = {tags}></TagsSearchBar></Col>
+        <Col>
+          <label for="Tag"> Tag </label> <TagsSearchBar fun = {setTags} tags = {tags} id="Tag"></TagsSearchBar>
+        </Col>
       </Row>
       <Row>
         <Col>Tag: <TagStore fun = {setTags} tags = {tags}></TagStore></Col>
@@ -61,7 +67,8 @@ function JobListingFilter(props) {
       :
       <>
       <Row className={[styles.row, 'py-1']} xs='auto'>
-        <Col>Name <FilterInput value={managerName} onChange={setManagerName}/></Col>
+        <Col>
+          <label for="Name"> Name </label> <FilterInput value={managerName} onChange={setManagerName} id="Name"/></Col>
         <Col>
           <button className={styles.clearButton}
           onClick={() => clearFilter(filter)}>
