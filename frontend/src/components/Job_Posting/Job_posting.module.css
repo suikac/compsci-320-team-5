@@ -80,7 +80,7 @@ border-radius: 102px;
   display: inline-block;
   text-align: center;
   border-radius: 0px;
-  width: 60%;
+  max-width: 60%;
   height: 90%;
   background: #C4C4C4;
 }
@@ -104,9 +104,10 @@ border-radius: 102px;
   display: inline-block;
   text-align: center;
   border-radius: 0px;
-  width: 50%;
+  max-width: 62%;
   height: 90%;
   background: #C4C4C4;
+  border: transparent;
 }
 .tagSearchBarContainer{
   font-size: 25%;
@@ -153,14 +154,15 @@ font-size: 70%;
  padding: 8px;
  position: relative;
  max-width: 49.12%;
- height: 335px;
+ height: 345px;
  left: 48.04%;
- top: -398px;
+ top: -408px;
  background: #C4C4C4;
  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 52px;
 }
 .DescriptionText{
+  font-size-adjust: inherit;
   resize: none;
   border: none;
   justify-content: center;
@@ -168,7 +170,7 @@ border-radius: 52px;
   text-align: left;
   border-radius: 0px;
   width: 90%;
-  height: 85%;
+  height: 90%;
   background: #C4C4C4;
   overflow: scroll;
 }

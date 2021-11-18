@@ -99,7 +99,7 @@ class CreateJobPosting extends Component{
                                 className={styles.minYearofExpText}
                                 value = {this.state.minYearsExperience}
                                 onChange={this.handleCredentialsChange}
-                                placeholder = "By Year"
+                                placeholder = "Year"
                             />
                         </div>
 
