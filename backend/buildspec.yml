@@ -23,7 +23,8 @@ phases:
 # used only for building and testing.
 # ExpressJS apps will need other artifact directories included (bin/*, public/*, routes/*, views/* etc).
 artifacts:
+  type: ZIP
   files:
     - backend/package.json
-    - backend/node_modules/*
-    - backend/dist/*
+    - backend/node_modules/**/*
+    - backend/dist/**/*
