@@ -123,7 +123,7 @@ export class ReferralService {
       .where('referral.position_id = position.id')
       .innerJoinAndSelect('referral.referrer', 'referrer')
       .where('referral.referrer_id = referrer.id')
-      .innerJoinAndSelect('referral.referee', 'referee')
+      .leftJoinAndSelect('referral.referee', 'referee')
       .where('referral.referee_id = referee_id');
 
     if (data.isManager == null) {
