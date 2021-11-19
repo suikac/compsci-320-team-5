@@ -3,13 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { ReferralRepository } from './referral.repository';
 import { Referral } from '../entities/Referral';
 import { CreateReferralDto, CreateResumeDto, GetReferralDto } from './referral.dto';
-import { PositionController } from '../position/position.controller';
 import { PositionService } from '../position/position.service';
 import { EmployeeService } from '../employee/employee.service';
-import { Position } from '../entities/Position';
 import { ResumeRepository } from './resume.repository';
-import { Payload } from '@nestjs/microservices';
-import { Resume } from '../entities/Resume';
 
 @Injectable()
 export class ReferralService {
@@ -26,11 +22,13 @@ export class ReferralService {
 
   public async createReferral(createReferralDto: CreateReferralDto,
                               createResumeDto: CreateResumeDto) {
-    createResumeDto.file = Buffer.from(createResumeDto.file)
-    console.log(createResumeDto)
-    createReferralDto.resumeId = await this.resumeRepository
-      .save(createResumeDto)
-      .then(r => r.id)
+    if (createResumeDto.name != null) {
+      createResumeDto.file = Buffer.from(createResumeDto.file)
+      console.log(createResumeDto)
+      createReferralDto.resumeId = await this.resumeRepository
+        .save(createResumeDto)
+        .then(r => r.id)
+    }
     await this.referralRepository
       .save(createReferralDto)
     return createReferralDto;
@@ -119,13 +117,19 @@ export class ReferralService {
   }
 
   public async get(data: GetReferralDto) {
-    const query = this.referralRepository.createQueryBuilder('referral');
+    const query = this
+      .referralRepository.createQueryBuilder('referral')
+      .innerJoinAndSelect('referral.position', 'position')
+      .where('referral.position_id = position.id')
+      .innerJoinAndSelect('referral.referrer', 'referrer')
+      .where('referral.referrer_id = referrer.id')
+      .leftJoinAndSelect('referral.referee', 'referee')
+      .where('referral.referee_id = referee_id');
 
     if (data.isManager == null) {
       query.where('referrer_id = :referrerId', { referrerId: data.referrerId });
     } else {
       query
-        .innerJoinAndSelect('referral.position', 'position')
         .where('position.manager_id = :managerId', {
           managerId: data.referrerId,
         });
@@ -147,13 +151,7 @@ export class ReferralService {
       query.andWhere('referral.id = :id', { id: data.id });
     }
 
-    const res = await query.getMany();
-
-    for (let i = 0; i < res.length; i++) {
-      res[i] = await this.completeReferral(res[i]);
-    }
-
-    return res;
+    return await query.getMany();
   }
 
   public async getFile(id : number) {

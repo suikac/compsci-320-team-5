@@ -63,6 +63,8 @@ export class GetReferralDto {
   @IsInt()
   @IsOptional()
   isManager: number;
+
+  refereeId: number;
 }
 
 export class CreateResumeDto {
