@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import NavBarcss from "./navBar.module.css";
-import { Link } from 'react-router-dom'
+import { Link as RLink, useLocation } from 'react-router-dom'
 import * as paths from "../../utils/paths"
+import ArrowImg from './arrow.png'
 
 class NavBar extends Component {
     constructor(props) {
@@ -11,43 +12,38 @@ class NavBar extends Component {
     render() {
         return(
                 <ul className={NavBarcss.NavBarContainer}>
-                    <li>
                         <Link to='/'>
                             HOME
                         </Link>
-                    </li>
-                    <li>
                         <Link to={paths.REFER}>
                             REFER
                         </Link>
-                    </li>
-                    <li>
-                        <Link to={paths.MAILBOX}>
-                            MAILBOX
-                        </Link>
-                    </li>
-                    <li>
                         <Link to={paths.PREV_REF}>
                             PREVIOUS REF
                         </Link>
-                    </li>
-                    <li>
-                        <Link to={paths.EXPLORE}>
-                            EXPLORE
-                        </Link>
-                    </li>
                     {this.props.isManager ?
-                    <li>
                         <Link to={paths.CREATE_POSTING}>
                             CREATE POSTING
                         </Link>
-                    </li>
                     :
                     null
                     }
                 </ul>
         )
     }
+}
+
+function Link(props) {
+    const location = useLocation()
+    const {children, to, ..._props} = props
+    return (
+        <li>
+            <RLink to={to} className={location.pathname == to ? NavBarcss.selected : ''}>
+                {children}
+                <img src={ArrowImg} />
+            </RLink>
+        </li>
+    )
 }
 
 export default NavBar;

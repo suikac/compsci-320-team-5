@@ -46,9 +46,24 @@
     color: white;
 }
 
+/* Arrow in button */
 .NavBarContainer li a img{
-    text-align: center;
-    margin: 1em;
-    width: 10px;
+    display: none;
+    float: right;
     height: 20px;
+    transform: translate3d(-5px, 5px, 0);
+}
+
+.NavBarContainer li a:hover img{
+    display: block;
+}
+
+/* Selected navBar item */
+.NavBarContainer li a.selected {
+    background-color:cadetblue;
+    color: white;
+}
+
+.NavBarContainer li a.selected img {
+    display: block
 }
