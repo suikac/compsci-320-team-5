@@ -24,8 +24,14 @@ function TagsSearchBar(props) {
                     onKeyDown = {curTag != '' ? async (e) => {
                         if(e.key == 'Enter'){
                             let temp = [...props.tags]
-                            temp.push(curTag)
-                            props.fun(temp)
+                            if(temp.includes(curTag)){
+                                temp.push(curTag)
+                                props.fun(temp)
+                            }
+                            else{
+                                setCurTag('')
+                                alert("Tag does not exist")
+                            }
                         }
                       }:undefined}
                     value = {curTag}
