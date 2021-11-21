@@ -7,7 +7,7 @@ phases:
       nodejs: 14
     commands:
       - echo Installing all dependencies...
-      - cd backend
+      - cd backend  # change of directory needed
       - yarn install
   build:
     commands:
@@ -23,7 +23,6 @@ phases:
 # used only for building and testing.
 # ExpressJS apps will need other artifact directories included (bin/*, public/*, routes/*, views/* etc).
 artifacts:
-  type: ZIP
   files:
     - backend/package.json
     - backend/node_modules/**/*
