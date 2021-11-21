@@ -1,6 +1,8 @@
+import { style } from "dom-helpers";
 import React, {useRef, useEffect, useState } from "react";
 import { Tooltip } from "react-bootstrap";
 import { apiPost } from "../../utils/api-fetch"
+import styles from "./Tags.module.css"
 
 function TagsSearchBar(props) {
     const [curTag,setCurTag] = useState('')
@@ -32,6 +34,8 @@ function TagsSearchBar(props) {
                             else{
                                 setCurTag('')
                                 setShowToolTip(true)
+                                setTimeout(
+                                    (()=>{setShowToolTip(false)}), 1500)
                             }
                         }
                       }:undefined}
@@ -46,8 +50,8 @@ function TagsSearchBar(props) {
                     <option key = {tags} >{tags}</option>
                 ))}
                 </datalist>
-                {/* {ShowToolTip == true?
-                <div className = {{fontsize:5}}>Tag do not exist</div>:''} */}
+                <div className = {ShowToolTip?
+                    styles.tooltipFontS:styles.tooltipFontH}>Tag do not exist</div>
         </div>
     )
 }

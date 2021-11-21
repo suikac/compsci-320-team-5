@@ -55,7 +55,7 @@ function JobListingFilter(props) {
           </button>
         </Col>
       </Row>
-      <Row>
+      <Row className={[styles.row, 'py-1']} xs='auto'>
         <Col>
           <label for="Tag"> Tag </label> <TagsSearchBar fun = {setTags} tags = {tags} id="Tag"></TagsSearchBar>
         </Col>

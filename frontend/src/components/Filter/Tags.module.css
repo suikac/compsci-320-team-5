@@ -1,0 +1,28 @@
+.tagHolder{
+    display: inline-block;
+    color:white;
+    text-align: center;
+    font-size: 100%;
+    max-width: 100%;
+    padding: 1px;
+    height: 100%;
+    border-radius:102px;
+    background: #197278;
+  }
+  .cancelButton{
+    color:white;
+    font-size: 100%;
+    border: none;
+    background:transparent;
+    max-height: 100%;
+    max-width: 100%;
+  }
+  .tooltipFontH{
+    visibility: hidden;
+    font-size: 50%;
+    color: red; 
+  }
+  .tooltipFontS{
+    font-size: 50%;
+    color: red; 
+  }
