@@ -8,6 +8,7 @@
     height: 100%;
     border-radius:102px;
     background: #197278;
+    margin-left: 3px;
   }
   .cancelButton{
     color:white;

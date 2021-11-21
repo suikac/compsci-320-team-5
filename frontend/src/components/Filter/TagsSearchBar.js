@@ -30,6 +30,7 @@ function TagsSearchBar(props) {
                             if(deafaultTags.includes(curTag)){
                                 temp.push(curTag)
                                 props.fun(temp)
+                                setCurTag('')
                             }
                             else{
                                 setCurTag('')
