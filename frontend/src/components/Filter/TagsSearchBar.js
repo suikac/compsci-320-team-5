@@ -1,9 +1,10 @@
 import React, {useRef, useEffect, useState } from "react";
+import { Tooltip } from "react-bootstrap";
 import { apiPost } from "../../utils/api-fetch"
 
 function TagsSearchBar(props) {
     const [curTag,setCurTag] = useState('')
-    const [isLoaded,setLoad] = useState(false)
+    const [ShowToolTip,setShowToolTip] = useState(false)
     const [deafaultTags,setDefaultTags] = useState([])
     const target = useRef(null)
     async function getTags() {
@@ -24,20 +25,20 @@ function TagsSearchBar(props) {
                     onKeyDown = {curTag != '' ? async (e) => {
                         if(e.key == 'Enter'){
                             let temp = [...props.tags]
-                            if(temp.includes(curTag)){
+                            if(deafaultTags.includes(curTag)){
                                 temp.push(curTag)
                                 props.fun(temp)
                             }
                             else{
                                 setCurTag('')
-                                alert("Tag does not exist")
+                                setShowToolTip(true)
                             }
                         }
                       }:undefined}
                     value = {curTag}
                     onChange = {async (e) => {
                         setCurTag(e.target.value)
-                        // console.log(curTag)
+                        setShowToolTip(false)
                       }}
             />
                 <datalist id="brow" >
@@ -45,6 +46,8 @@ function TagsSearchBar(props) {
                     <option key = {tags} >{tags}</option>
                 ))}
                 </datalist>
+                {/* {ShowToolTip == true?
+                <div className = {{fontsize:5}}>Tag do not exist</div>:''} */}
         </div>
     )
 }
