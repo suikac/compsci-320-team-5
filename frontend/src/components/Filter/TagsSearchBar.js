@@ -1,6 +1,4 @@
-import { style } from "dom-helpers";
 import React, {useRef, useEffect, useState } from "react";
-import { Tooltip } from "react-bootstrap";
 import { apiPost } from "../../utils/api-fetch"
 import styles from "./Tags.module.css"
 
@@ -8,12 +6,13 @@ function TagsSearchBar(props) {
     const [curTag,setCurTag] = useState('')
     const [ShowToolTip,setShowToolTip] = useState(false)
     const [deafaultTags,setDefaultTags] = useState([])
+    const [ToolTipMassage,setToolTipMassage] = useState('None thing here')
     const target = useRef(null)
     async function getTags() {
         const a = await apiPost('/tag/get')
         return a
     }
-
+    
     useEffect(()=>{
         let temp = []
         getTags().then(a => a.json()).then(a =>{
@@ -22,21 +21,30 @@ function TagsSearchBar(props) {
     },[])
 
     return(
-        <div className={styles.searchContainer}>
-            <input list="brow"
+        <div>
+            <input list="brow" 
                     onKeyDown = {curTag != '' ? async (e) => {
                         if(e.key == 'Enter'){
                             let temp = [...props.tags]
-                            if(deafaultTags.includes(curTag)){
+                            if(deafaultTags.includes(curTag) && !props.tags.includes(curTag)){
                                 temp.push(curTag)
                                 props.fun(temp)
                                 setCurTag('')
                             }
                             else{
+                                if(!deafaultTags.includes(curTag)){
+                                    setToolTipMassage('Tag do not exist')
+                                }
+                                else{
+                                    setToolTipMassage('Tag already selected')
+                                }
                                 setCurTag('')
                                 setShowToolTip(true)
                                 setTimeout(
-                                    (()=>{setShowToolTip(false)}), 1500)
+                                    (()=>{
+                                        setShowToolTip(false)
+                                        setToolTipMassage('None thing here')
+                                    }), 1500)
                             }
                         }
                       }:undefined}
@@ -52,7 +60,7 @@ function TagsSearchBar(props) {
                 ))}
                 </datalist>
                 <div className = {ShowToolTip?
-                    styles.tooltipFontS:styles.tooltipFontH}>Tag do not exist</div>
+                    styles.tooltipFontS:styles.tooltipFontH}>{ToolTipMassage}</div>
         </div>
     )
 }
