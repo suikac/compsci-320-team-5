@@ -22,7 +22,7 @@ function JobListingFilter(props) {
     _setFilterMode(mode)
     clearFilter(filter)
   }
-  
+
   return (
     <Container>
       <Row className={[styles.menu, 'py-1']} xs='auto'>
@@ -40,11 +40,11 @@ function JobListingFilter(props) {
       ?
       <>
       <Row className={[styles.row, 'py-1']} xs='auto'>
-        <Col> 
+        <Col>
           <label for="Job Title"> Job Title </label> <FilterInput value={jobTitle} onChange={setJobtitle} id="Job Title"/>
         </Col>
         <Col>
-          <label for="Salary Range"> Salary Range </label> 
+          <label for="Salary Range"> Salary Range </label>
           <FilterInput value={minSalary} onChange={setMinSalary} id="Salary Range"/>
           –<FilterInput value={maxSalary} onChange={setMaxSalary} id="Salary Range"/>
         </Col>
@@ -57,10 +57,9 @@ function JobListingFilter(props) {
       </Row>
       <Row className={[styles.row, 'py-1']} xs='auto'>
         <Col>
-          <label for="Tag"> Tag </label> <TagsSearchBar fun = {setTags} tags = {tags} id="Tag"></TagsSearchBar>
-        </Col>
-        <Col>
-          <label for="Tags"> Tags: </label> <TagStore fun = {setTags} tags = {tags}></TagStore>
+          <label for="Tag"> Tags </label>
+          <TagsSearchBar fun = {setTags} tags = {tags} id="Tag" />
+          <TagStore fun = {setTags} tags = {tags} />
         </Col>
       </Row>
       </>

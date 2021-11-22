@@ -5,7 +5,7 @@ import styles from "./Tags.module.css"
 function TagStore(props){
     const tags = props.tags
     const listItem = tags.map((tag,i) => (
-        <li key = {tag+i}
+        <div key = {tag+i}
             className = {styles.tagHolder}>
             {tag}
             <button
@@ -19,10 +19,10 @@ function TagStore(props){
                         console.log(props.tags)
                     }
                 }>X</button>
-        </li>
+        </div>
     ))
     return(
-        <div>
+        <div className={styles.tagStoreContainer}>
             {listItem}
         </div>
     )

@@ -13,7 +13,7 @@ function TagsSearchBar(props) {
         const a = await apiPost('/tag/get')
         return a
     }
-    
+
     useEffect(()=>{
         let temp = []
         getTags().then(a => a.json()).then(a =>{
@@ -22,8 +22,8 @@ function TagsSearchBar(props) {
     },[])
 
     return(
-        <div>
-            <input list="brow" 
+        <div className={styles.searchContainer}>
+            <input list="brow"
                     onKeyDown = {curTag != '' ? async (e) => {
                         if(e.key == 'Enter'){
                             let temp = [...props.tags]
