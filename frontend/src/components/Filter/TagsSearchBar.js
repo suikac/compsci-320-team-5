@@ -12,7 +12,7 @@ function TagsSearchBar(props) {
         const a = await apiPost('/tag/get')
         return a
     }
-    
+
     useEffect(()=>{
         let temp = []
         getTags().then(a => a.json()).then(a =>{
@@ -21,30 +21,29 @@ function TagsSearchBar(props) {
     },[])
 
     return(
-        <div>
-            <input list="brow" 
+        <div className={styles.searchContainer}>
+            <input list="brow"
+                    className={ShowToolTip ? styles.badInput : undefined}
                     onKeyDown = {curTag != '' ? async (e) => {
                         if(e.key == 'Enter'){
                             let temp = [...props.tags]
-                            if(deafaultTags.includes(curTag) && !props.tags.includes(curTag)){
-                                temp.push(curTag)
+                            const upperCaseTag = curTag.toUpperCase()
+                            const dbTag = deafaultTags.find(x => x.toUpperCase() == upperCaseTag);
+                            if(dbTag && !props.tags.includes(dbTag)){
+                                temp.push(dbTag)
                                 props.fun(temp)
                                 setCurTag('')
+                                setShowToolTip(false)
                             }
-                            else{
-                                if(!deafaultTags.includes(curTag)){
+                            else {
+                                if(!dbTag){
                                     setToolTipMassage('Tag do not exist')
                                 }
                                 else{
                                     setToolTipMassage('Tag already selected')
                                 }
-                                setCurTag('')
+                                // setCurTag('')
                                 setShowToolTip(true)
-                                setTimeout(
-                                    (()=>{
-                                        setShowToolTip(false)
-                                        setToolTipMassage('None thing here')
-                                    }), 1500)
                             }
                         }
                       }:undefined}

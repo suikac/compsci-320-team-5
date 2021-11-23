@@ -20,11 +20,11 @@
   }
   .tooltipFontH{
     visibility: hidden;
-    font-size: 50%;
+    font-size: 80%;
     color: red;
   }
   .tooltipFontS{
-    font-size: 50%;
+    font-size: 80%;
     color: red;
   }
 
@@ -37,4 +37,10 @@
 
   .searchContainer {
     display: inline
+  }
+
+  .badInput {
+    border-color: red;
+    border-width: 1px;
+    border-style: solid !important;
   }
