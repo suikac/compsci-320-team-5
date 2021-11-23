@@ -112,6 +112,11 @@ h3 {
   overflow-y: auto;
 }
 
+.table {
+    table-layout: fixed;
+    width: 100%;
+}
+
 #scrollableTarget {
   flex-grow: 1;
   overflow: auto;
