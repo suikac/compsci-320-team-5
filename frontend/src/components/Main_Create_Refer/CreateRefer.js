@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { withRouter } from "react-router";
 import { Link } from 'react-router-dom'
 import CreateReferCSS from "./CreateRefer.module.css";
@@ -62,6 +62,8 @@ function CreateRefer(props) {
         loadData();
     }
 
+    const fileInputElement = useRef(null)
+
     // Function used to submit a referral
     // Submits information to /api/referral/create
     // Information contained in input state
@@ -76,25 +78,29 @@ function CreateRefer(props) {
         delete submission.file;
         // Set values needed for creating referral
         submission['positionId'] = state.id;
-        submission['isRead'] = 0;
         submission['isInternal'] = referType === '1' ? 1 : 0;
         // Get the employee id of the person currently logged in to set referrerId
-        submission['referrerId'] = await api.apiGet('/employee/getSessionInfo')
-            .then(e => e.json()).userId;
+        submission['file'] = fileInputElement.current.files[0]
         // Send POST to /api/referral/create to create referral
-        let response = await api.apiPost('/referral/create', submission)
-            .then(res => res.json());
+
+        const formData = new FormData()
+        for (const [k, v] of Object.entries(submission)) {
+            formData.append(k, v)
+        }
+
+        let response = await api.apiPostFormData('/referral/create', formData)
+        let body = await response.json()
         // Process response
-        if (('statusCode' in response) && (response['statusCode'] !== 201)) {
-            alert('failure');
-        } else {
+        if (response.ok) {
             alert('success');
+        } else {
+            alert('failure');
         }
     }
 
     // state contains that information about position on this page
     const state = props.location.state;
-    
+
     // Return html to be rendered
     return (
         // Containing div
@@ -154,6 +160,7 @@ function CreateRefer(props) {
                             </div>
                             <div className={`col-6 pr-3 text-start`}>
                                     <input
+                                        ref={fileInputElement}
                                         type='file'
                                         value={input.file}
                                         onChange={ (e) => changeInput(['file'], [e.target.value]) }

@@ -2,8 +2,7 @@ import React, {Component, useEffect, useState } from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
 import{JobCreateSuccessedPopUp} from "./Job_postingPopUp"
-import { apiGet } from '../../utils/api-fetch';
-import { style } from "dom-helpers";
+
 
 class CreateJobPosting extends Component{
     constructor(props) {
@@ -34,7 +33,7 @@ class CreateJobPosting extends Component{
         })
     }
     addValueToTag(event){
-        // event.preventDefault()
+        event.preventDefault()
         let temp = this.state.tags.slice()
         temp.push(this.state.searchBarTag.trim())
         this.setState({
@@ -42,13 +41,13 @@ class CreateJobPosting extends Component{
             searchBarTag:''
         })
     }
-    render(){  
+    render(){
         const listItem = this.state.tags.map((tag,i) => (
             <li className = {styles.tagHolder} key = {tag+i}>
                 {tag}
                 <button
                         type = 'button'
-                        className = {styles.cancelButton} 
+                        className = {styles.cancelButton}
                         onClick = {()=>{
                             let removeIndex = this.state.tags.indexOf(tag)
                             let temp = this.state.tags.slice()
@@ -69,45 +68,49 @@ class CreateJobPosting extends Component{
                 <form>
                     <h2 className={styles.h2}>
                         <p className={styles.p}> Job Creating </p>
-                        <div className = {styles.jobTitleContainer}>
+                        <div className = {styles.jobTitleContainer} >
+                            <label className = {styles.labelText1}>Job Title</label>
                             <input
                                 name='title'
                                 type="text"
                                 value = {this.state.title}
                                 className = {styles.jobTitleText}
                                 onChange={this.handleCredentialsChange}
-                                placeholder = "Job Title"
+                                placeholder = "Enter Job Title"
                             >
                             </input>
                         </div>
                         <div className = {styles.salaryContainer}>
+                            <label className = {styles.labelText1}>Salary</label>
                             <input
                                 name = 'salary'
                                 type = 'number'
                                 className = {styles.salaryText}
                                 value = {this.state.salary}
                                 onChange={this.handleCredentialsChange}
-                                placeholder = "Job Salary"
+                                placeholder = "Salary"
                             />
                         </div>
                         <div className = {styles.minYearofExpContainer}>
+                        <label className = {styles.labelText1}>Min Year</label>
                             <input
                                 name = 'minYearsExperience'
                                 type = 'number'
                                 className={styles.minYearofExpText}
                                 value = {this.state.minYearsExperience}
                                 onChange={this.handleCredentialsChange}
-                                placeholder = "Minimum Year of Experience"
+                                placeholder = "Year"
                             />
                         </div>
 
                         <div className = {styles.tagSearchBarContainer}>
+                            <label className = {styles.labelText2}>Search Tag:</label>
                             <input  list="brow"
                                     name = 'searchBarTag'
                                     type = 'text'
                                     value = {this.state.searchBarTag}
                                     onChange={this.handleCredentialsChange}
-                                    placeholder = "Search Tag"
+                                    placeholder = "Enter Tag"
                                     className = {styles.tagSearchBarText}/>
                                 <datalist id="brow">
                                 {this.state.defaultTag.map(tags => (
@@ -128,6 +131,7 @@ class CreateJobPosting extends Component{
                             </ul>
                         </div>
                         <div className = {styles.DescriptionContainer}>
+                            <label className = {styles.labelText2}>Description</label>
                             <textarea
                                 type= 'text'
                                 name = 'description'

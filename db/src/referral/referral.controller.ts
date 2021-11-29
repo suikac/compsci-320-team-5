@@ -2,7 +2,7 @@ import { Controller, Inject, UsePipes, ValidationPipe } from '@nestjs/common';
 import { EventPattern, MessagePattern, Payload } from '@nestjs/microservices';
 import { ReferralService } from './referral.service';
 import { Referral } from '../entities/Referral';
-import { CreateReferralDto, GetReferralDto } from './referral.dto';
+import { CreateReferralDto, CreateResumeDto, GetReferralDto } from './referral.dto';
 
 @Controller('referral')
 export class ReferralController {
@@ -12,8 +12,9 @@ export class ReferralController {
   ) {}
 
   @MessagePattern({ cmd: 'createReferral' })
-  public async createReferral(createReferralDto: CreateReferralDto) {
-    return await this.referralService.createReferral(createReferralDto);
+  public async createReferral(@Payload('data') createReferralDto: CreateReferralDto,
+                              @Payload('resume') resume: CreateResumeDto) {
+    return await this.referralService.createReferral(createReferralDto, resume);
   }
 
   @MessagePattern({ cmd: 'updateReferral' })
@@ -57,5 +58,10 @@ export class ReferralController {
   public async get(@Payload() data: GetReferralDto) {
     console.log(data);
     return await this.referralService.get(data);
+  }
+
+  @MessagePattern({ cmd: 'getFile' })
+  public async getFile(@Payload('id') id) {
+    return await this.referralService.getFile(id)
   }
 }

@@ -1,0 +1,46 @@
+.tagHolder{
+    display: inline;
+    color:white;
+    text-align: center;
+    font-size: 100%;
+    max-width: 100%;
+    padding: 3px 5px 3px 5px;
+    height: 100%;
+    border-radius:102px;
+    background: #197278;
+    margin-left: 10px;
+  }
+  .cancelButton{
+    color:white;
+    font-size: 80%;
+    border: none;
+    background:transparent;
+    max-height: 100%;
+    max-width: 100%;
+  }
+  .tooltipFontH{
+    visibility: hidden;
+    font-size: 80%;
+    color: red;
+  }
+  .tooltipFontS{
+    font-size: 80%;
+    color: red;
+  }
+
+  .tagStoreContainer {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    height: 100%;
+  }
+
+  .searchContainer {
+    display: inline
+  }
+
+  .badInput {
+    border-color: red;
+    border-width: 1px;
+    border-style: solid !important;
+  }

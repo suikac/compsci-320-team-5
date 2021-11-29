@@ -30,8 +30,9 @@ class Login extends Component {
                 <form>
                     <h1 className={styles.h1}>Login</h1>
                     <div className={styles.credentials}>
-                        <label>Username</label>
+                        <label for="Username">Username</label>
                         <input
+                        id="Username"
                         type="email"
                         value={this.state.email}
                         class={styles.formControl}
@@ -39,8 +40,9 @@ class Login extends Component {
                         placeholder="Enter email" />
                     </div>
                     <div className={styles.credentials}>
-                        <label>Password</label>
+                        <label for="Password">Password</label>
                         <input
+                        id="Password"
                         type="password"
                         value={this.state.password}
                         class={styles.formControl}
@@ -59,7 +61,7 @@ class Login extends Component {
                 <LoginFailedPopUp trigger = {this.state.loginFails} exist = {() => this.setState({
                 loginFails: false})}>
                 </LoginFailedPopUp>
-                <img className={styles.photo} src = {logo} width = "100" height = "50"/>
+                <img className={styles.photo} src = {logo} width = "100" height = "50" alt="Logo"/>
             </div>
 
         );

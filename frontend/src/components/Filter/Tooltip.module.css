@@ -1,7 +1,0 @@
-.tooltip :global(.tooltip-inner) {
-  background-color: green;
-}
-
-.tooltip :global(.tooltip-arrow)::before {
-  border-bottom-color: green !important;
-}
