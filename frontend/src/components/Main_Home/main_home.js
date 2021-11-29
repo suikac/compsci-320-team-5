@@ -4,8 +4,10 @@ import maincss from "./main_home.module.css";
 import { apiGet,apiPost } from '../../utils/api-fetch';
 
 function Main_Home(){
+
   const [positionData, setPositionData] = useState([])
   const [isLoad, setIsLoad] = useState(false)
+  
   useEffect(() => {
       getPosition()
         .then(r => r.json())
@@ -15,7 +17,18 @@ function Main_Home(){
         })
     }
     , [])
-
+  
+  let [index, setIndex] = useState(0);
+  const incrementIndex = () => setIndex(index + 1);
+  const decrementIndex = () => setIndex(index - 1);
+  if(index<0) {
+    index=4;
+  }
+  if(index>4) {
+    index = 0
+  }
+    
+  
   if (!isLoad){
     return <div>Loading...</div>;
   } else {
@@ -24,10 +37,13 @@ function Main_Home(){
     return(
       <div className={maincss.MainContainer}>
         <h1 className="rec"> RECOMMENDED</h1>
+
         <div className={maincss.MainJobContainer}>
-          <h1 className="jobTitle">Role: {positionData[0].title} </h1>
-          <h1 className="managerInfo">Manager:  {positionData[0].manager.firstName} {positionData[0].manager.lastName}</h1>
-          <h1 className="tags">Tags: {positionData[0].tags.join(', ')}</h1>
+          <button onClick={incrementIndex}>Next</button>
+          <button onClick={decrementIndex}> Prev </button>
+          <h2 className="jobTitle">Job Title: {positionData[index].title} </h2>
+          <h2 className="managerInfo">Manager:  {positionData[index].manager.firstName} {positionData[index].manager.lastName}</h2>
+          <h2 className="tags">Tags: {positionData[index].tags.join(', ')}</h2>
           <div className={maincss.refButton}>
             <input type="submit" value="REFER" className="refer-button" />
           </div>
@@ -41,9 +57,6 @@ function Main_Home(){
 async function getPosition() {
   return await apiPost("/position/get",{limit:'5'});
 }
-/*async function getEmployee(){
-  return await apiGet("/")
-}
-*/
+
 
 export default Main_Home;
