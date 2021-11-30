@@ -40,7 +40,7 @@ function Link(props) {
         <li>
             <RLink to={to} className={location.pathname == to ? NavBarcss.selected : ''}>
                 {children}
-                <img src={ArrowImg} />
+                <img src={ArrowImg} alt={"Navbar Arrow"}/>
             </RLink>
         </li>
     )
