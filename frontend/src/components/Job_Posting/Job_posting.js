@@ -69,8 +69,9 @@ class CreateJobPosting extends Component{
                     <h2 className={styles.h2}>
                         <p className={styles.p}> Job Creating </p>
                         <div className = {styles.jobTitleContainer} >
-                            <label className = {styles.labelText1}>Job Title</label>
+                            <label className = {styles.labelText1} for="Job Title">Job Title</label>
                             <input
+                                id="Job Title"
                                 name='title'
                                 type="text"
                                 value = {this.state.title}
@@ -81,8 +82,9 @@ class CreateJobPosting extends Component{
                             </input>
                         </div>
                         <div className = {styles.salaryContainer}>
-                            <label className = {styles.labelText1}>Salary</label>
+                            <label className = {styles.labelText1} for="Salary">Salary</label>
                             <input
+                                id = "Salary"
                                 name = 'salary'
                                 type = 'number'
                                 className = {styles.salaryText}
@@ -92,8 +94,9 @@ class CreateJobPosting extends Component{
                             />
                         </div>
                         <div className = {styles.minYearofExpContainer}>
-                        <label className = {styles.labelText1}>Min Year</label>
+                        <label className = {styles.labelText1} for="Min Year">Min Year</label>
                             <input
+                                id = "Min Year"
                                 name = 'minYearsExperience'
                                 type = 'number'
                                 className={styles.minYearofExpText}
@@ -104,8 +107,9 @@ class CreateJobPosting extends Component{
                         </div>
 
                         <div className = {styles.tagSearchBarContainer}>
-                            <label className = {styles.labelText2}>Search Tag:</label>
-                            <input  list="brow"
+                            <label className = {styles.labelText2} for="Search Tag">Search Tag:</label>
+                            <input  id="Search Tag"
+                                    list="brow"
                                     name = 'searchBarTag'
                                     type = 'text'
                                     value = {this.state.searchBarTag}
@@ -131,8 +135,9 @@ class CreateJobPosting extends Component{
                             </ul>
                         </div>
                         <div className = {styles.DescriptionContainer}>
-                            <label className = {styles.labelText2}>Description</label>
+                            <label className = {styles.labelText2} for="Description">Description</label>
                             <textarea
+                                id= "Description"
                                 type= 'text'
                                 name = 'description'
                                 className = {styles.DescriptionText}
