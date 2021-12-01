@@ -251,10 +251,11 @@ export class PositionService {
 
   private fillInTagsForPositions(query: SelectQueryBuilder<Position>) {
     return query
-      .leftJoin(PositionTag, 'PositionTag', 'PositionTag.position_id = position.id')
-      .leftJoin('PositionTag.tag', 'Tag', 'Tag.id = PositionTag.tagId')
-      .addSelect('JSON_ARRAYAGG(Tag.name)', 'tags')
+      .innerJoin(PositionTag, 'PositionTag', 'PositionTag.position_id = position.id')
+      .innerJoin('PositionTag.tag', 'Tag', 'Tag.id = PositionTag.tagId')
       .groupBy('position.id')
+      .addSelect('JSON_ARRAYAGG(Tag.name)', 'tags')
+      .distinctOn(['tags'])
   }
 
   private async completePosition(positions) {
