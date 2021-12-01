@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { withRouter } from "react-router";
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, Redirect } from 'react-router-dom'
 import CreateReferCSS from "./CreateRefer.module.css";
 import * as paths from "../../utils/paths"
 import * as api from '../../utils/api-fetch'
@@ -103,6 +103,9 @@ function CreateRefer(props) {
     const history = useHistory()
 
     // Return html to be rendered
+    if (state == undefined) {
+        return <Redirect to={paths.NOT_FOUND}/>
+    }
     return (
         // Containing div
         <div className={`row`}>
