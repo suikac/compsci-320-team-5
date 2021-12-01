@@ -82,6 +82,18 @@ export class PositionService {
       .getMany();
   }
 
+  public async getTagsOfPositions(positionIds: number[]) {
+    const {entities, raw} = await this.positionTagRepository
+      .createQueryBuilder('PositionTag')
+      .innerJoin('PositionTag.tag', 'tag', 'tag.id = PositionTag.tagId')
+      .addSelect('tag.name', 'name')
+      .where('PositionTag.position_id in (:...positionIds)', { positionIds: positionIds })
+      .orderBy('PositionTag.position_id')
+      .getRawAndEntities();
+
+    return {tags: entities, names: raw}
+  }
+
   public async getTagsTagId(tagIds: number[]) {
     return await this.tagRepository
       .createQueryBuilder('Tag')
@@ -137,6 +149,13 @@ export class PositionService {
       .where('name = :name', { name: name })
       .getOneOrFail();
     return tag;
+  }
+
+  async getTagsByNames(names: string[]) {
+    return this.tagRepository
+      .createQueryBuilder('Tag')
+      .where('name In (:...names)', {names: names})
+      .getMany()
   }
 
   public async searchTagByName(name: string) {
@@ -224,13 +243,19 @@ export class PositionService {
   }
 
   private async completePosition(positions) {
-    let tags = await this.getAllTags()
-    for (const position of positions) {
-      let tagsId = await this.getTagsIdByPositionId(position.id)
-      position.tags = []
-      for (let i = 0; i < tagsId.length; i++) {
-        position.tags.push(tags[tagsId[i].tagId - 1].name)
+    const {tags, names} = await this.getTagsOfPositions(positions.map(r => r.id))
+    positions = [...positions].sort((a, b) => a.id - b.id)
+    let lastId = null
+    let i = -1
+
+    for (let j = 0; j < tags.length; j++) {
+      const tag = tags[j]
+      if (tag.positionId != lastId) {
+        lastId = tag.positionId
+        i += 1
+        positions[i].tags = []
       }
+      positions[i].tags.push(names[j].name)
     }
   }
 
@@ -260,11 +285,7 @@ export class PositionService {
   }
 
   private async getPositionByTagsName(query: SelectQueryBuilder<Position>, param) {
-    let tagsId = []
-    for (let i = 0; i < param.tags.length; i++) {
-      tagsId.push(await this.getTagByName(param.tags[i])
-        .then(r => r.id))
-    }
+    let tagsId = await (await this.getTagsByNames(param.tags)).map(r => r.id)
     console.log(tagsId)
     if (tagsId.length > 0) {
       return query
