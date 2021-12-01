@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { withRouter } from "react-router";
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import CreateReferCSS from "./CreateRefer.module.css";
 import * as paths from "../../utils/paths"
 import * as api from '../../utils/api-fetch'
@@ -100,6 +100,7 @@ function CreateRefer(props) {
 
     // state contains that information about position on this page
     const state = props.location.state;
+    const history = useHistory()
 
     // Return html to be rendered
     return (
@@ -208,9 +209,10 @@ function CreateRefer(props) {
             </div>
             {/* cancel button */}
             <div className={`col-12`}>
-                <Link to={paths.REFER} className={`d-block`}>
-                    <button className={`${CreateReferCSS.cancelBtn}`}>{'< Cancel'}</button>
-                </Link>
+                <button className={`${CreateReferCSS.cancelBtn}`}
+                onClick={() => history.goBack()}>
+                    {'< Cancel'}
+                </button>
             </div>
         </div>
     )

@@ -4,12 +4,15 @@ import maincss from "./main_home.module.css";
 import { apiGet,apiPost } from '../../utils/api-fetch';
 import left from './left_arrow.png'
 import right from './right_arrow.png'
+import { Link } from 'react-router-dom';
+import * as paths from '../../utils/paths'
+import ReferCSS from '../Main_Refer/main_refer.module.css'
 
 function Main_Home(){
 
   const [positionData, setPositionData] = useState([])
   const [isLoad, setIsLoad] = useState(false)
-  
+
   useEffect(() => {
       getPosition()
         .then(r => r.json())
@@ -19,7 +22,7 @@ function Main_Home(){
         })
     }
     , [])
-  
+
   let [index, setIndex] = useState(0);
   const incrementIndex = () => setIndex(index + 1);
   const decrementIndex = () => setIndex(index - 1);
@@ -46,7 +49,7 @@ function Main_Home(){
   const tagsStyle = {
     fontSize: 20,
     color: "black",
-    textAlign: "left", 
+    textAlign: "left",
     paddingTop: "30px",
     paddingLeft:"15px",
   }
@@ -60,8 +63,6 @@ function Main_Home(){
   if (!isLoad){
     return <div>Loading...</div>;
   } else {
-    console.log(positionData)
-    
     return(
       <div className={maincss.MainContainer}>
         <h1 style = {recStyle}> RECOMMENDED</h1>
@@ -69,12 +70,14 @@ function Main_Home(){
         <div className={maincss.MainJobContainer}>
           <button type="prev-next"><img src={left} onClick={decrementIndex}/></button>
           <button type="prev-next"><img src={right} onClick={incrementIndex}/></button>
-          
+
           <h2 style = {titleStyle}>Job Title: {positionData[index].title} </h2>
           <h2 style = {managerStyle}>Manager:  {positionData[index].manager.firstName} {positionData[index].manager.lastName}</h2>
           <h2 style = {tagsStyle}>Tags: {positionData[index].tags.join(', ')}</h2>
           <div className={maincss.refButton}>
-            <input type="submit" value="REFER" className="refer-button" />
+            <Link to={{ pathname: paths.CREATE_REFER, state: positionData[index] }}>
+              <button className={ReferCSS.referBtn}>REFER</button>
+            </Link>
           </div>
         </div>
         <Footer />
