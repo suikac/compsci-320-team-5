@@ -8,7 +8,7 @@ import { SelectQueryBuilder } from 'typeorm';
 import { PositionTag } from 'src/entities/PositionTag';
 import { GetPositionDto } from './position.dto';
 import { EmployeeService } from '../employee/employee.service';
-import { IPaginationMeta, paginate } from 'nestjs-typeorm-paginate';
+import { paginateRawAndEntities } from 'nestjs-typeorm-paginate';
 
 @Injectable()
 export class PositionService {
@@ -194,8 +194,7 @@ export class PositionService {
   public async getPosition(param: GetPositionDto) {
     let query = this.positionRepository
       .createQueryBuilder('position')
-      .innerJoinAndSelect('position.manager', 'manager')
-      .where('position.manager_id = manager.id')
+      .innerJoinAndSelect('position.manager', 'manager', 'position.manager_id = manager.id')
 
     if (param.maxSalary) {
       query
@@ -219,27 +218,43 @@ export class PositionService {
     }
 
     if (param.tags) {
-      query
-        .innerJoin('position.positionTags', 'pt')
-      query = await this.getPositionByTagsName(query, param)
+      query = await this.getPositionByTagsName(query, param.tags)
     }
 
     if (param.managerName) {
       query = await this.getPositionByManagerName(query, param)
     }
 
-    const res =  await paginate<Position>(query,
+    query = this.fillInTagsForPositions(query)
+    // console.log(query.getQuery())
+
+    const [pagination, rawResults] =  await paginateRawAndEntities(query,
       { page: param.page == null ? GetPositionDto.DEFAULT_PAGE : param.page,
       limit: param.limit == null ? GetPositionDto.DEFAULT_LIMIT: param.limit,
       }
     )
-      .then(r => r.items)
+    // console.log(rawResults)
 
-    console.log(res.length)
+    pagination.items.map((item: any, index) => {
+      const raw: any = rawResults[index]
 
-    await this.completePosition(res);
+      // add tags
+      item.tags = raw.tags != '[null]' ? JSON.parse(raw.tags) : []
 
-    return res;
+      // Remove sensitive manager info
+      const {firstName, lastName, email, positionTitle} = item.manager
+      item.manager = {firstName, lastName, email, positionTitle}
+    })
+
+    return pagination.items;
+  }
+
+  private fillInTagsForPositions(query: SelectQueryBuilder<Position>) {
+    return query
+      .leftJoin(PositionTag, 'PositionTag', 'PositionTag.position_id = position.id')
+      .leftJoin('PositionTag.tag', 'Tag', 'Tag.id = PositionTag.tagId')
+      .addSelect('JSON_ARRAYAGG(Tag.name)', 'tags')
+      .groupBy('position.id')
   }
 
   private async completePosition(positions) {
@@ -284,13 +299,10 @@ export class PositionService {
       ) : query;
   }
 
-  private async getPositionByTagsName(query: SelectQueryBuilder<Position>, param) {
-    let tagsId = await (await this.getTagsByNames(param.tags)).map(r => r.id)
-    console.log(tagsId)
-    if (tagsId.length > 0) {
+  private async getPositionByTagsName(query: SelectQueryBuilder<Position>, tagNames) {
       return query
-        .andWhere('position.id = pt.position_id')
-        .andWhere('pt.tag_id in (:tagId)', {tagId : tagsId})
-    }
+        .innerJoin('position.positionTags', 'pt', 'pt.positionId = position.id')
+        .innerJoin('pt.tag', 'tag', 'pt.tagId = tag.id')
+        .where('tag.name in (:...tagNames)', {tagNames: tagNames})
   }
 }
