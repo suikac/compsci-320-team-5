@@ -8,17 +8,24 @@ function RefBox(props){
                 <div className="row">
                     <h2>{props.refTitle}</h2> {/*Referral Title*/}
                     <div className="col-sm-4">
-                        <h4>Name: {props.referred}</h4> {/*Person Referred*/}
-                        <h4>About Position: </h4>
-                        <p>{props.jobDesc}</p>
+                        <div style = {{border: "2px solid gray", borderRadius: "1em", padding: "0.5em", margin: ".5em"}}><h4>Name: {props.referred}</h4></div>
+                         {/*Person Referred*/}
+                         <div style = {{border: "2px solid gray", borderRadius: "1em", padding: "0.5em", margin: ".5em"}}>
+                            <h4>About Position:</h4>
+                            <p>{props.jobDesc}</p>
+                         </div>
                     </div>
                     <div className="col-sm-4">
-                        <h4>Minimum Year Experience: <h5>{props.minExp}</h5></h4>
-                        <h4>Offered Salary: <h5>{props.salary}</h5></h4>
+                        <div style = {{border: "2px solid gray", borderRadius: "1em", padding: "0.5em", margin: ".5em"}}>
+                            <h4>Minimum Year Experience: <h5>{props.minExp}</h5></h4>
+                        </div>
+                        <div style = {{border: "2px solid gray", borderRadius: "1em", padding: "0.5em", margin: ".5em"}}><h4>Offered Salary: <h5>{props.salary}</h5></h4></div>
                     </div>
                     <div className="col-sm-4">
-                        <h4>Referred Description: </h4>
-                        <p>{props.refDesc}</p>
+                        <div style = {{border: "2px solid gray", borderRadius: "1em", padding: "0.5em", margin: ".5em"}}>
+                            <h4>Referred Description: </h4>
+                            <p>{props.refDesc}</p>
+                        </div>
                     </div>
                 </div>
             </div>
