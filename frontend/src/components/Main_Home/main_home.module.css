@@ -38,11 +38,15 @@
 
 .refButton{
   margin-left: 80%;
-  margin-top: 30%;
+  margin-top: 20%;
 }
 
 .MainContainer button[type="prev-next"] {
   background-color: white;
   border: none;
   cursor: pointer;
+}
+.MainJobContainer img{
+  width:40px;
+  margin-top: 50%;
 }

@@ -56,16 +56,15 @@ function Main_Home(){
 
   const recStyle = {
     color: "gray",
-
   }
-
+  
 
   if (!isLoad){
     return <div>Loading...</div>;
   } else {
     return(
       <div className={maincss.MainContainer}>
-        <h1 style = {recStyle}> RECOMMENDED</h1>
+        <h1 style = {recStyle}> Newest Jobs</h1>
 
         <div className={maincss.MainJobContainer}>
           <button type="prev-next"><img src={left} onClick={decrementIndex}/></button>
