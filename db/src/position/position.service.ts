@@ -240,7 +240,7 @@ export class PositionService {
 
       // add tags
       item.tags = raw.tags != '[null]' ? JSON.parse(raw.tags) : []
-
+      item.tags = [...new Set(item.tags)]
       // Remove sensitive manager info
       const {firstName, lastName, email, positionTitle} = item.manager
       item.manager = {firstName, lastName, email, positionTitle}
@@ -251,11 +251,10 @@ export class PositionService {
 
   private fillInTagsForPositions(query: SelectQueryBuilder<Position>) {
     return query
-      .innerJoin(PositionTag, 'PositionTag', 'PositionTag.position_id = position.id')
+      .leftJoin(PositionTag, 'PositionTag', 'PositionTag.position_id = position.id')
       .innerJoin('PositionTag.tag', 'Tag', 'Tag.id = PositionTag.tagId')
       .groupBy('position.id')
       .addSelect('JSON_ARRAYAGG(Tag.name)', 'tags')
-      .distinctOn(['tags'])
   }
 
   private async completePosition(positions) {
