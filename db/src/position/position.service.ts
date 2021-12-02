@@ -217,6 +217,10 @@ export class PositionService {
           {minYearExperience: param.minYearExperience})
     }
 
+    if (param.managerEmail) {
+      query.andWhere('manager.email like :managerEmail', {managerEmail: `${param.managerEmail}%`})
+    }
+
     if (param.tags) {
       query = await this.getPositionByTagsName(query, param.tags)
     }
