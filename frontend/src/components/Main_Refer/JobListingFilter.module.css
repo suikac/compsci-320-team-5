@@ -1,0 +1,56 @@
+.menu > div {
+  font-weight: bold;
+  display: inline;
+}
+
+.menu button:disabled{
+  background-color: transparent;
+  border-radius: 100px;
+  border-color: #197278;
+  color: #197278;
+  font-weight: 500;
+}
+
+.menu button:enabled {
+  background-color: transparent;
+  border-width: 0;
+  font-weight: 200;
+}
+
+.menu button:enabled:hover {
+  background-color: transparent;
+  border-radius: 100px;
+  color: #1f8a92;
+  font-weight: 400;
+}
+
+.row > div {
+  display: flex
+}
+
+.row input {
+  background-color: #C4C4C4;
+  border-style: none;
+  border-radius: 5px;
+}
+
+.clearButton {
+  background-color: #197278;
+  color: white;
+  border-radius: 100px;
+  padding: 0 20px 0 20px;
+  border-style: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  transition: 200ms;
+}
+
+.clearButton:hover {
+  background-color: rgb(207, 0, 0);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  transform: translateY(1px);
+}
+
+.tagStoreContainer {
+  overflow: auto;
+  flex: 1 !important;
+}

@@ -28,6 +28,7 @@
     "@nestjs/typeorm": "^8.0.2",
     "class-validator": "^0.13.1",
     "cookie-parser": "^1.4.5",
+    "multer": "^1.4.3",
     "mysql": "^2.18.1",
     "nestjs": "0.0.1",
     "reflect-metadata": "^0.1.13",

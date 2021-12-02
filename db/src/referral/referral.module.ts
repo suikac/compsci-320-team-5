@@ -8,10 +8,11 @@ import { Referral } from '../entities/Referral';
 import { ReferralRepository } from './referral.repository';
 import { PositionModule } from '../position/position.module';
 import { EmployeeModule } from '../employee/employee.module';
+import { ResumeRepository } from './resume.repository';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([Referral, ReferralRepository]),
+    TypeOrmModule.forFeature([Referral, ReferralRepository, ResumeRepository]),
     PositionModule,
     EmployeeModule,
   ],

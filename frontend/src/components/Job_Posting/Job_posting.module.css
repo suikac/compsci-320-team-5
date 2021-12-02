@@ -23,9 +23,22 @@ overflow: hidden;
   font-size: 40;
   left: -40px;
 }
+.labelText1{
+  position: relative;
+  display: inline-block;
+  font-size: 55%;
+  margin: 1%;
+}
+.labelText2{
+  position: relative;
+  display: inline-block;
+  font-size: 45%;
+  margin: 1%;
+  justify-content: left;
+}
 /* Header */
 .jobTitleContainer{
-font-size: 22px;
+font-size: 80%;
 padding: 5px;
 position: relative;
 max-width: 42.1%;/**/
@@ -43,13 +56,13 @@ justify-content: center;
 display: inline-block;
 text-align: center;
 border-radius: 0px;
-width: 90%;
+width: 76%;
 height: 90%;
 background: #C4C4C4;
 }
 
 .salaryContainer{
-font-size: 22px;
+font-size: 70%;
 padding: 5px;
 position: relative;
 max-width: 19.1%;/**/
@@ -67,13 +80,13 @@ border-radius: 102px;
   display: inline-block;
   text-align: center;
   border-radius: 0px;
-  width: 90%;
+  max-width: 60%;
   height: 90%;
   background: #C4C4C4;
 }
 
 .minYearofExpContainer{
-  font-size: 22px;
+  font-size: 70%;
   padding: 5px;
   position:relative;
   max-width: 19.1%;/**/
@@ -91,12 +104,13 @@ border-radius: 102px;
   display: inline-block;
   text-align: center;
   border-radius: 0px;
-  width: 90%;
+  max-width: 62%;
   height: 90%;
   background: #C4C4C4;
+  border: transparent;
 }
 .tagSearchBarContainer{
-  font-size: 18px;
+  font-size: 40%;
   margin-bottom: 10px;
   padding:5px;
   position: relative;
@@ -109,44 +123,46 @@ border-radius: 102px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
  border-radius: 52px;
  }
+
  .tagSearchBarText{
    border: none;
    justify-content: center;
    display: inline-block;
    text-align: left;
    border-radius: 0px;
-   width: 80%;
-   height: 24px;
+   margin: 3px;
+   width: 45%;
+   height: 22px;
    resize: none;
    background: #C4C4C4;
  }
  .tagStoreContainer{
    border: none;
    justify-content: center;
-   display: inline-block;
    text-align: left;
    border-radius: 0px;
    width: 80%;
    height: 170px;
    resize: none;
-   background: #C4C4C4;
+   background:transparent;
  }
 
 .DescriptionContainer{
   margin: 15px;
-font-size: 24px;
+font-size: 70%;
  text-align: center;
  padding: 8px;
  position: relative;
  max-width: 49.12%;
- height: 325px;
+ height: 345px;
  left: 48.04%;
- top: -388px;
+ top: -408px;
  background: #C4C4C4;
  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 52px;
 }
 .DescriptionText{
+  font-size-adjust: inherit;
   resize: none;
   border: none;
   justify-content: center;
@@ -154,15 +170,16 @@ border-radius: 52px;
   text-align: left;
   border-radius: 0px;
   width: 90%;
-  height: 100%;
+  height: 85%;
   background: #C4C4C4;
+  overflow: hidden;
 }
 .createButton{
-  font-size: 22px;
+  font-size: 70%;
   position:relative;
   width: 20%;
   height: 10%;
-  top: -360px;
+  top: -380px;
   left: -4%;
   background: #197278;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
@@ -170,13 +187,50 @@ border-radius: 52px;
 }
 .disabledcreateButton{
   color:#772E25;
-  font-size: 22px;
+  font-size: 70%;
   position:relative;
   width: 20%;
   height: 10%;
-  top: -360px;
+  top: -380px;
   left: -4%;
   background: #edddd4;
   border: 3px solid #772E25;
   border-radius: 102px;
+}
+.addButton{
+  font-size: 12px;
+  position:relative;
+  width: 18%;
+  height: 10%;
+  background: #197278;
+  border-radius: 102px;
+}
+.disabledaddButton{
+  color:#772E25;
+  font-size: 12px;
+  position:relative;
+  width: 18%;
+  height: 10%;
+  background: #C4C4C4;
+  border: solid #772E25;
+  border-radius: 102px;
+}
+.tagHolder{
+  display: inline-block;
+  color:#772E25;
+  text-align: center;
+  font-size: 100%;
+  max-width: 100%;
+  padding-top: 1px;
+  height: 15%;
+  border-radius:102px;
+  border: solid #772E25;
+  background: #edddd4;
+}
+.cancelButton{
+  font-size: 100%;
+  border: none;
+  background:transparent;
+  max-height: 100%;
+  max-width: 100%;
 }

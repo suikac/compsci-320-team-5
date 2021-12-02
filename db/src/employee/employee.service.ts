@@ -5,6 +5,9 @@ import { EmployeeRepository } from "./employee.repository";
 import * as bcrypt from "bcrypt";
 import { EntityNotFoundError } from "typeorm";
 import { GetEmployeeDto } from './employee.dto';
+import { paginate } from 'nestjs-typeorm-paginate';
+import { Position } from '../entities/Position';
+import { GetPositionDto } from '../position/position.dto';
 
 @Injectable()
 export class EmployeeService {
@@ -38,7 +41,16 @@ export class EmployeeService {
           {name: `%${param.name}%`})
     }
 
-    return query.getMany()
+    const res =  await paginate<Employee>(query,
+      { page: param.page == null ? GetPositionDto.DEFAULT_PAGE : param.page,
+        limit: param.limit == null ? GetPositionDto.DEFAULT_LIMIT: param.limit,
+      }
+    )
+      .then(r => r.items)
+
+    console.log(res.length)
+
+    return res;
   }
 
   public async getEmployeeByEmail(email: string): Promise<Employee> {

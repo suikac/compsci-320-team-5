@@ -3,16 +3,21 @@ import {
   Controller,
   Delete,
   Get,
-  Inject,
+  Inject, Param,
   Patch,
   Post,
   Query,
-  Req,
-  UseGuards,
+  Req, Res,
+  UploadedFile,
+  UseGuards, UseInterceptors
 } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { JwtGuard } from '../guards/jwt-guard';
 import { ManagerOnly, RolesGuard } from '../guards/role.guards';
+import { FileInterceptor, MulterModule } from '@nestjs/platform-express';
+import { Express, Response } from 'express';
+import { firstValueFrom } from 'rxjs';
+
 
 @UseGuards(JwtGuard, RolesGuard)
 @Controller('referral')
@@ -20,14 +25,21 @@ export class ReferralController {
   constructor(@Inject('DB_SERVICE') private readonly dbService: ClientProxy) {}
 
   @Post('create')
-  public async createReferral(@Req() req, @Body() data) {
+  @UseInterceptors(FileInterceptor('file'))
+  public async createReferral(@Req() req, @Body() data, @UploadedFile() resume) {
     console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
     const cmd = { cmd: 'createReferral' };
-    console.log(data);
     try {
-      return this.dbService.send(cmd, data);
+      return this.dbService.send(cmd, {
+        data: data,
+        resume: {
+          file: resume ? resume.buffer : null, // store the file as string
+          name: resume ? resume.originalname : null,
+          type: resume ? resume.mimetype : null,
+        },
+      });
     } catch (e) {
       throw e;
     }
@@ -61,6 +73,16 @@ export class ReferralController {
     return this.dbService.send(cmd, data);
   }
 
+  @Get('file')
+  public async getFile(@Res() res, @Query('id') id) {
+    const data = await firstValueFrom(
+      this.dbService.send({ cmd: 'getFile' }, { id: id })
+    );
+    const file = Buffer.from(data.data);
+    res.setHeader('Content-Type', data.type);
+    res.send(file);
+  }
+
   @Get('getReferralsByReferrer')
   public async getReferralsByReferrer(
     @Query('referrer_id') referrer_id: number
@@ -81,13 +103,6 @@ export class ReferralController {
     const data = { position_id };
     const response = this.dbService.send(cmd, data);
     return response;
-  }
-
-  @Get('getUnread')
-  public async getUnreadReferral(@Req() req) {
-    console.log(req.user.userId);
-    const cmd = { cmd: 'getUnreadReferral' };
-    return this.dbService.send(cmd, req.user.userId);
   }
 
   @Post('read')

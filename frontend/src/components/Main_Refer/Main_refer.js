@@ -1,82 +1,40 @@
-import React, {Component} from "react";
+import React, { useState, useEffect } from "react";
 import PositionItem from "./Position_item";
-import ReferCSS from "./main_refer.module.css"
+import ReferCSS from "./main_refer.module.css";
+import * as api from "../../utils/api-fetch";
+import JobListingFilter from "./JobListingFilter";
+import { usePageLoadTrigger } from "../Filter/Filter";
+import InfiniteScroll from "react-infinite-scroll-component";
 
-let fakeData = [
-    {
-        id: 1,
-        title: 'Software Engineer',
-        description: 'Python and java skills.',
-        minYearExperience: 2,
-        salary: 64000,
-        manager: {
-            id: 1,
-            firstName: 'John',
-            lastName: 'Doe',
-            email: 'johnD@gmail.com',
-            positionTitle: 'manager II'
-        },
-        tags: ['Python', 'Java']
-    },
-    {
-        id: 2,
-        title: 'Senior Software Engineer',
-        description: 'You must know everything.',
-        minYearExperience: 20,
-        salary: 200000,
-        manager: {
-            id: 2,
-            firstName: 'Jane',
-            lastName: 'Doe',
-            email: 'janeDoe@hotmail.com',
-            positionTitle: 'manager IV'
-        },
-        tags: ['C++', 'C', 'C#', 'Objective-C']
-    },
-    {
-        id: 1,
-        title: 'Junior Software Engineer',
-        description: 'JS developer',
-        minYearExperience: 0,
-        salary: 50000,
-        manager: {
-            id: 1,
-            firstName: 'Some',
-            lastName: 'Person',
-            email: 'somePerson@gmail.com',
-            positionTitle: 'manager II'
-        },
-        tags: ['JS', 'Node.js']
-    }
-]
+// Function based component for refer page
+function Referral() {
+    // State object that stores data on positions
+    let [data, setData] = useState([]);
+    const [trigger, loadPage] = usePageLoadTrigger()
 
-const positionsDisplay = fakeData.map(
-    e => {
-        return ( <div className={`mb-2 ${ReferCSS.positionItemContainer}`}><PositionItem {...e} /></div> );
-    }
-);
+    return (
+        <div className={ReferCSS.container}>
+            {/* Component used for filtering position data */}
+            <JobListingFilter setResult={setData} pageLoadTrigger={trigger}/>
 
-class referal extends Component {
-    render() {
-        return (
-            <>
-                <div id={ReferCSS.outline} className={`mt-5`}>
-                    <h5 className={`d-inline-block mx-4`}>Filter Options</h5>
-                    <select name='referral-dropdown' id='referral-dropdown' placeholder='select value'>
-                        <option value='none' selected disabled hidden>filter options</option>
-                        <option value='option1'>option1</option>
-                        <option value='option2'>option2</option>
-                    </select>
-                </div>
-                <div id={ReferCSS.positions} className='mt-5'>
-                {
-                    positionsDisplay
-                }
-                </div>
-            </>
-        )
-    }
-    
+            {/* Component that displays position data with PositionItem components */}
+            <div className={'mt-1'} id={ReferCSS.scrollableTarget}>
+                <InfiniteScroll
+                dataLength={data.length}
+                hasMore={true}
+                next={loadPage}
+                scrollableTarget={ReferCSS.scrollableTarget}>
+                    {data.map((e) => {
+                        return (<div className={`mb-2 ${ReferCSS.positionItemContainer}`}> <PositionItem key={e.id} {...e} /></div> );
+                    })}
+                </InfiniteScroll>
+            </div>
+        </div>
+    )
+}
+
+// Export component for use in Main.js
+export default Referral;
 
 
 
@@ -93,7 +51,19 @@ class referal extends Component {
 
 
 
-    /*constructor(props){
+
+
+
+
+
+
+
+
+
+// Not really sure what this code is for so I just commented it out
+
+
+/*constructor(props){
         super(props)
         this.state = {refereeName: "", currentEmployee:false,
         refereeEmail: "", resume:null, description: "", employeeID: 0}
@@ -101,7 +71,7 @@ class referal extends Component {
         this.handleInputChange = this.handleInputChange.bind(this)
         //add positionID: number from job posting
     }
-    
+
     handleSubmit(event){
         alert('Form Submitted');
         event.preventDefault();
@@ -120,7 +90,7 @@ class referal extends Component {
             else{
                 value = false;
             }
-            
+
 
         }
         console.log(this.state);
@@ -143,7 +113,7 @@ class referal extends Component {
                         </select>
                     </label> *//*}
                     <br/>
-                   
+
                     <label className={ReferCSS.current}>
                          Current Employee:
                         <input type="radio" name="choice" value="yes" id="choice-yes" onClick="showHideDiv()"/>
@@ -151,21 +121,21 @@ class referal extends Component {
                         <input type="radio" name="choice" value="no" id="choice-no" onClick="showHideDiv()"/>
                         <label for="choice-no">No  </label>
                     </label>
-                   
+
                     <br/>
                     <br/>
                     <label id = "employeeID">
                         <input  type="long" defaultValue={this.state.refereeName}
                         onChange={this.handleInputChange} className={ReferCSS.id}
                         placeholder={"Employee ID"}/>
-                        
+
                     </label>
                     <br/>
                     <br/>
                     <label >
                         <input type="text" defaultValue={this.state.refereeName}
                         onChange={this.handleInputChange} className={ReferCSS.name} placeholder={"Name"} name='refereeName'/>
-            
+
                     </label>
                     <br/>
                     <br/>
@@ -192,5 +162,3 @@ class referal extends Component {
                 </form>
             </div>
         )}*/
-        }
-export default referal

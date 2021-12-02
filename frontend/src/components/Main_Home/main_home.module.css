@@ -9,7 +9,7 @@
   margin: 1em;
   padding: 1em;
 }
-h1.rec{
+.MainContainer h1.rec{
   text-align: center;
   color: rgba(0, 0, 0, 50%);
 }
@@ -21,7 +21,7 @@ h1.rec{
   margin-right: auto;
   border-radius: 20px;
 }
-input[type=submit]{
+.MainContainer input[type=submit]{
   width: 100px;
   height: 30px;
   color: white;
@@ -30,7 +30,7 @@ input[type=submit]{
   border-radius:15px;
   cursor: pointer;
 }
-input[type=submit]:hover{
+.MainContainer input[type=submit]:hover{
   color: black;
   background-color: #edddd4;
   border: 2px solid #C44536 ;
@@ -38,5 +38,15 @@ input[type=submit]:hover{
 
 .refButton{
   margin-left: 80%;
-  margin-top: 30%;
+  margin-top: 20%;
+}
+
+.MainContainer button[type="prev-next"] {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+.MainJobContainer img{
+  width:40px;
+  margin-top: 50%;
 }

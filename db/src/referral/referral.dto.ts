@@ -13,6 +13,8 @@ import {
 } from 'class-validator';
 import { ParseIntPipe } from '@nestjs/common';
 import { Transform, Type } from 'class-transformer';
+import * as buffer from 'buffer';
+import * as Buffer from 'buffer';
 
 export class CreateReferralDto {
   resumeId: number;
@@ -33,11 +35,11 @@ export class CreateReferralDto {
   referrerId: number;
 
   id: number;
+
 }
 
 export class GetReferralDto {
-  @Type(() => Number)
-  @IsInt()
+
   @IsNumberString()
   @IsOptional()
   id: number;
@@ -61,4 +63,14 @@ export class GetReferralDto {
   @IsInt()
   @IsOptional()
   isManager: number;
+
+  refereeId: number;
+}
+
+export class CreateResumeDto {
+  file: Buffer
+
+  name: string
+
+  type: string
 }

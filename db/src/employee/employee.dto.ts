@@ -1,6 +1,7 @@
 import { IsOptional } from 'class-validator';
+import { BasicGetDto } from '../interface/BasicGetDto';
 
-export class GetEmployeeDto {
+export class GetEmployeeDto extends BasicGetDto {
 
   @IsOptional()
   email: string

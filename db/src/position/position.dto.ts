@@ -1,7 +1,8 @@
 import { Optional } from '@nestjs/common';
 import { IsNumberString, IsOptional } from 'class-validator';
+import { BasicGetDto } from '../interface/BasicGetDto';
 
-export class GetPositionDto {
+export class GetPositionDto extends BasicGetDto{
 
   @IsOptional()
   @IsNumberString()
@@ -24,6 +25,6 @@ export class GetPositionDto {
   tags: string[]
 }
 
-export class GetTagsDto {
+export class GetTagsDto extends BasicGetDto{
   name: string
 }

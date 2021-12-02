@@ -62,3 +62,8 @@ h1,h2{
 .logo{
     justify-content: center;
 }
+
+.complogo{
+    width: 250px;
+    height: 70px;
+}
