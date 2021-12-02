@@ -300,9 +300,12 @@ export class PositionService {
   }
 
   private async getPositionByTagsName(query: SelectQueryBuilder<Position>, tagNames) {
-      return query
+      query
         .innerJoin('position.positionTags', 'pt', 'pt.positionId = position.id')
         .innerJoin('pt.tag', 'tag', 'pt.tagId = tag.id')
-        .where('tag.name in (:...tagNames)', {tagNames: tagNames})
+      if (tagNames.length > 0) {
+        query.andWhere('tag.name in (:...tagNames)', {tagNames: tagNames})
+      }
+      return query
   }
 }
