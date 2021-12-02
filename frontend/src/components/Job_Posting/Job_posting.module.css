@@ -170,9 +170,9 @@ border-radius: 52px;
   text-align: left;
   border-radius: 0px;
   width: 90%;
-  height: 90%;
+  height: 85%;
   background: #C4C4C4;
-  overflow: scroll;
+  overflow: hidden;
 }
 .createButton{
   font-size: 70%;
