@@ -26,13 +26,13 @@ overflow: hidden;
 .labelText1{
   position: relative;
   display: inline-block;
-  font-size: 50%;
+  font-size: 55%;
   margin: 1%;
 }
 .labelText2{
   position: relative;
   display: inline-block;
-  font-size: 50%;
+  font-size: 45%;
   margin: 1%;
   justify-content: left;
 }
@@ -110,7 +110,7 @@ border-radius: 102px;
   border: transparent;
 }
 .tagSearchBarContainer{
-  font-size: 25%;
+  font-size: 40%;
   margin-bottom: 10px;
   padding:5px;
   position: relative;
@@ -131,7 +131,7 @@ border-radius: 102px;
    text-align: left;
    border-radius: 0px;
    margin: 3px;
-   width: 55%;
+   width: 45%;
    height: 22px;
    resize: none;
    background: #C4C4C4;
