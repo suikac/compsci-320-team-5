@@ -4,6 +4,7 @@ import { Link, useHistory, Redirect } from 'react-router-dom'
 import CreateReferCSS from "./CreateRefer.module.css";
 import * as paths from "../../utils/paths"
 import * as api from '../../utils/api-fetch'
+import { toast } from "react-toastify";
 
 // Function component used for create refer page
 function CreateRefer(props) {
@@ -92,9 +93,9 @@ function CreateRefer(props) {
         let body = await response.json()
         // Process response
         if (response.ok) {
-            alert('success');
+            toast.success('Referral submitted for review.')
         } else {
-            alert('failure');
+            toast.error('Your submission could not be completed.');
         }
     }
 

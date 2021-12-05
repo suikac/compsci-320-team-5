@@ -10,6 +10,8 @@ import NotFoundPage from "./components/NotFound/NotFoundPage"
 import * as paths from "./utils/paths"
 import { apiGet, apiPost } from "./utils/api-fetch"
 import NavBar from './components/NavBar/navBar'
+import { toast, ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.min.css'
 
 class App extends Component {
   constructor(props) {
@@ -51,6 +53,11 @@ class App extends Component {
     }
     return (
       <div className='wrapper'>
+      <ToastContainer
+        position='top-center'
+        autoClose={3000}
+        hideProgressBar={true}
+      />
       <BrowserRouter>
         {this.state.userInfo == null
         ?

@@ -1,7 +1,7 @@
 import React, {Component, useEffect, useState } from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
-import{JobCreateSuccessedPopUp} from "./Job_postingPopUp"
+import { toast } from "react-toastify";
 
 
 class CreateJobPosting extends Component{
@@ -158,10 +158,6 @@ class CreateJobPosting extends Component{
                                 className = {styles.disabledcreateButton}>Create
                                 </button>
                         }
-                        <JobCreateSuccessedPopUp trigger = {this.state.createJobSuccess}
-                        effect = {() => setTimeout(() => this.setState({
-                            createJobSuccess: false}), 3000)}>
-                        </JobCreateSuccessedPopUp>
                     </h2>
                 </form>
             );
@@ -179,9 +175,7 @@ class CreateJobPosting extends Component{
         const response = await apiPost('/position/createPosition', payload)
         console.log(response.status)
         if(response.ok){
-            this.setState({
-                createJobSuccess: true}
-            )
+            toast.success('Job posting created successfully!')
             this.reset()
         }
     }
