@@ -77,7 +77,9 @@ function JobListingFilter(props) {
         </Col>
       </Row>
       <Row>
-        <Col className={[styles.row, 'py-1']} xs='auto'>Email <input/></Col>
+        <Col className={[styles.row, 'py-1']} xs='auto'>
+          Email <FilterInput value={managerEmail} onChange={setManagerEmail} />
+        </Col>
       </Row>
       </>
       }

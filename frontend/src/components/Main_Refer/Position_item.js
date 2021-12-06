@@ -15,7 +15,7 @@ function PositionItem(props) {
         // Containing div
         <div className={`${ReferCSS.positionContainer} row`}>
             {/* Wireframe had images for position, not really sure what to put here */}
-            <div className={`col-1`}>img</div>
+            <div className={`col-1`}></div>
             {/* Div that contains position title, years experience and refer button */}
             <div className={`col-2 p-0 m-0`}>
                 <table className={`w-100 h-100`}><tbody>

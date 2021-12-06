@@ -22,6 +22,9 @@ export class GetPositionDto extends BasicGetDto{
   managerName: string
 
   @IsOptional()
+  managerEmail: string
+
+  @IsOptional()
   tags: string[]
 }
 
