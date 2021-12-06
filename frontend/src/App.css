@@ -3,6 +3,8 @@
   height: 100%;
   grid-row: 1;
   grid-column: 2;
+  /*background: url('./Background.jpg') no-repeat;*/
+  background-size: 100%;
 }
 .header-div {
   height: 15%

@@ -44,9 +44,10 @@ function JobListingFilter(props) {
           <label for="Job Title"> Job Title </label> <FilterInput value={jobTitle} onChange={setJobtitle} id="Job Title"/>
         </Col>
         <Col>
-          <label for="Salary Range"> Salary Range </label>
-          <FilterInput value={minSalary} onChange={setMinSalary} id="Salary Range"/>
-          –<FilterInput value={maxSalary} onChange={setMaxSalary} id="Salary Range"/>
+          <label for="Minimum Salary"> Minimum Salary </label>
+          <FilterInput value={minSalary} onChange={setMinSalary} id="Minimum Salary"/>
+          <label for="Maximum Salary"> Maximum Salary </label>
+          <FilterInput value={maxSalary} onChange={setMaxSalary} id="Maximum Salary"/>
         </Col>
         <Col>
           <button className={styles.clearButton}

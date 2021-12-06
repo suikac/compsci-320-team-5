@@ -72,7 +72,7 @@ class CreateJobPosting extends Component{
                             <label className = {styles.labelText1} for="Job Title">Job Title</label>
                             <input
                                 id="Job Title"
-                                name='title'
+                                name='Job Title'
                                 type="text"
                                 value = {this.state.title}
                                 className = {styles.jobTitleText}
@@ -85,7 +85,7 @@ class CreateJobPosting extends Component{
                             <label className = {styles.labelText1} for="Salary">Salary</label>
                             <input
                                 id = "Salary"
-                                name = 'salary'
+                                name = 'Salary'
                                 type = 'number'
                                 className = {styles.salaryText}
                                 value = {this.state.salary}
@@ -110,7 +110,7 @@ class CreateJobPosting extends Component{
                             <label className = {styles.labelText2} for="Search Tag">Search Tag:</label>
                             <input  id="Search Tag"
                                     list="brow"
-                                    name = 'searchBarTag'
+                                    name = 'Search Tag'
                                     type = 'text'
                                     value = {this.state.searchBarTag}
                                     onChange={this.handleCredentialsChange}
