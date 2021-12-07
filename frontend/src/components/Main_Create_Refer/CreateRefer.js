@@ -245,6 +245,7 @@ function CreateRefer(props) {
                                 {referType === '1' ? <div className={`text-end`}><button onClick={() => setShowEmployeeSearch(true)} className={`${CreateReferCSS.btn}`}>SEARCH</button></div> : <></>}
                             </div>
                             <div className={`col-12 col-xl-6 pr-3 text-start`}>
+                                <h6>Attach Resume: </h6>
                                 {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
                                 <input
                                     ref={fileInputElement}
