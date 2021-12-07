@@ -20,7 +20,7 @@
   font-size: small;
   font-style: italic;
   transform: translateY(15px);
-  margin-right: 3px;
+  margin-right: 15px;
 }
 
 .entry:hover h3 {

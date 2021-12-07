@@ -177,7 +177,6 @@ function CreateRefer(props) {
                 show={showEmployeeSearch}
                 onHide={() => setShowEmployeeSearch(false)}
                 setEmployeeSelection={(e) => {
-                    console.log('Select employee')
                     setInput({
                         ...input,
                         refereeEmail: e.email,
