@@ -41,12 +41,7 @@ class CreateJobPosting extends Component{
             searchBarTag:''
         })
     }
-    // isNumberString(input){
-    //     const myArray = input.split("")
-    //     for(var i = 0; i < myArray.length; i++){
-    //         myArray[i]
-    //     }
-    // }
+
     render(){
         const listItem = this.state.tags.map((tag,i) => (
             <li className = {styles.tagHolder} key = {tag+i}>
