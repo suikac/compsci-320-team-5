@@ -83,11 +83,9 @@ class Login extends Component {
             this.setState({
                 loginSuccessful: true
             })
-            const body = await response.json()
+            const userInfo = await response.json()
 
-            this.props.onUserInfoChange({
-                role: body.role
-            })
+            this.props.onUserInfoChange(userInfo)
         }
     }
 }
