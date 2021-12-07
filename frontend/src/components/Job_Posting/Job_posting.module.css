@@ -37,6 +37,9 @@ overflow: hidden;
   margin: 1%;
   justify-content: left;
 }
+.redText{
+  color: red;
+}
 .labelText3{
   position: relative;
   display: inline-block;
