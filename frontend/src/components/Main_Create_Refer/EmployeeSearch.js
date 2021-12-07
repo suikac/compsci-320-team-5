@@ -52,7 +52,7 @@ function EmployeeSearch(props) {
           </div>
         : <div className={styles.selectionSummaryNone}>No employee selected</div>
         }
-        <Button>Select</Button>
+        <Button onClick={() => props.setEmployeeSelection(selection)} disabled={selection == null}>Select</Button>
     </Modal.Footer>
   </Modal>
 }

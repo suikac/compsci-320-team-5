@@ -18,7 +18,7 @@ function CreateRefer(props) {
         file: ''
     });
 
-    const [showEmployeeSearch, setShowEmployeeSearch] = useState(true)
+    const [showEmployeeSearch, setShowEmployeeSearch] = useState(false)
 
     // This function changes given input fields and rerenders component with useState hook
     function changeInput(fields, values) {
@@ -176,6 +176,16 @@ function CreateRefer(props) {
             <EmployeeSearch
                 show={showEmployeeSearch}
                 onHide={() => setShowEmployeeSearch(false)}
+                setEmployeeSelection={(e) => {
+                    console.log('Select employee')
+                    setInput({
+                        ...input,
+                        refereeEmail: e.email,
+                        firstName: e.firstName,
+                        lastName: e.lastName
+                    })
+                    setShowEmployeeSearch(false)
+                }}
             />
             {/* Div that contains position and manager info */}
             <div className={`col-6 m-0 p-5`}>
@@ -233,7 +243,7 @@ function CreateRefer(props) {
                                     id='email-field'
                                     className={`${CreateReferCSS.inputField}`}
                                 />
-                                {referType === '1' ? <div className={`text-end`}><button onClick={searchEmployee} className={`${CreateReferCSS.btn}`}>SEARCH</button></div> : <></>}
+                                {referType === '1' ? <div className={`text-end`}><button onClick={() => setShowEmployeeSearch(true)} className={`${CreateReferCSS.btn}`}>SEARCH</button></div> : <></>}
                             </div>
                             <div className={`col-12 col-xl-6 pr-3 text-start`}>
                                 {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
