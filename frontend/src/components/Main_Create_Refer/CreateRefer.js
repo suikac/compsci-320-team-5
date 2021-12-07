@@ -5,6 +5,7 @@ import CreateReferCSS from "./CreateRefer.module.css";
 import * as paths from "../../utils/paths"
 import * as api from '../../utils/api-fetch'
 import { toast } from "react-toastify";
+import EmployeeSearch from "./EmployeeSearch";
 
 // Function component used for create refer page
 function CreateRefer(props) {
@@ -16,6 +17,8 @@ function CreateRefer(props) {
         description: '',
         file: ''
     });
+
+    const [showEmployeeSearch, setShowEmployeeSearch] = useState(true)
 
     // This function changes given input fields and rerenders component with useState hook
     function changeInput(fields, values) {
@@ -170,6 +173,10 @@ function CreateRefer(props) {
     return (
         // Containing div
         <div className={`row`}>
+            <EmployeeSearch
+                show={showEmployeeSearch}
+                onHide={() => setShowEmployeeSearch(false)}
+            />
             {/* Div that contains position and manager info */}
             <div className={`col-6 m-0 p-5`}>
                 <table className={`w-100 h-100`}><tbody>
