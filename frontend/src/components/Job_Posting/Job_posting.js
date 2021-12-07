@@ -100,7 +100,7 @@ class CreateJobPosting extends Component{
                             <input
                                 id = "Min Year"
                                 name = 'minYearsExperience'
-                                type = 'text'
+                                type = 'number'
                                 className={styles.minYearofExpText}
                                 value = {this.state.minYearsExperience}
                                 onChange={this.handleCredentialsChange}
@@ -113,7 +113,7 @@ class CreateJobPosting extends Component{
                             <input  id="Search Tag"
                                     list="brow"
                                     name = 'searchBarTag'
-                                    type = 'text'
+                                    type = 'number'
                                     value = {this.state.searchBarTag}
                                     onChange={this.handleCredentialsChange}
                                     placeholder = "Enter Tag"
