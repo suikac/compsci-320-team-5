@@ -133,10 +133,10 @@ class CreateJobPosting extends Component{
                                 <button type = 'button'
                                         className = {styles.addButton}
                                         onClick = {this.addValueToTag}
-                                        >add</button>:
+                                        >Add</button>:
                                 <button className = {styles.disabledaddButton}
                                         disabled
-                                        >add</button>
+                                        >Add</button>
                                 }
                             <ul className = {styles.tagStoreContainer}>
                                 {listItem}

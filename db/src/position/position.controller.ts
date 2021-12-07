@@ -3,14 +3,15 @@ import {
   HttpException,
   HttpStatus,
   Inject,
-  NotFoundException, UseFilters, ValidationPipe
+  NotFoundException, UseFilters, UsePipes, ValidationPipe
 } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PositionService } from './position.service';
-import { GetPositionDto, GetTagsDto } from './position.dto';
+import { CreatePostingDto, GetPositionDto, GetTagsDto } from './position.dto';
 import { RpcValidationFilter } from '../interface/RpcValidationFilter';
 
 @Controller('Position')
+@UsePipes(new ValidationPipe({ transform: true }))
 export class PositionController {
   constructor(
     @Inject(PositionService)
@@ -95,7 +96,7 @@ export class PositionController {
   }
 
   @MessagePattern({ cmd: 'createPosition' })
-  public async createPosition(data: Object) {
+  public async createPosition(data: CreatePostingDto) {
     let tags = data['tags'];
     delete data['tags'];
     let position = await this.positionService
