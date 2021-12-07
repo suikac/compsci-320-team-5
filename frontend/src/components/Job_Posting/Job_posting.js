@@ -107,7 +107,7 @@ class CreateJobPosting extends Component{
                         </div>
 
                         <div className = {styles.tagSearchBarContainer}>
-                            <label className = {styles.labelText2} for="Search Tag">Search Tag:</label>
+                            <label className = {styles.labelText3} for="Search Tag">Search Tag</label>
                             <input  id="Search Tag"
                                     list="brow"
                                     name = 'Search Tag'
@@ -135,7 +135,7 @@ class CreateJobPosting extends Component{
                             </ul>
                         </div>
                         <div className = {styles.DescriptionContainer}>
-                            <label className = {styles.labelText2} for="Description">Description</label>
+                            <label className = {styles.labelText3} for="Description">Description</label>
                             <textarea
                                 id= "Description"
                                 type= 'text'

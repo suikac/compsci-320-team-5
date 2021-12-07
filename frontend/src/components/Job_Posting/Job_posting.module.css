@@ -36,6 +36,13 @@ overflow: hidden;
   margin: 1%;
   justify-content: left;
 }
+.labelText3{
+  position: relative;
+  display: inline-block;
+  font-size: 100%;
+  margin: 1%;
+  justify-content: left;
+}
 /* Header */
 .jobTitleContainer{
 font-size: 80%;
