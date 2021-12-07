@@ -68,8 +68,10 @@ class CreateJobPosting extends Component{
                 <form>
                     <h2 className={styles.h2}>
                         <p className={styles.p}> Job Creating </p>
+                        
                         <div className = {styles.jobTitleContainer} >
                             <label className = {styles.labelText1} for="Job Title">Job Title</label>
+                            <label className = {styles.redText}> * </label> 
                             <input
                                 id="Job Title"
                                 name='title'
@@ -86,7 +88,7 @@ class CreateJobPosting extends Component{
                             <input
                                 id = "Salary"
                                 name = 'salary'
-                                type = 'number'
+                                type = 'text'
                                 className = {styles.salaryText}
                                 value = {this.state.salary}
                                 onChange={this.handleCredentialsChange}
@@ -98,7 +100,7 @@ class CreateJobPosting extends Component{
                             <input
                                 id = "Min Year"
                                 name = 'minYearsExperience'
-                                type = 'number'
+                                type = 'text'
                                 className={styles.minYearofExpText}
                                 value = {this.state.minYearsExperience}
                                 onChange={this.handleCredentialsChange}
@@ -110,7 +112,7 @@ class CreateJobPosting extends Component{
                             <label className = {styles.labelText3} for="Search Tag">Search Tag</label>
                             <input  id="Search Tag"
                                     list="brow"
-                                    name = 'Search Tag'
+                                    name = 'searchBarTag'
                                     type = 'text'
                                     value = {this.state.searchBarTag}
                                     onChange={this.handleCredentialsChange}
@@ -146,7 +148,7 @@ class CreateJobPosting extends Component{
                                 placeholder = "Job Description"
                             />
                         </div>
-                        {this.state.title != "" && this.state.description !=""?
+                        {this.state.title != "" ?
                                 <button
                                 type = 'button'
                                 onClick = {this.submit_credentials}
