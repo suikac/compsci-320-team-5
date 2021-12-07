@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
-        this.state = {title: "", salary: "", minYearsExperience: "", tags:[], searchBarTag: "",
+        this.state = {title: "", salary: '', minYearsExperience: '', tags:[], searchBarTag: "",
         description:"",createJobSuccess:false,isLoaded:false,defaultTag:[]}
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
@@ -16,8 +16,8 @@ class CreateJobPosting extends Component{
     reset(){
         this.setState({
             title: "",
-            salary: "",
-            minYearsExperience: "",
+            salary: 0,
+            minYearsExperience: 0,
             tags:[],
             description:"",
             isLoaded:false,
@@ -41,6 +41,12 @@ class CreateJobPosting extends Component{
             searchBarTag:''
         })
     }
+    // isNumberString(input){
+    //     const myArray = input.split("")
+    //     for(var i = 0; i < myArray.length; i++){
+    //         myArray[i]
+    //     }
+    // }
     render(){
         const listItem = this.state.tags.map((tag,i) => (
             <li className = {styles.tagHolder} key = {tag+i}>
@@ -88,7 +94,7 @@ class CreateJobPosting extends Component{
                             <input
                                 id = "Salary"
                                 name = 'salary'
-                                type = 'text'
+                                type = 'number'
                                 className = {styles.salaryText}
                                 value = {this.state.salary}
                                 onChange={this.handleCredentialsChange}
@@ -167,6 +173,21 @@ class CreateJobPosting extends Component{
     }
     //}
     async submit_credentials() {
+        if(isNaN(parseInt(this.state.minYearsExperience))|| isNaN(parseInt(this.state.salary))){
+            if(isNaN(parseInt(this.state.minYearsExperience)) && isNaN(parseInt(this.state.salary))){
+                toast.error('Minimal Year Experience and Salary has to be a number!')
+                return
+            }
+            if(isNaN(parseInt(this.state.salary))){
+                toast.error('Salary has to be a number!')
+                return
+            }
+            else{
+                toast.error('Minimal Year Experience has to be a number!')
+                return
+            }
+        }
+        // console.log('success')
         const payload = {
             tags:this.state.tags,
             title:this.state.title,
