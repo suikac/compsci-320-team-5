@@ -72,7 +72,7 @@ class CreateJobPosting extends Component{
                             <label className = {styles.labelText1} for="Job Title">Job Title</label>
                             <input
                                 id="Job Title"
-                                name='Job Title'
+                                name='title'
                                 type="text"
                                 value = {this.state.title}
                                 className = {styles.jobTitleText}
@@ -85,7 +85,7 @@ class CreateJobPosting extends Component{
                             <label className = {styles.labelText1} for="Salary">Salary</label>
                             <input
                                 id = "Salary"
-                                name = 'Salary'
+                                name = 'salary'
                                 type = 'number'
                                 className = {styles.salaryText}
                                 value = {this.state.salary}
@@ -135,7 +135,7 @@ class CreateJobPosting extends Component{
                             </ul>
                         </div>
                         <div className = {styles.DescriptionContainer}>
-                            <label className = {styles.labelText3} for="Description">Description</label>
+                            <label className = {styles.labelText2} for="Description">Description</label>
                             <textarea
                                 id= "Description"
                                 type= 'text'
