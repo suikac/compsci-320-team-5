@@ -159,6 +159,7 @@ export class PositionController {
   @Post('get')
   public async getPosition(@Req() req, @Body() query) {
     const cmd = { cmd: 'getPosition' };
+    query.managerId = req.user.userId;
     console.log(query);
     return this.dbService.send(cmd, query);
   }

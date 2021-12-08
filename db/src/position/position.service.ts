@@ -229,6 +229,12 @@ export class PositionService {
       query = await this.getPositionByManagerName(query, param)
     }
 
+    if (param.cur) {
+      query = query.where('position.manager_id = :curId', {curId: param.managerId})
+    }
+
+    const res =  await paginate<Position>(query,
+
     query = this.fillInTagsForPositions(query)
     // console.log(query.getQuery())
 

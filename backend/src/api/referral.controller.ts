@@ -79,7 +79,7 @@ export class ReferralController {
       this.dbService.send({ cmd: 'getFile' }, { id: id })
     );
     const file = Buffer.from(data.data);
-    res.setHeader('Content-Type', data.type);
+    // res.setHeader('Content-Type', data.type);
     res.send(file);
   }
 
