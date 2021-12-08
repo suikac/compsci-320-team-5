@@ -23,6 +23,12 @@ export class GetPositionDto extends BasicGetDto{
 
   @IsOptional()
   tags: string[]
+
+  @IsOptional()
+  cur: number
+
+  @IsOptional()
+  managerId: any;
 }
 
 export class GetTagsDto extends BasicGetDto{
