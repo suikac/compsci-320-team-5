@@ -51,6 +51,7 @@ export class LoginController {
       res.status(HttpStatus.OK);
       res.json({
         role: response.role,
+        sessionExpires: response.expires
       });
     } catch (exception) {
       if (exception.message == 'invalid credentials') {

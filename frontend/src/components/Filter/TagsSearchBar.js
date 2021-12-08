@@ -20,31 +20,36 @@ function TagsSearchBar(props) {
         })
     },[])
 
+    function addAndReset() {
+        let temp = [...props.tags]
+        const upperCaseTag = curTag.toUpperCase()
+        const dbTag = deafaultTags.find(x => x.toUpperCase() == upperCaseTag);
+        if(dbTag && !props.tags.includes(dbTag)){
+            temp.push(dbTag)
+            props.fun(temp)
+            setCurTag('')
+            setShowToolTip(false)
+        }
+        else {
+            if(!dbTag){
+                setToolTipMassage('Tag do not exist')
+            }
+            else{
+                setToolTipMassage('Tag already selected')
+            }
+            // setCurTag('')
+            setShowToolTip(true)
+        }
+    }
+
     return(
         <div className={styles.searchContainer}>
-            <input list="brow"
+            <div className={styles.inputAddContainer}>
+                <input list="brow"
                     className={ShowToolTip ? styles.badInput : undefined}
                     onKeyDown = {curTag != '' ? async (e) => {
                         if(e.key == 'Enter'){
-                            let temp = [...props.tags]
-                            const upperCaseTag = curTag.toUpperCase()
-                            const dbTag = deafaultTags.find(x => x.toUpperCase() == upperCaseTag);
-                            if(dbTag && !props.tags.includes(dbTag)){
-                                temp.push(dbTag)
-                                props.fun(temp)
-                                setCurTag('')
-                                setShowToolTip(false)
-                            }
-                            else {
-                                if(!dbTag){
-                                    setToolTipMassage('Tag do not exist')
-                                }
-                                else{
-                                    setToolTipMassage('Tag already selected')
-                                }
-                                // setCurTag('')
-                                setShowToolTip(true)
-                            }
+                            addAndReset()
                         }
                       }:undefined}
                     value = {curTag}
@@ -52,7 +57,16 @@ function TagsSearchBar(props) {
                         setCurTag(e.target.value)
                         setShowToolTip(false)
                       }}
-            />
+                />
+                <button
+                    aria-label='Add current tag'
+                    className={styles.clearFieldButton}
+                    onClick={addAndReset}
+                    className={props.addButtonClass}>
+                    Add
+                </button>
+            </div>
+
                 <datalist id="brow" >
                 {deafaultTags.map(tags => (
                     <option key = {tags} >{tags}</option>

@@ -44,3 +44,11 @@
     border-width: 1px;
     border-style: solid !important;
   }
+
+  .inputAddContainer {
+    display: flex
+  }
+
+  .searchContainer input {
+    width: 10em;
+  }

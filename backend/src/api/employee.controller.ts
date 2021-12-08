@@ -36,7 +36,11 @@ export class EmployeeController {
 
   @Get('getSessionInfo')
   public async getSessionInfo(@Req() req: AuthorizedRequest) {
-    return req.user
+    const user = req.user
+    return {
+      role: user.role,
+      sessionExpires: new Date(user.exp * 1000)
+    }
   }
 
   @ManagerOnly()

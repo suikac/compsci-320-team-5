@@ -1,13 +1,13 @@
 import React, {Component, useEffect, useState } from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
-import{JobCreateSuccessedPopUp} from "./Job_postingPopUp"
+import { toast } from "react-toastify";
 
 
 class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
-        this.state = {title: "", salary: "", minYearsExperience: "", tags:[], searchBarTag: "",
+        this.state = {title: "", salary: '', minYearsExperience: '', tags:[], searchBarTag: "",
         description:"",createJobSuccess:false,isLoaded:false,defaultTag:[]}
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
@@ -16,8 +16,8 @@ class CreateJobPosting extends Component{
     reset(){
         this.setState({
             title: "",
-            salary: "",
-            minYearsExperience: "",
+            salary: 0,
+            minYearsExperience: 0,
             tags:[],
             description:"",
             isLoaded:false,
@@ -35,12 +35,22 @@ class CreateJobPosting extends Component{
     addValueToTag(event){
         event.preventDefault()
         let temp = this.state.tags.slice()
-        temp.push(this.state.searchBarTag.trim())
+        let lowercased = this.state.searchBarTag.trim().toLowerCase()
+        let filtered = this.state.defaultTag.filter(tag => tag.toLowerCase() == lowercased)
+        if(filtered.length > 0){
+            lowercased = filtered[0]
+        }
+        if(temp.includes(lowercased)){
+            toast.error('This tag already been selected')
+            return
+        }
+        temp.push(lowercased)
         this.setState({
             tags:temp,
             searchBarTag:''
         })
     }
+
     render(){
         const listItem = this.state.tags.map((tag,i) => (
             <li className = {styles.tagHolder} key = {tag+i}>
@@ -68,8 +78,10 @@ class CreateJobPosting extends Component{
                 <form>
                     <h2 className={styles.h2}>
                         <p className={styles.p}> Job Creating </p>
+                        
                         <div className = {styles.jobTitleContainer} >
                             <label className = {styles.labelText1} for="Job Title">Job Title</label>
+                            <label className = {styles.redText}> * </label> 
                             <input
                                 id="Job Title"
                                 name='title'
@@ -107,7 +119,7 @@ class CreateJobPosting extends Component{
                         </div>
 
                         <div className = {styles.tagSearchBarContainer}>
-                            <label className = {styles.labelText2} for="Search Tag">Search Tag:</label>
+                            <label className = {styles.labelText3} for="Search Tag">Search Tag</label>
                             <input  id="Search Tag"
                                     list="brow"
                                     name = 'searchBarTag'
@@ -125,10 +137,10 @@ class CreateJobPosting extends Component{
                                 <button type = 'button'
                                         className = {styles.addButton}
                                         onClick = {this.addValueToTag}
-                                        >add</button>:
+                                        >Add</button>:
                                 <button className = {styles.disabledaddButton}
                                         disabled
-                                        >add</button>
+                                        >Add</button>
                                 }
                             <ul className = {styles.tagStoreContainer}>
                                 {listItem}
@@ -146,7 +158,7 @@ class CreateJobPosting extends Component{
                                 placeholder = "Job Description"
                             />
                         </div>
-                        {this.state.title != "" && this.state.description !=""?
+                        {this.state.title != "" ?
                                 <button
                                 type = 'button'
                                 onClick = {this.submit_credentials}
@@ -158,10 +170,6 @@ class CreateJobPosting extends Component{
                                 className = {styles.disabledcreateButton}>Create
                                 </button>
                         }
-                        <JobCreateSuccessedPopUp trigger = {this.state.createJobSuccess}
-                        effect = {() => setTimeout(() => this.setState({
-                            createJobSuccess: false}), 3000)}>
-                        </JobCreateSuccessedPopUp>
                     </h2>
                 </form>
             );
@@ -169,6 +177,21 @@ class CreateJobPosting extends Component{
     }
     //}
     async submit_credentials() {
+        if(isNaN(parseInt(this.state.minYearsExperience))|| isNaN(parseInt(this.state.salary))){
+            if(isNaN(parseInt(this.state.minYearsExperience)) && isNaN(parseInt(this.state.salary))){
+                toast.error('Minimal Year Experience and Salary has to be a number!')
+                return
+            }
+            if(isNaN(parseInt(this.state.salary))){
+                toast.error('Salary has to be a number!')
+                return
+            }
+            else{
+                toast.error('Minimal Year Experience has to be a number!')
+                return
+            }
+        }
+        // console.log('success')
         const payload = {
             tags:this.state.tags,
             title:this.state.title,
@@ -179,9 +202,7 @@ class CreateJobPosting extends Component{
         const response = await apiPost('/position/createPosition', payload)
         console.log(response.status)
         if(response.ok){
-            this.setState({
-                createJobSuccess: true}
-            )
+            toast.success('Job posting created successfully!')
             this.reset()
         }
     }

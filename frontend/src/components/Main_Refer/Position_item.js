@@ -14,42 +14,37 @@ function PositionItem(props) {
     return (
         // Containing div
         <div className={`${ReferCSS.positionContainer} row`}>
-            {/* Wireframe had images for position, not really sure what to put here */}
-            <div className={`col-1`}>img</div>
             {/* Div that contains position title, years experience and refer button */}
-            <div className={`col-2 p-0 m-0`}>
-                <table className={`w-100 h-100`}><tbody>
-                    <tr><td><h5 className='text-center'>{props.title}</h5></td></tr>
-                    <tr><td><p className={`text-center`}>Salary: ${props.salary}</p></td></tr>
-                    <tr><td>
-                        <div className={`text-center ${ReferCSS.referBtnContainer}`}>
-                            {/* Link to create refer page, passes position info in props as state */}
-                            <Link className='link' to={{ pathname: paths.CREATE_REFER, state: props }}>
-                                <button className={ReferCSS.referBtn}>REFER</button>
-                            </Link>
-                        </div>
-                    </td></tr>
-                </tbody></table>
+            <div className={`col-3 p-0 m-0`}>
+                <div className='mb-2'><h5 className='text-center'><strong>{props.title}</strong></h5></div>
+                <div className={`text-center`}><p className='p-0 m-0'><strong>Salary: </strong>${props.salary}</p></div>
+                <div className={`text-center p-0 m-0`}><p className='p-0 m-0'><strong>Years Experience: </strong>{props.minYearExperience}</p></div>
+                <div className={`mt-4 text-center ${ReferCSS.referBtnContainer}`}>
+                    {/* Link to create refer page, passes position info in props as state */}
+                    <Link className='link' to={{ pathname: paths.CREATE_REFER, state: props }}>
+                        <button className={ReferCSS.referBtn}>REFER</button>
+                    </Link>
+                </div>
             </div>
             {/* Div that contains description and tags */}
-            <div className={`col-7`}>
-                <table className={`w-100 h-100`}>
-                    <tr>
-                        <td valign='top'>
-                            <p className={``}>
-                                {props.description}
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign='bottom'>
-                            <h5 className='d-inline'>Tags: </h5>
-                            <p className={`d-inline-block`}>
-                                {tags}
-                            </p>
-                        </td>
-                    </tr>
-                </table>
+            <div className={`col-7 h-100 ${ReferCSS.tagContainer}`}>
+                <div>
+                    {(props.description.length > 250) ?
+                    <>
+                        <p>{props.description.substring(0, 250) + "... "}
+                            <Link className={``} to={{ pathname: paths.CREATE_REFER, state: props }}>
+                                (view more)
+                            </Link>
+                        </p>
+                    </>
+                    : <p>{props.description}</p>}
+                </div>
+                <div className={`${ReferCSS.tags}`}>
+                    <h5 className='d-inline'><strong>Tags: </strong></h5>
+                    <p className={`d-inline-block m-0 mb-1 p-0`}>
+                        {tags}
+                    </p>
+                </div>
             </div>
             {/* Div that manager info */}
             <div className={`col-2`}>
@@ -63,84 +58,6 @@ function PositionItem(props) {
                         <p>{props.manager.positionTitle}</p>
                     </td></tr>
                 </tbody></table>
-            </div>
-        </div>
-    );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // Return component to be rendered
-    return (
-        // Containing div
-        <div className={`${ReferCSS.positionContainer} row`}>
-            {/* Wireframe had images for position, not really sure what to put here */}
-            <div className={`col-1`}>img</div>
-            {/* Div that contains position title, years experience and refer button */}
-            <div className={`col-2 p-0 m-0`}>
-                <table className={`w-100 h-100`}><tbody>
-                    <tr><td><h4 className='text-center'>{props.title}</h4></td></tr>
-                    <tr><td><p className={`text-center`}>Salary: ${props.salary}</p></td></tr>
-                    <tr><td>
-                        <div className={`text-center ${ReferCSS.referBtnContainer}`}>
-                            {/* Link to create refer page, passes position info in props as state */}
-                            <Link className='link' to={{ pathname: paths.CREATE_REFER, state: props }}>
-                                <button className={ReferCSS.referBtn}>REFER</button>
-                            </Link>
-                        </div>
-                    </td></tr>
-                </tbody></table>
-            </div>
-            {/* Div that contains description and tags */}
-            <div className={`col-6`}>
-                <table className={`w-100 h-100`}>
-                    <tr>
-                        <td valign='top'>
-                            <p className={``}>
-                                {props.description}
-                            </p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td valign='bottom'>
-                            <h5 className='d-inline'>Tags: </h5>
-                            <p className={`d-inline-block`}>
-                                {tags}
-                            </p>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            {/* Div that manager info */}
-            <div className={`col-2`}>
-                <table className='w-100 h-100'>
-                    <tr><td>
-                        <h5 className={`text-end`}>
-                            {props.manager.firstName + " " + props.manager.lastName}
-                        </h5>
-                    </td></tr>
-                    <tr><td className={`text-end`}>
-                        <p>{props.manager.positionTitle}</p>
-                    </td></tr>
-                    <tr><td className={`text-end`}>
-                        <p>{props.manager.email}</p>
-                    </td></tr>
-                </table>
             </div>
         </div>
     );

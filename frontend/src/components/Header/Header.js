@@ -6,12 +6,15 @@ import searchicon from "./searchicon.png"
 import headercss from "./Header.module.css";
 import { DropdownButton, Dropdown, Stack } from "react-bootstrap"
 import CompanyLogo from "./companylogo.png"
+import {Link} from "react-router-dom"
 
 function Header(props) {
     return (
         <div className={headercss.HeaderContainer}>
             <Stack direction='horizontal' className={headercss.hstack}>
-                <img className={headercss.logoimg} src={logo} alt="A logo"></img>
+                <Link to = "/">
+                    <img className={headercss.logoimg} src={logo} alt="A logo"></img>
+                </Link>
                 <div className = "mx-auto"><img className = {headercss.complogo} src = {CompanyLogo} alt = "Company Logo"></img></div>
                 <Dropdown>
                     <Dropdown.Toggle variant='default' bsPrefix='p-0'>

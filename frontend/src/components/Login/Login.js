@@ -4,12 +4,13 @@ import { LoginFailedPopUp, LoginSuccessedPopUp, LogoutSuccessedPopUp } from "./L
 import styles from "./Login.module.css"
 import { apiPost } from "../../utils/api-fetch"
 import { Redirect } from "react-router";
+import { Modal, Button } from 'react-bootstrap'
 
 class Login extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {email: "", password: "", loginFails: false, loginSuccessful: false, logoutSuccessful:false}
+        this.state = {email: "", password: "", loginFails: false, loginSuccessful: false, logoutSuccessful:false,passwordChange: false}
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
     }
@@ -50,7 +51,7 @@ class Login extends Component {
                         placeholder="Enter password" />
                     </div>
                     <div className={styles.forgotPassword}>
-                        <a href="#"> Forgot password?</a>
+                        <a href="#" onClick = {() => this.setState({passwordChange:true})}> Forgot password?</a>
                     </div>
                     <button type="button"
                     onClick={this.submit_credentials}
@@ -62,6 +63,19 @@ class Login extends Component {
                 loginFails: false})}>
                 </LoginFailedPopUp>
                 <img className={styles.photo} src = {logo} width = "100" height = "50" alt="Logo"/>
+                <Modal show={this.state.passwordChange} backdrop='static'>
+                    <Modal.Header>
+                    <Modal.Title>
+                        Forget Password
+                    </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                    Please contact your administrator
+                    </Modal.Body>
+                    <Modal.Footer>
+                    <Button onClick={() => this.setState({passwordChange: false})}>OK</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
 
         );
@@ -83,11 +97,9 @@ class Login extends Component {
             this.setState({
                 loginSuccessful: true
             })
-            const body = await response.json()
+            const userInfo = await response.json()
 
-            this.props.onUserInfoChange({
-                role: body.role
-            })
+            this.props.onUserInfoChange(userInfo)
         }
     }
 }

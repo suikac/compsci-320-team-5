@@ -20,16 +20,43 @@ textarea {
 .cancelBtn:hover {
     border-bottom-color: black;
 }
-.referBtn {
+.btn {
     border: 2px solid #26989e;
     color: white;
     background-color: #26989e;
-    border-radius: 10px;
-    margin-left: 20px;
     transition: 200ms;
+    border-radius: 10px;
+}
+.referBtn {
+    margin-left: 20px;
     padding: 1px 25px 1px 25px;
 }
-.referBtn:hover {
+.btn:hover {
     background-color: white;
     color: #26989e;
+}
+.bold {
+    font-weight: bold;
+}
+.required {
+    font-weight: bold;
+    color: red;
+    font-size: 1.2rem;
+}
+.mustFill {
+    background-color: rgb(255,0,0,0.2);
+}
+.inputField {
+    width: 90%;
+}
+.referralDropdown {
+    font-size: 1.2em;
+    border-radius: 5px;
+}
+#outerContainer{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.label {
+    font-size: 1.2rem;
 }

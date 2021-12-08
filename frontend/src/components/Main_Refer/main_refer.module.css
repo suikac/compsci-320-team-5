@@ -14,24 +14,25 @@ h3 {
 
 .referBtn {
     margin: 0;
-    background-color: #26989e;
+    background-color: #197278;
     color: white;
-    border: 2px solid #26989e;
+    border: 2px solid #197278;
     border-radius: 15px;
     padding: 0 2vw 0 2vw;
     transition: 200ms;
 }
 .referBtn:hover {
     background-color: white;
-    color: #26989e;
+    color: #197278;
 }
 .positionItemContainer {
     margin-right: 10px;
     border-radius: 0 0 15px 15px;
     border-right: 1px solid #cccccc;
     border-left: 1px solid #cccccc;
-    border-bottom: 1px solid #aaaaaa;
+    border-bottom: 1px solid #cccccc;
     box-shadow: 3px 3px 3px #aaaaaa;
+    background-color: white;
 }
 .link {
     color: white;
@@ -59,7 +60,6 @@ h3 {
   box-sizing: border-box;
   border-radius: 25px;
   box-shadow: 5px 5px 5px #747373;
-
 }
 .name label{
   color: #747373;
@@ -115,6 +115,14 @@ h3 {
 .table {
     table-layout: fixed;
     width: 100%;
+}
+
+.tags {
+    position: absolute;
+    bottom: 0;
+}
+.tagContainer {
+    position: relative;
 }
 
 #scrollableTarget {

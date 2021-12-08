@@ -105,13 +105,6 @@ export class ReferralController {
     return response;
   }
 
-  @Get('getUnread')
-  public async getUnreadReferral(@Req() req) {
-    console.log(req.user.userId);
-    const cmd = { cmd: 'getUnreadReferral' };
-    return this.dbService.send(cmd, req.user.userId);
-  }
-
   @Post('read')
   public async read(@Req() req, @Body() body) {
     const cmd = { cmd: 'readReferral' };

@@ -1,5 +1,5 @@
 import { Optional } from '@nestjs/common';
-import { IsNumberString, IsOptional } from 'class-validator';
+import { IsArray, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
 import { BasicGetDto } from '../interface/BasicGetDto';
 
 export class GetPositionDto extends BasicGetDto{
@@ -22,6 +22,9 @@ export class GetPositionDto extends BasicGetDto{
   managerName: string
 
   @IsOptional()
+  managerEmail: string
+
+  @IsOptional()
   tags: string[]
 
   @IsOptional()
@@ -33,4 +36,28 @@ export class GetPositionDto extends BasicGetDto{
 
 export class GetTagsDto extends BasicGetDto{
   name: string
+}
+
+export class CreatePostingDto {
+  @IsString()
+  title: string
+
+  @IsNumber()
+  managerId: number
+
+  @IsString()
+  @IsOptional()
+  description: string
+
+  @IsNumberString()
+  @IsOptional()
+  minYearExperience: number
+
+  @IsNumberString()
+  @IsOptional()
+  salary: number
+
+  @IsArray()
+  @IsOptional()
+  tags: string[]
 }

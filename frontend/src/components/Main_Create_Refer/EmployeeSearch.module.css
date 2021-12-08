@@ -1,0 +1,60 @@
+#resultList {
+  height: 300px;
+  overflow: auto;
+}
+
+.entry h1 {
+  text-align: left;
+  font-size: medium;
+}
+
+.entry h2 {
+  text-align: left;
+  font-size: small;
+  font-weight: normal;
+}
+
+.entry h3 {
+  display: none;
+  float: right;
+  font-size: small;
+  font-style: italic;
+  transform: translateY(15px);
+  margin-right: 15px;
+}
+
+.entry:hover h3 {
+  display: inline-block;
+}
+
+.divider {
+  background-color: gray;
+  height: 2px;
+  width: 90%
+}
+
+.selected h3 {
+  display: inline-block;
+}
+
+.notSelected * {
+  color: gray !important
+}
+
+.selectionSummary {
+  flex-grow: 1;
+}
+
+.selectionSummary * {
+  margin-left: 5px;
+}
+
+.selectionSummaryNone {
+  flex-grow: 1;
+  font-style: italic;
+}
+
+.selectionSummary * {
+  font-size: small;
+  text-align: left;
+}

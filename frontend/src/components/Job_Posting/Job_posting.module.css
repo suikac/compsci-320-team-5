@@ -4,14 +4,14 @@
 } */
 
 .h2{
-background-color: #edddd4;
+background-color: #187278;
 position: relative;
 max-width: 1020px;
 max-height: 500px;
 margin-left: 10px;
 top: 30px;
 margin-top:20px;
-border: 3px solid #772E25;
+border: 3px solid #0C3E42;
 border-radius: 20px;
 margin: 20px;
 padding: 5px;
@@ -19,33 +19,44 @@ overflow: hidden;
 }
 
 .p{
+  color: #ffffff;
   position: relative;
-  font-size: 40;
+  font-size: xx-large;
   left: -40px;
 }
 .labelText1{
   position: relative;
   display: inline-block;
-  font-size: 50%;
+  font-size: medium /*55%*/;
   margin: 1%;
 }
 .labelText2{
   position: relative;
   display: inline-block;
-  font-size: 50%;
+  font-size: medium /*45%*/;
+  margin: 1%;
+  justify-content: left;
+}
+.redText{
+  color: red;
+}
+.labelText3{
+  position: relative;
+  display: inline-block;
+  font-size: medium /*100%*/;
   margin: 1%;
   justify-content: left;
 }
 /* Header */
 .jobTitleContainer{
-font-size: 80%;
+font-size: medium /*80%*/;
 padding: 5px;
 position: relative;
 max-width: 42.1%;/**/
 max-height: 13.4%;/**/
 left: 0px;
 top: 0px;
-background: #C4C4C4;
+background: #ffffff;
 margin: 15px;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
@@ -58,11 +69,11 @@ text-align: center;
 border-radius: 0px;
 width: 76%;
 height: 90%;
-background: #C4C4C4;
+background: #ffffff;
 }
 
 .salaryContainer{
-font-size: 70%;
+font-size: medium /*70%*/;
 padding: 5px;
 position: relative;
 max-width: 19.1%;/**/
@@ -70,7 +81,7 @@ max-height: 13.4%;/**/
 margin: 15px;
 left: 0px;
 top: 0px;
-background: #C4C4C4;
+background: #ffffff;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 border-radius: 102px;
 }
@@ -82,19 +93,22 @@ border-radius: 102px;
   border-radius: 0px;
   max-width: 60%;
   height: 90%;
-  background: #C4C4C4;
+  background: #ffffff;
 }
 
 .minYearofExpContainer{
-  font-size: 70%;
-  padding: 5px;
+  font-size: medium /*70%*/;
+  padding-top: 5px;
+  padding-left: 20px;
+  padding-bottom: 5px;
+  text-align: left;
   position:relative;
   max-width: 19.1%;/**/
   max-height: 13.4%;/**/
   left: 22.9%;
-  top: -54px;
+  top: -48px;
   margin: 15px;
-  background: #C4C4C4;
+  background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   border-radius: 102px;
 }
@@ -104,13 +118,13 @@ border-radius: 102px;
   display: inline-block;
   text-align: center;
   border-radius: 0px;
-  max-width: 62%;
+  max-width: 40%;
   height: 90%;
-  background: #C4C4C4;
+  background: #ffffff;
   border: transparent;
 }
 .tagSearchBarContainer{
-  font-size: 25%;
+  font-size: medium /*40%*/;
   margin-bottom: 10px;
   padding:5px;
   position: relative;
@@ -119,7 +133,7 @@ border-radius: 102px;
   left: 0px;
   top: -50px;
   margin: 15px;
-  background: #C4C4C4;
+  background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
  border-radius: 52px;
  }
@@ -131,10 +145,10 @@ border-radius: 102px;
    text-align: left;
    border-radius: 0px;
    margin: 3px;
-   width: 55%;
+   width: 45%;
    height: 22px;
    resize: none;
-   background: #C4C4C4;
+   background: #ffffff;
  }
  .tagStoreContainer{
    border: none;
@@ -149,17 +163,17 @@ border-radius: 102px;
 
 .DescriptionContainer{
   margin: 15px;
-font-size: 70%;
- text-align: center;
- padding: 8px;
- position: relative;
- max-width: 49.12%;
- height: 345px;
- left: 48.04%;
- top: -408px;
- background: #C4C4C4;
- box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-border-radius: 52px;
+  font-size: medium /*70%*/;
+  text-align: center;
+  padding: 8px;
+  position: relative;
+  max-width: 49.12%;
+  height: 319px;
+  left: 48.04%;
+  top: -385px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 52px;
 }
 .DescriptionText{
   font-size-adjust: inherit;
@@ -170,31 +184,34 @@ border-radius: 52px;
   text-align: left;
   border-radius: 0px;
   width: 90%;
-  height: 90%;
-  background: #C4C4C4;
-  overflow: scroll;
+  height: 85%;
+  background: #ffffff;
+  overflow: hidden;
 }
 .createButton{
-  font-size: 70%;
+  color: black;
+  font-size: large /*70%*/;
   position:relative;
   width: 20%;
   height: 10%;
-  top: -380px;
+  top: -355px;
   left: -4%;
-  background: #197278;
+  padding: 10px 5px 10px 5px;
+  background: rgb(182, 236, 238);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
- border-radius: 102px;
+  border-radius: 102px;
 }
 .disabledcreateButton{
-  color:#772E25;
-  font-size: 70%;
+  color: white;
+  font-size: large /*70%*/;
   position:relative;
   width: 20%;
   height: 10%;
-  top: -380px;
+  top: -355px;
   left: -4%;
-  background: #edddd4;
-  border: 3px solid #772E25;
+  padding: 10px 5px 10px 5px;
+  background: #0C3E42;
+  border: 3px solid #0C3E42;
   border-radius: 102px;
 }
 .addButton{
@@ -206,29 +223,30 @@ border-radius: 52px;
   border-radius: 102px;
 }
 .disabledaddButton{
-  color:#772E25;
-  font-size: 12px;
+  color:#0C3E42;
+  font-size: medium /*12px*/;
   position:relative;
   width: 18%;
   height: 10%;
-  background: #C4C4C4;
-  border: solid #772E25;
+  background: #ffffff;
+  border: solid #0C3E42;
   border-radius: 102px;
 }
 .tagHolder{
   display: inline-block;
-  color:#772E25;
+  color:#0C3E42;
   text-align: center;
-  font-size: 100%;
+  font-size: medium /*100%*/;
   max-width: 100%;
-  padding-top: 1px;
-  height: 15%;
+  padding-left: 4px;
+  padding-bottom: 2px;
+  height: 18%;
   border-radius:102px;
-  border: solid #772E25;
+  border: solid #0C3E42;
   background: #edddd4;
 }
 .cancelButton{
-  font-size: 100%;
+  font-size: medium /*100%*/;
   border: none;
   background:transparent;
   max-height: 100%;
