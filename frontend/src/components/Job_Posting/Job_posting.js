@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 class CreateJobPosting extends Component{
     constructor(props) {
         super(props)
-        this.state = {title: "", salary: "", minYearsExperience: "", tags:[], searchBarTag: "",
+        this.state = {title: "", salary: '', minYearsExperience: '', tags:[], searchBarTag: "",
         description:"",createJobSuccess:false,isLoaded:false,defaultTag:[]}
         this.submit_credentials = this.submit_credentials.bind(this)
         this.handleCredentialsChange = this.handleCredentialsChange.bind(this)
@@ -16,8 +16,8 @@ class CreateJobPosting extends Component{
     reset(){
         this.setState({
             title: "",
-            salary: "",
-            minYearsExperience: "",
+            salary: 0,
+            minYearsExperience: 0,
             tags:[],
             description:"",
             isLoaded:false,
@@ -35,12 +35,22 @@ class CreateJobPosting extends Component{
     addValueToTag(event){
         event.preventDefault()
         let temp = this.state.tags.slice()
-        temp.push(this.state.searchBarTag.trim())
+        let lowercased = this.state.searchBarTag.trim().toLowerCase()
+        let filtered = this.state.defaultTag.filter(tag => tag.toLowerCase() == lowercased)
+        if(filtered.length > 0){
+            lowercased = filtered[0]
+        }
+        if(temp.includes(lowercased)){
+            toast.error('This tag already been selected')
+            return
+        }
+        temp.push(lowercased)
         this.setState({
             tags:temp,
             searchBarTag:''
         })
     }
+
     render(){
         const listItem = this.state.tags.map((tag,i) => (
             <li className = {styles.tagHolder} key = {tag+i}>
@@ -68,11 +78,13 @@ class CreateJobPosting extends Component{
                 <form>
                     <h2 className={styles.h2}>
                         <p className={styles.p}> Job Creating </p>
+                        
                         <div className = {styles.jobTitleContainer} >
                             <label className = {styles.labelText1} for="Job Title">Job Title</label>
+                            <label className = {styles.redText}> * </label> 
                             <input
                                 id="Job Title"
-                                name='Job Title'
+                                name='title'
                                 type="text"
                                 value = {this.state.title}
                                 className = {styles.jobTitleText}
@@ -85,7 +97,7 @@ class CreateJobPosting extends Component{
                             <label className = {styles.labelText1} for="Salary">Salary</label>
                             <input
                                 id = "Salary"
-                                name = 'Salary'
+                                name = 'salary'
                                 type = 'number'
                                 className = {styles.salaryText}
                                 value = {this.state.salary}
@@ -110,7 +122,7 @@ class CreateJobPosting extends Component{
                             <label className = {styles.labelText3} for="Search Tag">Search Tag</label>
                             <input  id="Search Tag"
                                     list="brow"
-                                    name = 'Search Tag'
+                                    name = 'searchBarTag'
                                     type = 'text'
                                     value = {this.state.searchBarTag}
                                     onChange={this.handleCredentialsChange}
@@ -125,17 +137,17 @@ class CreateJobPosting extends Component{
                                 <button type = 'button'
                                         className = {styles.addButton}
                                         onClick = {this.addValueToTag}
-                                        >add</button>:
+                                        >Add</button>:
                                 <button className = {styles.disabledaddButton}
                                         disabled
-                                        >add</button>
+                                        >Add</button>
                                 }
                             <ul className = {styles.tagStoreContainer}>
                                 {listItem}
                             </ul>
                         </div>
                         <div className = {styles.DescriptionContainer}>
-                            <label className = {styles.labelText3} for="Description">Description</label>
+                            <label className = {styles.labelText2} for="Description">Description</label>
                             <textarea
                                 id= "Description"
                                 type= 'text'
@@ -146,7 +158,7 @@ class CreateJobPosting extends Component{
                                 placeholder = "Job Description"
                             />
                         </div>
-                        {this.state.title != "" && this.state.description !=""?
+                        {this.state.title != "" ?
                                 <button
                                 type = 'button'
                                 onClick = {this.submit_credentials}
@@ -165,6 +177,21 @@ class CreateJobPosting extends Component{
     }
     //}
     async submit_credentials() {
+        if(isNaN(parseInt(this.state.minYearsExperience))|| isNaN(parseInt(this.state.salary))){
+            if(isNaN(parseInt(this.state.minYearsExperience)) && isNaN(parseInt(this.state.salary))){
+                toast.error('Minimal Year Experience and Salary has to be a number!')
+                return
+            }
+            if(isNaN(parseInt(this.state.salary))){
+                toast.error('Salary has to be a number!')
+                return
+            }
+            else{
+                toast.error('Minimal Year Experience has to be a number!')
+                return
+            }
+        }
+        // console.log('success')
         const payload = {
             tags:this.state.tags,
             title:this.state.title,
