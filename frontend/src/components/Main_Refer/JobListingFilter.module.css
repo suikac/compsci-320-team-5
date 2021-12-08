@@ -53,3 +53,29 @@
   overflow: auto;
   flex: 1 !important;
 }
+
+:global(#minYearExp) {
+  width: 2em;
+}
+
+#minSalary {
+  width: 5em;
+}
+
+#maxSalary {
+  width: 5em;
+}
+
+.clearFieldButton {
+  background: transparent;
+  border: none;
+  color: #1f8a92;
+}
+
+.clearFieldButton:hover {
+  color: #197278
+}
+
+.filterInput {
+  margin-left: 3px;
+}
