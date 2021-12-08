@@ -114,7 +114,7 @@ class CreateJobPosting extends Component{
                             <input  id="Search Tag"
                                     list="brow"
                                     name = 'searchBarTag'
-                                    type = 'number'
+                                    type = 'text'
                                     value = {this.state.searchBarTag}
                                     onChange={this.handleCredentialsChange}
                                     placeholder = "Enter Tag"
