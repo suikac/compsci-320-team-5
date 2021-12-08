@@ -209,6 +209,10 @@ export class PositionService {
       query = await this.getPositionByManagerName(query, param)
     }
 
+    if (param.cur) {
+      query = query.where('position.manager_id = :curId', {curId: param.managerId})
+    }
+
     const res =  await paginate<Position>(query,
       { page: param.page == null ? GetPositionDto.DEFAULT_PAGE : param.page,
       limit: param.limit == null ? GetPositionDto.DEFAULT_LIMIT: param.limit,
