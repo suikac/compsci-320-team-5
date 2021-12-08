@@ -233,8 +233,6 @@ export class PositionService {
       query = query.where('position.manager_id = :curId', {curId: param.managerId})
     }
 
-    const res =  await paginate<Position>(query,
-
     query = this.fillInTagsForPositions(query)
     // console.log(query.getQuery())
 
