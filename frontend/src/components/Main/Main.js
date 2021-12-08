@@ -7,6 +7,8 @@ import Main_Mailbox from "../Main_Mailbox/main_mailbox"
 import Main_Home from "../Main_Home/main_home";
 import Main_Refer from "../Main_Refer/Main_refer"
 import MainPreviousRef from "../Main_Previous_Ref/Main_previous_ref";
+import MainManagerJobListing from "../Main_Manager_Job_Listing/MainManagerJobListing";
+import MainManagerJobListingItem from "../Main_Manager_Job_Listing/MainManagerJobListingItem";
 import CreateJobPosting from "../Job_Posting/Job_posting";
 import { Route, Switch } from "react-router-dom";
 import * as paths from "../../utils/paths"
@@ -46,14 +48,29 @@ class Main extends Component {
                 <MainPreviousRef />
               </Route>
               <Route path={paths.EXPLORE}>
-
               </Route>
-              {userInfo.role == 'manager'
+              {userInfo.role === 'manager'
               ?
               <Route path={paths.CREATE_POSTING}>
-                <CreateJobPosting isManager={userInfo.role == 'manager'}/>
+                <CreateJobPosting isManager={userInfo.role === 'manager'}/>
               </Route>
               : null
+              }
+              {userInfo.role === 'manager'
+              ?
+              <Route exact path={paths.MANAGER_JOB_LISTING}>
+                <MainManagerJobListing />
+              </Route>
+              :
+              null
+              }
+              {userInfo.role === 'manager'
+              ?
+              <Route exact path={paths.MANAGER_JOB_LISTING_ITEM} >
+                <MainManagerJobListingItem />
+              </Route>
+              :
+              null
               }
               <Route path='/'>
                 <Redirect to={paths.NOT_FOUND} />
