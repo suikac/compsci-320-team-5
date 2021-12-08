@@ -26,7 +26,7 @@ const MainManagerJobListingItem = (props) => {
     const [trigger, loadPage] = usePageLoadTrigger()
 
     return (
-        <Container>
+        <Container className={ReferCSS.container}>
             <Row className={['py-1']} xs='auto' style={{alignItems: "center", justifyContent: "space-around"}}>
                 <Col>
                 <Link style={{textDecoration: "none"}} to={{
@@ -38,7 +38,7 @@ const MainManagerJobListingItem = (props) => {
                 <Col> <h2>Software Engineer</h2> </Col>
                 <Col> <h5>Job ID: {positionId} </h5></Col>
             </Row>
-            <div className={`mb-2 ${ReferCSS.positionItemContainer}`} style={{border: "2px solid #4c4c4c"}}> 
+            <div className={`mb-2 ${ReferCSS.positionItemContainer}`} style={{border: "2px solid #4c4c4c"}}>
                 <Row className={`${ReferCSS.positionContainer} row`} style={{justifyContent: "center", alignItems: "center"}}>
                     <Col lg={2}><h5 className='text-center'>Referral ID</h5></Col>
                     <Col lg={3}><h5 className='text-center'>Candidate</h5></Col>
@@ -59,7 +59,7 @@ const MainManagerJobListingItem = (props) => {
             scrollableTarget={ReferCSS.scrollableTarget}>
                 {referrals.map((e, index) => {
                     return (
-                        <div key={index} className={`mb-2 ${ReferCSS.positionItemContainer}`}> 
+                        <div key={index} className={`mb-2 ${ReferCSS.positionItemContainer}`}>
                             <ReferralItem key={e.id} {...e} />
                         </div>
                     );
