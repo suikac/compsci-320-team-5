@@ -14,19 +14,6 @@ h3 {
 #positions {
     width: 100%;
 }
-.referBtn {
-    margin: 0;
-    background-color: #26989e;
-    color: white;
-    border: 2px solid #26989e;
-    border-radius: 15px;
-    padding: 0 2vw 0 2vw;
-    transition: 200ms;
-}
-.referBtn:hover {
-    background-color: white;
-    color: #26989e;
-}
 .positionItemContainer {
     margin-right: 10px;
     border-radius: 15px 15px;
@@ -34,7 +21,7 @@ h3 {
     border-right: 1px solid #cccccc;
     border-left: 1px solid #cccccc;
     border-bottom: 1px solid #aaaaaa;
-    box-shadow: 3px 3px 3px #aaaaaa; 
+    box-shadow: 3px 3px 3px #aaaaaa;
 }
 .link {
     color: white;
@@ -49,60 +36,7 @@ h3 {
     min-height: 100px;
     overflow: hidden;
 }
-.referBtnContainer {
-    position: relative;
-    bottom: 0;
-}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.container{
-  position: relative; 
-  top: -575px;
-  margin: auto;
-  justify-content: center;
-  width: 500px;
-  height: 615px;
-  background: #FFF8F4;
-  border: 3px solid #C44536;
-  border-radius: 10%;
-  text-align: center;
-  margin-top: 150px;
-  font-weight: 400;
-  font-family: 'Roboto', sans-serif;
-}
 .name{
   width: 80%;
   padding: 12px 20px;
@@ -112,7 +46,7 @@ h3 {
   box-sizing: border-box;
   border-radius: 25px;
   box-shadow: 5px 5px 5px #747373;
-  
+
 }
 .name label{
   color: #747373;
@@ -136,15 +70,14 @@ h3 {
   border: 2px solid rgb(216, 214, 214);
   background-color: #dfdede;
   box-sizing: border-box;
-  border-radius: 25px; 
+  border-radius: 25px;
   box-shadow: 5px 5px 5px #747373;
 }
 .current{
   padding: 20px 20px;
-  margin: 8px 5px; 
+  margin: 8px 5px;
   box-sizing: border-box;
-  border-radius: 25px; 
- 
+  border-radius: 25px;
 }
 .id{
   width: 40%;
@@ -153,9 +86,18 @@ h3 {
   border: 2px solid rgb(216, 214, 214);
   border-radius: 25px;
   background-color: #dfdede;
-  box-shadow: 5px 5px 5px #747373; 
+  box-shadow: 5px 5px 5px #747373;
   padding: 12px 20px;
   margin: 8px 5px;
 }
 
+#scrollableTarget {
+  flex-grow: 1;
+  overflow: auto;
+}
 
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%
+}
