@@ -6,7 +6,10 @@ import TagsSearchBar from "../Filter/TagsSearchBar"
 import TagStore from "../Filter/TagStore"
 
 function JobListingFilter(props) {
-  const filter = useFilter('/position/get?cur=1', props.setResult, props.pageLoadTrigger)
+  const filter = useFilter('/position/get', props.setResult, props.pageLoadTrigger, 250, {owned: true})
+
+  // Get only the manager's postings
+  // const _ = useFilterParam(true, 'owned', filter)
   const [minSalary, setMinSalary] = useFilterParam("", 'minSalary', filter)
   const [maxSalary, setMaxSalary] = useFilterParam("", 'maxSalary', filter)
   const [jobTitle, setJobtitle] = useFilterParam("", 'title', filter)

@@ -196,6 +196,10 @@ export class PositionService {
       .createQueryBuilder('position')
       .innerJoinAndSelect('position.manager', 'manager', 'position.manager_id = manager.id')
 
+    if (param.owned) {
+      query = query.andWhere('position.manager_id = :curId', {curId: param.managerId})
+    }
+
     if (param.maxSalary) {
       query
         .andWhere('salary < :maxSalary', {maxSalary: param.maxSalary})
@@ -227,10 +231,6 @@ export class PositionService {
 
     if (param.managerName) {
       query = await this.getPositionByManagerName(query, param)
-    }
-
-    if (param.cur) {
-      query = query.where('position.manager_id = :curId', {curId: param.managerId})
     }
 
     query = this.fillInTagsForPositions(query)

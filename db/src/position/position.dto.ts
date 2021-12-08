@@ -1,5 +1,5 @@
 import { Optional } from '@nestjs/common';
-import { IsArray, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsBoolean, IsNumber, IsNumberString, IsOptional, IsString } from 'class-validator';
 import { BasicGetDto } from '../interface/BasicGetDto';
 
 export class GetPositionDto extends BasicGetDto{
@@ -27,8 +27,9 @@ export class GetPositionDto extends BasicGetDto{
   @IsOptional()
   tags: string[]
 
+  @IsBoolean()
   @IsOptional()
-  cur: number
+  owned: boolean
 
   @IsOptional()
   managerId: any;
