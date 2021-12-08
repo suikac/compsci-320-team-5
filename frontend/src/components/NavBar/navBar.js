@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import NavBarcss from "./navBar.module.css";
+import {Row, Col} from "react-bootstrap"
 import { Link as RLink, useLocation } from 'react-router-dom'
 import * as paths from "../../utils/paths"
 import ArrowImg from './arrow.png'
@@ -28,6 +29,13 @@ class NavBar extends Component {
                     :
                     null
                     }
+                    {this.props.isManager ?
+                        <Link to={paths.MANAGER_JOB_LISTING}>
+                            MANAGE JOB REFERRALS
+                        </Link>
+                    :
+                    null
+                    }
                 </ul>
         )
     }
@@ -38,7 +46,7 @@ function Link(props) {
     const {children, to, ..._props} = props
     return (
         <li>
-            <RLink to={to} className={location.pathname == to ? NavBarcss.selected : ''}>
+            <RLink to={to} className={location.pathname === to ? NavBarcss.selected : ''}>
                 {children}
                 <img src={ArrowImg} alt={"Navbar Arrow"}/>
             </RLink>
