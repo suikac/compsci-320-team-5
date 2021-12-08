@@ -53,3 +53,10 @@ textarea {
     font-size: 1.2em;
     border-radius: 5px;
 }
+#outerContainer{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+.label {
+    font-size: 1.2rem;
+}

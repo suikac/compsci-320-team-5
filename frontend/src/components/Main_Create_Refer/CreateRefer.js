@@ -33,7 +33,8 @@ function CreateRefer(props) {
     }
 
     // referType stores whether the referral is a current employee or outside referral
-    let [referType, setReferType] = useState(null);
+    //let [referType, setReferType] = useState(null);
+    let [referType, setReferType] = useState('1');
 
     // This function changes referType and rerenders component using useState
     function changeReferType(e) {
@@ -172,7 +173,7 @@ function CreateRefer(props) {
     }
     return (
         // Containing div
-        <div className={`row`}>
+        <div id={CreateReferCSS.outerContainer} className={`row pb-5`}>
             <EmployeeSearch
                 show={showEmployeeSearch}
                 onHide={() => setShowEmployeeSearch(false)}
@@ -188,128 +189,145 @@ function CreateRefer(props) {
             />
             {/* Div that contains position and manager info */}
             <div className={`col-6 m-0 p-5`}>
-                <table className={`w-100 h-100`}><tbody>
-                    <tr><td className={``}>
-                        <h1>{state.title}</h1>
-                    </td></tr>
-                    <tr><td className={`text-end`}>
-                        <h5>Job ID: {state.id}</h5>
-                    </td></tr>
-                    <tr><td className={``}>
-                        <h5>Job Description:</h5>
-                        <p>{state.description}</p>
-                    </td></tr>
-                    <tr><td className={``}>
-                        <h5>Salary: {state.salary}</h5>
-                    </td></tr>
-                    <tr><td className={``}>
-                        <h5>Minimum Years Experience: {state.minYearExperience}</h5>
-                    </td></tr>
-                    <tr><td className={`pt-5`}>
-                        <h5>Manager:</h5>
-                        <p>{state.manager.firstName} {state.manager.lastName}</p>
-                        <p>{state.manager.email}</p>
-                        <p>{state.manager.positionTitle}</p>
-                    </td></tr>
-                </tbody></table>
+                <div className='text-center mb-4'><h3>{state.title}</h3></div>
+                <div className='text-end mb-3'><h5><strong>Job ID:</strong> {state.id}</h5></div>
+                <div className='mb-3'>
+                    <h5><strong>Job Description:</strong></h5>
+                    <p>{state.description}</p>
+                </div>
+                <div className='mb-3'><h5><strong>Salary:</strong> {state.salary}</h5></div>
+                <div className='mb-3'><h5><strong>Minimum Years Experience:</strong> {state.minYearExperience}</h5></div>
+                <div>
+                    <h5><strong>Manager:</strong></h5>
+                    <p className='p-0 m-0'>{state.manager.firstName} {state.manager.lastName}</p>
+                    <p className='p-0 m-0'>{state.manager.email}</p>
+                    <p className='p-0 m-0'>{state.manager.positionTitle}</p>
+                </div>
             </div>
             {/* Div that contains inputs for referral */}
             <div className={`col-6 p-5 text-center`}>
                 {/* Referral type dropdown */}
-                <select
-                    className={`mt-5 ${CreateReferCSS.referralDropdown}`}
-                    onChange={changeReferType}
-                    defaultValue={'-1'}
-                >
-                    <option value='-1' disabled hidden>Select a Type of Referral</option>
-                    <option value='1'>Current Employee</option>
-                    <option value='0'>Outside Referrence</option>
-                </select>
-                {/* Conditionally render email, first name, last name, description and refer button */}
-                {
-                    referType !== null ?
-                    <>
-                        <div className='mt-2'><p className={`text-danger ${CreateReferCSS.bold}`}>* is required field</p></div>
-                        <div className={`row mt-5`}>
-                            <div className={`col-12 col-xl-6 pl-3 text-start text-xl-end mb-3 mb-xl-0`}>
-                                <p className={`${CreateReferCSS.required} d-inline`}>* </p>
-                                <input
-                                    type='text'
-                                    value={input.refereeEmail}
-                                    onChange={ (e) => changeInput(['refereeEmail'], [e.target.value]) }
-                                    onClick={(e) => removeRed(e)}
-                                    placeholder='Employee email'
-                                    id='email-field'
-                                    className={`${CreateReferCSS.inputField}`}
-                                />
-                                {referType === '1' ? <div className={`text-end`}><button onClick={() => setShowEmployeeSearch(true)} className={`${CreateReferCSS.btn}`}>SEARCH</button></div> : <></>}
-                            </div>
-                            <div className={`col-12 col-xl-6 pr-3 text-start`}>
-                                <h6>Attach Resume: </h6>
-                                {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
-                                <input
-                                    ref={fileInputElement}
-                                    type='file'
-                                    value={input.file}
-                                    onChange={ (e) => changeInput(['file'], [e.target.value]) }
-                                    id='file-field'
-                                    className={`${CreateReferCSS.inputField}`}
-                                />
-                            </div>
-                        </div>
-                        <div className='row mt-3'>
-                            <div className={`col-12 col-xl-6 pl-3 text-start text-xl-end mb-3 mb-xl-0`}>
-                                {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
-                                <input
-                                    type='text'
-                                    placeholder='First Name'
-                                    value={input.firstName}
-                                    onChange={(e) => changeInput(['firstName'], [e.target.value]) }
-                                    onClick={(e) => removeRed(e)}
-                                    id='first-name-field'
-                                    className={`${CreateReferCSS.inputField}`}
-                                />
-                            </div>
-                            <div className={`col-12 col-xl-6 pr-3 text-start mb-3 mb-xl-0`}>
-                                {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
-                                <input
-                                    type='text'
-                                    placeholder='Last Name'
-                                    value={input.lastName}
-                                    onChange={ (e) => changeInput(['lastName'], [e.target.value]) }
-                                    onClick={(e) => removeRed(e)}
-                                    id='last-name-field'
-                                    className={`${CreateReferCSS.inputField}`}
-                                />
-                            </div>
-                        </div>
-                        <div className='row mt-3'>
-                            <textarea
-                                placeholder='Enter a brief description as to why you think this candidate would be a good hire...'
-                                value={input.description}
-                                onChange={ (e) => changeInput(['description'], [e.target.value]) }
-                            />
-                        </div>
-                        <div className='row mt-5'>
-                            <div className='col-12'>
-                                <button
-                                    className={`${CreateReferCSS.btn} ${CreateReferCSS.referBtn}`}
-                                    onClick={submitReferral}
-                                >
-                                    REFER
-                                </button>
-                            </div>
-                        </div>
-                    </>
-                    : <></>
-                }
+                <div className='text-start'>
+                    <div>
+                        <input
+                            type="radio"
+                            name="refer-type"
+                            id="current-employee"
+                            defaultChecked={referType === '1'}
+                            onChange={changeReferType}
+                            value='1'
+                        />
+                        <label className={CreateReferCSS.label} for="current-employee">Current Employee</label>
+                    </div>
+                    <div>
+                        <input
+                            type="radio"
+                            name="refer-type"
+                            id="outside-referral"
+                            defaultChecked={referType === '0'}
+                            onChange={changeReferType}
+                            value='0'
+                        />
+                        <label className={CreateReferCSS.label} for="outside-referral">Outside Referral</label>
+                    </div>
+                    <div className='mt-2'><p className={`text-danger ${CreateReferCSS.bold}`}>* is required field</p></div>
+                </div>
+                {referType === '1' ?
+                    <div className={`text-center mt-3`}>
+                        <p className={`${CreateReferCSS.required} d-inline`}>* </p>
+                        <button onClick={() => setShowEmployeeSearch(true)} className={`${CreateReferCSS.btn}`}>SEARCH EMPLOYEE</button>
+                    </div>
+                : <></>}
+                <div className={`row mt-3`}>
+                    <div className={`col-12 col-xl-6 pl-3 text-start text-xl-end mb-3 mb-xl-0`}>
+                        <label className={`d-block text-start`} for='email-field'><strong>Employee Email:</strong></label>
+                        {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        <input
+                            disabled={referType === '1'}
+                            type='text'
+                            value={input.refereeEmail}
+                            onChange={ (e) => changeInput(['refereeEmail'], [e.target.value]) }
+                            onClick={(e) => removeRed(e)}
+                            placeholder='Employee email'
+                            id='email-field'
+                            name='email-feild'
+                            className={`${CreateReferCSS.inputField}`}
+                        />
+                    </div>
+                    <div className={`col-12 col-xl-6 pr-3 text-start`}>
+                        <label className={`d-block text-start`} for='file-field'><strong>Attach Resume:</strong></label>
+                        {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        <input
+                            ref={fileInputElement}
+                            type='file'
+                            value={input.file}
+                            onChange={ (e) => changeInput(['file'], [e.target.value]) }
+                            id='file-field'
+                            name='file-feild'
+                            className={`${CreateReferCSS.inputField}`}
+                        />
+                    </div>
+                </div>
+                <div className='row mt-3'>
+                    <div className={`col-12 col-xl-6 pl-3 text-start text-xl-end mb-3 mb-xl-0`}>
+                        <label className={`d-block text-start`} for='first-name-field'><strong>First Name:</strong></label>
+                        {referType === '0' ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        <input
+                            disabled={referType === '1'}
+                            type='text'
+                            placeholder='First Name'
+                            value={input.firstName}
+                            onChange={(e) => changeInput(['firstName'], [e.target.value]) }
+                            onClick={(e) => removeRed(e)}
+                            id='first-name-field'
+                            name='first-name-feild'
+                            className={`${CreateReferCSS.inputField}`}
+                        />
+                    </div>
+                    <div className={`col-12 col-xl-6 pr-3 text-start mb-3 mb-xl-0`}>
+                        <label className={`d-block text-start`} for='last-name-field'><strong>Last Name:</strong></label>
+                        {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        <input
+                            disabled={referType === '1'}
+                            type='text'
+                            placeholder='Last Name'
+                            value={input.lastName}
+                            onChange={ (e) => changeInput(['lastName'], [e.target.value]) }
+                            onClick={(e) => removeRed(e)}
+                            id='last-name-field'
+                            name='last-name-feild'
+                            className={`${CreateReferCSS.inputField}`}
+                        />
+                    </div>
+                </div>
+                <div className='row mt-3'>
+                    <label className={`d-block text-start`} for='description'><strong>Description:</strong></label>
+                    <textarea
+                        placeholder='Enter a brief description as to why you think this candidate would be a good hire...'
+                        value={input.description}
+                        onChange={ (e) => changeInput(['description'], [e.target.value]) }
+                        id='description'
+                        name='description'
+                    />
+                </div>
             </div>
-            {/* cancel button */}
-            <div className={`col-12`}>
-                <button className={`${CreateReferCSS.cancelBtn}`}
-                onClick={() => history.goBack()}>
-                    {'< Cancel'}
-                </button>
+            <div className='row'>
+                <div className='col-6'>
+                    <button
+                        className={`${CreateReferCSS.cancelBtn}`}
+                        onClick={() => history.goBack()}
+                    >
+                        {'< Cancel'}
+                    </button>
+                </div>
+                <div className='col-6 text-center'>
+                    <button
+                            className={`${CreateReferCSS.btn} ${CreateReferCSS.referBtn}`}
+                            onClick={submitReferral}
+                        >
+                        REFER
+                    </button>
+                </div>
             </div>
         </div>
     )
