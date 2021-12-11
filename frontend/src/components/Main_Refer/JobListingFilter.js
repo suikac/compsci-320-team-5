@@ -99,11 +99,11 @@ function ParamField(props) {
   return (
     <>
       <label for={props.id}> {props.label} </label>
-      <FilterInput {...props} className={styles.filterInput}/>
+      <FilterInput {...props} value={props.value == undefined ? '' : props.value} className={styles.filterInput}/>
       <button
         aria-label={'Clear ' + props.label}
         className={styles.clearFieldButton}
-        onClick={() => props.onChange('')}
+        onClick={() => props.onChange(undefined)}
         id={props.id + 'clearButton'}>x</button>
     </>
   )
