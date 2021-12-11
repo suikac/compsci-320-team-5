@@ -120,6 +120,9 @@ function CreateRefer(props) {
 
         const formData = new FormData()
         for (const [k, v] of Object.entries(submission)) {
+            if (v == undefined) {
+                continue
+            }
             formData.append(k, v)
         }
 
