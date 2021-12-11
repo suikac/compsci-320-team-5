@@ -37,12 +37,12 @@ function Main_Home(){
     color: "black",
     textAlign: "center",
     paddingTop: "50px",
-    
+
   }
   const recStyle = {
     color: "white",
   }
-  
+
 
   if (!isLoad){
     return <div>Loading...</div>;
@@ -50,11 +50,9 @@ function Main_Home(){
     return(
       <div className={maincss.MainContainer}>
         <h1 style = {recStyle}> Newest Jobs</h1>
+        <button type="prev"><img src={left} onClick={decrementIndex}/></button>
 
         <div className={maincss.MainJobContainer}>
-          <button type="prev"><img src={left} onClick={decrementIndex}/></button>
-          <button type="next"><img src={right} onClick={incrementIndex}/></button>
-
           <h2 style = {styling} >Job Title: {positionData[index].title} </h2>
           <h2 style = {styling}>Manager:  {positionData[index].manager.firstName} {positionData[index].manager.lastName}</h2>
           <h2 style = {styling}>Tags: {positionData[index].tags.join(', ')}</h2>
@@ -64,7 +62,7 @@ function Main_Home(){
             </Link>
           </div>
         </div>
-        
+        <button type="next"><img src={right} onClick={incrementIndex}/></button>
       </div>
     )
   }
