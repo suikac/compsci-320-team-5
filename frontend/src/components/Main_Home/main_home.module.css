@@ -20,6 +20,7 @@
   margin-left: auto;
   margin-right: auto;
   border-radius: 20px;
+  display: inline-block;
 }
 .MainContainer input[type=submit]{
   width: 100px;
@@ -41,23 +42,15 @@
   margin-top: 15%;
 }
 
-.MainContainer button[type="prev"] {
-  background-color: white;
+.MainContainer button[type='prev'],button[type='next'] {
+  background-color: transparent;
   border: none;
-  position: absolute;
   cursor: pointer;
-  margin-top:5%;
+  display: inline-block;
+  transform: translateY(-200px);
 }
-.MainContainer button[type="next"] {
-  background-color: white;
-  border: none;
-  position: absolute;
-  cursor: pointer;
-  margin-top:5%;
-  margin-left: 21%;
-}
+
 .MainJobContainer img{
   width:40px;
   margin-top: 50%;
-  
 }
