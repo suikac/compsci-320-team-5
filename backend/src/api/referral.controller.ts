@@ -79,8 +79,9 @@ export class ReferralController {
       this.dbService.send({ cmd: 'getFile' }, { id: id })
     );
     const file = Buffer.from(data.data);
-    // res.setHeader('Content-Type', data.type);
-    res.send(file);
+    const base64String = file.toString('base64');
+    console.log(base64String);
+    res.send(base64String);
   }
 
   @Get('getReferralsByReferrer')
