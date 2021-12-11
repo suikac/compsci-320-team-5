@@ -15,7 +15,8 @@ function CreateRefer(props) {
         firstName: '',
         lastName: '',
         description: '',
-        file: ''
+        file: '',
+        refereeId: undefined
     });
 
     const [showEmployeeSearch, setShowEmployeeSearch] = useState(false)
@@ -49,33 +50,8 @@ function CreateRefer(props) {
                 input.file = '';
             }
         }
-        changeInput(['refereeEmail', 'firstName', 'lastName', 'description'], ['', '', '', '']);
+        changeInput(['refereeEmail', 'firstName', 'lastName', 'description', 'refereeId'], ['', '', '', '', undefined]);
         setReferType(e.target.value);
-    }
-
-    // This function searches db for employee with the entered email
-    // It only performs correctly when a single employee is returned
-    // ** Might want to change this to async function **
-    function searchEmployee(e) {
-        // Function that queries db
-        // Sends post request to /api/employee/get, with object containing email key-value pair
-        async function loadData() {
-            let json = { "email": input.refereeEmail };
-            let response = await api.apiPost('/employee/get', json)
-                .then(res => res.json());
-            // Change input values to employee info if one employee is returned
-            if (response !== null && response.length === 1) {
-                changeInput(
-                    ['firstName', 'lastName', 'refereeEmail'],
-                    [response[0].firstName, response[0].lastName, response[0].email]
-                );
-            }
-            // Otherwise clear input values because response isn't valid
-            else {
-                changeInput(['refereeEmail', 'firstName', 'lastName', 'description'], ['', '', '', '']);
-            }
-        }
-        loadData();
     }
 
     const fileInputElement = useRef(null)
@@ -182,7 +158,8 @@ function CreateRefer(props) {
                         ...input,
                         refereeEmail: e.email,
                         firstName: e.firstName,
-                        lastName: e.lastName
+                        lastName: e.lastName,
+                        refereeId: e.id
                     })
                     setShowEmployeeSearch(false)
                 }}
