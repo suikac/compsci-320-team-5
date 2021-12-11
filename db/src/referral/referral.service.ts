@@ -24,7 +24,7 @@ export class ReferralService {
                               createResumeDto: CreateResumeDto) {
     if (createResumeDto.name != null) {
       createResumeDto.file = Buffer.from(createResumeDto.file)
-      console.log(createResumeDto)
+      console.log(createResumeDto.file)
       createReferralDto.resumeId = await this.resumeRepository
         .save(createResumeDto)
         .then(r => r.id)
