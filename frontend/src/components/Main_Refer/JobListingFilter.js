@@ -103,6 +103,7 @@ function ParamField(props) {
       <button
         aria-label={'Clear ' + props.label}
         className={styles.clearFieldButton}
+        onClick={() => props.onChange('')}
         id={props.id + 'clearButton'}>x</button>
     </>
   )
