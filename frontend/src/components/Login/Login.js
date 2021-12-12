@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import logo from "./Logo2.png";
+import {AkiLogo} from "../../assets";
 import { LoginFailedPopUp, LoginSuccessedPopUp, LogoutSuccessedPopUp } from "./LoginPopups";
 import styles from "./Login.module.css"
 import { apiPost } from "../../utils/api-fetch"
@@ -62,7 +62,7 @@ class Login extends Component {
                 <LoginFailedPopUp trigger = {this.state.loginFails} exist = {() => this.setState({
                 loginFails: false})}>
                 </LoginFailedPopUp>
-                <img className={styles.photo} src = {logo} width = "100" height = "50" alt="Logo"/>
+                <img className={styles.photo} src = {AkiLogo} width = "100" height = "50" alt="Logo"/>
                 <Modal show={this.state.passwordChange} backdrop='static'>
                     <Modal.Header>
                     <Modal.Title>
