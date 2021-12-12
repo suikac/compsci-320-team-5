@@ -7,8 +7,8 @@ import {apiGet} from "../../utils/api-fetch";
 const PositionItem = (props) => {
         let tags = props.tags.reduce((acc, e) => acc + e + ", ", "");
         tags = tags.substring(0, tags.length - 2)
-
-        const [numReferrals, setNumReferrals] = useState(0)
+        const [totalReferrals, setTotalReferrals] = useState(0)
+        const [unreadReferrals, setUnreadReferrals] = useState(0)
 
         async function getNumReferrals() {
             return await apiGet(`/referral/get?positionId=${props.id}&isManager=1`);
@@ -18,8 +18,9 @@ const PositionItem = (props) => {
             getNumReferrals()
             .then(r => r.json())
             .then(r => {
-                setNumReferrals(r.length);
-                console.log(r)
+                let length = r.filter(x => !x.isRead).length;
+                setUnreadReferrals(length);
+                setTotalReferrals(r.length);
             })
         }
         , [props.positionId])
@@ -42,7 +43,7 @@ const PositionItem = (props) => {
                     </Link>
                 </Col>
                 <Col lg={3}>
-                        <h6 className='text-center' style={{color: "#212529"}}>{numReferrals} Unread Referrals</h6>
+                        <h6 className='text-center' style={{color: "#212529"}}>{totalReferrals} {totalReferrals === 1 ? "Referral": "Referrals"} ({unreadReferrals} Unread)</h6>
                 </Col>
             </Row>
         );
