@@ -29,67 +29,67 @@ function JobListingFilter(props) {
       <Row className={[styles.menu, 'py-1']} xs='auto'>
         <Col>Filter by:</Col>
         <Col>
-          <button onClick={() => setFilterMode(JOB_MODE)} disabled={filterMode==JOB_MODE}>
+          <button onClick={() => setFilterMode(JOB_MODE)} disabled={filterMode === JOB_MODE}>
             Job Details
           </button>
-          <button onClick={() => setFilterMode(MANAGER_MODE)} disabled={filterMode==MANAGER_MODE}>
+          <button onClick={() => setFilterMode(MANAGER_MODE)} disabled={filterMode === MANAGER_MODE}>
             Manager Info
           </button>
         </Col>
       </Row>
-      {filterMode == JOB_MODE
-      ?
-      <>
-      <Row className={[styles.row, 'py-1']} xs='auto'>
-        <Col>
-          <ParamField label='Job Title' value={jobTitle} onChange={setJobtitle} id={styles.jobTitle} />
-        </Col>
-        <Col>
-          <ParamField label='Minimum Years of Experience' value={minYearExp} onChange={setMinYearExp} id="minYearExp"/>
-        </Col>
-      </Row>
-      <Row className={[styles.row, 'py-1']} xs='auto'>
-        <Col>
-          <ParamField label='Minimum Salary' value={minSalary} onChange={setMinSalary} id={styles.minSalary}/>
-          <ParamField label='Maximum Salary' value={maxSalary} onChange={setMaxSalary} id={styles.maxSalary}/>
-        </Col>
-        <Col>
-          <button
-            aria-label='Clear all filter fields'
-            className={styles.clearButton}
-            onClick={() => clearFilter(filter)}>
-            Clear All
-          </button>
-        </Col>
-      </Row>
-      <Row className={[styles.row, 'py-1']} xs='auto'>
-        <Col>
-          <label for="Tag"> Tags </label>
-          <TagsSearchBar fun = {setTags} tags = {tags} id="Tag" addButtonClass={styles.clearFieldButton}/>
-          <TagStore fun = {setTags} tags = {tags} />
-        </Col>
-      </Row>
-      </>
-      :
-      <>
-      <Row className={[styles.row, 'py-1']} xs='auto'>
-        <Col>
-          <ParamField label="Manager's Name" value={managerName} onChange={setManagerName} id={styles.managerName}/></Col>
-        <Col>
-          <button
-            aria-label='Clear all filter fields'
-            className={styles.clearButton}
-            onClick={() => clearFilter(filter)}>
-            Clear All
-          </button>
-        </Col>
-      </Row>
-      <Row>
-        <Col className={[styles.row, 'py-1']} xs='auto'>
-          <ParamField label="Manager's Email" value={managerEmail} onChange={setManagerEmail} id={styles.managerEmail}/>
-        </Col>
-      </Row>
-      </>
+      {filterMode === JOB_MODE
+        ?
+        <>
+          <Row className={[styles.row, 'py-1']} xs='auto'>
+            <Col>
+              <ParamField label='Job Title' value={jobTitle} onChange={setJobtitle} id={styles.jobTitle} />
+            </Col>
+            <Col>
+              <ParamField label='Minimum Years of Experience' value={minYearExp} onChange={setMinYearExp} id="minYearExp" />
+            </Col>
+          </Row>
+          <Row className={[styles.row, 'py-1']} xs='auto'>
+            <Col>
+              <ParamField label='Minimum Salary' value={minSalary} onChange={setMinSalary} id={styles.minSalary} />
+              <ParamField label='Maximum Salary' value={maxSalary} onChange={setMaxSalary} id={styles.maxSalary} />
+            </Col>
+            <Col>
+              <button
+                aria-label='Clear all filter fields'
+                className={styles.clearButton}
+                onClick={() => clearFilter(filter)}>
+                Clear All
+              </button>
+            </Col>
+          </Row>
+          <Row className={[styles.row, 'py-1']} xs='auto'>
+            <Col>
+              <label for="Tag"> Tags </label>
+              <TagsSearchBar fun={setTags} tags={tags} id="Tag" addButtonClass={styles.clearFieldButton} />
+              <TagStore fun={setTags} tags={tags} />
+            </Col>
+          </Row>
+        </>
+        :
+        <>
+          <Row className={[styles.row, 'py-1']} xs='auto'>
+            <Col>
+              <ParamField label="Manager's Name" value={managerName} onChange={setManagerName} id={styles.managerName} /></Col>
+            <Col>
+              <button
+                aria-label='Clear all filter fields'
+                className={styles.clearButton}
+                onClick={() => clearFilter(filter)}>
+                Clear All
+              </button>
+            </Col>
+          </Row>
+          <Row>
+            <Col className={[styles.row, 'py-1']} xs='auto'>
+              <ParamField label="Manager's Email" value={managerEmail} onChange={setManagerEmail} id={styles.managerEmail} />
+            </Col>
+          </Row>
+        </>
       }
     </Container>
   )
@@ -99,7 +99,7 @@ function ParamField(props) {
   return (
     <>
       <label for={props.id}> {props.label} </label>
-      <FilterInput {...props} value={props.value == undefined ? '' : props.value} className={styles.filterInput}/>
+      <FilterInput {...props} value={props.value === undefined ? '' : props.value} className={styles.filterInput} />
       <button
         aria-label={'Clear ' + props.label}
         className={styles.clearFieldButton}

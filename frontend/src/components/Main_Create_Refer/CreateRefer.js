@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { withRouter } from "react-router";
-import { Link, useHistory, Redirect } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 import CreateReferCSS from "./CreateRefer.module.css";
 import * as paths from "../../utils/paths"
 import * as api from '../../utils/api-fetch'
@@ -120,14 +120,14 @@ function CreateRefer(props) {
 
         const formData = new FormData()
         for (const [k, v] of Object.entries(submission)) {
-            if (v == undefined) {
+            if (v === undefined) {
                 continue
             }
             formData.append(k, v)
         }
 
         let response = await api.apiPostFormData('/referral/create', formData)
-        let body = await response.json()
+        await response.json()
         // Process response
         if (response.ok) {
             toast.success('Referral submitted for review.')
@@ -147,7 +147,7 @@ function CreateRefer(props) {
     const history = useHistory()
 
     // Return html to be rendered
-    if (state == undefined) {
+    if (state === undefined) {
         return <Redirect to={paths.NOT_FOUND}/>
     }
     return (
@@ -221,7 +221,7 @@ function CreateRefer(props) {
                 <div className={`row mt-3`}>
                     <div className={`col-12 col-xl-6 pl-3 text-start text-xl-end mb-3 mb-xl-0`}>
                         <label className={`d-block text-start`} for='email-field'><strong>Employee Email:</strong></label>
-                        {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        {referType === 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
                         <input
                             disabled={referType === '1'}
                             type='text'
@@ -236,7 +236,7 @@ function CreateRefer(props) {
                     </div>
                     <div className={`col-12 col-xl-6 pr-3 text-start`}>
                         <label className={`d-block text-start`} for='file-field'><strong>Attach Resume:</strong></label>
-                        {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        {referType === 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
                         <input
                             ref={fileInputElement}
                             type='file'
@@ -267,7 +267,7 @@ function CreateRefer(props) {
                     </div>
                     <div className={`col-12 col-xl-6 pr-3 text-start mb-3 mb-xl-0`}>
                         <label className={`d-block text-start`} for='last-name-field'><strong>Last Name:</strong></label>
-                        {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        {referType === 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
                         <input
                             disabled={referType === '1'}
                             type='text'

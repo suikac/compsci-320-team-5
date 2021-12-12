@@ -1,4 +1,4 @@
-import React, {Component} from "react"
+import React from "react"
 import "./email_bar.module.css"
 import TrashPic from "./TrashPic.png"
 import email_barcss from "./email_bar.module.css";

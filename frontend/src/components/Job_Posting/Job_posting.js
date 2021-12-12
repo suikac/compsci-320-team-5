@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState } from "react";
+import React, {Component} from "react";
 import styles from "./Job_posting.module.css"
 import { apiPost } from "../../utils/api-fetch"
 import { toast } from "react-toastify";
@@ -37,11 +37,11 @@ class CreateJobPosting extends Component{
         let temp = this.state.tags.slice()
         let curTag = this.state.searchBarTag.trim()
         let lowercased = curTag.trim().toLowerCase()
-        let filtered = this.state.defaultTag.filter(tag => tag.toLowerCase() == lowercased)
+        let filtered = this.state.defaultTag.filter(tag => tag.toLowerCase() === lowercased)
         if(filtered.length > 0){
             curTag = filtered[0]
         }
-        filtered = temp.filter(tag => tag.toLowerCase() == lowercased)
+        filtered = temp.filter(tag => tag.toLowerCase() === lowercased)
         if(filtered.length > 0){
             toast.error('This tag already been selected')
             return
@@ -135,7 +135,7 @@ class CreateJobPosting extends Component{
                                     <option>{tags}</option>
                                 ))}
                                 </datalist>
-                                {this.state.searchBarTag.trim() != ''?
+                                {this.state.searchBarTag.trim() !== ''?
                                 <button type = 'button'
                                         className = {styles.addButton}
                                         onClick = {this.addValueToTag}
@@ -160,7 +160,7 @@ class CreateJobPosting extends Component{
                                 placeholder = "Job Description"
                             />
                         </div>
-                        {this.state.title != "" ?
+                        {this.state.title !== "" ?
                                 <button
                                 type = 'button'
                                 onClick = {this.submit_credentials}
