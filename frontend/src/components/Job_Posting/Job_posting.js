@@ -35,16 +35,18 @@ class CreateJobPosting extends Component{
     addValueToTag(event){
         event.preventDefault()
         let temp = this.state.tags.slice()
-        let lowercased = this.state.searchBarTag.trim().toLowerCase()
+        let curTag = this.state.searchBarTag.trim()
+        let lowercased = curTag.trim().toLowerCase()
         let filtered = this.state.defaultTag.filter(tag => tag.toLowerCase() == lowercased)
         if(filtered.length > 0){
-            lowercased = filtered[0]
+            curTag = filtered[0]
         }
-        if(temp.includes(lowercased)){
+        filtered = temp.filter(tag => tag.toLowerCase() == lowercased)
+        if(filtered.length > 0){
             toast.error('This tag already been selected')
             return
         }
-        temp.push(lowercased)
+        temp.push(curTag)
         this.setState({
             tags:temp,
             searchBarTag:''
