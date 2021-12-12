@@ -240,6 +240,7 @@ function CreateRefer(props) {
                         <input
                             ref={fileInputElement}
                             type='file'
+                            accept='.pdf'
                             value={input.file}
                             onChange={ (e) => changeInput(['file'], [e.target.value]) }
                             id='file-field'
