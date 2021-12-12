@@ -1,7 +1,6 @@
-import React, { Component, useEffect, useState } from 'react';
-import Footer from "../Footer/Footer";
+import React, { useEffect, useState } from 'react';
 import maincss from "./main_home.module.css";
-import { apiGet,apiPost } from '../../utils/api-fetch';
+import { apiPost } from '../../utils/api-fetch';
 import {LeftArrow, RightArrow} from '../../assets';
 import { Link } from 'react-router-dom';
 import * as paths from '../../utils/paths'
@@ -53,7 +52,7 @@ function Main_Home(){
         </div>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
           <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-            <img src={LeftArrow} alt="Left Arrow" style={{width: "75%", height: "auto", cursor: "pointer"}} onClick={decrementIndex}/>
+            <img src={LeftArrow} alt="Left Arrow" style={{width: "75%", height: "auto", cursor: "pointer", borderRadius:"10px", boxShadow: "5px 5px 5px rgba(0,0,0,0.5)"}} onClick={decrementIndex}/>
           </div>
           <div className={maincss.MainJobContainer}>
             <h2 style = {styling} >Job Title: {positionData[index].title} </h2>
@@ -66,7 +65,7 @@ function Main_Home(){
             </div>
           </div>
           <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
-            <img src={RightArrow} alt="Right Arrow" style={{width: "75%", height: "auto", cursor: "pointer"}} onClick={incrementIndex}/>
+            <img src={RightArrow} alt="Right Arrow" style={{width: "75%", height: "auto", cursor: "pointer", borderRadius:"10px", boxShadow: "5px 5px 5px rgba(0,0,0,0.5)"}} onClick={incrementIndex}/>
           </div>
         </div>
       </div>
