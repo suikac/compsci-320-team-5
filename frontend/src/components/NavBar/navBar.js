@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import NavBarcss from "./navBar.module.css";
 import { Link as RLink, useLocation } from 'react-router-dom'
 import * as paths from "../../utils/paths"
-import ArrowImg from './arrow.png'
+import {NavArrow} from '../../assets'
 
 class NavBar extends Component {
     render() {
@@ -26,7 +26,7 @@ class NavBar extends Component {
                 }
                 {this.props.isManager ?
                     <Link to={paths.MANAGER_JOB_LISTING}>
-                        MANAGE JOB REFERRALS
+                        MANAGE REFERRALS
                     </Link>
                     :
                     null
@@ -43,7 +43,7 @@ function Link(props) {
         <li>
             <RLink to={to} className={location.pathname === to ? NavBarcss.selected : ''}>
                 {children}
-                <img src={ArrowImg} alt={"Navbar Arrow"} />
+                <img src={NavArrow} alt={"Navbar Arrow"} />
             </RLink>
         </li>
     )
