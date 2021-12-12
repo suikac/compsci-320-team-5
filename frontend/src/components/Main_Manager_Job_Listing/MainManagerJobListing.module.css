@@ -101,3 +101,19 @@ h3 {
   flex-direction: column;
   height: 100%
 }
+
+.readButton {
+  background-color: #197278;
+  color: white;
+  border-radius: 100px;
+  padding: 5px 20px;
+  border-style: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  transition: 200ms;
+}
+
+.readButton:hover {
+  background-color: rgb(207, 0, 0);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+  transform: translateY(1px);
+}

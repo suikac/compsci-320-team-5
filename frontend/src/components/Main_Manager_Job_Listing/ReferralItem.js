@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Modal } from "react-bootstrap"
+import { Row, Col, Modal, Container } from "react-bootstrap"
 import ReferCSS from "./MainManagerJobListing.module.css"
-import { apiGetPDF } from "../../utils/api-fetch";
+import { apiGetPDF, apiPost } from "../../utils/api-fetch";
+import { toast } from "react-toastify";
 
 const ReferralItem = (props) => {
+    const [resume, setResume] = useState("")
     const [show, setShow] = useState(false);
-    console.log(props);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const [resume, setResume] = useState("")
 
-    async function getResume() {
-        // if (props.resumeId)
+    const getResume = async () => {
         return await apiGetPDF(`/referral/file?id=${props.resumeId}`);
     }
 
@@ -34,7 +33,16 @@ const ReferralItem = (props) => {
                 setResume(fileURL);
             })
     }
-        , [props.id])
+        , [props.id]);
+
+    const readReferral = async () => {
+        let response = await apiPost(`/referral/read`, { id: props.id });
+        if (response.ok) {
+            toast.success('Referral successfully marked as read.')
+        } else {
+            toast.error('There was an error in marking the referral as read.');
+        }
+    }
 
     return (
         <React.Fragment>
@@ -48,7 +56,14 @@ const ReferralItem = (props) => {
             </button>
             <Modal size="xl" centered show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title><h2>Referral #{props.id}</h2></Modal.Title>
+                    <Modal.Title style={{ display: "flex", minWidth: "15em" }}><h2>Referral #{props.id}</h2></Modal.Title>
+                    {!props.isRead ?
+                        <Container fluid style={{ textAlign: "right" }}>
+                            <button className={ReferCSS.readButton} onClick={readReferral}>Mark as Read</button>
+                        </Container>
+                        :
+                        null
+                    }
                 </Modal.Header>
                 <Modal.Body>
                     <Row style={{ justifyContent: "center", alignItems: "center" }}>
