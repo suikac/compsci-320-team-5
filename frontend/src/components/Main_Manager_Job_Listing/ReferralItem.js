@@ -48,7 +48,7 @@ const ReferralItem = (props) => {
             </button>
             <Modal size="xl" centered show={show} onHide={handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title><h2>Referral #{props.id}</h2></Modal.Title>
+                <Modal.Title><h2>Referral #{props.id}</h2></Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Row style={{justifyContent: "center", alignItems: "center"}}>
@@ -66,7 +66,7 @@ const ReferralItem = (props) => {
                         </Row>
                         <Row style={{justifyContent: "center", alignItems: "center"}}>
                             <Col lg={3}><h6 style={{textAlign: "left"}}>Email: </h6></Col>
-                            <Col><h6 style={{textAlign: "left"}}>{props.referee ? props.referee.email : props.refereeEmail} {props.referee?.email}</h6></Col>
+                            <Col><h6 style={{textAlign: "left"}}>{props.referee ? props.referee.email : props.refereeEmail}</h6></Col>
                         </Row>
                     </Col>
                     <Col style={{padding: "0em 2em"}}>
@@ -87,10 +87,16 @@ const ReferralItem = (props) => {
                         </Row>
                     </Col>
                 </Row>
+                <Row style={{justifyContent: "space-between", alignItems: "center"}}>
+                    <Col style={{textAlign: "center", padding: "0em 2em"}}>
+                        <h4>Description</h4>
+                        <h6>{props.description}</h6>
+                    </Col>
+                </Row>
                 <Row style={{justifyContent: "center", alignItems: "center"}}>
                     <Col>
                         <Row style={{justifyContent: "center", alignItems: "center"}}>
-                            <h4 className='text-center'>Resume </h4>
+                            <h4 className='text-center'>Résumé </h4>
                         </Row>
                         <Row style={{justifyContent: "center", alignItems: "center"}}>
                             <iframe src={resume} title="Resume" style={{height: "400px"}}></iframe>
