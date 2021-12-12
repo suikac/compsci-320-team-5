@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from "react";
-import { Row, Col, Modal, Button } from "react-bootstrap"
-import {Link} from "react-router-dom";
+import { Row, Col, Modal } from "react-bootstrap"
 import ReferCSS from "./MainManagerJobListing.module.css"
 import {apiGetPDF} from "../../utils/api-fetch";
-import {Document, Page} from "react-pdf/dist/esm/entry.webpack";
 
 const ReferralItem = (props) => {
     const [show, setShow] = useState(false);
@@ -11,27 +9,28 @@ const ReferralItem = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [resume, setResume] = useState("")
-    const [numPages, setNumPages] = useState(null);
-    const [pageNumber, setPageNumber] = useState(1);
 
     async function getResume() {
         // if (props.resumeId)
         return await apiGetPDF(`/referral/file?id=${props.resumeId}`);
     }
 
-    const onPDFLoadSuccess = ({numPages}) => {
-        setNumPages(numPages);
-    }
-
+    const base64toBlob = (data) => {
+        const bytes = atob(data);
+        let length = bytes.length;
+        let out = new Uint8Array(length);
+        while (length--) {
+            out[length] = bytes.charCodeAt(length);
+        }
+        return new Blob([out], { type: 'application/pdf' });
+    };
 
     useEffect(() => {
         getResume()
-        // .then(r => r.json())
+        .then(r => r.text())
         .then(r => {
-            console.log(r)
-            const file = new Blob([r.body], {type: 'application/pdf'});
-            const fileURL = URL.createObjectURL(file)
-            // window.open(fileURL);
+            const blob = base64toBlob(r);
+            const fileURL = URL.createObjectURL(blob)
             setResume(fileURL);
         })
     }
@@ -42,9 +41,9 @@ const ReferralItem = (props) => {
             <button style={{display: "flex", flexDirection: "row", background: "transparent", width: "100%", border: "0"}} onClick={handleShow}>
                 <Row className={`${ReferCSS.positionContainer}`} style={{justifyContent: "center", alignItems: "center"}}>
                     <Col lg={2}><h6 className='text-center'>{props.id}</h6></Col>
-                    <Col lg={3}><h6 className='text-center'>{props.referee?.firstName} {props.referee?.lastName} </h6></Col>
+                    <Col lg={3}><h6 className='text-center'>{props.referee ? `${props.referee.firstName} ${props.referee?.lastName}` : props.refereeName} </h6></Col>
                     <Col lg={3}><h6 className='text-center'>{props.referrer?.firstName} {props.referrer?.lastName}</h6></Col>
-                    <Col lg={4}><h6 className='text-center'>{props.referee?.email}</h6></Col>
+                    <Col lg={4}><h6 className='text-center'>{props.referee ? props.referee.email : props.refereeEmail}</h6></Col>
                 </Row>
             </button>
             <Modal size="xl" centered show={show} onHide={handleClose}>
@@ -94,14 +93,7 @@ const ReferralItem = (props) => {
                             <h4 className='text-center'>Resume </h4>
                         </Row>
                         <Row style={{justifyContent: "center", alignItems: "center"}}>
-                            {/* <iframe src="https://www.adityavsingh.com/resume.pdf" height="400" title="Resume"></iframe> */}
-                            {/* <object data={`localhost:3000/api/referral/file?id=${props.resumeId}`} type="application/pdf"> */}
-                                {/* <iframe title="Resume" src={resume}></iframe> */}
-                            {/* </object> */}
-                            <Document file={resume} onLoadSuccess={onPDFLoadSuccess}>
-                                <Page pageNumber={pageNumber}/>
-                            </Document>
-                            <p> Page {pageNumber}of {numPages}</p>
+                            <iframe src={resume} title="Resume" style={{height: "400px"}}></iframe>
                         </Row>
                     </Col>
                 </Row>
