@@ -83,10 +83,10 @@ function CreateRefer(props) {
                 fields.push('Last Name');
                 valid = false;
             }
-            if (document.getElementById('file-field').files.length === 0) {
+        }
+        if (document.getElementById('file-field').files.length === 0) {
                 fields.push('Resume');
                 valid = false;
-            }
         }
         if (fields.length !== 0) {
             let str = fields.reduce((acc, e) => acc + e + ', ', '');
