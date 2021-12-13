@@ -23,7 +23,6 @@
 - **Frontend:** ReactJS with vanilla HTML + CSS
 - **Backend:** NestJS (JavaScript framework for building scalable, server-side rendered Node.js application, offering built-in Express support as an HTTP server framework)
 - **Database:** MySQL Database Hosted by AWS RDB
-- 
 ## Team Members
 
 ### Project Manager
