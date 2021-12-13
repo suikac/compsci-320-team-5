@@ -12,7 +12,7 @@
 | API                   | **Yes**               | Completed                             |
 | User Interface        | **Yes**               | Completed                             |
 | Notification/Mailbox  | No                    | Completed                             |
-| File Upload/Download  | No                    | Completed but just preview of the file|
+| File Upload/Download  | No                    | Completed                             |
 | Search/Filter         | No                    | Completed                             |
 | Skill Filter          | No                    | Completed                             |
 | ELO score system      | No                    | InCompleted                           |
