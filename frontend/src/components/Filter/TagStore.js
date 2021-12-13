@@ -15,7 +15,6 @@ function TagStore(props){
                         let temp = tags.slice()
                         temp.splice(removeIndex,1)
                         props.fun(temp)
-                        console.log(props.tags)
                     }
                 }>X</button>
         </div>

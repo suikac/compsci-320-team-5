@@ -23,7 +23,6 @@ export class JwtGuard implements CanActivate {
     const http = context.switchToHttp();
     const request: any = http.getRequest();
     const tokenString = request.cookies['AuthToken'];
-    console.log('Token received: ' + tokenString);
     if (tokenString == undefined) {
       throw new HttpException('missing credentials', HttpStatus.UNAUTHORIZED);
     }
@@ -39,7 +38,6 @@ export class JwtGuard implements CanActivate {
       if (exception.message == 'invalid token') {
         throw new HttpException('invalid token', HttpStatus.UNAUTHORIZED);
       }
-      console.log('Unhandled exception: ' + exception.message);
     }
   }
 }

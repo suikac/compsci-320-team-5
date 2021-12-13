@@ -214,7 +214,6 @@ class CreateJobPosting extends Component {
             salary: this.state.salary
         }
         const response = await apiPost('/position/createPosition', payload)
-        console.log(response.status)
         if (response.ok) {
             toast.success('Job posting created successfully!')
             this.reset()

@@ -9,7 +9,6 @@ import { exit } from 'process';
 
 let microservices: ChildProcess;
 beforeAll(async () => {
-  console.log('Running microservices');
   microservices = exec(
     'rm test/microservices.log && bash test/test_e2e.sh >test/microservices.log 2>&1'
   );

@@ -19,7 +19,6 @@ function Main_Mailbox() {
   if (!isload) {
     return <div>loading</div>
   } else {
-    console.log(referrals)
     return (
       <ul>
         {referrals.map(referral => (

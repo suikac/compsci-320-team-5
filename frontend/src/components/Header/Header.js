@@ -5,7 +5,6 @@ import { Dropdown, Stack } from "react-bootstrap"
 import {Link} from "react-router-dom"
 
 function Header(props) {
-    console.log(props);
     return (
         <div className={headercss.HeaderContainer}>
             <Stack direction='horizontal' className={headercss.hstack}>
