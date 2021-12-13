@@ -7,10 +7,7 @@
     border: 1.5px solid rgb(82, 81, 81);
     border-radius: 20px;
     z-index: 1;
-    /* grid-column: 1;
-    grid-row: 1; */
-    /* height: 90%; */
-    margin: 5% 5% 5% 5%;
+    margin: 5%;
 }
 
 .NavBarContainer ul {
@@ -22,19 +19,19 @@
 }
 
 .NavBarContainer a{
-    /* padding: 1em; */
+    padding: 0.25em;
 }
 
 .NavBarContainer li a {
     /* padding: 8px 16px 8px 16px; */
     text-decoration: none;
     text-align: center;
-    font-size: large;
+    font-size: medium;
     color:black;
     display: block;
     border: 1.5px solid rgb(146, 146, 146);
     border-radius: 1em;
-    margin: 0 5% 0 5%
+    margin: 0 5%;
 }
 
 .NavBarContainer li:last-child{
@@ -47,15 +44,15 @@
 }
 
 /* Arrow in button */
-.NavBarContainer li a img{
+.NavBarContainer li a .arrow{
     display: none;
     float: right;
-    height: 20px;
-    transform: translate3d(-5px, 5px, 0);
+    font-size: small;
+    transform: translate3d(-3px, 3px, 0);
 }
 
-.NavBarContainer li a:hover img{
-    display: block;
+.NavBarContainer li a:hover .arrow{
+    display: inline-block;
 }
 
 /* Selected navBar item */
@@ -64,6 +61,12 @@
     color: white;
 }
 
-.NavBarContainer li a.selected img {
-    display: block
+.NavBarContainer li a.selected .arrow {
+    display: inline-block;
+}
+
+.notifications {
+    position: relative;
+    top: -20px;
+    left:-20px;
 }
