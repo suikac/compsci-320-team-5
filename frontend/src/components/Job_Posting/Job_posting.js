@@ -137,8 +137,8 @@ class CreateJobPosting extends Component {
                                     placeholder="Enter Tag"
                                     className={styles.tagSearchBarText} />
                                 <datalist id="brow">
-                                    {this.state.defaultTag.map(tags => (
-                                        <option>{tags}</option>
+                                    {this.state.defaultTag.map((tags, index) => (
+                                        <option key={index}>{tags}</option>
                                     ))}
                                 </datalist>
                                 {this.state.searchBarTag.trim() !== '' ?
