@@ -4,19 +4,19 @@
 
 | Feature               | Core Functionality?   | Description                           |
 |-----------------------|-----------------------|---------------------------------------|
-| Login                 | **Yes**               | Finished in 1st Sprint                |
-| User Storage/Roles    | **Yes**               | Finished with document/aki.sql        |
-| Dashboard             | **Yes**               |                                       |
-| Job Database          | **Yes**               |                                       |
-| Referral System       | **Yes**               |                                       |
-| API                   | **Yes**               |                                       |
-| User Interface        | **Yes**               |                                       |
-| Notification/Mailbox  | No                    | "employee"/"manager"/"referred" roles |
-| File Upload/Download  | No                    |                                       |
-| Search/Filter         | No                    |                                       |
-| Skill Filter          | No                    |                                       |
-| ELO score system      | No                    |                                       |
-| Wireframe/Mockup      | No                    |                                       |
+| Login                 | **Yes**               | Completed                             |
+| User Storage/Roles    | **Yes**               | Completed                             |
+| Dashboard             | **Yes**               | Completed                             |
+| Job Database          | **Yes**               | Completed                             |
+| Referral System       | **Yes**               | Completed                             |
+| API                   | **Yes**               | Completed                             |
+| User Interface        | **Yes**               | Completed                             |
+| Notification/Mailbox  | No                    | Completed                             |
+| File Upload/Download  | No                    | Completed but just preview of the file|
+| Search/Filter         | No                    | Completed                             |
+| Skill Filter          | No                    | Completed                             |
+| ELO score system      | No                    | InCompleted                           |
+| Wireframe/Mockup      | No                    | Completed                             |
 
 ## Technology Stack
 
