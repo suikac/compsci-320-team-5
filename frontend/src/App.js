@@ -2,15 +2,13 @@ import React, {Component} from "react"
 import Login from "./components/Login/Login"
 import Main from "./components/Main/Main"
 import "./App.css"
-import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom"
-import CreateJobPosting from "./components/Job_Posting/Job_posting"
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom"
 import Header from "./components/Header/Header"
-import Footer from "./components/Footer/Footer"
 import NotFoundPage from "./components/NotFound/NotFoundPage"
 import * as paths from "./utils/paths"
 import { apiGet, apiPost } from "./utils/api-fetch"
 import NavBar from './components/NavBar/navBar'
-import { toast, ToastContainer } from "react-toastify"
+import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.min.css'
 import { Modal, Button } from 'react-bootstrap'
 
@@ -29,7 +27,7 @@ class App extends Component {
 
   async componentDidMount() {
     const response = await apiGet('/employee/getSessionInfo')
-    let userInfo = response.status == 200 ? await response.json() : null
+    let userInfo = response.status === 200 ? await response.json() : null
     this.onUserInfoChange(userInfo)
   }
 
@@ -96,7 +94,7 @@ class App extends Component {
         hideProgressBar={true}
       />
       <BrowserRouter>
-        {this.state.userInfo == null
+        {this.state.userInfo === null
         ?
         <div className='main-div'>
           <Redirect to={paths.LOGIN}/>
@@ -116,7 +114,7 @@ class App extends Component {
               </div>
               <div className='appGrid'>
                 <div className='navBarDiv'>
-                  <NavBar isManager={this.state.userInfo.role == 'manager'}/>
+                  <NavBar isManager={this.state.userInfo.role === 'manager'}/>
                 </div>
                 <div className='mainDiv'>
                   <Main userInfo={this.state.userInfo}/>

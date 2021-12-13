@@ -1,10 +1,9 @@
-import { Modal, Button, Stack } from "react-bootstrap"
+import { Modal, Button } from "react-bootstrap"
 import { useState } from "react"
 import { useFilter, useFilterParam, usePageLoadTrigger } from '../Filter/Filter'
 import FilterInput from "../Filter/FilterInput"
 import InfiniteScroll from "react-infinite-scroll-component"
 import * as styles from './EmployeeSearch.module.css'
-import { style } from "dom-helpers"
 
 function EmployeeSearch(props) {
   const [employeeResults, setEmployeeResults] = useState([])
@@ -52,7 +51,7 @@ function EmployeeSearch(props) {
           </div>
         : <div className={styles.selectionSummaryNone}>No employee selected</div>
         }
-        <Button onClick={() => props.setEmployeeSelection(selection)} disabled={selection == null}>Select</Button>
+        <Button onClick={() => props.setEmployeeSelection(selection)} disabled={selection === null}>Select</Button>
     </Modal.Footer>
   </Modal>
 }
@@ -61,10 +60,10 @@ function EmployeeEntry(props) {
   const info = props.employee
   const hasSelect = props.selected != null
   let selectStyle = ''
-  const selected = hasSelect && props.selected.id == info.id
+  const selected = hasSelect && props.selected.id === info.id
 
   if (hasSelect) {
-    selectStyle = props.selected.id == info.id ? styles.selected : styles.notSelected
+    selectStyle = props.selected.id === info.id ? styles.selected : styles.notSelected
   }
 
   return (

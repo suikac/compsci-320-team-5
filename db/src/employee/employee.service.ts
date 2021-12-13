@@ -27,7 +27,6 @@ export class EmployeeService {
     const query = this.employeeRepository
       .createQueryBuilder()
 
-    console.log(param.name)
     if (param.email) {
       query
         .orWhere('email like :email', { email: `%${param.email}%`})
@@ -48,7 +47,6 @@ export class EmployeeService {
     )
       .then(r => r.items)
 
-    console.log(res.length)
 
     return res;
   }

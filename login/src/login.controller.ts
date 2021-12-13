@@ -12,7 +12,6 @@ export class LoginController {
     @Payload('email') email: string,
     @Payload('password') password: string
   ): Promise<TokenResponse> {
-    console.log('in login');
     return this.loginService.validateLogin(email, password);
   }
 

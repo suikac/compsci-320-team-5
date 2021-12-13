@@ -19,7 +19,6 @@ export class EmployeeController {
 
   @MessagePattern({ cmd: 'getByEmail' })
   getEmployeeByEmail(@Payload('email') email: string) {
-    console.log('in api');
     try {
       const employee = this.employeeService.getEmployeeByEmail(email);
       if (!employee) {
@@ -55,7 +54,6 @@ export class EmployeeController {
 
   @MessagePattern({ cmd: 'retrieve password hash' })
   async retrievePwdHash(@Payload('email') email: string) {
-    console.log('welcome to api');
     try {
       const employee = await this.employeeService.getEmployeeByEmail(email);
 

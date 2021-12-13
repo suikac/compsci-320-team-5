@@ -37,8 +37,8 @@
 .profpic{
     float: right;
     /* width: 20% */
-    width: 20px;
-    height: 20px;
+    width: 2.5em;
+    height: 2.5em;
 }
 
 .searchicon{

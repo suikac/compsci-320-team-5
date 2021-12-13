@@ -57,7 +57,6 @@ export class LoginController {
       if (exception.message == 'invalid credentials') {
         throw new HttpException('invalid credentials', HttpStatus.UNAUTHORIZED);
       }
-      console.log('Unhandled exception: ' + exception.message);
     }
   }
 

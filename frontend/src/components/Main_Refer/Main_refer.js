@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PositionItem from "./Position_item";
 import ReferCSS from "./main_refer.module.css";
-import * as api from "../../utils/api-fetch";
 import JobListingFilter from "./JobListingFilter";
 import { usePageLoadTrigger } from "../Filter/Filter";
 import InfiniteScroll from "react-infinite-scroll-component";

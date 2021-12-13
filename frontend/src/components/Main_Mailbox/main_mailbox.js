@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Email_Bar from './email_bar';
+import EmailBar from './email_bar';
 import './main_mailbox.module.css';
 import { apiGet } from '../../utils/api-fetch';
 
@@ -19,12 +19,11 @@ function Main_Mailbox() {
   if (!isload) {
     return <div>loading</div>
   } else {
-    console.log(referrals)
     return (
       <ul>
         {referrals.map(referral => (
           <li>
-            <Email_Bar
+            <EmailBar
               job={referral.position.title}
               referrer={referral.referrer.firstName + " " + referral.referrer.lastName}
               referee={referral.referee === undefined ? referral.refereeName :

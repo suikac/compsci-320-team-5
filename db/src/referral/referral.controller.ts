@@ -27,8 +27,6 @@ export class ReferralController {
 
   @MessagePattern({ cmd: 'deleteReferral' })
   public async deleteReferral(@Payload('id') id: number) {
-    console.log('Hello World!');
-    console.log(id);
     return await this.referralService.deleteReferral(id);
   }
 
@@ -44,7 +42,6 @@ export class ReferralController {
 
   @MessagePattern({ cmd: 'getUnreadReferral' })
   public async getUnreadReferral(id: number): Promise<Referral[]> {
-    console.log('in db');
     return await this.referralService.getUnreadReferral(id);
   }
 
@@ -56,7 +53,6 @@ export class ReferralController {
   @UsePipes(new ValidationPipe({ transform: true }))
   @MessagePattern({ cmd: 'getReferral' })
   public async get(@Payload() data: GetReferralDto) {
-    console.log(data);
     return await this.referralService.get(data);
   }
 

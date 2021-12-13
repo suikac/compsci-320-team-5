@@ -3,252 +3,214 @@
   width: 100%;
 } */
 
-.h2{
-background-color: #187278;
-position: relative;
-max-width: 1020px;
-max-height: 500px;
-margin-left: 10px;
-top: 30px;
-margin-top:20px;
-border: 3px solid #0C3E42;
-border-radius: 20px;
-margin: 20px;
-padding: 5px;
-overflow: hidden;
+.container {
+  background-color: #197278;
+  display: flex;
+  flex-direction: column;
+  min-height: fit-content;
+  border-radius: 2em;
+  margin: 1em;
+  padding: 2em;
 }
 
-.p{
+.p {
   color: #ffffff;
-  position: relative;
   font-size: xx-large;
-  left: -40px;
 }
-.labelText1{
-  position: relative;
-  display: inline-block;
-  font-size: medium /*55%*/;
+.labelText1 {
+  font-size: medium;
   margin: 1%;
 }
-.labelText2{
-  position: relative;
-  display: inline-block;
-  font-size: medium /*45%*/;
-  margin: 1%;
+.labelText2 {
+  font-size: medium;
   justify-content: left;
 }
-.redText{
+.redText {
   color: red;
 }
-.labelText3{
-  position: relative;
-  display: inline-block;
-  font-size: medium /*100%*/;
-  margin: 1%;
+.labelText3 {
+  font-size: medium;
   justify-content: left;
 }
 /* Header */
-.jobTitleContainer{
-font-size: medium /*80%*/;
-padding: 5px;
-position: relative;
-max-width: 42.1%;/**/
-max-height: 13.4%;/**/
-left: 0px;
-top: 0px;
-background: #ffffff;
-margin: 15px;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-border-radius: 102px;
+.jobTitleContainer {
+  display: flex;
+  font-size: medium;
+  justify-content: space-between;
+  width: 45% !important;
+  padding: 5px;
+  text-align: center;
+  background: #ffffff;
+  margin: 15px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 102px;
 }
-.jobTitleText{
-border: none;
-justify-content: center;
-display: inline-block;
-text-align: center;
-border-radius: 0px;
-width: 76%;
-height: 90%;
-background: #ffffff;
+.jobTitleText {
+  border: none;
+  justify-content: center;
+  text-align: center;
+  border-radius: 0px;
+  width: 75%;
+  background: #ffffff;
 }
 
-.salaryContainer{
-font-size: medium /*70%*/;
-padding: 5px;
-position: relative;
-max-width: 19.1%;/**/
-max-height: 13.4%;/**/
-margin: 15px;
-left: 0px;
-top: 0px;
-background: #ffffff;
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-border-radius: 102px;
+.salaryContainer {
+  display: flex;
+  font-size: medium;
+  justify-content: space-between;
+  width: 25% !important;
+  padding: 5px;
+  margin: 15px;
+  text-align: center;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 102px;
 }
-.salaryText{
+.salaryText {
   border: none;
   justify-content: center;
   display: inline-block;
   text-align: center;
   border-radius: 0px;
   max-width: 60%;
-  height: 90%;
   background: #ffffff;
 }
 
-.minYearofExpContainer{
-  font-size: medium /*70%*/;
-  padding-top: 5px;
-  padding-left: 20px;
-  padding-bottom: 5px;
-  text-align: left;
-  position:relative;
-  max-width: 19.1%;/**/
-  max-height: 13.4%;/**/
-  left: 22.9%;
-  top: -48px;
+.minYearofExpContainer {
+  display: flex;
+  font-size: medium;
+  justify-content: space-between;
+  padding: 5px;
+  width: 17% !important;
+  text-align: center;
   margin: 15px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   border-radius: 102px;
 }
-.minYearofExpText{
+.minYearofExpText {
   border: none;
   justify-content: center;
   display: inline-block;
   text-align: center;
   border-radius: 0px;
   max-width: 40%;
-  height: 90%;
   background: #ffffff;
   border: transparent;
 }
-.tagSearchBarContainer{
-  font-size: medium /*40%*/;
+.tagSearchBarContainer {
+  font-size: medium;
+  width: 45% !important;
   margin-bottom: 10px;
-  padding:5px;
-  position: relative;
-  max-width: 42.1%;
-  max-height: 50%;
-  left: 0px;
-  top: -50px;
+  padding: 5px;
   margin: 15px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
- border-radius: 52px;
- }
+  border-radius: 26px;
+}
 
- .tagSearchBarText{
-   border: none;
-   justify-content: center;
-   display: inline-block;
-   text-align: left;
-   border-radius: 0px;
-   margin: 3px;
-   width: 45%;
-   height: 22px;
-   resize: none;
-   background: #ffffff;
- }
- .tagStoreContainer{
-   border: none;
-   justify-content: center;
-   text-align: left;
-   border-radius: 0px;
-   width: 80%;
-   height: 170px;
-   resize: none;
-   background:transparent;
- }
+.tagSearchBarText {
+  border: none;
+  padding: 8px;
+  justify-content: center;
+  display: inline-block;
+  text-align: left;
+  border-radius: 0px;
+  margin: 3px;
+  width: 45%;
+  background: #ffffff;
+}
+.tagStoreContainer {
+  border: none;
+  justify-content: center;
+  text-align: left;
+  border-radius: 0px;
+  width: 80%;
+  height: 170px;
+  resize: none;
+  background: transparent;
+}
 
-.DescriptionContainer{
+.DescriptionContainer {
   margin: 15px;
-  font-size: medium /*70%*/;
+  font-size: medium;
+  width: 45% !important;
   text-align: center;
   padding: 8px;
-  position: relative;
-  max-width: 49.12%;
-  height: 319px;
-  left: 48.04%;
-  top: -385px;
   background: #ffffff;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
-  border-radius: 52px;
+  border-radius: 26px;
 }
-.DescriptionText{
+.DescriptionText {
   font-size-adjust: inherit;
+  padding: 8px;
   resize: none;
   border: none;
   justify-content: center;
   display: inline-block;
   text-align: left;
-  border-radius: 0px;
-  width: 90%;
-  height: 85%;
+  width: 95%;
+  height: 192px;
   background: #ffffff;
   overflow: hidden;
 }
-.createButton{
-  color: black;
-  font-size: large /*70%*/;
-  position:relative;
-  width: 20%;
-  height: 10%;
-  top: -355px;
-  left: -4%;
-  padding: 10px 5px 10px 5px;
-  background: rgb(182, 236, 238);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
-  border-radius: 102px;
-}
-.disabledcreateButton{
+.createButton {
   color: white;
-  font-size: large /*70%*/;
-  position:relative;
-  width: 20%;
-  height: 10%;
-  top: -355px;
-  left: -4%;
-  padding: 10px 5px 10px 5px;
-  background: #0C3E42;
-  border: 3px solid #0C3E42;
+  font-size: large;
+  width: 8em !important;
+  margin: 0.5em;
+  padding: 10px;
+  background: #0c3e42;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  border: 3px solid #0c3e42;
   border-radius: 102px;
 }
-.addButton{
-  font-size: 12px;
-  position:relative;
-  width: 18%;
-  height: 10%;
-  background: #197278;
+.disabledcreateButton {
+  color: #4c4c4c;
+  font-size: large;
+  width: 8em !important;
+  padding: 10px;
+  margin: 0.5em;
+  background: #c4c4c4;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+  border: 3px solid #c4c4c4;
   border-radius: 102px;
 }
-.disabledaddButton{
-  color:#0C3E42;
+.addButton {
+  color: #ffffff;
   font-size: medium /*12px*/;
-  position:relative;
   width: 18%;
-  height: 10%;
-  background: #ffffff;
-  border: solid #0C3E42;
+  height: 15%;
+  background: #197278;
+  border: 2px solid #197278;
   border-radius: 102px;
 }
-.tagHolder{
+.disabledaddButton {
+  color: #4c4c4c;
+  font-size: medium;
+  width: 18%;
+  height: 15%;
+  background: #c4c4c4;
+  border: 2px solid #4c4c4c;
+  border-radius: 102px;
+}
+.tagHolder {
   display: inline-block;
-  color:#0C3E42;
+  color: #0c3e42;
   text-align: center;
   font-size: medium /*100%*/;
   max-width: 100%;
   padding-left: 4px;
   padding-bottom: 2px;
   height: 18%;
-  border-radius:102px;
-  border: solid #0C3E42;
+  border-radius: 102px;
+  border: solid #0c3e42;
   background: #edddd4;
 }
-.cancelButton{
+.cancelButton {
   font-size: medium /*100%*/;
   border: none;
-  background:transparent;
+  background: transparent;
   max-height: 100%;
   max-width: 100%;
 }

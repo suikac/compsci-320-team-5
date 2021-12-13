@@ -1,10 +1,9 @@
 .MainContainer{
   background-color: #197278;
-  width: 800px;
   height: 500px;
   margin-left: auto;
   margin-right: auto;
-  border: 3px solid #0C3E42  ;
+  /* border: 3px solid #0C3E42; */
   border-radius: 20px;
   margin: 1em;
   padding: 1em;
@@ -15,12 +14,13 @@
 }
 .MainJobContainer{
   background-color: white;
-  width: 600px;
+  min-width: 80%;
   height: 400px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 20px;
   display: inline-block;
+  box-shadow: 5px 5px rgba(0,0,0,0.5);
 }
 .MainContainer input[type=submit]{
   width: 100px;
@@ -39,7 +39,7 @@
 
 .refButton{
   margin-left: 70%;
-  margin-top: 15%;
+  margin-top: 10%;
 }
 
 .MainContainer button[type='prev'],button[type='next'] {

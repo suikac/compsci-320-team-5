@@ -2,10 +2,7 @@
     background-color: #ffffff;
     margin: 1em;
     padding: 1em;
-    border-radius: 0 0 15px 15px;
-    border-right: 1px solid #cccccc;
-    border-left: 1px solid #cccccc;
-    border-bottom: 1px solid #cccccc;
-    box-shadow: 3px 3px 3px #aaaaaa;
-
+    border-radius: 15px;
+    border: 0.25em solid #197278;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
 }

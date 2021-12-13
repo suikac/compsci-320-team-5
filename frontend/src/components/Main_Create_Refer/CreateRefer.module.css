@@ -47,7 +47,7 @@ textarea {
     background-color: rgb(255,0,0,0.2);
 }
 .inputField {
-    width: 90%;
+    width: 100%;
 }
 .referralDropdown {
     font-size: 1.2em;
@@ -59,4 +59,15 @@ textarea {
 }
 .label {
     font-size: 1.2rem;
+}
+
+.positionContainer {
+    display: flex;
+    flex-direction: column;
+    width: 35em !important;
+    background-color: #197278;
+    border-radius: 2em;
+    margin: 1em 0em 0em 1em !important;
+    padding: 1em !important;
+    color: white !important;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import { withRouter } from "react-router";
-import { Link, useHistory, Redirect } from 'react-router-dom'
+import { useHistory, Redirect } from 'react-router-dom'
 import CreateReferCSS from "./CreateRefer.module.css";
 import * as paths from "../../utils/paths"
 import * as api from '../../utils/api-fetch'
@@ -83,10 +83,10 @@ function CreateRefer(props) {
                 fields.push('Last Name');
                 valid = false;
             }
-            if (document.getElementById('file-field').files.length === 0) {
+        }
+        if (document.getElementById('file-field').files.length === 0) {
                 fields.push('Resume');
                 valid = false;
-            }
         }
         if (fields.length !== 0) {
             let str = fields.reduce((acc, e) => acc + e + ', ', '');
@@ -103,7 +103,7 @@ function CreateRefer(props) {
             return;
         }
         // Submission object set to contain referral info, so data is formatted correctly
-        const submission = {...input};
+        const submission = { ...input };
         // Set refereeName from first and last name fields in input
         submission['refereeName'] = input.firstName + " " + input.lastName;
         // Delete fields that aren't used in referral creation
@@ -120,17 +120,20 @@ function CreateRefer(props) {
 
         const formData = new FormData()
         for (const [k, v] of Object.entries(submission)) {
-            if (v == undefined) {
+            if (v === undefined) {
                 continue
             }
             formData.append(k, v)
         }
 
         let response = await api.apiPostFormData('/referral/create', formData)
-        let body = await response.json()
+        await response.json()
         // Process response
         if (response.ok) {
             toast.success('Referral submitted for review.')
+            setTimeout(() => {
+                window.location.reload(true);
+            }, 2500)
         } else {
             toast.error('Your submission could not be completed.');
         }
@@ -147,8 +150,8 @@ function CreateRefer(props) {
     const history = useHistory()
 
     // Return html to be rendered
-    if (state == undefined) {
-        return <Redirect to={paths.NOT_FOUND}/>
+    if (state === undefined) {
+        return <Redirect to={paths.NOT_FOUND} />
     }
     return (
         // Containing div
@@ -168,20 +171,21 @@ function CreateRefer(props) {
                 }}
             />
             {/* Div that contains position and manager info */}
-            <div className={`col-6 m-0 p-5`}>
-                <div className='text-center mb-4'><h3>{state.title}</h3></div>
-                <div className='text-end mb-3'><h5><strong>Job ID:</strong> {state.id}</h5></div>
+            <div className={CreateReferCSS.positionContainer}>
+                <div className='text-center' style={{ display: "flex", background: "white", borderRadius: "2em", justifyContent: "center", alignItems: "center" }}>
+                    <h3 style={{ margin: "0.5em" }}>{state.title}</h3>
+                </div>
+                <div className='mt-5 mb-3'><h5><strong>Job ID:</strong> {state.id}</h5></div>
                 <div className='mb-3'>
                     <h5><strong>Job Description:</strong></h5>
                     <p>{state.description}</p>
                 </div>
                 <div className='mb-3'><h5><strong>Salary:</strong> {state.salary}</h5></div>
-                <div className='mb-3'><h5><strong>Minimum Years Experience:</strong> {state.minYearExperience}</h5></div>
+                <div className='mb-3'><h5><strong>Minimum Experience:</strong> {state.minYearExperience} {state.minYearExperience === 1 ? "year" : "years"} </h5></div>
                 <div>
                     <h5><strong>Manager:</strong></h5>
-                    <p className='p-0 m-0'>{state.manager.firstName} {state.manager.lastName}</p>
-                    <p className='p-0 m-0'>{state.manager.email}</p>
-                    <p className='p-0 m-0'>{state.manager.positionTitle}</p>
+                    <p className='p-0 m-0'>{state.manager.firstName} {state.manager.lastName}, {state.manager.positionTitle}</p>
+                    <p className='p-0 m-0'>({state.manager.email})</p>
                 </div>
             </div>
             {/* Div that contains inputs for referral */}
@@ -210,39 +214,39 @@ function CreateRefer(props) {
                         />
                         <label className={CreateReferCSS.label} for="outside-referral">Outside Referral</label>
                     </div>
-                    <div className='mt-2'><p className={`text-danger ${CreateReferCSS.bold}`}>* is required field</p></div>
+                    <div className='mt-2'><p className={`text-danger ${CreateReferCSS.bold}`}>Required fields are marked with *</p></div>
                 </div>
                 {referType === '1' ?
                     <div className={`text-center mt-3`}>
-                        <p className={`${CreateReferCSS.required} d-inline`}>* </p>
                         <button onClick={() => setShowEmployeeSearch(true)} className={`${CreateReferCSS.btn}`}>SEARCH EMPLOYEE</button>
+                        <span className={`${CreateReferCSS.required} d-inline`}>* </span>
                     </div>
-                : <></>}
+                    : <></>}
                 <div className={`row mt-3`}>
-                    <div className={`col-12 col-xl-6 pl-3 text-start text-xl-end mb-3 mb-xl-0`}>
+                    <div className={`col-12 col-xl-6 text-start text-xl-end mb-3 mb-xl-0`}>
                         <label className={`d-block text-start`} for='email-field'><strong>Employee Email:</strong></label>
-                        {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        {referType === 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
                         <input
                             disabled={referType === '1'}
                             type='text'
                             value={input.refereeEmail}
-                            onChange={ (e) => changeInput(['refereeEmail'], [e.target.value]) }
+                            onChange={(e) => changeInput(['refereeEmail'], [e.target.value])}
                             onClick={(e) => removeRed(e)}
-                            placeholder='Employee email'
+                            placeholder='Employee Email'
                             id='email-field'
                             name='email-feild'
                             className={`${CreateReferCSS.inputField}`}
                         />
                     </div>
                     <div className={`col-12 col-xl-6 pr-3 text-start`}>
-                        <label className={`d-block text-start`} for='file-field'><strong>Attach Resume:</strong></label>
-                        {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        <label className={`d-block text-start`} for='file-field'><strong>Attach Résumé:</strong></label>
+                        {referType === 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
                         <input
                             ref={fileInputElement}
                             type='file'
                             accept='.pdf'
                             value={input.file}
-                            onChange={ (e) => changeInput(['file'], [e.target.value]) }
+                            onChange={(e) => changeInput(['file'], [e.target.value])}
                             id='file-field'
                             name='file-feild'
                             className={`${CreateReferCSS.inputField}`}
@@ -251,14 +255,18 @@ function CreateRefer(props) {
                 </div>
                 <div className='row mt-3'>
                     <div className={`col-12 col-xl-6 pl-3 text-start text-xl-end mb-3 mb-xl-0`}>
-                        <label className={`d-block text-start`} for='first-name-field'><strong>First Name:</strong></label>
-                        {referType === '0' ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        <label className={`d-block text-start`} for='first-name-field'>
+                            {referType === '0' ?
+                                <strong>First Name:<span className={`${CreateReferCSS.required} d-inline`}>*</span></strong> :
+                                <strong>First Name:</strong>
+                            }
+                        </label>
                         <input
                             disabled={referType === '1'}
                             type='text'
                             placeholder='First Name'
                             value={input.firstName}
-                            onChange={(e) => changeInput(['firstName'], [e.target.value]) }
+                            onChange={(e) => changeInput(['firstName'], [e.target.value])}
                             onClick={(e) => removeRed(e)}
                             id='first-name-field'
                             name='first-name-feild'
@@ -267,13 +275,13 @@ function CreateRefer(props) {
                     </div>
                     <div className={`col-12 col-xl-6 pr-3 text-start mb-3 mb-xl-0`}>
                         <label className={`d-block text-start`} for='last-name-field'><strong>Last Name:</strong></label>
-                        {referType == 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        {referType === 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
                         <input
                             disabled={referType === '1'}
                             type='text'
                             placeholder='Last Name'
                             value={input.lastName}
-                            onChange={ (e) => changeInput(['lastName'], [e.target.value]) }
+                            onChange={(e) => changeInput(['lastName'], [e.target.value])}
                             onClick={(e) => removeRed(e)}
                             id='last-name-field'
                             name='last-name-feild'
@@ -286,7 +294,7 @@ function CreateRefer(props) {
                     <textarea
                         placeholder='Enter a brief description as to why you think this candidate would be a good hire...'
                         value={input.description}
-                        onChange={ (e) => changeInput(['description'], [e.target.value]) }
+                        onChange={(e) => changeInput(['description'], [e.target.value])}
                         id='description'
                         name='description'
                     />
@@ -294,19 +302,19 @@ function CreateRefer(props) {
             </div>
             <div className='row'>
                 <div className='col-6'>
-                    <button
-                        className={`${CreateReferCSS.cancelBtn}`}
-                        onClick={() => history.goBack()}
-                    >
-                        {'< Cancel'}
-                    </button>
                 </div>
                 <div className='col-6 text-center'>
                     <button
-                            className={`${CreateReferCSS.btn} ${CreateReferCSS.referBtn}`}
-                            onClick={submitReferral}
-                        >
+                        className={`${CreateReferCSS.btn} ${CreateReferCSS.referBtn}`}
+                        onClick={submitReferral}
+                    >
                         REFER
+                    </button>
+                    <button
+                        className={`${CreateReferCSS.btn} ${CreateReferCSS.referBtn}`}
+                        onClick={() => history.goBack()}
+                    >
+                        CANCEL
                     </button>
                 </div>
             </div>

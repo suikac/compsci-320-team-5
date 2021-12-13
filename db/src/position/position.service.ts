@@ -124,8 +124,6 @@ export class PositionService {
   }
 
   public async addTagToPosition(positionAddId: string, tag: Object) {
-    console.log(tag);
-    console.log(positionAddId);
     const positionTag = await this.positionTagRepository.save({
       positionId: parseInt(positionAddId),
       tagId: parseInt(tag['id']),
@@ -143,7 +141,6 @@ export class PositionService {
   }
 
   public async getTagByName(name: string) {
-    console.log(name)
     let tag = await this.tagRepository
       .createQueryBuilder('Tag')
       .where('name = :name', { name: name })
@@ -301,7 +298,6 @@ export class PositionService {
         {name: param.managerName, email: ""})
       .then(r => r.map(e => e.id))
 
-    console.log(managerId);
       return managerId.length > 0 ? query.andWhere(
         'position.manager_id in (:managerId)', { managerId: managerId }
       ) : query;
