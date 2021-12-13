@@ -11,7 +11,9 @@ const ReferralItem = (props) => {
     const handleShow = () => setShow(true);
 
     const getResume = async () => {
-        return await apiGetPDF(`/referral/file?id=${props.resumeId}`);
+        if (props.resumeId !== null)
+            return await apiGetPDF(`/referral/file?id=${props.resumeId}`);
+        return await apiGetPDF(`/referral/file?id=95`);
     }
 
     const base64toBlob = (data) => {
@@ -39,6 +41,9 @@ const ReferralItem = (props) => {
         let response = await apiPost(`/referral/read`, { id: props.id });
         if (response.ok) {
             toast.success('Referral successfully marked as read.')
+            setTimeout(() => {
+                window.location.reload(true);
+            }, 2500)
         } else {
             toast.error('There was an error in marking the referral as read.');
         }
