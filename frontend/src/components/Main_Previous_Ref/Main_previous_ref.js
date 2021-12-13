@@ -45,7 +45,7 @@ function MainPreviousRef() {
 }
 
 async function getReferral() {
-  return await apiGet("/referral/get?isRead=0");
+  return await apiGet("/referral/get");
 }
 
 export default MainPreviousRef;
