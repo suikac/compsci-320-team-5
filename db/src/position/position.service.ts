@@ -124,8 +124,6 @@ export class PositionService {
   }
 
   public async addTagToPosition(positionAddId: string, tag: Object) {
-    console.log(tag);
-    console.log(positionAddId);
     const positionTag = await this.positionTagRepository.save({
       positionId: parseInt(positionAddId),
       tagId: parseInt(tag['id']),
@@ -143,7 +141,6 @@ export class PositionService {
   }
 
   public async getTagByName(name: string) {
-    console.log(name)
     let tag = await this.tagRepository
       .createQueryBuilder('Tag')
       .where('name = :name', { name: name })
@@ -196,6 +193,10 @@ export class PositionService {
       .createQueryBuilder('position')
       .innerJoinAndSelect('position.manager', 'manager', 'position.manager_id = manager.id')
 
+    if (param.owned) {
+      query = query.andWhere('position.manager_id = :curId', {curId: param.managerId})
+    }
+
     if (param.maxSalary) {
       query
         .andWhere('salary < :maxSalary', {maxSalary: param.maxSalary})
@@ -215,6 +216,10 @@ export class PositionService {
       query
         .andWhere('min_year_experience >= :minYearExperience',
           {minYearExperience: param.minYearExperience})
+    }
+
+    if (param.managerEmail) {
+      query.andWhere('manager.email like :managerEmail', {managerEmail: `${param.managerEmail}%`})
     }
 
     if (param.tags) {
@@ -293,7 +298,6 @@ export class PositionService {
         {name: param.managerName, email: ""})
       .then(r => r.map(e => e.id))
 
-    console.log(managerId);
       return managerId.length > 0 ? query.andWhere(
         'position.manager_id in (:managerId)', { managerId: managerId }
       ) : query;

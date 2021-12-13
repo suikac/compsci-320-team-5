@@ -1,21 +1,20 @@
-import React, { Component, useState } from "react";
-import logo from "../Login/Logo2.png";
-import NotifPic from "./Notif.png";
-import ProfPic from "./ProfPic.png";
-import searchicon from "./searchicon.png"
+import React from "react";
+import {AkiLogo, CompanyLogo, ProfileLogo} from "../../assets";
 import headercss from "./Header.module.css";
-import { DropdownButton, Dropdown, Stack } from "react-bootstrap"
-import CompanyLogo from "./companylogo.png"
+import { Dropdown, Stack } from "react-bootstrap"
+import {Link} from "react-router-dom"
 
 function Header(props) {
     return (
         <div className={headercss.HeaderContainer}>
             <Stack direction='horizontal' className={headercss.hstack}>
-                <img className={headercss.logoimg} src={logo} alt="A logo"></img>
+                <Link to = "/">
+                    <img className={headercss.logoimg} src={AkiLogo} alt="A logo"></img>
+                </Link>
                 <div className = "mx-auto"><img className = {headercss.complogo} src = {CompanyLogo} alt = "Company Logo"></img></div>
                 <Dropdown>
                     <Dropdown.Toggle variant='default' bsPrefix='p-0'>
-                        <img src={ProfPic} className={headercss.profpic} alt="Profile Picture"></img>
+                        <img src={ProfileLogo} className={headercss.profpic} alt="Profile"></img>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         <Dropdown.Item

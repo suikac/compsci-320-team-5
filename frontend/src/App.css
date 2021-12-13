@@ -1,8 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+  font-family: "Inter", sans-serif;
+}
+
 .mainDiv {
   overflow: auto;
   height: 100%;
   grid-row: 1;
   grid-column: 2;
+  background-size: 100%;
 }
 .header-div {
   height: 15%

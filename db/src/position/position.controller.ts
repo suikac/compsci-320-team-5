@@ -3,14 +3,15 @@ import {
   HttpException,
   HttpStatus,
   Inject,
-  NotFoundException, UseFilters, ValidationPipe
+  NotFoundException, UseFilters, UsePipes, ValidationPipe
 } from '@nestjs/common';
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { PositionService } from './position.service';
-import { GetPositionDto, GetTagsDto } from './position.dto';
+import { CreatePostingDto, GetPositionDto, GetTagsDto } from './position.dto';
 import { RpcValidationFilter } from '../interface/RpcValidationFilter';
 
 @Controller('Position')
+@UsePipes(new ValidationPipe({ transform: true }))
 export class PositionController {
   constructor(
     @Inject(PositionService)
@@ -95,7 +96,7 @@ export class PositionController {
   }
 
   @MessagePattern({ cmd: 'createPosition' })
-  public async createPosition(data: Object) {
+  public async createPosition(data: CreatePostingDto) {
     let tags = data['tags'];
     delete data['tags'];
     let position = await this.positionService
@@ -137,17 +138,13 @@ export class PositionController {
     @Payload('positionId') positionId: string,
     @Payload('tags') tags: string[]
   ) {
-    console.log('in');
     for (let i = 0; i < tags.length; ++i) {
       let getTag = await this.positionService
         .getTagByName(tags[i])
         .catch(() => null);
-      console.log(getTag);
       if (getTag == null) {
-        console.log('creating tag');
         getTag = await this.positionService.createTag(tags[i]);
       }
-      console.log('about to add position tag');
       let positionTag = await this.positionService.addTagToPosition(
         positionId,
         getTag
@@ -168,7 +165,6 @@ export class PositionController {
 
   @MessagePattern({ cmd: 'getPosition'})
   async getPosition(@Payload() param: GetPositionDto) {
-    console.log(param)
     return this.positionService.getPosition(param);
   }
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Subject, map, mergeAll, from, debounceTime, switchMap, EMPTY, mergeMap, startWith, scan, distinct, zipWith, of, repeat, concat, take, combineLatestWith } from "rxjs"
+import { Subject, map, mergeAll, from, debounceTime, switchMap, EMPTY, mergeMap, startWith, scan } from "rxjs"
 import { fromApiPost } from "../../utils/api-fetch";
 
 /**
@@ -8,14 +8,15 @@ import { fromApiPost } from "../../utils/api-fetch";
  * @param {(result: any[]) => void} setResult callback with `response.json()`
  * @param loadTrigger the trigger from `usePageLoadTrigger()`
  * @param delay wait time between queries in ms
+ * @param permanentParams parameters that appear in all requests (and should not change values)
  * @return an opaque filter
  */
-export function useFilter(apiEndpoint, setResult, loadTrigger, delay=250) {
+export function useFilter(apiEndpoint, setResult, loadTrigger, delay=250, permanentParams={}) {
   const filter = useState({})
   const [subjects, setSubjects] = filter
 
   useEffect(() => {
-    const query = {}
+    const query = {...permanentParams}
     const sub = from(
       Object.entries(subjects)
         .map(([key, subject]) =>
@@ -32,7 +33,7 @@ export function useFilter(apiEndpoint, setResult, loadTrigger, delay=250) {
         // convert to stream of query objects
         mergeAll(),
         // initial page load -- empty query
-        startWith(of({})),
+        startWith(query),
         // Take latest value and cancel previous requests
         switchMap((query) => {
           return loadTrigger.pipe(

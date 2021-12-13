@@ -24,7 +24,6 @@ export class ReferralService {
                               createResumeDto: CreateResumeDto) {
     if (createResumeDto.name != null) {
       createResumeDto.file = Buffer.from(createResumeDto.file)
-      console.log(createResumeDto)
       createReferralDto.resumeId = await this.resumeRepository
         .save(createResumeDto)
         .then(r => r.id)
@@ -107,7 +106,6 @@ export class ReferralService {
   }
 
   public async readReferral(id: number) {
-    console.log(id);
     await this.referralRepository
       .createQueryBuilder('readReferral')
       .update()
@@ -136,12 +134,10 @@ export class ReferralService {
     }
 
     if (data.isRead != null) {
-      console.log(data.isRead);
       query.andWhere('is_read = :isRead', { isRead: data.isRead });
     }
 
     if (data.positionId != null) {
-      console.log(typeof data.positionId);
       query.andWhere('position_id = :positionId', {
         positionId: data.positionId,
       });
@@ -155,7 +151,6 @@ export class ReferralService {
   }
 
   public async getFile(id : number) {
-    console.log(id)
     const file = await this.resumeRepository
       .createQueryBuilder()
       .where('id = :id', { id: id })

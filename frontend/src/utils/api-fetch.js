@@ -48,3 +48,14 @@ export async function apiGet(relativePath) {
     method: "GET"
   })
 }
+
+export async function apiGetPDF(relativePath) {
+  return fetch(API_BASE + relativePath, {
+    headers: {
+      'Accept': "*/*",
+    },
+    credentials: "include",  // this field is needed so that browser will send/store cookies
+    method: "GET",
+    responseType: "blob"
+  })
+}

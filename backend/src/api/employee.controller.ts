@@ -24,7 +24,6 @@ export class EmployeeController {
 
   @Get('getByEmail')
   public async getByEmail(@Query('email') email: string) {
-    console.log('in backend');
     const cmd = { cmd: 'getByEmail' };
     const data = { email: email };
     try {
@@ -36,7 +35,11 @@ export class EmployeeController {
 
   @Get('getSessionInfo')
   public async getSessionInfo(@Req() req: AuthorizedRequest) {
-    return req.user
+    const user = req.user
+    return {
+      role: user.role,
+      sessionExpires: new Date(user.exp * 1000)
+    }
   }
 
   @ManagerOnly()
@@ -45,7 +48,6 @@ export class EmployeeController {
     @Body('email') email: string,
     @Body('password') password: string
   ) {
-    console.log('signing up api..');
     const cmd = { cmd: 'signUp' };
     const data = { email: email, password: password };
     const response = this.dbService.send(cmd, data);

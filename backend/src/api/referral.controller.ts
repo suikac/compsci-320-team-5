@@ -27,7 +27,6 @@ export class ReferralController {
   @Post('create')
   @UseInterceptors(FileInterceptor('file'))
   public async createReferral(@Req() req, @Body() data, @UploadedFile() resume) {
-    console.log('Creating a new referral');
     data.referrerId = req.user.userId;
     data.create_date = new Date();
     const cmd = { cmd: 'createReferral' };
@@ -47,7 +46,6 @@ export class ReferralController {
 
   @Patch('updateReferral')
   public async updateReferral(@Req() req, @Body() data) {
-    console.log('Updating an existing referral');
     const cmd = { cmd: 'updateReferral' };
     try {
       return this.dbService.send(cmd, data);
@@ -58,8 +56,6 @@ export class ReferralController {
 
   @Delete('deleteReferral')
   public async deleteReferral(@Query('id') id: number) {
-    console.log('Delete an existing referral');
-    console.log('backend' + id);
     const cmd = { cmd: 'deleteReferral' };
     const data = { id: id };
     return await this.dbService.send(cmd, data);
@@ -67,7 +63,6 @@ export class ReferralController {
 
   @Get('getReferral')
   public async getReferral(@Query('id') id: number) {
-    console.log('Fetch an existing referral (by id)');
     const cmd = { cmd: 'getReferral' };
     const data = { id: id };
     return this.dbService.send(cmd, data);
@@ -79,15 +74,14 @@ export class ReferralController {
       this.dbService.send({ cmd: 'getFile' }, { id: id })
     );
     const file = Buffer.from(data.data);
-    res.setHeader('Content-Type', data.type);
-    res.send(file);
+    const base64String = file.toString('base64');
+    res.send(base64String);
   }
 
   @Get('getReferralsByReferrer')
   public async getReferralsByReferrer(
     @Query('referrer_id') referrer_id: number
   ) {
-    console.log('Fetch existing referrals (by referrer)');
     const cmd = { cmd: 'getReferralsByReferrer' };
     const data = { referrer_id };
     const response = this.dbService.send(cmd, data);
@@ -98,7 +92,6 @@ export class ReferralController {
   public async getReferralsByPosition(
     @Query('position_id') position_id: number
   ) {
-    console.log('Fetch existing referrals (by position)');
     const cmd = { cmd: 'getReferralsByPosition' };
     const data = { position_id };
     const response = this.dbService.send(cmd, data);
@@ -114,9 +107,7 @@ export class ReferralController {
   @Get('get')
   public async get(@Req() req, @Query() query) {
     const cmd = { cmd: 'getReferral' };
-    console.log(req.user);
     query.referrerId = req.user.userId;
-    console.log(query);
     try {
       return this.dbService.send(cmd, query);
     } catch (e) {

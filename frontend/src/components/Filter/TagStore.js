@@ -1,5 +1,4 @@
-import React, {useRef, useEffect, useState } from "react";
-import { apiPost } from "../../utils/api-fetch"
+import React from "react";
 import styles from "./Tags.module.css"
 
 function TagStore(props){
@@ -16,7 +15,6 @@ function TagStore(props){
                         let temp = tags.slice()
                         temp.splice(removeIndex,1)
                         props.fun(temp)
-                        console.log(props.tags)
                     }
                 }>X</button>
         </div>
