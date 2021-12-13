@@ -131,6 +131,9 @@ function CreateRefer(props) {
         // Process response
         if (response.ok) {
             toast.success('Referral submitted for review.')
+            setTimeout(() => {
+                window.location.reload(true);
+            }, 2500)
         } else {
             toast.error('Your submission could not be completed.');
         }
