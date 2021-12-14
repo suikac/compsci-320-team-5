@@ -1,43 +1,47 @@
 /* General */
 .test {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 h3 {
-    color: black !important;
+  color: black !important;
 }
-
 
 /* Main referral page */
 #outline {
-    width: 100%;
+  width: 100%;
 }
 #positions {
-    width: 100%;
+  width: 100%;
 }
 .positionItemContainer {
-    margin-right: 10px;
-    border-radius: 15px 15px;
-    background-color: #D3D1D1;
-    border-right: 1px solid #cccccc;
-    border-left: 1px solid #cccccc;
-    border-bottom: 1px solid #aaaaaa;
-    box-shadow: 3px 3px 3px #aaaaaa;
-}
-.link {
-    color: white;
+  margin-right: 10px;
+  border-radius: 15px;
+  background-color: #d3d1d1;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
+.positionUnreadItemContainer {
+  margin-right: 10px;
+  border-radius: 15px;
+  background-color: #197278 !important;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  color: white !important;
+}
+
+.link {
+  color: white;
+}
 
 /* PositionItem Referral */
 .positionContainer {
-    width: 100%;
-    height: 10vh;
-    padding: 10px;
-    min-height: 100px;
-    overflow: hidden;
+  width: 100%;
+  height: 10vh;
+  padding: 10px;
+  min-height: 100px;
+  overflow: hidden;
 }
 
-.name{
+.name {
   width: 80%;
   padding: 12px 20px;
   margin: 8px 5px;
@@ -46,12 +50,11 @@ h3 {
   box-sizing: border-box;
   border-radius: 25px;
   box-shadow: 5px 5px 5px #747373;
-
 }
-.name label{
+.name label {
   color: #747373;
 }
-.reason{
+.reason {
   width: 90%;
   height: 200px;
   padding: 12px 20px;
@@ -62,9 +65,9 @@ h3 {
   resize: none;
   box-shadow: 5px 5px 5px #747373;
 }
-.email{
+.email {
   width: 60%;
-  height:fit-content;
+  height: fit-content;
   padding: 12px 20px;
   margin: 8px 5px;
   border: 2px solid rgb(216, 214, 214);
@@ -73,13 +76,13 @@ h3 {
   border-radius: 25px;
   box-shadow: 5px 5px 5px #747373;
 }
-.current{
+.current {
   padding: 20px 20px;
   margin: 8px 5px;
   box-sizing: border-box;
   border-radius: 25px;
 }
-.id{
+.id {
   width: 40%;
   height: 30px;
   box-sizing: border-box;
@@ -99,7 +102,7 @@ h3 {
 .container {
   display: flex;
   flex-direction: column;
-  height: 100%
+  height: 100%;
 }
 
 .readButton {

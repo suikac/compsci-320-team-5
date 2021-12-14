@@ -50,9 +50,9 @@ const ReferralItem = (props) => {
     }
 
     return (
-        <React.Fragment>
-            <button style={{ display: "flex", flexDirection: "row", background: "transparent", width: "100%", border: "0" }} onClick={handleShow}>
-                <Row className={`${ReferCSS.positionContainer}`} style={{ justifyContent: "center", alignItems: "center" }}>
+        <div className={props.isRead ? ReferCSS.positionItemContainer : ReferCSS.positionUnreadItemContainer} style={{marginBottom: "1em", marginTop: "1em"}}>
+            <button style={{ display: "flex", flexDirection: "row", background: "transparent", width: "100%", border: "0", color: "inherit" }} onClick={handleShow}>
+                <Row className={ReferCSS.positionContainer} style={{ justifyContent: "center", alignItems: "center" }}>
                     <Col lg={2}><h6 className='text-center'>{props.id}</h6></Col>
                     <Col lg={3}><h6 className='text-center'>{props.referee ? `${props.referee.firstName} ${props.referee?.lastName}` : props.refereeName} </h6></Col>
                     <Col lg={3}><h6 className='text-center'>{props.referrer?.firstName} {props.referrer?.lastName}</h6></Col>
@@ -125,7 +125,7 @@ const ReferralItem = (props) => {
                     </Row>
                 </Modal.Body>
             </Modal>
-        </React.Fragment>
+        </div>
     );
 }
 
