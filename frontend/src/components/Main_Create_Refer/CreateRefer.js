@@ -84,9 +84,14 @@ function CreateRefer(props) {
                 valid = false;
             }
         }
+        if (input.description.length === 0) {
+            addMustFill('description');
+            fields.push('Description');
+            valid = false;
+        }
         if (document.getElementById('file-field').files.length === 0) {
-                fields.push('Resume');
-                valid = false;
+            fields.push('Resume');
+            valid = false;
         }
         if (fields.length !== 0) {
             let str = fields.reduce((acc, e) => acc + e + ', ', '');
@@ -224,8 +229,9 @@ function CreateRefer(props) {
                     : <></>}
                 <div className={`row mt-3`}>
                     <div className={`col-12 col-xl-6 text-start text-xl-end mb-3 mb-xl-0`}>
-                        <label className={`d-block text-start`} for='email-field'><strong>Employee Email:</strong></label>
-                        {referType === 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        <label className={`d-block text-start`} for='email-field'>
+                            <strong>Employee Email:<span className={`${CreateReferCSS.required} d-inline`}>{referType === '0' ? "*" : ""}</span></strong>
+                        </label>
                         <input
                             disabled={referType === '1'}
                             type='text'
@@ -239,8 +245,9 @@ function CreateRefer(props) {
                         />
                     </div>
                     <div className={`col-12 col-xl-6 pr-3 text-start`}>
-                        <label className={`d-block text-start`} for='file-field'><strong>Attach Résumé:</strong></label>
-                        {referType === 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        <label className={`d-block text-start`} for='file-field'>
+                            <strong>Attach Résumé:<span className={`${CreateReferCSS.required} d-inline`}>*</span></strong>
+                        </label>
                         <input
                             ref={fileInputElement}
                             type='file'
@@ -256,10 +263,7 @@ function CreateRefer(props) {
                 <div className='row mt-3'>
                     <div className={`col-12 col-xl-6 pl-3 text-start text-xl-end mb-3 mb-xl-0`}>
                         <label className={`d-block text-start`} for='first-name-field'>
-                            {referType === '0' ?
-                                <strong>First Name:<span className={`${CreateReferCSS.required} d-inline`}>*</span></strong> :
-                                <strong>First Name:</strong>
-                            }
+                            <strong>First Name:<span className={`${CreateReferCSS.required} d-inline`}>{referType === '0' ? "*" : ""}</span></strong>
                         </label>
                         <input
                             disabled={referType === '1'}
@@ -274,8 +278,9 @@ function CreateRefer(props) {
                         />
                     </div>
                     <div className={`col-12 col-xl-6 pr-3 text-start mb-3 mb-xl-0`}>
-                        <label className={`d-block text-start`} for='last-name-field'><strong>Last Name:</strong></label>
-                        {referType === 0 ? <p className={`${CreateReferCSS.required} d-inline`}>* </p> : null}
+                        <label className={`d-block text-start`} for='last-name-field'>
+                            <strong>Last Name:<span className={`${CreateReferCSS.required} d-inline`}>{referType === '0' ? "*" : ""}</span></strong>
+                        </label>
                         <input
                             disabled={referType === '1'}
                             type='text'
@@ -290,14 +295,19 @@ function CreateRefer(props) {
                     </div>
                 </div>
                 <div className='row mt-3'>
-                    <label className={`d-block text-start`} for='description'><strong>Description:</strong></label>
-                    <textarea
-                        placeholder='Enter a brief description as to why you think this candidate would be a good hire...'
-                        value={input.description}
-                        onChange={(e) => changeInput(['description'], [e.target.value])}
-                        id='description'
-                        name='description'
-                    />
+                    <label className={`d-block text-start`} for='description'>
+                        <strong>Description:<span className={`${CreateReferCSS.required} d-inline`}>*</span></strong>
+                    </label>
+                    <div>
+                        <textarea
+                            placeholder='Enter a brief description as to why you think this candidate would be a good hire...'
+                            value={input.description}
+                            onChange={(e) => changeInput(['description'], [e.target.value])}
+                            id='description'
+                            name='description'
+                            style={{width: "100%"}}
+                        />
+                    </div>
                 </div>
             </div>
             <div className='row'>
