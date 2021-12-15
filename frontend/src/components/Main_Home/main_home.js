@@ -48,7 +48,7 @@ function Main_Home(){
     return(
       <div className={maincss.MainContainer}>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
-          <h1 style = {recStyle}> Newest Jobs</h1>
+          <h1 style = {recStyle}>Jobs</h1>
         </div>
         <div style={{display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center"}}>
           <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
